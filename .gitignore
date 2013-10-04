@@ -6,6 +6,7 @@
 *.csproj
 *.unityproj
 *.sln
+*.userprefs
 
 # -- Sistemas Operativos ------------------------------
 # Windows
