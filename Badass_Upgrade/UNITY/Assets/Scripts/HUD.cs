@@ -26,7 +26,7 @@ public class HUD : MonoBehaviour {
 		vidaText.text = robotProtagonista.vida.ToString();
 		escudoText.text = robotProtagonista.escudo.ToString();
 		
-		//Los atributos vida y escudo del robotProtagonista son public float.
+		//Los atributos vida y escudo del robotProtagonista son public int.
 		
 		
 	}
