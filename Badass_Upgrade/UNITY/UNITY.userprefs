@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player1Movement.cs">
     <Files>
-      <File FileName="Assets\Scripts\Player1Movement.cs" Line="26" Column="32" />
+      <File FileName="Assets\Scripts\Player1Movement.cs" Line="21" Column="39" />
       <File FileName="Assets\Scripts\Player1Mouse.cs" Line="40" Column="63" />
     </Files>
   </MonoDevelop.Ide.Workbench>

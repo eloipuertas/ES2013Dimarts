@@ -9,6 +9,16 @@ public class Player1Movement : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		
+		 if (rigidbody==null)
+
+         gameObject.AddComponent ("Rigidbody");
+
+ 
+
+      // don't let the physics engine rotate the character
+
+      rigidbody.freezeRotation = true;
 	
 	}
 	
