@@ -41,12 +41,12 @@ public class Player1Movement : MonoBehaviour {
 		} 
 		
 		//Run
-		if(Input.GetAxis("Run")> 0.0) {
+		/*if(Input.GetAxis("Run")> 0.0) {
 			moveSpeed = 1000.0f;
 		}
 		else {
 			moveSpeed = 100.0f;
-		}
+		}*/
 	        		
 	}
 }
