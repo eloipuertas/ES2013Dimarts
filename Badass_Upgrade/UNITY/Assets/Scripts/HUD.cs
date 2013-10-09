@@ -11,6 +11,7 @@ public class HUD : MonoBehaviour {
 	
 	public GUIText vidaText;
 	public GUIText escudoText;
+	public GUIText enemiesCounterGUIText;
 	
 	//El nombre del script que contiene la informacion del personaje podria ser distinto
 	public MainCharacter robotProtagonista;
@@ -25,7 +26,7 @@ public class HUD : MonoBehaviour {
 		
 		vidaText.text = robotProtagonista.vida.ToString();
 		escudoText.text = robotProtagonista.escudo.ToString();
-		
+		enemiesCounterGUIText.text = "Remaining enemies: " + robotProtagonista.enemies.ToString();
 		//Los atributos vida y escudo del robotProtagonista son public float.
 		
 		
@@ -37,6 +38,6 @@ public class HUD : MonoBehaviour {
 		//Por cada frame, actualiza los valores
 		vidaText.text = robotProtagonista.vida.ToString();
 		escudoText.text = robotProtagonista.escudo.ToString();
-	
+		enemiesCounterGUIText.text = "Remaining enemies: " + robotProtagonista.enemies.ToString();
 	}
 }

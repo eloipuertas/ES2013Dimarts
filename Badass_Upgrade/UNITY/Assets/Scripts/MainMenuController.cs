@@ -3,14 +3,13 @@ using System.Collections;
 
 public class MainMenuController : MonoBehaviour {
 	
-	const int main_menu = 0;
+	//Constants
 	const int new_game = 1;
 	const int options = 2;
 	
 	//Variables
-	public bool isQuitButton = false;			//Is the button the quit button?
-	public bool isNewGameButton = false;			//Is the button the quit button?
-	public bool isBackToMainButton = false;			//Is the button the quit button?
+	public bool isQuitButton = false;
+	public bool isNewGameButton = false;
 	
 	// Use this for initialization
 	void Start () {
@@ -37,8 +36,6 @@ public class MainMenuController : MonoBehaviour {
 			Application.Quit();
 		else if(isNewGameButton)
 			Application.LoadLevel(new_game);
-		else if(isBackToMainButton)
-			Application.LoadLevel(main_menu);
 		else
 			Application.LoadLevel(options);
 	}
