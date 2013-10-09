@@ -3,6 +3,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Character Controllers\Sources\Scripts\FPSInputController.js">
     <Files>
       <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\FPSInputController.js" Line="32" Column="46" />
@@ -17,12 +18,19 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Playerdown.cs">
     <Files>
 >>>>>>> 72c5a6fbeff6e3c950bc0d1666345f6028bb0f61
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Playerdown.cs">
+    <Files>
+>>>>>>> 72c5a6fbeff6e3c950bc0d1666345f6028bb0f61
       <File FileName="Assets\Scripts\atack.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\atackMelee.cs" Line="4" Column="42" />
       <File FileName="Assets\Scripts\Playerdown.cs" Line="34" Column="25" />
       <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\FPSInputController.js" Line="1" Column="1" />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 72c5a6fbeff6e3c950bc0d1666345f6028bb0f61
+=======
 >>>>>>> 72c5a6fbeff6e3c950bc0d1666345f6028bb0f61
 =======
 >>>>>>> 72c5a6fbeff6e3c950bc0d1666345f6028bb0f61
