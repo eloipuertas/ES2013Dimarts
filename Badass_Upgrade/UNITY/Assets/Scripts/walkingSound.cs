@@ -19,7 +19,7 @@ public class walkingSound : MonoBehaviour {
 		aux= posInicial-transform.position;
 		if(aux.sqrMagnitude>4){
 			posInicial=transform.position;
-			AudioSource.PlayClipAtPoint(walkSounds[oneSound],posInicial);
+			AudioSource.PlayClipAtPoint(walkSounds[oneSound],posInicial,0.15F);
 			++oneSound;
 			if(oneSound==2){ 
 				oneSound=0;
