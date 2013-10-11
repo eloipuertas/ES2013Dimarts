@@ -24,9 +24,9 @@ public class HUD : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
-		vidaText.text = robotProtagonista.vida.ToString();
-		escudoText.text = robotProtagonista.escudo.ToString();
-		enemiesCounterGUIText.text = "Remaining enemies: " + robotProtagonista.enemies.ToString();
+		vidaText.text = "Health: " + robotProtagonista.vida.ToString() + "%";
+		escudoText.text = "Shield: " + robotProtagonista.escudo.ToString() + "%";
+		enemiesCounterGUIText.text = "Remaining enemies: "; //+ robotProtagonista.enemies.ToString();
 		//Los atributos vida y escudo del robotProtagonista son public float.
 		
 		
@@ -36,8 +36,8 @@ public class HUD : MonoBehaviour {
 	void Update () {
 		
 		//Por cada frame, actualiza los valores
-		vidaText.text = robotProtagonista.vida.ToString();
-		escudoText.text = robotProtagonista.escudo.ToString();
-		enemiesCounterGUIText.text = "Remaining enemies: " + robotProtagonista.enemies.ToString();
+		vidaText.text = "Health: " + robotProtagonista.vida.ToString() + "%";
+		escudoText.text = "Shield: " + robotProtagonista.escudo.ToString() + "%";
+		enemiesCounterGUIText.text = "Remaining enemies: "; //+ robotProtagonista.enemies.ToString();
 	}
 }

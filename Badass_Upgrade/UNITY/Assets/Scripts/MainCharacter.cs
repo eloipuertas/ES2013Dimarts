@@ -5,16 +5,9 @@ public class MainCharacter : MonoBehaviour {
 	
 	public int vida;
 	public int escudo;
-<<<<<<< HEAD
-	
+
 	void Awake () {
 		
-=======
-	public int enemies;
-	
-	void Awake () {
-		enemies = 10;
->>>>>>> origin/Grupo-E
 		vida = 100;
 		escudo = 100;
 		
