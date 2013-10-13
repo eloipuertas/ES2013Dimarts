@@ -17,6 +17,7 @@ public class AI2 : MonoBehaviour {
 	public int distancia_alerta=20;
 	public int distancia_perseguir=15;
 	public int distancia_atac_fisic=3;
+    public int distancia_atac_distancia = 19;
 	
 	//-------------------------------------------
 	
@@ -54,17 +55,25 @@ public class AI2 : MonoBehaviour {
 			state="away";
 			//renderer.material.color=Color.blue;
 			//retorn al spawnpoint?
-		}else if(Distance<=distancia_perseguir && Distance>distancia_atac_fisic){
-			moveTo();//persegur al jugador
-			state="walking";
-			//animation.Play();
+		}else if(Distance<distancia_alerta && Distance >distancia_perseguir && Distance<=distancia_atac_distancia){
+			//print("Distance shoot or follow: "+Distance+" -- "+distancia_atac_distancia);
+			state="shooting";
+            animation.Play("crouch");
+            distanceAttack();
 			//renderer.material.color=Color.yellow;
 		}else if(Distance <=distancia_atac_fisic){
 			state="attack";
 			//renderer.material.color=Color.red;
 			attack();
-			//animation.Play();
-		}
+			animation.Play("melee attack");
+		}else if(Distance<=distancia_perseguir && Distance>distancia_atac_fisic){
+            moveTo();
+            state = "walking";
+            animation.Play("walk");
+
+
+
+        }
 		
 
 			
@@ -93,6 +102,13 @@ public class AI2 : MonoBehaviour {
 		
 	}
 	
+
+    void distanceAttack(){
+        if(Time.time>lastAttack){
+            print ("Shooting");
+            lastAttack=Time.time+fireRate;
+        }
+     }
 	/*
 	void distanceAttack(){
 		RaycastHit hitt;
