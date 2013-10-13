@@ -29,7 +29,11 @@ function Update () {
 	
 	// Apply the direction to the CharacterMotor
 	motor.inputMoveDirection = transform.rotation * directionVector;
+<<<<<<< HEAD
 	motor.inputJump = Input.GetButton("Saltar");
+=======
+	motor.inputJump = Input.GetButton("Jump");
+>>>>>>> origin/Grupo-C
 }
 
 // Require a character controller to be attached to the same game object

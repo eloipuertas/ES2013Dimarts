@@ -25,7 +25,10 @@ class CharacterMotorMovement {
 	var maxSidewaysSpeed : float = 10.0;
 	var maxBackwardsSpeed : float = 10.0;
 	
+<<<<<<< HEAD
 	
+=======
+>>>>>>> origin/Grupo-C
 	// Curve for multiplying speed based on slope (negative = downwards)
 	var slopeSpeedMultiplier : AnimationCurve = AnimationCurve(Keyframe(-90, 1), Keyframe(0, 1), Keyframe(90, 0));
 	
@@ -177,7 +180,10 @@ private var tr : Transform;
 private var controller : CharacterController;
 
 function Awake () {
+<<<<<<< HEAD
 	Debug.Log("awake");
+=======
+>>>>>>> origin/Grupo-C
 	controller = GetComponent (CharacterController);
 	tr = transform;
 }
@@ -186,6 +192,7 @@ private function UpdateFunction () {
 	// We copy the actual velocity into a temporary variable that we can manipulate.
 	var velocity : Vector3 = movement.velocity;
 	
+<<<<<<< HEAD
 	/*if(Input.GetAxis("Run") > 0.0) {
 		//maxForwardSpeed = 100;
 		
@@ -196,6 +203,8 @@ private function UpdateFunction () {
 	//}
 	
 	
+=======
+>>>>>>> origin/Grupo-C
 	// Update velocity based on input
 	velocity = ApplyInputVelocityChange(velocity);
 	
@@ -361,7 +370,10 @@ private function ApplyInputVelocityChange (velocity : Vector3) {
 		var projectedMoveDir = Vector3.Project(inputMoveDirection, desiredVelocity);
 		// Add the sliding direction, the spped control, and the sideways control vectors
 		desiredVelocity = desiredVelocity + projectedMoveDir * sliding.speedControl + (inputMoveDirection - projectedMoveDir) * sliding.sidewaysControl;
+<<<<<<< HEAD
 		
+=======
+>>>>>>> origin/Grupo-C
 		// Multiply with the sliding speed
 		desiredVelocity *= sliding.slidingSpeed;
 	}
@@ -589,7 +601,10 @@ function MaxSpeedInDirection (desiredMovementDirection : Vector3) : float {
 }
 
 function SetVelocity (velocity : Vector3) {
+<<<<<<< HEAD
 	Debug.Log("setVelocity");
+=======
+>>>>>>> origin/Grupo-C
 	grounded = false;
 	movement.velocity = velocity;
 	movement.frameVelocity = Vector3.zero;
