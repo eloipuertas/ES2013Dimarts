@@ -44,7 +44,6 @@ public class AI2 : MonoBehaviour {
 		myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
 		
 		Distance=Vector3.Distance(target.position,transform.position);
-		
         Debug.DrawLine(target.position, myTransform.position, Color.yellow);
 		
 		if(Distance>distancia_alerta && Vector3.Distance(spawnPoint, transform.position)>3){
