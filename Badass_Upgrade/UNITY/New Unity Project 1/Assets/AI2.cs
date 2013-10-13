@@ -5,8 +5,7 @@ public class AI2 : MonoBehaviour {
     public Transform target;
 
 	int gravetat=10;
-	
-	
+
 	//variables modificables segons la ia--------
 	public int moveSpeed=3;
     public int rotationSpeed=2;
@@ -14,19 +13,16 @@ public class AI2 : MonoBehaviour {
 	float shootDistance;
 	int damage=20;
 	public int fireRate=1;
-	public int distancia_alerta=20;
-	public int distancia_perseguir=15;
+	public int distancia_alerta=30;
+	public int distancia_perseguir=20;
 	public int distancia_atac_fisic=3;
-    public int distancia_atac_distancia = 19;
-	
+    public int distancia_atac_distancia = 15;
 	//-------------------------------------------
 	
 	public Vector3 spawnPoint;
 	public string state;
 	public float lastAttack;
 	
-	
-
     private Transform myTransform;
 
     void Awake(){
@@ -65,18 +61,12 @@ public class AI2 : MonoBehaviour {
 			state="attack";
 			//renderer.material.color=Color.red;
 			attack();
-			animation.Play("melee attack");
+			animation.Play("meleeattack");
 		}else if(Distance<=distancia_perseguir && Distance>distancia_atac_fisic){
             moveTo();
             state = "walking";
             animation.Play("walk");
-
-
-
         }
-		
-
-			
 	}
 	
 	
@@ -86,20 +76,13 @@ public class AI2 : MonoBehaviour {
 		//float mov= myTransform.position.y -(gravetat * Time.deltaTime);
 		//myTransform.position.y =mov;
 		//myTransform.position=new Vector3(myTransform.position.x,mov,myTransform.position.z);
-		
-		
 	}
 
 	void attack(){
 		if(Time.time>lastAttack){
 			print("attack!");
 			lastAttack=Time.time+fireRate;
-			
-		
 		}
-		
-		
-		
 	}
 	
 
