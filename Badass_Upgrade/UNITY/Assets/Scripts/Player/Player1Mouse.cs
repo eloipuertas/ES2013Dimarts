@@ -3,13 +3,13 @@ using System.Collections;
 
 public class Player1Mouse : MonoBehaviour {
 	
-	float mouseSensitivity = 5.0f;
+	float mouseSensitivity = 3.0f;
 	float xRotation;
 	float yRotation;
 	
 	public float currentXRotation;
 	public float currentYRotation;
-	private float yRotationV = 0.0F;
+	private float yRotationV;
 	float xRotationV;
 	//Temps que tartda en arribar de xRot a currentXRot...
 	float moveTime = 0.1f;
@@ -26,7 +26,7 @@ public class Player1Mouse : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		yRotation += Input.GetAxis("Mouse X") * mouseSensitivity;
+		yRotation += Input.GetAxis("Mouse X") * mouseSensitivity * 0.2f;
 		xRotation -= Input.GetAxis("Mouse Y") * mouseSensitivity;
 		
 		
