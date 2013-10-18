@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Player1Mouse : MonoBehaviour {
 	
-	float mouseSensitivity = 1.5f;
+	float mouseSensitivity = 2.5f;
 	float xRotation;
 	float yRotation;
 	
@@ -12,7 +12,7 @@ public class Player1Mouse : MonoBehaviour {
 	private float yRotationV;
 	float xRotationV;
 	//Temps que tartda en arribar de xRot a currentXRot...
-	float moveTime = 0.1f;
+	float moveTime = 0.05f;
 	
 
 	// Use this for initialization
@@ -34,8 +34,7 @@ public class Player1Mouse : MonoBehaviour {
 		//pos now, new pos,velocity, time to move
 		currentYRotation = Mathf.SmoothDamp(currentYRotation,yRotation,ref yRotationV,moveTime);
 		currentXRotation = Mathf.SmoothDamp(currentXRotation,xRotation,ref xRotationV,moveTime);
-		
-		
+				
 		//Final rotation
 		transform.rotation = Quaternion.Euler(currentXRotation,currentYRotation,0);
 	
