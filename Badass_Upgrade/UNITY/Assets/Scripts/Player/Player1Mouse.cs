@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Player1Mouse : MonoBehaviour {
 	
-	float mouseSensitivity = 3.0f;
+	float mouseSensitivity = 1.5f;
 	float xRotation;
 	float yRotation;
 	
@@ -26,7 +26,7 @@ public class Player1Mouse : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		yRotation += Input.GetAxis("Mouse X") * mouseSensitivity * 0.2f;
+		yRotation += Input.GetAxis("Mouse X") * mouseSensitivity;
 		xRotation -= Input.GetAxis("Mouse Y") * mouseSensitivity;
 		
 		
