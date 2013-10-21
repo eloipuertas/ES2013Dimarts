@@ -1,9 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player1Movement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\Player1Mouse.cs">
     <Files>
-      <File FileName="Assets\Scripts\Player1Movement.cs" Line="26" Column="32" />
-      <File FileName="Assets\Scripts\Player1Mouse.cs" Line="40" Column="63" />
+      <File FileName="Assets\Scripts\Player\downAndAtack.cs" Line="18" Column="12" />
+      <File FileName="Assets\Scripts\Player\MainCharacter.cs" Line="42" Column="16" />
+      <File FileName="Assets\Scripts\Player\Shoot.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\Player1Mouse.cs" Line="6" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
