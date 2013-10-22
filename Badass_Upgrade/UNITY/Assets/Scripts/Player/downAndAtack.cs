@@ -25,9 +25,9 @@ public class downAndAtack : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		scaleHandx = leftHand.transform.localScale.x;
+		/*scaleHandx = leftHand.transform.localScale.x;
 		scaleHandy = leftHand.transform.localScale.y;
-		scaleHandz = leftHand.transform.localScale.z;
+		scaleHandz = leftHand.transform.localScale.z;*/
 		
 		cam = Camera.main.transform;
 		
@@ -46,7 +46,8 @@ public class downAndAtack : MonoBehaviour {
 				//leftHand.transform.localScale += new Vector3(scaleHandx,scaleHandy,scaleHandz);
 				
 				//Per eliminar braç quant s'ajup
-				leftHand.transform.localScale -= new Vector3(scaleHandx,scaleHandy,scaleHandz);
+				leftHand.SetActive(false);
+				//leftHand.transform.localScale -= new Vector3(scaleHandx,scaleHandy,scaleHandz);
 			}
 				
 		}
@@ -58,7 +59,8 @@ public class downAndAtack : MonoBehaviour {
 				//leftHand.transform.localScale -= new Vector3(scaleHandx,scaleHandy,scaleHandz);
 				
 				//Tornar a posar braç
-				leftHand.transform.localScale += new Vector3(scaleHandx,scaleHandy,scaleHandz);
+				leftHand.SetActive(true);
+				//leftHand.transform.localScale += new Vector3(scaleHandx,scaleHandy,scaleHandz);
 			}
 				
 		}
