@@ -24,7 +24,9 @@ public class AI2 : MonoBehaviour {
 	public float lastAttack;
 	
     private Transform myTransform;
-
+	
+	public int vida = 100;
+	
     void Awake(){
         myTransform = transform;
 		spawnPoint=new Vector3(transform.position.x,transform.position.y,transform.position.z);
@@ -33,6 +35,7 @@ public class AI2 : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Debug.Log("S'executa enmic");
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         target = player.transform;
 		lastAttack=Time.time;
@@ -41,7 +44,8 @@ public class AI2 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
+		Debug.Log("vida enemic "+vida);
+		/*myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
 		
 		Distance=Vector3.Distance(target.position,transform.position);
         Debug.DrawLine(target.position, myTransform.position, Color.yellow);
@@ -65,9 +69,15 @@ public class AI2 : MonoBehaviour {
             animation.Play("crouch");
             distanceAttack();
 			//renderer.material.color=Color.yellow;
-		}
+		}*/
 	}
 	
+	void rebreDany(int dany) {
+		Debug.Log("Rebo dany de "+dany);
+		vida -= dany;
+		if(vida <= 0)
+			this.gameObject.SetActive(false);	
+	}
 	
 	void moveTo(){
 		myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
