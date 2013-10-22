@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 054e64c88a3249848bbeb283ecf28806
+guid: c20c0e0b10fd0aa479aa42d941982d3b
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -105,7 +105,6 @@ ModelImporter:
     4300038: Sphere_011
     7400000: Default Take
     7400002: ArmatureAction
-    7400004: ArmatureAction0
     9500000: //RootNode
     11100000: //RootNode
     13700000: Cone_003
@@ -140,49 +139,7 @@ ModelImporter:
     animationPositionError: .5
     animationScaleError: .5
     animationWrapMode: 0
-    clipAnimations:
-    - name: ArmatureAction0
-      takeName: ArmatureAction
-      firstFrame: 0
-      lastFrame: 31
-      wrapMode: 1
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopBlend: 1
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      transformMask: []
-    - name: ArmatureAction
-      takeName: ArmatureAction
-      firstFrame: 0
-      lastFrame: 4.30000019
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      transformMask: []
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []

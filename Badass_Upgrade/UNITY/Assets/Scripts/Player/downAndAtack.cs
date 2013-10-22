@@ -21,13 +21,15 @@ public class downAndAtack : MonoBehaviour {
 	RaycastHit hit;
 	float meleeDistance = 1.8f;
 	Transform cam;
-	
+	int damageMelee = 10;
 	
 	// Use this for initialization
 	void Start () {
 		/*scaleHandx = leftHand.transform.localScale.x;
 		scaleHandy = leftHand.transform.localScale.y;
 		scaleHandz = leftHand.transform.localScale.z;*/
+		
+		leftHand.SetActive(false);
 		
 		cam = Camera.main.transform;
 		
@@ -46,7 +48,7 @@ public class downAndAtack : MonoBehaviour {
 				//leftHand.transform.localScale += new Vector3(scaleHandx,scaleHandy,scaleHandz);
 				
 				//Per eliminar braç quant s'ajup
-				leftHand.SetActive(false);
+				//leftHand.SetActive(false);
 				//leftHand.transform.localScale -= new Vector3(scaleHandx,scaleHandy,scaleHandz);
 			}
 				
@@ -59,18 +61,19 @@ public class downAndAtack : MonoBehaviour {
 				//leftHand.transform.localScale -= new Vector3(scaleHandx,scaleHandy,scaleHandz);
 				
 				//Tornar a posar braç
-				leftHand.SetActive(true);
+				//leftHand.SetActive(true);
 				//leftHand.transform.localScale += new Vector3(scaleHandx,scaleHandy,scaleHandz);
 			}
 				
 		}
 		
 		if((Input.GetButtonDown("Melee")) && (down == false)) {
-			GameObject target = GameObject.Find("leftHand");
-			target.animation.Play("ArmatureAction0");
+			leftHand.SetActive(true);
+			leftHand.animation.Play("ArmatureAction");
 			if(Physics.Raycast(cam.position, cam.forward,out hit, meleeDistance)) {
 				if(hit.collider.gameObject.tag == "Enemy") {
-					Debug.Log("toco l'enemic amb un atac melee");
+					//Enviar el dany directament
+					hit.transform.gameObject.SendMessage("rebreDany",damageMelee);
 				}
 			}
 		}

@@ -1,11 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\MainCharacter.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemies\AI2.cs">
     <Files>
-      <File FileName="Assets\Scripts\Player\MainCharacter.cs" Line="83" Column="6" />
-      <File FileName="Assets\Scripts\Player\downAndAtack.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player\Shoot.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player\Player1Mouse.cs" Line="6" Column="30" />
+      <File FileName="Assets\Scripts\Player\MainCharacter.cs" Line="144" Column="2" />
+      <File FileName="Assets\Scripts\Player\Weapon.cs" Line="14" Column="110" />
+      <File FileName="Assets\Scripts\Player\downAndAtack.cs" Line="10" Column="25" />
+      <File FileName="Assets\Scripts\Enemies\AI2.cs" Line="79" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
