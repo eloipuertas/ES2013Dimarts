@@ -18,6 +18,7 @@ public class Shoot : MonoBehaviour {
 			if(Physics.Raycast(cam.position, cam.forward,out hit, shotDistance)) {
 				if(hit.collider.gameObject.tag == "Enemy") {
 					Debug.Log("Disparo i toco l'enemic");
+					//Agafar de l'arma que estic el mal que fa i enviarl-la al enemic
 				}
 			}
 			

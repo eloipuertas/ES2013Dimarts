@@ -20,7 +20,7 @@ public class Player1Mouse : MonoBehaviour {
 		
 		//mouse not visibility in screen
 		Screen.lockCursor = true;
-	
+		Screen.showCursor = false;
 	}
 	
 	// Update is called once per frame
