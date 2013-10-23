@@ -10,10 +10,10 @@ FBXHeaderExtension:  {
 		Version: 1000
 		Year: 2013
 		Month: 10
-		Day: 10
-		Hour: 18
-		Minute: 37
-		Second: 27
+		Day: 23
+		Hour: 15
+		Minute: 45
+		Second: 53
 		Millisecond: 0
 	}
 	Creator: "FBX SDK/FBX Plugins build 20070228"
@@ -21,7 +21,7 @@ FBXHeaderExtension:  {
 		FlagPLE: 0
 	}
 }
-CreationTime: "2013-10-10 18:37:27:000"
+CreationTime: "2013-10-23 15:45:53:000"
 Creator: "Blender version 2.68 (sub 0)"
 
 ; Object definitions
@@ -3108,100 +3108,6 @@ Connections:  {
 
 Takes:  {
 	Current: "Default Take"
-	Take: "Default Take" {
-		FileName: "Default_Take.tak"
-		LocalTime: 0,479181389250
-		ReferenceTime: 0,479181389250
-
-		;Models animation
-		;----------------------------------------------------
-		Model: "Model::Cylinder_001" {
-			Version: 1.1
-			Channel: "Transform" {
-				Channel: "T" {
-					Channel: "X" {
-						Default: -2.246852159500122
-						KeyVer: 4005
-						KeyCount: 1
-						Key: 
-							1924423250,-2.246852159500122,L
-						Color: 1,0,0
-					}
-					Channel: "Y" {
-						Default: 3.569049119949341
-						KeyVer: 4005
-						KeyCount: 1
-						Key: 
-							1924423250,3.569049119949341,L
-						Color: 0,1,0
-					}
-					Channel: "Z" {
-						Default: 0.903683662414551
-						KeyVer: 4005
-						KeyCount: 1
-						Key: 
-							1924423250,0.903683662414551,L
-						Color: 0,0,1
-					}
-					LayerType: 1
-				}
-				Channel: "R" {
-					Channel: "X" {
-						Default: 90.000002504348856
-						KeyVer: 4005
-						KeyCount: 1
-						Key: 
-							1924423250,90.000002504348856,L
-						Color: 1,0,0
-					}
-					Channel: "Y" {
-						Default: -0.000000000000000
-						KeyVer: 4005
-						KeyCount: 1
-						Key: 
-							1924423250,-0.000000000000000,L
-						Color: 0,1,0
-					}
-					Channel: "Z" {
-						Default: 180.000005008697713
-						KeyVer: 4005
-						KeyCount: 1
-						Key: 
-							1924423250,180.000005008697713,L
-						Color: 0,0,1
-					}
-					LayerType: 2
-				}
-				Channel: "S" {
-					Channel: "X" {
-						Default: -0.098732084035873
-						KeyVer: 4005
-						KeyCount: 1
-						Key: 
-							1924423250,-0.098732084035873,L
-						Color: 1,0,0
-					}
-					Channel: "Y" {
-						Default: -0.098732084035873
-						KeyVer: 4005
-						KeyCount: 1
-						Key: 
-							1924423250,-0.098732084035873,L
-						Color: 0,1,0
-					}
-					Channel: "Z" {
-						Default: -0.098732084035873
-						KeyVer: 4005
-						KeyCount: 1
-						Key: 
-							1924423250,-0.098732084035873,L
-						Color: 0,0,1
-					}
-					LayerType: 3
-				}
-			}
-		}
-	}
 }
 ;Version 5 settings
 ;------------------------------------------------------------------
