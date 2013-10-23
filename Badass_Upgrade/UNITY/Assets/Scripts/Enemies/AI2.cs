@@ -44,7 +44,7 @@ public class AI2 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log("vida enemic "+vida);
+		
 		/*myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
 		
 		Distance=Vector3.Distance(target.position,transform.position);

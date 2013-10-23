@@ -15,13 +15,22 @@ public class MainCharacter : MonoBehaviour {
 	int balesCarregador;
 	List<Weapon> weapons;
 	
-	//Atributs de l'accio disparar
+	//Atributs de l'accio disparar & melee
 	RaycastHit hit;
+	Transform cam;
+	float meleeDistance = 1.8f;
 	float shotDistance = 20f;
-	Transform cam; 
+	int damageMelee = 10;
 	
+	//down
+	public GameObject player;
+	public GameObject leftHand;
+	float minScaleY = 0.2f;
+	float maxScaleY = 1.0f;
+	//Per saber si esta ajupit
+	bool down;
 	
-	
+
 	void Awake () {	
 		
 	}
@@ -29,17 +38,20 @@ public class MainCharacter : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
+		//armes
 		weapons = new List<Weapon>();
 		posWeapon = 0;
 		init(100,100);
 		initWeapons();
 		hiddenAllWeapons();
+		//mostro arma 1
+		weapons[posWeapon].showWeapon();
+		
+		//melee & down
+		leftHand.SetActive(false);
+		down = false;
 		
 		cam = Camera.main.transform;
-		
-		//mostro arma 1
-		//Debug.Log("dany inciial "+weapons[posWeapon].damage);
-		//weapons[posWeapon].showWeapon();
 			
 	}
 	
@@ -52,40 +64,78 @@ public class MainCharacter : MonoBehaviour {
 					Debug.Log("Disparo i toco l'enemic i li faig "+actualWeaponDamage+" punts de dany");
 					hit.transform.gameObject.SendMessage("rebreDany",actualWeaponDamage);
 				}
+				else if(hit.collider.gameObject.tag == "Barril") {
+					Debug.Log("Disparo contre el barril");
+					hit.transform.gameObject.SendMessage("rebreTir");
+				}
 			}
 			
 		}
 		else if(Input.GetButtonDown("Arma 1")) {
 			//1-Escalo a 0 l'actual posWeapon
-			//weapons[posWeapon].hideWeapon();
+			weapons[posWeapon].hideWeapon();
 			//2-Poso a 0 ja que l'arma 1 es a la posicio 0
 			posWeapon = 0;
 			actualWeaponDamage = weapons[posWeapon].getDamage();
 			balesCarregador = weapons[posWeapon].getBalesActualCarregador();
 			//3-Escalo a pos el nou
-			//weapons[posWeapon].showWeapon();
+			weapons[posWeapon].showWeapon();
 			//Debug.Log("Arma 1 "+weapons[posWeapon].damage);
 		}
 		else if(Input.GetButtonDown("Arma 2")) {
-			//weapons[posWeapon].hideWeapon();
+			weapons[posWeapon].hideWeapon();
 			posWeapon = 1;
 			actualWeaponDamage = weapons[posWeapon].getDamage();
 			balesCarregador = weapons[posWeapon].getBalesActualCarregador();
-			//weapons[posWeapon].showWeapon();
+			weapons[posWeapon].showWeapon();
 			
 		}
 		else if(Input.GetButtonDown("Arma 3")) {
-			//weapons[posWeapon].hideWeapon();
+			weapons[posWeapon].hideWeapon();
 			posWeapon = 2;
 			actualWeaponDamage = weapons[posWeapon].getDamage();
 			balesCarregador = weapons[posWeapon].getBalesActualCarregador();
-			//weapons[posWeapon].showWeapon();
+			weapons[posWeapon].showWeapon();
 		}
 		else if(Input.GetButtonDown("Recargar")) {
 			Debug.Log("Recarrego l'arma");
 			balesCarregador = weapons[posWeapon].recarregar();
 			if(balesCarregador <= 0)
 				Debug.Log("No hi ha mes municio");
+		}
+		else if(Input.GetButtonDown("Agacharse")) {
+			down = true;
+			if(player.transform.localScale.y > minScaleY) {
+				player.transform.localScale -= new Vector3(0, minScaleY, 0);
+				//leftHand.transform.localScale += new Vector3(scaleHandx,scaleHandy,scaleHandz);
+				
+				//Per eliminar braç quant s'ajup
+				//leftHand.SetActive(false);
+				//leftHand.transform.localScale -= new Vector3(scaleHandx,scaleHandy,scaleHandz);
+			}
+				
+		}
+		else if(Input.GetButtonUp("Agacharse")) {
+			down = false;
+			if(player.transform.localScale.y < maxScaleY) {
+				player.transform.position += new Vector3(0, minScaleY, 0);
+				player.transform.localScale += new Vector3(0, minScaleY, 0);
+				//leftHand.transform.localScale -= new Vector3(scaleHandx,scaleHandy,scaleHandz);
+				//Tornar a posar braç
+				//leftHand.SetActive(true);
+				//leftHand.transform.localScale += new Vector3(scaleHandx,scaleHandy,scaleHandz);
+			}
+				
+		}
+		else if((Input.GetButtonDown("Melee")) && (down == false)) {
+			leftHand.SetActive(true);
+			leftHand.animation.Play("ArmatureAction");
+			if(Physics.Raycast(cam.position, cam.forward,out hit, meleeDistance)) {
+				if(hit.collider.gameObject.tag == "Enemy") {
+					//Enviar el dany directament
+					hit.transform.gameObject.SendMessage("rebreDany",damageMelee);
+				}
+			}
 		}
 	}
 	
