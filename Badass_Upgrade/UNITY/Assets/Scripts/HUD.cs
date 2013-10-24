@@ -6,14 +6,20 @@ public class HUD : MonoBehaviour {
 	/*Tanto el GUIText como el MainCharacter necesitan ser asignados a los correspondientes objetos de la escena
 	 * vidaText: un objeto de tipo GUIText
 	 * escudoText: un objeto de tipo GUIText
+	 * enemiesCounterGUIText: un objeto de tipo GUIText
+	 * balasCargadorText: un objeto de tipo GUIText
+	 * balasTotalesText: un objeto de tipo GUIText
+	 * armaEquipada: un objeto que contiene el script con la informacion del arma
 	 * robotProtagonista: un objeto que contenga el script MainCharacter 
 	 */
 	
 	public GUIText vidaText;
 	public GUIText escudoText;
 	public GUIText enemiesCounterGUIText;
+	public GUIText balasCargadorText;
+	public GUIText balasTotalesText;
 	
-	//El nombre del script que contiene la informacion del personaje podria ser distinto
+	public temporaryWeapon armaEquipada;
 	public MainCharacter robotProtagonista;
 	
 	//The first method to be called
@@ -27,7 +33,9 @@ public class HUD : MonoBehaviour {
 		vidaText.text = "Health: " + robotProtagonista.vida.ToString() + "%";
 		escudoText.text = "Shield: " + robotProtagonista.escudo.ToString() + "%";
 		enemiesCounterGUIText.text = "Remaining enemies: "; //+ robotProtagonista.enemies.ToString();
-		//Los atributos vida y escudo del robotProtagonista son public float.
+		
+		balasCargadorText.text = armaEquipada.balasCargador.ToString();
+		balasTotalesText.text = armaEquipada.balasTotales.ToString();
 		
 		
 	}
@@ -39,5 +47,7 @@ public class HUD : MonoBehaviour {
 		vidaText.text = "Health: " + robotProtagonista.vida.ToString() + "%";
 		escudoText.text = "Shield: " + robotProtagonista.escudo.ToString() + "%";
 		enemiesCounterGUIText.text = "Remaining enemies: "; //+ robotProtagonista.enemies.ToString();
+		
+		
 	}
 }
