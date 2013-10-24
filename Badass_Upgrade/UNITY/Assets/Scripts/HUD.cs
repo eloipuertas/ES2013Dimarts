@@ -49,5 +49,8 @@ public class HUD : MonoBehaviour {
 		enemiesCounterGUIText.text = "Remaining enemies: "; //+ robotProtagonista.enemies.ToString();
 		
 		
+		balasCargadorText.text = armaEquipada.balasCargador.ToString();
+		balasTotalesText.text = armaEquipada.balasTotales.ToString();
+		
 	}
 }
