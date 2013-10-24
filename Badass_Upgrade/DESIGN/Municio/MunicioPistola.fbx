@@ -11,9 +11,9 @@ FBXHeaderExtension:  {
 		Year: 2013
 		Month: 10
 		Day: 24
-		Hour: 15
-		Minute: 46
-		Second: 23
+		Hour: 16
+		Minute: 32
+		Second: 04
 		Millisecond: 0
 	}
 	Creator: "FBX SDK/FBX Plugins build 20070228"
@@ -21,7 +21,7 @@ FBXHeaderExtension:  {
 		FlagPLE: 0
 	}
 }
-CreationTime: "2013-10-24 15:46:23:000"
+CreationTime: "2013-10-24 16:32:04:000"
 Creator: "Blender version 2.68 (sub 0)"
 
 ; Object definitions
@@ -2699,7 +2699,7 @@ Objects:  {
 			Property: "TransparentColor", "ColorRGB", "",1,1,1
 			Property: "TransparencyFactor", "double", "",0.0000
 			Property: "SpecularColor", "ColorRGB", "",1.0000,1.0000,1.0000
-			Property: "SpecularFactor", "double", "",0.2500
+			Property: "SpecularFactor", "double", "",0.0000
 			Property: "ShininessExponent", "double", "",80.0
 			Property: "ReflectionColor", "ColorRGB", "",0,0,0
 			Property: "ReflectionFactor", "double", "",1
@@ -2729,7 +2729,7 @@ Objects:  {
 			Property: "TransparentColor", "ColorRGB", "",1,1,1
 			Property: "TransparencyFactor", "double", "",0.0000
 			Property: "SpecularColor", "ColorRGB", "",1.0000,1.0000,1.0000
-			Property: "SpecularFactor", "double", "",0.2500
+			Property: "SpecularFactor", "double", "",0.0000
 			Property: "ShininessExponent", "double", "",80.0
 			Property: "ReflectionColor", "ColorRGB", "",0,0,0
 			Property: "ReflectionFactor", "double", "",1
