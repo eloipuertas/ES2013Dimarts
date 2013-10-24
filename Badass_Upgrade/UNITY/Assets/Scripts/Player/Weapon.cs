@@ -40,6 +40,12 @@ public class Weapon : MonoBehaviour {
 		modelWeapon.SetActive(false);
 	}
 	
+	//Gestio de items de municio
+	public void addBalesTotalsTag(string tagWeapon, int bales) {
+		if(tagWeapon.CompareTo(modelWeapon.tag) == 0)
+			addBalesTotals(bales);
+	}
+	
 	public void addBalesTotals(int bales) {
 		balesTotals += bales;
 	}
@@ -76,6 +82,7 @@ public class Weapon : MonoBehaviour {
 	}
 	
 	public int disparar() {
+		Debug.Log("tag = "+modelWeapon.tag);
 		//Debug.Log("Disparar");
 		if(balesActualCarregador > 0) 
 			balesActualCarregador -= 1;

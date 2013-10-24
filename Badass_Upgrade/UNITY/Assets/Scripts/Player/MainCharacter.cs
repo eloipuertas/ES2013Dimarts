@@ -171,7 +171,7 @@ public class MainCharacter : MonoBehaviour {
 		this.vivo = nouVivo;
 	}
 	
-	//Metodes per recollir items de vida i escut 
+	//Metodes per recollir items de vida, escut i municio
 	
 	void addItemVida(int valor) {
 		this.vida += valor;
