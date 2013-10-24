@@ -181,6 +181,10 @@ public class MainCharacter : MonoBehaviour {
 		this.escudo += valor;
 	}
 	
+	void addItemMunicio(int municio) {
+		weapons[posWeapon].addBalesTotals(municio);
+	}
+	
 	//Rebre dany de l'enemic
 	void rebreAtac(int dany) {
 		if(escudo > 0) {

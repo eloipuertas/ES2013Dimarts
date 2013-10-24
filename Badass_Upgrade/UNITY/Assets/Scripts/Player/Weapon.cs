@@ -40,6 +40,10 @@ public class Weapon : MonoBehaviour {
 		modelWeapon.SetActive(false);
 	}
 	
+	public void addBalesTotals(int bales) {
+		balesTotals += bales;
+	}
+	
 	public void showWeapon() {
 
     	//modelWeapon.transform.localScale += new Vector3(scalex,scaley,scalez);	
