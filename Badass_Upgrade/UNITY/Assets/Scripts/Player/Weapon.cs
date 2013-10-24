@@ -41,10 +41,10 @@ public class Weapon : MonoBehaviour {
 	}
 	
 	//Gestio de items de municio
-	public void addBalesTotalsTag(string tagWeapon, int bales) {
+	/*public void addBalesTotalsTag(string tagWeapon, int bales) {
 		if(tagWeapon.CompareTo(modelWeapon.tag) == 0)
 			addBalesTotals(bales);
-	}
+	}*/
 	
 	public void addBalesTotals(int bales) {
 		balesTotals += bales;
@@ -57,7 +57,6 @@ public class Weapon : MonoBehaviour {
 	}
 	
 	public int recarregar() {
-		Debug.Log("bales totals = "+balesTotals);
 		if(balesTotals > 0) {
 			//Comprovar quantes bales hi ha el carregador, i afegir les que falten x omplir
 			int num_bales = tamanyCarregador - balesActualCarregador;
@@ -68,16 +67,20 @@ public class Weapon : MonoBehaviour {
 				//Debug.Log("entra if");
 				balesActualCarregador += num_bales;
 				balesTotals -= num_bales;
+				Debug.Log("bales totals = "+balesTotals);
 				return num_bales;
 			}
 			else {
 				//Debug.Log("entra else");
-				balesActualCarregador = balesTotals;
-				balesTotals -= balesActualCarregador;
+				balesActualCarregador += balesTotals;
+				//Es 0 ja que si entro aqui vol dir que tinc menys bales que posicions al carregador
+				balesTotals = 0;
 				//Debug.Log("bales actual carregador = "+balesActualCarregador);
+				Debug.Log("bales totals = "+balesTotals);
 				return balesActualCarregador;
 			}
 		}
+		Debug.Log("bales totals = "+balesTotals);
 		return 0;	
 	}
 	

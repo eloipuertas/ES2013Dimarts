@@ -7,6 +7,10 @@ public class MainCharacter : MonoBehaviour {
 	//Atributs del player
 	public int vida;
 	public int escudo;
+	
+	public int maxVida = 100;
+	public int maxEscudo = 100;
+	
 	public bool vivo;
 	
 	//Atributs de les armes
@@ -41,7 +45,8 @@ public class MainCharacter : MonoBehaviour {
 		//armes
 		weapons = new List<Weapon>();
 		posWeapon = 0;
-		init(100,100);
+		
+		init(maxVida,maxEscudo);
 		initWeapons();
 		hiddenAllWeapons();
 		//mostro arma 1
@@ -174,11 +179,19 @@ public class MainCharacter : MonoBehaviour {
 	//Metodes per recollir items de vida, escut i municio
 	
 	void addItemVida(int valor) {
-		this.vida += valor;
+		int novaVida = vida + valor;
+		if(novaVida <= maxVida)
+			this.vida = novaVida;
+		else
+			this.vida = maxVida;
 	}
 	
 	void addItemEscudo(int valor) {
-		this.escudo += valor;
+		int nouEscut = escudo + valor;
+		if(nouEscut <= maxEscudo)
+			this.escudo = nouEscut;
+		else
+			this.escudo = maxEscudo;
 	}
 	
 	void addItemMunicio(int municio) {
@@ -190,10 +203,16 @@ public class MainCharacter : MonoBehaviour {
 		if(escudo > 0) {
 			escudo -= dany;
 			if(escudo < 0)
-				vida -= escudo;
+				//Sumu ja que sera negatiu
+				vida += escudo;
 		}
-		else
-			vida -= dany;			
+		else {
+			vida -= dany;
+			if(vida <= 0) {
+				vida = 0;
+				setVivo(false);
+			}
+		}
 	}
 	
 	bool PlayerIsLived() {

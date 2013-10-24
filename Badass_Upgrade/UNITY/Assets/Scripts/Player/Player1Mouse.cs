@@ -7,6 +7,9 @@ public class Player1Mouse : MonoBehaviour {
 	float xRotation;
 	float yRotation;
 	
+	float minimumY = 0F;
+	float maximumY = 90F;
+	
 	public float currentXRotation;
 	public float currentYRotation;
 	private float yRotationV;
@@ -29,12 +32,11 @@ public class Player1Mouse : MonoBehaviour {
 		yRotation += Input.GetAxis("Mouse X") * mouseSensitivity;
 		xRotation -= Input.GetAxis("Mouse Y") * mouseSensitivity;
 		
-		
-		//Trobar error, es per suavitzar el mouse
 		//pos now, new pos,velocity, time to move
 		currentYRotation = Mathf.SmoothDamp(currentYRotation,yRotation,ref yRotationV,moveTime);
 		currentXRotation = Mathf.SmoothDamp(currentXRotation,xRotation,ref xRotationV,moveTime);
 				
+		
 		//Final rotation
 		transform.rotation = Quaternion.Euler(currentXRotation,currentYRotation,0);
 	
