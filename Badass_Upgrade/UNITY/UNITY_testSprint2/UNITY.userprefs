@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemies\AI2.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Enemies\AI2.cs" Line="5" Column="29" />
+      <File FileName="..\..\..\..\EnemyCount.cs" Line="24" Column="18" />
+      <File FileName="Assets\Scripts\Enemies\EnemyCount.cs" Line="26" Column="71" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
