@@ -54,13 +54,13 @@ public class controlGUI : MonoBehaviour
 			//SHOW TIPS
 			int start = 4; // El tiempo que pasa entre cada mensaje de ayuda (en segundos).
 			int stop = 10; // El tiempo que se muestra cada mensaje de ayuda (en segundos).
-			if(Time.time > start && Time.time < (start + stop)){
+			if(Time.timeSinceLevelLoad > start && Time.timeSinceLevelLoad < (start + stop)){
 				showTip = 1;
-			}else if(Time.time > (2*start + stop) && Time.time < (2*start + 2*stop)){
+			}else if(Time.timeSinceLevelLoad > (2*start + stop) && Time.timeSinceLevelLoad < (2*start + 2*stop)){
 				showTip = 2;
-			}else if(Time.time > (3*start + 2*stop) && Time.time < (3*start + 3*stop)){
+			}else if(Time.timeSinceLevelLoad > (3*start + 2*stop) && Time.timeSinceLevelLoad < (3*start + 3*stop)){
 				showTip = 3;
-			}else if(Time.time > (4*start + 3*stop) && Time.time < (4*start + 4*stop)){
+			}else if(Time.timeSinceLevelLoad > (4*start + 3*stop) && Time.timeSinceLevelLoad < (4*start + 4*stop)){
 				showTip = 4;
 			}else{
 				showTip = 0;
