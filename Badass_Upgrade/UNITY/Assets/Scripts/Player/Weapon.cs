@@ -118,8 +118,6 @@ public class Weapon : MonoBehaviour {
 		else{
 			tiempoAnimacionCaminar = tiempoAnimacionCaminar - Time.deltaTime;
 		}
-		
-		Debug.Log(tiempoAnimacionCaminar);
 	}
 	
 }
