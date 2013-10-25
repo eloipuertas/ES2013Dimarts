@@ -10,6 +10,8 @@ public class Weapon : MonoBehaviour {
 	public int balesTotals;
 	public int balesActualCarregador;
 	public int tamanyCarregador;
+	public float tiempoAnimacionCaminarMAX = 1f;
+	private float tiempoAnimacionCaminar = 0f;
 	
 	public void init(int damage,string tagName, int initbales, int initbalesActuals, int inittamanyCarregador) {
 		this.damage = damage;
@@ -51,13 +53,17 @@ public class Weapon : MonoBehaviour {
 	}
 	
 	public void showWeapon() {
-
     	//modelWeapon.transform.localScale += new Vector3(scalex,scaley,scalez);	
 		modelWeapon.SetActive(true);
 	}
 	
+	public void moveWeapon(){
+		modelWeapon.animation.Play("Caminar");		
+	}
+	
 	public int recarregar() {
 		if(balesTotals > 0) {
+			modelWeapon.animation.Play("Recargar");		
 			//Comprovar quantes bales hi ha el carregador, i afegir les que falten x omplir
 			int num_bales = tamanyCarregador - balesActualCarregador;
 			//Debug.Log("num bales = "+num_bales);
@@ -78,7 +84,7 @@ public class Weapon : MonoBehaviour {
 				//Debug.Log("bales actual carregador = "+balesActualCarregador);
 				Debug.Log("bales totals = "+balesTotals);
 				return balesActualCarregador;
-			}
+			}						
 		}
 		Debug.Log("bales totals = "+balesTotals);
 		return 0;	
@@ -87,8 +93,9 @@ public class Weapon : MonoBehaviour {
 	public int disparar() {
 		Debug.Log("tag = "+modelWeapon.tag);
 		//Debug.Log("Disparar");
-		if(balesActualCarregador > 0) 
+		if(balesActualCarregador > 0) 			
 			balesActualCarregador -= 1;
+			modelWeapon.animation.Play("Disparar");
 		Debug.Log("Disparo queden "+balesActualCarregador);
 		return balesActualCarregador;
 	}
@@ -101,7 +108,18 @@ public class Weapon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+		if(tiempoAnimacionCaminar <= 0){			
+			if( Input.GetButton("Horizontal") || Input.GetButton("Vertical")) {			
+				this.moveWeapon();
+				tiempoAnimacionCaminar = tiempoAnimacionCaminarMAX;
+			}			
+		}
+		else{
+			tiempoAnimacionCaminar = tiempoAnimacionCaminar - Time.deltaTime;
+		}
+		
+		Debug.Log(tiempoAnimacionCaminar);
 	}
 	
 }
