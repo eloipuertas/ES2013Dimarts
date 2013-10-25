@@ -1,22 +1,24 @@
 fileFormatVersion: 2
-guid: aeb8613dfad8845ba8b11ae844955556
+guid: 240871f15229c432fab1c20eda8dd2b2
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
     100000: Camera
     100002: //RootNode
-    100004: Cube_001
-    100006: Cube_004
+    100004: Cube
+    100006: Cube_002
+    100008: Lamp
     400000: Camera
     400002: //RootNode
-    400004: Cube_001
-    400006: Cube_004
-    2300000: Cube_001
-    2300002: Cube_004
-    3300000: Cube_001
-    3300002: Cube_004
-    4300000: Cube_004
-    4300002: Cube_001
+    400004: Cube
+    400006: Cube_002
+    400008: Lamp
+    2300000: Cube
+    2300002: Cube_002
+    3300000: Cube
+    3300002: Cube_002
+    4300000: Cube
+    4300002: Cube_002
     7400000: Default Take
     9500000: //RootNode
   materials:
