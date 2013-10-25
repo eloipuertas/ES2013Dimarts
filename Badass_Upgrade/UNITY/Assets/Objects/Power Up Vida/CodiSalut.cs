@@ -4,6 +4,7 @@ using System.Collections;
 public class CodiSalut : MonoBehaviour {
 	
 	public GameObject CreuSalut;
+	public GameObject Player;
 	// Use this for initialization
 	void Start () {
 	
@@ -15,7 +16,7 @@ public class CodiSalut : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider other) {
-		////////   funcio incrementar vida!!!!!! //////
+		Player.SendMessage("setVida",35);
         Destroy(gameObject);
 
 	}
