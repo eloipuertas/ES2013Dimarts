@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class HUD : MonoBehaviour {
+
+	const int game_over = 3;
 	
 	/*Tanto el GUIText como el MainCharacter necesitan ser asignados a los correspondientes objetos de la escena
 	 * vidaText: un objeto de tipo GUIText
@@ -42,6 +44,10 @@ public class HUD : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		//Carga el menu game over si la vida baja a 0.
+		if(robotProtagonista.vida <= 0){
+			Application.LoadLevel(game_over);
+		}
 		
 		//Por cada frame, actualiza los valores
 		vidaText.text = "Health: " + robotProtagonista.vida.ToString() + "%";
