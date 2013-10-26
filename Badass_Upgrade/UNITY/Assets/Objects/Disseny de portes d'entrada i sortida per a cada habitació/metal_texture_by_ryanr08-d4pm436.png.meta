@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 8287b42e923b6f14e85a95813242a100
+=======
+guid: 66b9a202a43ed6d4daecd88568de9a7e
+>>>>>>> origin/Grupo-CD
 TextureImporter:
   serializedVersion: 2
   mipmaps:
