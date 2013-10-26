@@ -39,19 +39,20 @@ public class AI2 : MonoBehaviour {
 	RaycastHit hit;
     GameObject enemyCount;
     private Transform myTransform;
-	
-	public int vida = 100;
-	
+
     void Awake(){
         myTransform = transform;
         spawnPoint=new Vector3(transform.position.x,transform.position.y,transform.position.z);
         state="sleeping";
     }
 	
+	
+	
     // Use this for initialization
     void Start () {
     	GameObject player = GameObject.FindGameObjectWithTag("Player");
 		enemyCount = GameObject.FindGameObjectWithTag("enemyCount");
+		
         target = player.transform;
         timerAtac=Time.time;
                 
@@ -83,7 +84,6 @@ public class AI2 : MonoBehaviour {
         }else if(Distance<distancia_disparar && Distance>distancia_perseguir){
 			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
 			state="shooting";
-
             animation.CrossFade("disparar");
             attack(dist_dmg);
         }else if((Distance <=distancia_perseguir) && (Distance>distancia_melee)){
@@ -98,7 +98,6 @@ public class AI2 : MonoBehaviour {
 	        attack(melee_dmg);
 	        animation.CrossFade("melee");
         }
-
 	}
         
         
@@ -121,12 +120,6 @@ public class AI2 : MonoBehaviour {
         }
      }
 	
-	void rebreDany(int dany) {
-		Debug.Log("Rebo dany de "+dany);
-		vida -= dany;
-		if(vida <= 0)
-			this.gameObject.SetActive(false);	
-	}
 	
 	public void rebreDany(int dmg){
 		vida-=dmg;
