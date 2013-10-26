@@ -41,6 +41,10 @@
 	</Reference>
 	<Reference Include="UnityEditor">
 	  <HintPath>C:/Archivos de programa/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +53,7 @@
      <Compile Include="Assets\Objects\Power Up Vida\CodiSalut.cs" />
      <Compile Include="Assets\Scripts\Enemies\AI2.cs" />
      <Compile Include="Assets\Scripts\Enemies\EnemyCount.cs" />
+     <Compile Include="Assets\Scripts\ExitDoorTrigger.cs" />
      <Compile Include="Assets\Scripts\HUD.cs" />
      <Compile Include="Assets\Scripts\MainMenuController.cs" />
      <Compile Include="Assets\Scripts\OptionsController.cs" />
@@ -56,6 +61,8 @@
      <Compile Include="Assets\Scripts\Player\MouseLook.cs" />
      <Compile Include="Assets\Scripts\Player\Weapon.cs" />
      <Compile Include="Assets\Scripts\Player1Mouse.cs" />
+     <Compile Include="Assets\Scripts\controlGUI.cs" />
+     <Compile Include="Assets\Scripts\gameOverMenuController.cs" />
      <Compile Include="Assets\Scripts\linterna.cs" />
      <Compile Include="Assets\Scripts\walkingSound.cs" />
   </ItemGroup>
