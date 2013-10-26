@@ -2,7 +2,25 @@ fileFormatVersion: 2
 guid: 940b84fb7618c470f94e31005ec277bc
 ModelImporter:
   serializedVersion: 15
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Bone
+    100004: //RootNode
+    100006: Cube
+    100008: Plane
+    400000: Armature
+    400002: Bone
+    400004: //RootNode
+    400006: Cube
+    400008: Plane
+    2300000: Plane
+    3300000: Plane
+    4300000: Plane
+    4300002: Cube
+    7400000: Default Take
+    7400002: Action
+    9500000: //RootNode
+    13700000: Cube
   materials:
     importMaterials: 1
     materialName: 0
