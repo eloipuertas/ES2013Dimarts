@@ -18,6 +18,7 @@ public class ExitDoorTrigger : MonoBehaviour {
 		
 		numberOfEnemies = enemiesCounter.numOfEnem;
 		if(numberOfEnemies<=0){
+		// BoxCollider
 			collider.isTrigger = true;
 		}
 		
