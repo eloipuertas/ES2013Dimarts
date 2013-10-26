@@ -32,12 +32,12 @@ public class HUD : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
-		vidaText.text = "Health: " + robotProtagonista.vida.ToString() + "%";
-		escudoText.text = "Shield: " + robotProtagonista.escudo.ToString() + "%";
+		vidaText.text = robotProtagonista.vida.ToString() + "%";
+		escudoText.text = robotProtagonista.escudo.ToString() + "%";
 		enemiesCounterGUIText.text = "Remaining enemies: "; //+ robotProtagonista.enemies.ToString();
 		
-		balasCargadorText.text = armaEquipada.balasCargador.ToString();
-		balasTotalesText.text = armaEquipada.balasTotales.ToString();
+		balasCargadorText.text = "Ammo: " + armaEquipada.balasCargador.ToString();
+		balasTotalesText.text = "Total Ammo: " + armaEquipada.balasTotales.ToString();
 		
 		
 	}
@@ -50,13 +50,13 @@ public class HUD : MonoBehaviour {
 		}
 		
 		//Por cada frame, actualiza los valores
-		vidaText.text = "Health: " + robotProtagonista.vida.ToString() + "%";
-		escudoText.text = "Shield: " + robotProtagonista.escudo.ToString() + "%";
+		vidaText.text = robotProtagonista.vida.ToString() + "%";
+		escudoText.text = robotProtagonista.escudo.ToString() + "%";
 		enemiesCounterGUIText.text = "Remaining enemies: "; //+ robotProtagonista.enemies.ToString();
 		
 		
-		balasCargadorText.text = armaEquipada.balasCargador.ToString();
-		balasTotalesText.text = armaEquipada.balasTotales.ToString();
+		balasCargadorText.text = "Ammo: " + armaEquipada.balasCargador.ToString();
+		balasTotalesText.text = "Total Ammo: " + armaEquipada.balasTotales.ToString();
 		
 	}
 }
