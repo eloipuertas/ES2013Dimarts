@@ -13,6 +13,9 @@ public class MainCharacter : MonoBehaviour {
 	
 	public bool vivo;
 	
+	// So en rebre un impacte
+	public AudioClip impactSound;
+	
 	//Atributs de les armes
 	int posWeapon;
 	int actualWeaponDamage;
@@ -33,6 +36,8 @@ public class MainCharacter : MonoBehaviour {
 	float maxScaleY = 1.0f;
 	//Per saber si esta ajupit
 	bool down;
+	
+	
 	
 
 	void Awake () {	
@@ -200,6 +205,7 @@ public class MainCharacter : MonoBehaviour {
 	
 	//Rebre dany de l'enemic
 	void rebreAtac(int dany) {
+		AudioSource.PlayClipAtPoint(impactSound,transform.position,0.15F);
 		if(escudo > 0) {
 			escudo -= dany;
 			if(escudo < 0)

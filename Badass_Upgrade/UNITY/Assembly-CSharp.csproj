@@ -37,10 +37,6 @@
     <Reference Include="System.XML" />
 	<Reference Include="System.Core" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Archivos de programa/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
-	</Reference>
-	<Reference Include="UnityEditor">
-	  <HintPath>C:/Archivos de programa/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
@@ -48,7 +44,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Objects\Disseny de barrils explosius\ProvesBarril.cs" />
      <Compile Include="Assets\Objects\Municio\CodiMunicio.cs" />
      <Compile Include="Assets\Objects\Power Up Vida\CodiSalut.cs" />
      <Compile Include="Assets\Scripts\Enemies\AI2.cs" />
@@ -59,12 +54,12 @@
      <Compile Include="Assets\Scripts\OptionsController.cs" />
      <Compile Include="Assets\Scripts\Player\MainCharacter.cs" />
      <Compile Include="Assets\Scripts\Player\MouseLook.cs" />
+     <Compile Include="Assets\Scripts\Player\ProvesBarril.cs" />
      <Compile Include="Assets\Scripts\Player\Weapon.cs" />
-     <Compile Include="Assets\Scripts\Player1Mouse.cs" />
+     <Compile Include="Assets\Scripts\Player\linterna.cs" />
+     <Compile Include="Assets\Scripts\Player\sound\walkingSound.cs" />
      <Compile Include="Assets\Scripts\controlGUI.cs" />
      <Compile Include="Assets\Scripts\gameOverMenuController.cs" />
-     <Compile Include="Assets\Scripts\linterna.cs" />
-     <Compile Include="Assets\Scripts\walkingSound.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
