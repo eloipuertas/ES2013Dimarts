@@ -21,10 +21,10 @@ public class AI2 : MonoBehaviour {
 	int melee_dmg=25;
 
 	//----------------------------------
-    private int fireRate=2;
+    private int fireRate=3;
     private int distancia_alerta=20;
     private int distancia_perseguir=10;
-    private int distancia_melee=5;
+    private int distancia_melee=3;
 	private int distancia_disparar = 15;
 	private float escut =100, max_escut=100;
 	private int temps_recarga_escut=2;
@@ -84,7 +84,7 @@ public class AI2 : MonoBehaviour {
         }else if(Distance<distancia_disparar && Distance>distancia_perseguir){
 			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
 			state="shooting";
-            animation.CrossFade("disparar");
+            
             attack(dist_dmg);
         }else if((Distance <=distancia_perseguir) && (Distance>distancia_melee)){
 			moveTo();
@@ -115,6 +115,7 @@ public class AI2 : MonoBehaviour {
     private void attack(int dmg){
         if(Time.time>timerAtac){
             print ("Shooting");
+			animation.CrossFade("disparar");
 			disparar(distancia_disparar,dist_dmg);
             timerAtac=Time.time+fireRate;
         }
