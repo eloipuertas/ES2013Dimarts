@@ -13,11 +13,11 @@ public class AI2 : MonoBehaviour {
 
 
     //variables modificables segons la ia--------
-	public float vida=100;
+	public float vida=40;
     public int moveSpeed=3;
 	public int rotationSpeed=2;
     float Distance;
-    int dist_dmg=20;
+    int dist_dmg=5;
 	int melee_dmg=25;
 
 	//----------------------------------
@@ -51,7 +51,7 @@ public class AI2 : MonoBehaviour {
     // Use this for initialization
     void Start () {
     	GameObject player = GameObject.FindGameObjectWithTag("Player");
-		enemyCount = GameObject.FindGameObjectWithTag("enemyCount");
+		enemyCount = GameObject.FindGameObjectWithTag("enemiesCount");
 		
         target = player.transform;
         timerAtac=Time.time;
@@ -69,7 +69,7 @@ public class AI2 : MonoBehaviour {
                 
         if(Distance>distancia_alerta && Vector3.Distance(spawnPoint, transform.position)>3){
         	state="away";
-			Debug.Log("Enemic inactiu");
+			//Debug.Log("Enemic inactiu");
 			animation.CrossFade("ajupit");
             //renderer.material.color=Color.blue;
             //retorn al spawnpoint?
@@ -100,7 +100,7 @@ public class AI2 : MonoBehaviour {
 				animation.CrossFade("desactivar");
 			}
 			state="away";
-			Debug.Log("Enemic inactiu");
+			//Debug.Log("Enemic inactiu");
 		}
 	}
         
@@ -130,11 +130,12 @@ public class AI2 : MonoBehaviour {
 	
 	public void rebreDany(int dmg){
 		vida-=dmg;
+		Debug.Log("Enemigo atacado quedan "+vida+" puntos de vida");
 		if(vida<=0){
+			Debug.Log("Enemigo muerto");
 			enemyCount.SendMessage("enemyDeath");
 			Destroy(gameObject);
 		}
-
 	}
 	
 	private void disparar(int dis,int dmg){

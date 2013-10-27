@@ -13,15 +13,15 @@ public class EnemyCount : MonoBehaviour {
 		enemies=objs.Length;
 		print("there are "+enemies);
 		guiText.text="Enemies :"+enemies;
-		
-		
 	}
 	
 	
 	public void enemyDeath(){
 		enemies--;
 		guiText.text="Enemies :"+enemies;
+		Debug.Log ("Quedan "+enemies+" Enemigos");
 		if(enemies<=0){
+			Debug.Log ("No Quedan Enemigos");
 			GameObject p=GameObject.FindGameObjectWithTag("porta1");
 			p.SendMessage("obrirPorta",0,SendMessageOptions.DontRequireReceiver);
 			print ("porta oberta");	
