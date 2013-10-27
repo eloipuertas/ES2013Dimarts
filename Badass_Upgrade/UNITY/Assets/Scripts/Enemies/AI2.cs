@@ -21,9 +21,9 @@ public class AI2 : MonoBehaviour {
 	int melee_dmg=25;
 
 	//----------------------------------
-    private int fireRate=3;
+    private int fireRate=2;
     private int distancia_alerta=20;
-    private int distancia_perseguir=10;
+    private int distancia_perseguir=6;
     private int distancia_melee=3;
 	private int distancia_disparar = 15;
 	private float escut =100, max_escut=100;
@@ -97,7 +97,13 @@ public class AI2 : MonoBehaviour {
 			Debug.Log("Atacant a melee");
 	        attack(melee_dmg);
 	        animation.CrossFade("melee");
-        }
+        }else{
+			if(state != "away"){
+				animation.CrossFade("desactivar");
+			}
+			state="away";
+			Debug.Log("Enemic inactiu");
+		}
 	}
         
         
