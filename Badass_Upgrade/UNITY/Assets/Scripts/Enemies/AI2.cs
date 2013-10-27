@@ -24,7 +24,7 @@ public class AI2 : MonoBehaviour {
     private int fireRate=2;
     private int distancia_alerta=20;
     private int distancia_perseguir=6;
-    private int distancia_melee=3;
+    private int distancia_melee=2;
 	private int distancia_disparar = 15;
 	private float escut =100, max_escut=100;
 	private int temps_recarga_escut=2;
@@ -84,8 +84,7 @@ public class AI2 : MonoBehaviour {
         }else if(Distance<distancia_disparar && Distance>distancia_perseguir){
 			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
 			state="shooting";
-            
-            attack(dist_dmg);
+            attack(dist_dmg,true);
         }else if((Distance <=distancia_perseguir) && (Distance>distancia_melee)){
 			moveTo();
             state = "walking";
@@ -95,8 +94,7 @@ public class AI2 : MonoBehaviour {
 	        state="attack";
 	        //renderer.material.color=Color.red;
 			Debug.Log("Atacant a melee");
-	        attack(melee_dmg);
-	        animation.CrossFade("melee");
+	        attack(melee_dmg,false);
         }else{
 			if(state != "away"){
 				animation.CrossFade("desactivar");
@@ -115,18 +113,20 @@ public class AI2 : MonoBehaviour {
 	    //myTransform.position=new Vector3(myTransform.position.x,mov,myTransform.position.z);
     }
 
-
-        
-
-    private void attack(int dmg){
+    private void attack(int dmg,bool ranged){
         if(Time.time>timerAtac){
-            print ("Shooting");
-			animation.CrossFade("disparar");
-			disparar(distancia_disparar,dist_dmg);
+			if(ranged){
+				Debug.Log("Shooting");
+				animation.CrossFade("disparar");
+				disparar(distancia_disparar,dist_dmg);
+			}else{
+				Debug.Log("Melee");
+				animation.CrossFade("melee");
+				disparar(distancia_disparar,melee_dmg);
+			}
             timerAtac=Time.time+fireRate;
         }
      }
-	
 	
 	public void rebreDany(int dmg){
 		vida-=dmg;
