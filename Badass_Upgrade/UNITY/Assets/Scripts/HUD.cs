@@ -21,14 +21,14 @@ public class HUD : MonoBehaviour {
 	public GUIText balasCargadorText;
 	public GUIText balasTotalesText;
 	
-	//<<<<<<< HEAD
+
 	//El nombre del script que contiene la informacion del personaje podria ser distinto
 	//public MainCharacter robotProtagonista;
 	//=======
 	public Weapon armaEquipada;
 	public MainCharacter robotProtagonista;
 //	public EnemiesAmount enemiesCounter;
-//>>>>>>> origin/Grupo-E
+
 	
 	//The first method to be called
 	void Awake(){
@@ -38,19 +38,19 @@ public class HUD : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
-//<<<<<<< HEAD
+
 		//vidaText.text = "Health: " + robotProtagonista.vida.ToString() + "%";
 		//escudoText.text = "Shield: " + robotProtagonista.escudo.ToString() + "%";
 		//enemiesCounterGUIText.text = "Remaining enemies: "; //+ robotProtagonista.enemies.ToString();
 		//Los atributos vida y escudo del robotProtagonista son public float.
-//=======
+
 		vidaText.text = robotProtagonista.vida.ToString() + "%";
 		escudoText.text = robotProtagonista.escudo.ToString() + "%";
 //		enemiesCounterGUIText.text = "Remaining enemies: " + enemiesCounter.numOfEnem.ToString();
 		
 		balasCargadorText.text = armaEquipada.getBalesActualCarregador().ToString();
 		balasTotalesText.text = armaEquipada.getBalesTotals().ToString();
-//>>>>>>> origin/Grupo-E
+
 		
 		
 	}
@@ -64,11 +64,11 @@ public class HUD : MonoBehaviour {
 		}
 		
 		//Por cada frame, actualiza los valores
-//<<<<<<< HEAD
+
 		//vidaText.text = "Health: " + robotProtagonista.vida.ToString() + "%";
 		//escudoText.text = "Shield: " + robotProtagonista.escudo.ToString() + "%";
 		//enemiesCounterGUIText.text = "Remaining enemies: "; //+ robotProtagonista.enemies.ToString();
-//=======
+
 		vidaText.text = robotProtagonista.vida.ToString() + "%";
 		escudoText.text = robotProtagonista.escudo.ToString() + "%";
 //		enemiesCounterGUIText.text = "Remaining enemies: " + enemiesCounter.numOfEnem.ToString();
@@ -76,7 +76,6 @@ public class HUD : MonoBehaviour {
 		
 		balasCargadorText.text = armaEquipada.getBalesActualCarregador().ToString();
 		balasTotalesText.text = armaEquipada.getBalesTotals().ToString();
-		
-//>>>>>>> origin/Grupo-E
+
 	}
 }
