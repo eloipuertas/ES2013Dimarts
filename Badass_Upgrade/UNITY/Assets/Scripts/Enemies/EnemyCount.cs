@@ -11,7 +11,6 @@ public class EnemyCount : MonoBehaviour {
 		GameObject[] objs;
 		objs=GameObject.FindGameObjectsWithTag("Enemy");
 		enemies=objs.Length;
-		print("there are "+enemies);
 		guiText.text="Enemies :"+enemies;
 	}
 	
@@ -23,8 +22,8 @@ public class EnemyCount : MonoBehaviour {
 		if(enemies<=0){
 			Debug.Log ("No Quedan Enemigos");
 			GameObject p=GameObject.FindGameObjectWithTag("porta1");
-			p.SendMessage("obrirPorta",0,SendMessageOptions.DontRequireReceiver);
-			print ("porta oberta");	
+			p.SendMessage("setNivel_Completado",true,SendMessageOptions.DontRequireReceiver);
+			Debug.Log("porta oberta");
 		}
 			
 			

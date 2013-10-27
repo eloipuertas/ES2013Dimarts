@@ -17,7 +17,7 @@ public class AI2 : MonoBehaviour {
     public int moveSpeed=3;
 	public int rotationSpeed=2;
     float Distance;
-    int dist_dmg=5;
+    int dist_dmg=15;
 	int melee_dmg=25;
 
 	//----------------------------------
