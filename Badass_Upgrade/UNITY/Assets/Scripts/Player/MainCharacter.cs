@@ -37,9 +37,6 @@ public class MainCharacter : MonoBehaviour {
 	//Per saber si esta ajupit
 	bool down;
 	
-	
-	
-
 	void Awake () {	
 		
 	}
