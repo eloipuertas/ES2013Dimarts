@@ -208,6 +208,7 @@ public class MainCharacter : MonoBehaviour {
 			if(escudo < 0)
 				//Sumu ja que sera negatiu
 				vida += escudo;
+				escudo = 0;
 		}
 		else {
 			vida -= dany;

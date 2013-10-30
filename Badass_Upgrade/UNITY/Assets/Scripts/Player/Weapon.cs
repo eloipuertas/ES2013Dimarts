@@ -62,20 +62,24 @@ public class Weapon : MonoBehaviour {
 	}
 	
 	public int recarregar() {
-		if(balesTotals > 0) {
-			modelWeapon.animation.Play("Recargar");		
-			//Comprovar quantes bales hi ha el carregador, i afegir les que falten x omplir
-			int num_bales = tamanyCarregador - balesActualCarregador;
-			//Debug.Log("num bales = "+num_bales);
-			//Debug.Log("tamany carregador = "+tamanyCarregador);
-			//Debug.Log("bales actual carregador = "+balesActualCarregador);
-			if(num_bales <= balesTotals){
-				//Debug.Log("entra if");
-				balesActualCarregador += num_bales;
-				balesTotals -= num_bales;
-				Debug.Log("bales totals = "+balesTotals);
-				return num_bales;
-			}
+		Debug.Log("bales totals "+balesTotals);
+		Debug.Log("bales actuals carregador "+balesActualCarregador);
+		if((balesTotals > 0) && (balesActualCarregador < tamanyCarregador)) {
+			Debug.Log("entra if");
+				modelWeapon.animation.Play("Recargar");		
+				//Comprovar quantes bales hi ha el carregador, i afegir les que falten x omplir
+				int num_bales = tamanyCarregador - balesActualCarregador;
+				//Debug.Log("num bales = "+num_bales);
+				//Debug.Log("tamany carregador = "+tamanyCarregador);
+				//Debug.Log("bales actual carregador = "+balesActualCarregador);
+				if(num_bales <= balesTotals){
+					//Debug.Log("entra if");
+					balesActualCarregador += num_bales;
+					balesTotals -= num_bales;
+					Debug.Log("bales totals = "+balesTotals);
+					return num_bales;
+				}
+
 			else {
 				//Debug.Log("entra else");
 				balesActualCarregador += balesTotals;
@@ -86,8 +90,7 @@ public class Weapon : MonoBehaviour {
 				return balesActualCarregador;
 			}						
 		}
-		Debug.Log("bales totals = "+balesTotals);
-		return 0;	
+		return balesActualCarregador;	
 	}
 	
 	public int disparar() {
