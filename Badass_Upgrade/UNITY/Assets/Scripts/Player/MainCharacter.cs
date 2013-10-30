@@ -205,9 +205,11 @@ public class MainCharacter : MonoBehaviour {
 		AudioSource.PlayClipAtPoint(impactSound,transform.position,0.15F);
 		if(escudo > 0) {
 			escudo -= dany;
-			if(escudo < 0)
+			if(escudo < 0) {
 				//Sumu ja que sera negatiu
 				vida += escudo;
+				escudo = 0;
+			}
 		}
 		else {
 			vida -= dany;
