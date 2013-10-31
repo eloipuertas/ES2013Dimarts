@@ -36,6 +36,11 @@ public class MainCharacter : MonoBehaviour {
 	public GameObject leftHand;
 	float minScaleY = 0.2f;
 	float maxScaleY = 1.0f;
+	
+	public GameObject cameraPlayer;
+	public float minPosCamera;
+	public float maxPosCamera;
+	
 	//Per saber si esta ajupit
 	bool down;
 	
@@ -64,9 +69,10 @@ public class MainCharacter : MonoBehaviour {
 		down = false;
 		
 		cam = Camera.main.transform;
-			
-		altura = transform.localPosition.y;
 		
+		cameraPlayer = GameObject.FindGameObjectWithTag("MainCamera");
+		maxPosCamera = cameraPlayer.transform.localPosition.y;
+		minPosCamera = 0.05f;
 	}
 	
 	// Update is called once per frame
@@ -119,7 +125,18 @@ public class MainCharacter : MonoBehaviour {
 				Debug.Log("No hi ha mes municio");
 		}
 		else if(Input.GetButtonDown("Agacharse")) {
+			if(cameraPlayer.transform.localPosition.y > minPosCamera) {
+				Debug.Log("Min = "+minPosCamera);
+				
+				float tmp = cameraPlayer.transform.localPosition.y - minPosCamera; 
+				
+				Debug.Log("tmp = "+tmp);
+				cameraPlayer.transform.localPosition -= new Vector3(0f,tmp,0f);	
+			}
+			
 			down = true;
+			
+			/*
 			if(player.transform.localScale.y > minScaleY) {
 				player.transform.localScale -= new Vector3(0, minScaleY, 0);
 				//leftHand.transform.localScale += new Vector3(scaleHandx,scaleHandy,scaleHandz);
@@ -127,11 +144,21 @@ public class MainCharacter : MonoBehaviour {
 				//Per eliminar braç quant s'ajup
 				//leftHand.SetActive(false);
 				//leftHand.transform.localScale -= new Vector3(scaleHandx,scaleHandy,scaleHandz);
-			}
+			}*/
 				
 		}
 		else if(Input.GetButtonUp("Agacharse")) {
+			Debug.Log("Max = "+maxPosCamera);
+			Debug.Log("camera y up= "+cameraPlayer.transform.localPosition.y);
+			if(cameraPlayer.transform.localPosition.y < maxPosCamera) {
+				
+				float tmp2 = maxPosCamera - cameraPlayer.transform.localPosition.y;
+				Debug.Log("tmp2 = "+tmp2);
+				cameraPlayer.transform.localPosition += new Vector3(0f,tmp2,0f);	
+			}
 			down = false;
+			
+			/*
 			if(player.transform.localScale.y < maxScaleY) {
 				player.transform.position += new Vector3(0, minScaleY, 0);
 				player.transform.localScale += new Vector3(0, minScaleY, 0);
@@ -139,7 +166,7 @@ public class MainCharacter : MonoBehaviour {
 				//Tornar a posar braç
 				//leftHand.SetActive(true);
 				//leftHand.transform.localScale += new Vector3(scaleHandx,scaleHandy,scaleHandz);
-			}
+			}*/
 				
 		}
 		else if((Input.GetButtonDown("Melee")) && (down == false)) {
@@ -153,6 +180,7 @@ public class MainCharacter : MonoBehaviour {
 			}
 		}
 		else if((Input.GetButtonDown("Usar"))) {
+			//Animacio
 			//leftHand.SetActive(true);
 			//leftHand.animation.Play("ArmatureAction");
 			if(Physics.Raycast(cam.position, cam.forward,out hit, buttonDistance)) {
