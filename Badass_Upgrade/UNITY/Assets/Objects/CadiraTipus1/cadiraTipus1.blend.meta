@@ -2,7 +2,86 @@ fileFormatVersion: 2
 guid: f94886cade8e5487b8b2af1c851649f6
 ModelImporter:
   serializedVersion: 15
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Cube
+    100004: Cube_001
+    100006: Cube_002
+    100008: Cube_003
+    100010: Cube_004
+    100012: Cube_005
+    100014: Cube_006
+    100016: Cube_007
+    100018: Cylinder
+    100020: Cylinder_001
+    100022: Cylinder_002
+    100024: Cylinder_003
+    100026: Cylinder_004
+    100028: Cylinder_005
+    100030: Cylinder_006
+    400000: //RootNode
+    400002: Cube
+    400004: Cube_001
+    400006: Cube_002
+    400008: Cube_003
+    400010: Cube_004
+    400012: Cube_005
+    400014: Cube_006
+    400016: Cube_007
+    400018: Cylinder
+    400020: Cylinder_001
+    400022: Cylinder_002
+    400024: Cylinder_003
+    400026: Cylinder_004
+    400028: Cylinder_005
+    400030: Cylinder_006
+    2300000: Cube
+    2300002: Cube_001
+    2300004: Cube_002
+    2300006: Cube_003
+    2300008: Cube_004
+    2300010: Cube_005
+    2300012: Cube_006
+    2300014: Cube_007
+    2300016: Cylinder
+    2300018: Cylinder_001
+    2300020: Cylinder_002
+    2300022: Cylinder_003
+    2300024: Cylinder_004
+    2300026: Cylinder_005
+    2300028: Cylinder_006
+    3300000: Cube
+    3300002: Cube_001
+    3300004: Cube_002
+    3300006: Cube_003
+    3300008: Cube_004
+    3300010: Cube_005
+    3300012: Cube_006
+    3300014: Cube_007
+    3300016: Cylinder
+    3300018: Cylinder_001
+    3300020: Cylinder_002
+    3300022: Cylinder_003
+    3300024: Cylinder_004
+    3300026: Cylinder_005
+    3300028: Cylinder_006
+    4300000: Cube_005
+    4300002: Cylinder_006
+    4300004: Cylinder_005
+    4300006: Cylinder_004
+    4300008: Cylinder_003
+    4300010: Cube_007
+    4300012: Cube_003
+    4300014: Cube_002
+    4300016: Cube_004
+    4300018: Cube_006
+    4300020: Cube_001
+    4300022: Cube
+    4300024: Cylinder_002
+    4300026: Cylinder_001
+    4300028: Cylinder
+    7400000: Default Take
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0

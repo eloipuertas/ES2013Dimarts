@@ -2,7 +2,21 @@ fileFormatVersion: 2
 guid: 958986eb65fa645ecac13e510dcda7b7
 ModelImporter:
   serializedVersion: 15
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Sphere_000
+    100004: Sphere_002
+    400000: //RootNode
+    400002: Sphere_000
+    400004: Sphere_002
+    2300000: Sphere_000
+    2300002: Sphere_002
+    3300000: Sphere_000
+    3300002: Sphere_002
+    4300000: Sphere_000
+    4300002: Sphere_002
+    7400000: Default Take
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
