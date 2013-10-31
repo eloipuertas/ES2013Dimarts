@@ -20,6 +20,7 @@ public class MainCharacter : MonoBehaviour {
 	int posWeapon;
 	int actualWeaponDamage;
 	int balesCarregador;
+	int balesTotalsArmaActual;
 	List<Weapon> weapons;
 	
 	//Atributs de l'accio disparar & melee
@@ -42,13 +43,22 @@ public class MainCharacter : MonoBehaviour {
 	public float maxPosCamera;
 	
 	//Per saber si esta ajupit
-	bool down;
-	
+	bool down;	
 	//Fall damage
 	float altura;
 	
+	public CharacterMotor a;
+	
+	//Fall
+	
+	bool falling = false;
+	float fallingDamageThreshold = 5f;
+	float fallStartLevel;
+	
+	bool grounded = false;
+	
 	void Awake () {	
-		
+	
 	}
 
 	// Use this for initialization
@@ -63,6 +73,8 @@ public class MainCharacter : MonoBehaviour {
 		hiddenAllWeapons();
 		//mostro arma 1
 		weapons[posWeapon].showWeapon();
+		balesTotalsArmaActual = weapons[posWeapon].balesTotals;
+		
 		
 		//melee & down
 		leftHand.SetActive(false);
@@ -73,10 +85,29 @@ public class MainCharacter : MonoBehaviour {
 		cameraPlayer = GameObject.FindGameObjectWithTag("MainCamera");
 		maxPosCamera = cameraPlayer.transform.localPosition.y;
 		minPosCamera = 0.05f;
+		
 	}
+	
+	 void FallingDamageAlert (float fallDistance) {
+        Debug.Log("Ouch! Fell " + fallDistance + " units!");   
+    }
 	
 	// Update is called once per frame
 	void Update () {
+		
+		if (grounded) {
+			if (falling) {
+	            falling = false;
+	            if (player.transform.localPosition.y < fallStartLevel - fallingDamageThreshold)
+	                FallingDamageAlert(fallStartLevel - player.transform.localPosition.y);
+	       	}
+		}
+ 		else {
+		 	if (!falling) {
+	                falling = true;
+	                fallStartLevel = player.transform.localPosition.y;
+	            }
+		}
 		
 		if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0)) {
 			balesCarregador = weapons[posWeapon].disparar();
@@ -99,6 +130,7 @@ public class MainCharacter : MonoBehaviour {
 			posWeapon = 0;
 			actualWeaponDamage = weapons[posWeapon].getDamage();
 			balesCarregador = weapons[posWeapon].getBalesActualCarregador();
+			balesTotalsArmaActual = weapons[posWeapon].balesTotals;
 			//3-Escalo a pos el nou
 			weapons[posWeapon].showWeapon();
 			//Debug.Log("Arma 1 "+weapons[posWeapon].damage);
@@ -108,6 +140,7 @@ public class MainCharacter : MonoBehaviour {
 			posWeapon = 1;
 			actualWeaponDamage = weapons[posWeapon].getDamage();
 			balesCarregador = weapons[posWeapon].getBalesActualCarregador();
+			balesTotalsArmaActual = weapons[posWeapon].balesTotals;
 			weapons[posWeapon].showWeapon();
 			
 		}
@@ -116,11 +149,12 @@ public class MainCharacter : MonoBehaviour {
 			posWeapon = 2;
 			actualWeaponDamage = weapons[posWeapon].getDamage();
 			balesCarregador = weapons[posWeapon].getBalesActualCarregador();
+			balesTotalsArmaActual = weapons[posWeapon].balesTotals;
 			weapons[posWeapon].showWeapon();
 		}
 		else if(Input.GetButtonDown("Recargar")) {
-			Debug.Log("Recarrego l'arma");
 			balesCarregador = weapons[posWeapon].recarregar();
+			balesTotalsArmaActual = weapons[posWeapon].balesTotals;
 			if(balesCarregador <= 0)
 				Debug.Log("No hi ha mes municio");
 		}
@@ -180,6 +214,10 @@ public class MainCharacter : MonoBehaviour {
 			}
 		}
 		else if((Input.GetButtonDown("Usar"))) {
+			
+			//Proves caminar
+			
+			
 			//Animacio
 			//leftHand.SetActive(true);
 			//leftHand.animation.Play("ArmatureAction");
@@ -276,6 +314,7 @@ public class MainCharacter : MonoBehaviour {
 			return true;
 		return false;
 	}
+	
 	
 	//Iniciar armes
 	void initWeapons() {
