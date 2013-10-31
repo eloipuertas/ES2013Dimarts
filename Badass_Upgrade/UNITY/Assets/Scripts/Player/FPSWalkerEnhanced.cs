@@ -4,9 +4,9 @@ using System.Collections;
 [RequireComponent (typeof (CharacterController))]
 public class FPSWalkerEnhanced: MonoBehaviour {
  
-    public float SpeedRun = 30.0f;
+    public float SpeedRun = 7.5f;
  
-    public float SpeedWalk = 1.0f;
+    public float SpeedWalk = 1.5f;
  
     // If true, diagonal speed (when strafing + moving forward or back) can't exceed normal move speed; otherwise it's about 1.4 times faster
     public bool limitDiagonalSpeed = true;
@@ -51,6 +51,10 @@ public class FPSWalkerEnhanced: MonoBehaviour {
     private Vector3 contactPoint;
     private bool playerControl = false;
     private int jumpTimer;
+	
+	GameObject player;
+	public float constantDamageFall = 0.7f;
+	public float sendDamage;
  
     void Start() {
         controller = GetComponent<CharacterController>();
@@ -59,6 +63,8 @@ public class FPSWalkerEnhanced: MonoBehaviour {
         rayDistance = controller.height * .5f + controller.radius;
         slideLimit = controller.slopeLimit - .1f;
         jumpTimer = antiBunnyHopFactor;
+		
+		player = GameObject.FindGameObjectWithTag("Player");
     }
  
     void FixedUpdate() {
@@ -157,6 +163,8 @@ public class FPSWalkerEnhanced: MonoBehaviour {
     // If falling damage occured, this is the place to do something about it. You can make the player
     // have hitpoints and remove some of them based on the distance fallen, add sound effects, etc.
     void FallingDamageAlert (float fallDistance) {
-        Debug.Log("Ouch! Fell " + fallDistance + " units!");   
+		Debug.Log("Dany d'altura"+fallDistance*0.7);
+		sendDamage = fallDistance * constantDamageFall;
+		player.SendMessage("rebreAtac",sendDamage);
     }
 }

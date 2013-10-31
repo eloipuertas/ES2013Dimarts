@@ -17,10 +17,10 @@ public class MainCharacter : MonoBehaviour {
 	public AudioClip impactSound;
 	
 	//Atributs de les armes
-	int posWeapon;
-	int actualWeaponDamage;
-	int balesCarregador;
-	int balesTotalsArmaActual;
+	public int posWeapon;
+	public int actualWeaponDamage;
+	public int balesCarregador;
+	public int balesTotalsArmaActual;
 	List<Weapon> weapons;
 	
 	//Atributs de l'accio disparar & melee
