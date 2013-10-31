@@ -29,6 +29,8 @@ public class MainCharacter : MonoBehaviour {
 	float shotDistance = 20f;
 	int damageMelee = 10;
 	
+	float buttonDistance = 1.5f;
+	
 	//down
 	public GameObject player;
 	public GameObject leftHand;
@@ -36,6 +38,9 @@ public class MainCharacter : MonoBehaviour {
 	float maxScaleY = 1.0f;
 	//Per saber si esta ajupit
 	bool down;
+	
+	//Fall damage
+	float altura;
 	
 	void Awake () {	
 		
@@ -60,10 +65,13 @@ public class MainCharacter : MonoBehaviour {
 		
 		cam = Camera.main.transform;
 			
+		altura = transform.localPosition.y;
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		
 		if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0)) {
 			balesCarregador = weapons[posWeapon].disparar();
 			if(Physics.Raycast(cam.position, cam.forward,out hit, shotDistance)) {
@@ -144,7 +152,18 @@ public class MainCharacter : MonoBehaviour {
 				}
 			}
 		}
+		else if((Input.GetButtonDown("Usar"))) {
+			//leftHand.SetActive(true);
+			//leftHand.animation.Play("ArmatureAction");
+			if(Physics.Raycast(cam.position, cam.forward,out hit, buttonDistance)) {
+				if(hit.collider.gameObject.tag == "Button") {
+					//Enviar que el boto l'he apretat amb el metode que diguin els de escenari (enviar un true)
+					//hit.transform.gameObject.SendMessage("rebreDany",damageMelee);
+				}
+			}
+		}
 	}
+	
 	
 	void init(int vida, int escudo) {
 		this.vida = vida;
@@ -202,13 +221,18 @@ public class MainCharacter : MonoBehaviour {
 	
 	//Rebre dany de l'enemic
 	void rebreAtac(int dany) {
-		AudioSource.PlayClipAtPoint(impactSound,transform.position,0.15F);
+		//AudioSource.PlayClipAtPoint(impactSound,transform.position,0.15F);
+		Debug.Log("dany "+dany);
+		Debug.Log("escudo "+escudo);
+		Debug.Log("vida "+vida);
 		if(escudo > 0) {
 			escudo -= dany;
-			if(escudo < 0)
+			Debug.Log("escudo - dany = "+escudo);
+			if(escudo < 0) {
 				//Sumu ja que sera negatiu
 				vida += escudo;
 				escudo = 0;
+			}
 		}
 		else {
 			vida -= dany;
