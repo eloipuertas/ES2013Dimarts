@@ -25,7 +25,6 @@ public class HUD : MonoBehaviour {
 	//El nombre del script que contiene la informacion del personaje podria ser distinto
 	//public MainCharacter robotProtagonista;
 	//=======
-	public Weapon armaEquipada;
 	public MainCharacter robotProtagonista;
 //	public EnemiesAmount enemiesCounter;
 
@@ -48,8 +47,8 @@ public class HUD : MonoBehaviour {
 		escudoText.text = robotProtagonista.escudo.ToString() + "%";
 //		enemiesCounterGUIText.text = "Remaining enemies: " + enemiesCounter.numOfEnem.ToString();
 		
-		balasCargadorText.text = armaEquipada.getBalesActualCarregador().ToString();
-		balasTotalesText.text = armaEquipada.getBalesTotals().ToString();
+		balasCargadorText.text = robotProtagonista.balesCarregador.ToString();;
+		balasTotalesText.text = robotProtagonista.balesTotalsArmaActual.ToString();
 
 		
 		
@@ -74,8 +73,8 @@ public class HUD : MonoBehaviour {
 //		enemiesCounterGUIText.text = "Remaining enemies: " + enemiesCounter.numOfEnem.ToString();
 		
 		
-		balasCargadorText.text = armaEquipada.getBalesActualCarregador().ToString();
-		balasTotalesText.text = armaEquipada.getBalesTotals().ToString();
+		balasCargadorText.text = robotProtagonista.balesCarregador.ToString();;
+		balasTotalesText.text = robotProtagonista.balesTotalsArmaActual.ToString();
 
 	}
 }
