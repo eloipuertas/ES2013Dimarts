@@ -14,6 +14,7 @@ public class Weapon : MonoBehaviour {
 	public float tiempoAnimacionCaminarMAX = 1f;
 	private float tiempoAnimacionCaminar = 0f;
 	
+	
 	public void init(int damage,string tagName, int initbales, int initbalesActuals, int inittamanyCarregador) {
 		this.damage = damage;
 		this.modelWeapon = GameObject.FindGameObjectWithTag(tagName);
@@ -60,6 +61,13 @@ public class Weapon : MonoBehaviour {
 	
 	public void moveWeapon(){
 		modelWeapon.animation.Play("Caminar");		
+	}
+	
+	public void meeleWeapon(){
+		if(Random.value<0.5f)
+			    modelWeapon.animation.Play ("AtaqueMelee2");//    .animation.Play("AtaqueMelee1"); //Aqui utilizare un random para cambiar entre las dos posibles
+			else
+				modelWeapon.animation.Play ("AtaqueMelee1");
 	}
 	
 	public int recarregar() {

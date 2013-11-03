@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6b0231a5ca40fb74aa75cf14add75aac
+guid: b5f0c0048ba823f448d3feedbf88ef31
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -86,15 +86,17 @@ ModelImporter:
     4300000: Gun
     4300002: RArm
     4300004: Cube_005
-    7400000: Desenfundar
-    7400002: 
+    7400000: Recargar
+    7400002: Armature_001Action_001
     7400004: Armature_002Action
     7400006: ArmatureAction
-    7400008: ArmatureAction0
-    7400010: Recargar
-    7400012: Disparar
+    7400008: Desenfundar
+    7400010: Disparar
+    7400012: Default Take0
     7400014: Caminar
     7400016: Enfundar
+    7400018: AtaqueMelee1
+    7400020: AtaqueMelee2
     9500000: //RootNode
     11100000: //RootNode
     13700000: Cube_005
@@ -113,10 +115,10 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     clipAnimations:
-    - name: Desenfundar
+    - name: Recargar
       takeName: Default Take
-      firstFrame: 0
-      lastFrame: 30
+      firstFrame: 67
+      lastFrame: 120
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -134,10 +136,10 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       transformMask: []
-    - name: Recargar
+    - name: Desenfundar
       takeName: Default Take
-      firstFrame: 67
-      lastFrame: 120
+      firstFrame: 0
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -199,8 +201,50 @@ ModelImporter:
       transformMask: []
     - name: Enfundar
       takeName: Default Take
-      firstFrame: 192
-      lastFrame: 239
+      firstFrame: 361
+      lastFrame: 393
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: AtaqueMelee1
+      takeName: Default Take
+      firstFrame: 264
+      lastFrame: 289
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: AtaqueMelee2
+      takeName: Default Take
+      firstFrame: 307
+      lastFrame: 332
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

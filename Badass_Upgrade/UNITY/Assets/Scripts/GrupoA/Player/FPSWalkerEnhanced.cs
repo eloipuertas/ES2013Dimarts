@@ -148,8 +148,8 @@ public class FPSWalkerEnhanced: MonoBehaviour {
     void Update () {
         // If the run button is set to toggle, then switch between walk/run speed. (We use Update for this...
         // FixedUpdate is a poor place to use GetButtonDown, since it doesn't necessarily run every frame and can miss the event)
-		Debug.Log("walkSpeed = "+SpeedRun);
-		Debug.Log("runSpeed = "+SpeedWalk);
+		//Debug.Log("walkSpeed = "+SpeedRun);
+		//Debug.Log("runSpeed = "+SpeedWalk);
 		
         if (toggleRun && grounded && Input.GetButtonDown("Caminar"))
         	speed = (speed == SpeedRun? SpeedWalk : SpeedRun);

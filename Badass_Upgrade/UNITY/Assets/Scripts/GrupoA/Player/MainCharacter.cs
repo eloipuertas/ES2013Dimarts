@@ -10,7 +10,7 @@ public class MainCharacter : MonoBehaviour {
 	
 	public int maxVida = 100;
 	public int maxEscudo = 100;
-	
+	public int random; 
 	public bool vivo;
 	
 	// So en rebre un impacte
@@ -34,7 +34,6 @@ public class MainCharacter : MonoBehaviour {
 	
 	//down
 	public GameObject player;
-	public GameObject leftHand;
 	float minScaleY = 0.2f;
 	float maxScaleY = 1.0f;
 	
@@ -77,7 +76,6 @@ public class MainCharacter : MonoBehaviour {
 		
 		
 		//melee & down
-		leftHand.SetActive(false);
 		down = false;
 		
 		cam = Camera.main.transform;
@@ -204,8 +202,16 @@ public class MainCharacter : MonoBehaviour {
 				
 		}
 		else if((Input.GetButtonDown("Melee")) && (down == false)) {
-			leftHand.SetActive(true);
-			leftHand.animation.Play("ArmatureAction");
+			
+			Debug.Log ("ARMA COUNT:"+posWeapon);
+			
+			weapons[posWeapon].meeleWeapon();
+//			if(Random.value<0.5f)
+//			    weapons[posWeapon].animation.Play("Disparar");//    .animation.Play("AtaqueMelee1"); //Aqui utilizare un random para cambiar entre las dos posibles
+//			else
+//			    weapons[posWeapon].animation.Play("Disparar");
+//				//weapons[posWeapon].animation.Play("AtaqueMelee2");
+			
 			if(Physics.Raycast(cam.position, cam.forward,out hit, meleeDistance)) {
 				if(hit.collider.gameObject.tag == "Enemy") {
 					//Enviar el dany directament
@@ -337,7 +343,7 @@ public class MainCharacter : MonoBehaviour {
 		balesCarregador = weapons[posWeapon].getBalesActualCarregador();
 		
 	}
-	
+
 	//Per amagar el model de totes les armes
 	void hiddenAllWeapons() {
 		for(int i = 0; i < weapons.Count; i++) {
