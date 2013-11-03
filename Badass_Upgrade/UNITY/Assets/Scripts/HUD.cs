@@ -2,55 +2,59 @@
 using System.Collections;
 
 public class HUD : MonoBehaviour {
-
+	
 	const int game_over = 3;
 	
-	/*Tanto el GUIText como el MainCharacter necesitan ser asignados a los correspondientes objetos de la escena
-	 * vidaText: un objeto de tipo GUIText
-	 * escudoText: un objeto de tipo GUIText
-	 * enemiesCounterGUIText: un objeto de tipo GUIText
-	 * balasCargadorText: un objeto de tipo GUIText
-	 * balasTotalesText: un objeto de tipo GUIText
-	 * armaEquipada: un objeto que contiene el script con la informacion del arma
-	 * robotProtagonista: un objeto que contenga el script MainCharacter 
-	 */
+	//Contendra todos de enemigos en la escena
+	GameObject[] enem;
 	
+	//El bloque que impide el paso en la salida
+	GameObject portal;
+	
+	//Numero de enemigos en la escena
+	int numOfEnem;
+	
+	/* Elementos de texto del HUD
+	 * 
+	 * vidaText: un objeto de tipo GUIText, muestra la vida
+	 * escudoText: un objeto de tipo GUIText, muestra el escudo
+	 * balasCargadorText: un objeto de tipo GUIText, muestra las balas del cargador
+	 * balasTotalesText: un objeto de tipo GUIText, muestra las balas totales
+	 * contadorEnemigos: un objeto de tipo GUIText, muestra el numero de enemigos
+	 */
 	public GUIText vidaText;
 	public GUIText escudoText;
-	public GUIText enemiesCounterGUIText;
 	public GUIText balasCargadorText;
 	public GUIText balasTotalesText;
-	
+	public GUIText contadorEnemigos;
 
-	//El nombre del script que contiene la informacion del personaje podria ser distinto
-	//public MainCharacter robotProtagonista;
-	//=======
+	/* Inicializacion de scripts externos
+	 * 
+	 * public MainCharacter robotProtagonista: El script que contiene los valores de interes para el HUD
+	 */
 	public MainCharacter robotProtagonista;
-//	public EnemiesAmount enemiesCounter;
 
 	
 	//The first method to be called
 	void Awake(){
-		
+				
 	}
 	
 	// Use this for initialization
 	void Start () {
 		
-
-		//vidaText.text = "Health: " + robotProtagonista.vida.ToString() + "%";
-		//escudoText.text = "Shield: " + robotProtagonista.escudo.ToString() + "%";
-		//enemiesCounterGUIText.text = "Remaining enemies: "; //+ robotProtagonista.enemies.ToString();
-		//Los atributos vida y escudo del robotProtagonista son public float.
+		enem = GameObject.FindGameObjectsWithTag("Enemy");
+		numOfEnem = enem.Length;
+		contadorEnemigos.text="Enemies :"+numOfEnem;
+		
+		portal = GameObject.FindGameObjectWithTag("porta1");
 
 		vidaText.text = robotProtagonista.vida.ToString() + "%";
 		escudoText.text = robotProtagonista.escudo.ToString() + "%";
-//		enemiesCounterGUIText.text = "Remaining enemies: " + enemiesCounter.numOfEnem.ToString();
 		
-		balasCargadorText.text = robotProtagonista.balesCarregador.ToString();;
+		balasCargadorText.text = robotProtagonista.balesCarregador.ToString();
 		balasTotalesText.text = robotProtagonista.balesTotalsArmaActual.ToString();
-
-		
+	
 		
 	}
 	
@@ -64,17 +68,23 @@ public class HUD : MonoBehaviour {
 		
 		//Por cada frame, actualiza los valores
 
-		//vidaText.text = "Health: " + robotProtagonista.vida.ToString() + "%";
-		//escudoText.text = "Shield: " + robotProtagonista.escudo.ToString() + "%";
-		//enemiesCounterGUIText.text = "Remaining enemies: "; //+ robotProtagonista.enemies.ToString();
-
 		vidaText.text = robotProtagonista.vida.ToString() + "%";
-		escudoText.text = robotProtagonista.escudo.ToString() + "%";
-//		enemiesCounterGUIText.text = "Remaining enemies: " + enemiesCounter.numOfEnem.ToString();
-		
+		escudoText.text = robotProtagonista.escudo.ToString() + "%";		
 		
 		balasCargadorText.text = robotProtagonista.balesCarregador.ToString();;
 		balasTotalesText.text = robotProtagonista.balesTotalsArmaActual.ToString();
 
+	}
+	
+	public void enemyDeath(){
+		
+		numOfEnem--;
+		contadorEnemigos.text="Enemies :"+numOfEnem;
+		
+		if(numOfEnem<=0){
+			
+			portal.SendMessage("setNivel_Completado",true,SendMessageOptions.DontRequireReceiver);
+			
+		}	
 	}
 }
