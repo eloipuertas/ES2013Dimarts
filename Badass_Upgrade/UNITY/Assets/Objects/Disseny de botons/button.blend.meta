@@ -1,27 +1,26 @@
 fileFormatVersion: 2
-guid: 9d78d894ab0d44eebb0331455d53eb88
+guid: 7f3b39418a29f6d4c85fde37b69cc8f9
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
-    100000: Camera
-    100002: Lamp
+    100000: Armature
+    100002: Bone
     100004: //RootNode
-    100006: Sphere_000
-    100008: Sphere_002
-    400000: Camera
-    400002: Lamp
+    100006: Cylinder
+    100008: Cylinder_001
+    400000: Armature
+    400002: Bone
     400004: //RootNode
-    400006: Sphere_000
-    400008: Sphere_002
-    2300000: Sphere_000
-    2300002: Sphere_002
-    3300000: Sphere_000
-    3300002: Sphere_002
-    4300000: Sphere_000
-    4300002: Sphere_002
+    400006: Cylinder
+    400008: Cylinder_001
+    2300000: Cylinder
+    3300000: Cylinder
+    4300000: Cylinder_001
+    4300002: Cylinder
     7400000: Default Take
+    7400002: ArmatureAction
     9500000: //RootNode
-    11100000: //RootNode
+    13700000: Cylinder_001
   materials:
     importMaterials: 1
     materialName: 0
@@ -72,5 +71,5 @@ ModelImporter:
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   additionalBone: 1
-  animationType: 1
+  animationType: 2
   userData: 
