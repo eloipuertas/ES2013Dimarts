@@ -1,29 +1,52 @@
 fileFormatVersion: 2
-guid: 9d78d894ab0d44eebb0331455d53eb88
+guid: c53f8d5203726454fac0af3c8f62b677
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
-    100000: Camera
-    100002: Lamp
-    100004: //RootNode
-    100006: Sphere_000
-    100008: Sphere_002
-    400000: Camera
-    400002: Lamp
-    400004: //RootNode
-    400006: Sphere_000
-    400008: Sphere_002
-    2300000: Sphere_000
-    2300002: Sphere_002
-    3300000: Sphere_000
-    3300002: Sphere_002
-    4300000: Sphere_000
-    4300002: Sphere_002
-    6400000: Sphere_000
-    6400002: Sphere_002
+    100000: Cube
+    100002: Cube_001
+    100004: Cube_002
+    100006: Cube_003
+    100008: Cube_004
+    100010: Cube_005
+    100012: Cube_006
+    100014: Cube_007
+    100016: //RootNode
+    400000: Cube
+    400002: Cube_001
+    400004: Cube_002
+    400006: Cube_003
+    400008: Cube_004
+    400010: Cube_005
+    400012: Cube_006
+    400014: Cube_007
+    400016: //RootNode
+    2300000: Cube
+    2300002: Cube_001
+    2300004: Cube_002
+    2300006: Cube_003
+    2300008: Cube_004
+    2300010: Cube_005
+    2300012: Cube_006
+    2300014: Cube_007
+    3300000: Cube
+    3300002: Cube_001
+    3300004: Cube_002
+    3300006: Cube_003
+    3300008: Cube_004
+    3300010: Cube_005
+    3300012: Cube_006
+    3300014: Cube_007
+    4300000: Cube
+    4300002: Cube_001
+    4300004: Cube_003
+    4300006: Cube_005
+    4300008: Cube_002
+    4300010: Cube_004
+    4300012: Cube_006
+    4300014: Cube_007
     7400000: Default Take
     9500000: //RootNode
-    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -40,9 +63,9 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: .00999999978
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -74,5 +97,5 @@ ModelImporter:
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   additionalBone: 1
-  animationType: 1
+  animationType: 2
   userData: 
