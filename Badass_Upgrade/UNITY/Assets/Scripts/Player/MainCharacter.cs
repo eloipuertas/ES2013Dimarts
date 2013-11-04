@@ -16,6 +16,9 @@ public class MainCharacter : MonoBehaviour {
 	// So en rebre un impacte
 	public AudioClip impactSound;
 	
+	// So de les armes 
+	public AudioClip[] weaponSound;
+	
 	//Atributs de les armes
 	int posWeapon;
 	int actualWeaponDamage;
@@ -66,6 +69,7 @@ public class MainCharacter : MonoBehaviour {
 	void Update () {
 		if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0)) {
 			balesCarregador = weapons[posWeapon].disparar();
+			AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);
 			if(Physics.Raycast(cam.position, cam.forward,out hit, shotDistance)) {
 				if(hit.collider.gameObject.tag == "Enemy") {
 					Debug.Log("Disparo i toco l'enemic i li faig "+actualWeaponDamage+" punts de dany");
@@ -109,6 +113,8 @@ public class MainCharacter : MonoBehaviour {
 			balesCarregador = weapons[posWeapon].recarregar();
 			if(balesCarregador <= 0)
 				Debug.Log("No hi ha mes municio");
+			else
+				AudioSource.PlayClipAtPoint(weaponSound[0],transform.position,0.15F);
 		}
 		else if(Input.GetButtonDown("Agacharse")) {
 			down = true;
