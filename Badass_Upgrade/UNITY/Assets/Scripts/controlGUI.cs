@@ -114,7 +114,7 @@ public class controlGUI : MonoBehaviour
 			Application.LoadLevel(main_menu);
 		}
 		
-		if(GUILayout.Button("Salir a Windows"))
+		if(GUILayout.Button("Salir al Escritorio"))
 		{
 			Application.Quit();
 		}
