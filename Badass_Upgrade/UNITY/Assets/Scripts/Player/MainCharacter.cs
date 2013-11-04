@@ -30,7 +30,7 @@ public class MainCharacter : MonoBehaviour {
 	Transform cam;
 	float meleeDistance = 1.8f;
 	float shotDistance = 20f;
-	float buttonDistance = 1.8f;
+	float buttonDistance = 20f;
 	int damageMelee = 10;
 	
 	//down
@@ -69,24 +69,27 @@ public class MainCharacter : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0)) {
-			balesCarregador = weapons[posWeapon].disparar();
-			AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);
-			if(Physics.Raycast(cam.position, cam.forward,out hit, shotDistance)) {
-				if(hit.collider.gameObject.tag == "Enemy") {
-					Debug.Log("Disparo i toco l'enemic i li faig "+actualWeaponDamage+" punts de dany");
-					hit.transform.gameObject.SendMessage("rebreDany",actualWeaponDamage);
-				}
-				else if(hit.collider.gameObject.tag == "Barril") {
-					Debug.Log("Disparo contre el barril");
-					hit.transform.gameObject.SendMessage("rebreTir");
-				}
-			}
-			
-		}
+                        balesCarregador = weapons[posWeapon].disparar();
+                        if(Physics.Raycast(cam.position, cam.forward,out hit, shotDistance)) {
+                                if(hit.collider.gameObject.tag == "Enemy") {
+                                        Debug.Log("Disparo i toco l'enemic i li faig "+actualWeaponDamage+" punts de dany");
+                                        hit.transform.gameObject.SendMessage("rebreDany",actualWeaponDamage);
+                                }
+                                else if(hit.collider.gameObject.tag == "Barril") {
+                                        Debug.Log("Disparo contre el barril");
+                                        hit.transform.gameObject.SendMessage("rebreTir");
+                                }
+                        }
+                        
+                }
 		if((Input.GetButtonDown("Usar"))) { //Proves caminar //Animacio //leftHand.SetActive(true); //leftHand.animation.Play("ArmatureAction"); 
+			Debug.Log("Usar boto");
 			if(Physics.Raycast(cam.position, cam.forward,out hit, buttonDistance)) { 
-				if(hit.collider.gameObject.tag == "Button") { //Enviar que el boto l'he apretat amb el metode que diguin els de escenari (enviar un true) 
-					hit.transform.gameObject.SendMessage("activarBoto"); 
+				Debug.Log("111111111");
+				if(hit.collider.gameObject.tag == "Button") { //Enviar que el boto l'he apretat amb el metode que diguin els de escenari (enviar un true) //hit.transform.gameObject.SendMessage("rebreDany",damageMelee); 
+					Debug.Log("22222222222");
+					hit.transform.gameObject.SendMessage("activarBoto");
+					Debug.Log("3333333");
 				} 
 			} 
 		}

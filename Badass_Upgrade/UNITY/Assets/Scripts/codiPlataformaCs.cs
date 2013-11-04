@@ -10,15 +10,16 @@ public class codiPlataformaCs : MonoBehaviour {
 	public bool eix_X;
 	public bool eix_Y;
 	public bool eix_Z;
-	int distancia = 250;
+	public int distancia = 250;
 	int cont = 0;
 	
 	bool itemBounceUp = false;
 
-	void Start (bool x,bool y,bool z) {
+	void Start (bool x,bool y,bool z,int dist) {
 		eix_X = x;
 		eix_Y = y;
 		eix_Z = z;
+		distancia = dist;
 
 	}
 	
@@ -65,6 +66,7 @@ public class codiPlataformaCs : MonoBehaviour {
 	}
 	
 	void setBotoActivat(){
+		Debug.Log("he activat boto");
 		botoActivat = !this.botoActivat;
 	}
 	
