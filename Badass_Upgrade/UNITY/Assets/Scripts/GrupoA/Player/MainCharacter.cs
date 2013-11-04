@@ -203,15 +203,8 @@ public class MainCharacter : MonoBehaviour {
 		}
 		else if((Input.GetButtonDown("Melee")) && (down == false)) {
 			
-			Debug.Log ("ARMA COUNT:"+posWeapon);
-			
 			weapons[posWeapon].meeleWeapon();
-//			if(Random.value<0.5f)
-//			    weapons[posWeapon].animation.Play("Disparar");//    .animation.Play("AtaqueMelee1"); //Aqui utilizare un random para cambiar entre las dos posibles
-//			else
-//			    weapons[posWeapon].animation.Play("Disparar");
-//				//weapons[posWeapon].animation.Play("AtaqueMelee2");
-			
+
 			if(Physics.Raycast(cam.position, cam.forward,out hit, meleeDistance)) {
 				if(hit.collider.gameObject.tag == "Enemy") {
 					//Enviar el dany directament
@@ -227,6 +220,7 @@ public class MainCharacter : MonoBehaviour {
 			//Animacio
 			//leftHand.SetActive(true);
 			//leftHand.animation.Play("ArmatureAction");
+			weapons[posWeapon].useButton();
 			if(Physics.Raycast(cam.position, cam.forward,out hit, buttonDistance)) {
 				if(hit.collider.gameObject.tag == "Button") {
 					//Enviar que el boto l'he apretat amb el metode que diguin els de escenari (enviar un true)

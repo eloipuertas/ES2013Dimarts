@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b5f0c0048ba823f448d3feedbf88ef31
+guid: a3c635fbf3a19b24291e8781bb78805e
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -86,17 +86,19 @@ ModelImporter:
     4300000: Gun
     4300002: RArm
     4300004: Cube_005
-    7400000: Recargar
+    7400000: Default Take
     7400002: Armature_001Action_001
     7400004: Armature_002Action
     7400006: ArmatureAction
     7400008: Desenfundar
     7400010: Disparar
-    7400012: Default Take0
-    7400014: Caminar
-    7400016: Enfundar
-    7400018: AtaqueMelee1
-    7400020: AtaqueMelee2
+    7400012: Recargar
+    7400014: Correr
+    7400016: Caminar
+    7400018: ActivarBoton
+    7400020: AtaqueMelee1
+    7400022: AtaqueMelee2
+    7400024: Enfundar
     9500000: //RootNode
     11100000: //RootNode
     13700000: Cube_005
@@ -115,10 +117,10 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     clipAnimations:
-    - name: Recargar
+    - name: Default Take
       takeName: Default Take
-      firstFrame: 67
-      lastFrame: 120
+      firstFrame: 0
+      lastFrame: 439
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -178,10 +180,10 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       transformMask: []
-    - name: Caminar
+    - name: Recargar
       takeName: Default Take
-      firstFrame: 151
-      lastFrame: 167
+      firstFrame: 67
+      lastFrame: 120
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -199,10 +201,52 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       transformMask: []
-    - name: Enfundar
+    - name: Correr
       takeName: Default Take
-      firstFrame: 361
-      lastFrame: 393
+      firstFrame: 151
+      lastFrame: 168
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: Caminar
+      takeName: Default Take
+      firstFrame: 180
+      lastFrame: 219
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: ActivarBoton
+      takeName: Default Take
+      firstFrame: 240
+      lastFrame: 280
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -222,8 +266,8 @@ ModelImporter:
       transformMask: []
     - name: AtaqueMelee1
       takeName: Default Take
-      firstFrame: 264
-      lastFrame: 289
+      firstFrame: 310
+      lastFrame: 336
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -243,8 +287,29 @@ ModelImporter:
       transformMask: []
     - name: AtaqueMelee2
       takeName: Default Take
-      firstFrame: 307
-      lastFrame: 332
+      firstFrame: 350
+      lastFrame: 385
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: Enfundar
+      takeName: Default Take
+      firstFrame: 396
+      lastFrame: 439
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

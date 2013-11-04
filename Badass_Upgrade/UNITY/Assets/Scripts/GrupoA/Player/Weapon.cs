@@ -60,7 +60,15 @@ public class Weapon : MonoBehaviour {
 	}
 	
 	public void moveWeapon(){
-		modelWeapon.animation.Play("Caminar");		
+		modelWeapon.animation.Play("Correr");		
+	}
+	
+	public void walkWeapon(){
+		modelWeapon.animation.Play ("Caminar");
+	}
+	
+	public void useButton(){
+		modelWeapon.animation.Play ("ActivarBoton");
 	}
 	
 	public void meeleWeapon(){
@@ -128,6 +136,7 @@ public class Weapon : MonoBehaviour {
 			}			
 		}
 		else{
+			this.walkWeapon();
 			tiempoAnimacionCaminar = tiempoAnimacionCaminar - Time.deltaTime;
 		}
 	}
