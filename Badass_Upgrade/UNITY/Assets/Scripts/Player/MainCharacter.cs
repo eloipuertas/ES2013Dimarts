@@ -30,6 +30,7 @@ public class MainCharacter : MonoBehaviour {
 	Transform cam;
 	float meleeDistance = 1.8f;
 	float shotDistance = 20f;
+	float buttonDistance = 1.8f;
 	int damageMelee = 10;
 	
 	//down
@@ -82,6 +83,16 @@ public class MainCharacter : MonoBehaviour {
 			}
 			
 		}
+		if((Input.GetButtonDown("Usar"))) { //Proves caminar //Animacio //leftHand.SetActive(true); //leftHand.animation.Play("ArmatureAction"); 
+			if(Physics.Raycast(cam.position, cam.forward,out hit, buttonDistance)) { 
+				if(hit.collider.gameObject.tag == "Button") { //Enviar que el boto l'he apretat amb el metode que diguin els de escenari (enviar un true) 
+					hit.transform.gameObject.SendMessage("activarBoto"); 
+				} 
+			} 
+		}
+		
+					
+					
 		else if(Input.GetButtonDown("Arma 1")) {
 			//1-Escalo a 0 l'actual posWeapon
 			weapons[posWeapon].hideWeapon();
