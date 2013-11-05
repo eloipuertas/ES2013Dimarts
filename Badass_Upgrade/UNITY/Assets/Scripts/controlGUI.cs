@@ -5,11 +5,10 @@ public class controlGUI : MonoBehaviour
 {
 	const int main_menu = 0;
 	const int new_game = 1;
-	const int movement = 1; //Movimiento
-	const int camera = 2; //Camara
-	const int attack = 3; //Camara
-	const int actions = 4; //Acciones
-	const int menu = 5; //Menu
+	const int mov = 1; //Movimiento
+	const int cam = 2; //Camara
+	const int act = 3; //Acciones
+	const int menu = 4; //Acciones
 	
 	private GUISkin pauseMenu;
 	private GUISkin tips;
@@ -29,7 +28,7 @@ public class controlGUI : MonoBehaviour
 	{
 		if(Input.GetButtonDown("Escape"))
 		{
-			paused = true;
+			paused = !paused;
 		}
 		
 		if(paused)
@@ -46,13 +45,13 @@ public class controlGUI : MonoBehaviour
 			AudioListener.pause = false;
 			cameraML.enabled = true;
 			playerML.enabled = true;
-			Screen.showCursor = false;
+			Screen.showCursor=false;
 			Screen.lockCursor = true; //No queremos ver el cursor durante la partida.
 			
 			
 			//SHOW TIPS
 			int start = 4; // El tiempo que pasa entre cada mensaje de ayuda (en segundos).
-			int stop = 12; // El tiempo que se muestra cada mensaje de ayuda (en segundos).
+			int stop = 10; // El tiempo que se muestra cada mensaje de ayuda (en segundos).
 			if(Time.timeSinceLevelLoad > start && Time.timeSinceLevelLoad < (start + stop)){
 				showTip = 1;
 			}else if(Time.timeSinceLevelLoad > (2*start + stop) && Time.timeSinceLevelLoad < (2*start + 2*stop)){
@@ -61,8 +60,6 @@ public class controlGUI : MonoBehaviour
 				showTip = 3;
 			}else if(Time.timeSinceLevelLoad > (4*start + 3*stop) && Time.timeSinceLevelLoad < (4*start + 4*stop)){
 				showTip = 4;
-			}else if(Time.timeSinceLevelLoad > (5*start + 4*stop) && Time.timeSinceLevelLoad < (5*start + 5*stop)){
-				showTip = 5;
 			}else{
 				showTip = 0;
 			}
@@ -73,24 +70,20 @@ public class controlGUI : MonoBehaviour
 	{
 		if(paused){
 			GUI.skin = pauseMenu;
-			windowRect = new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 200, 130);
+			windowRect = new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 200, 200);
 			windowRect = GUI.Window (0,windowRect,windowPaused, "Menu de Pause");
 		}else{
 			GUI.skin = tips;
 			switch(showTip){
-				case movement:
+				case mov:
 					windowRect = new Rect( 5, 5, 400, 70);
 					windowRect = GUI.Window (0,windowRect,windowTips, "Movimiento");
 					break;
-				case camera:
+				case cam:
 					windowRect = new Rect( 5, 5, 320, 120);
 					windowRect = GUI.Window (0,windowRect,windowTips, "Camara");
 					break;
-				case attack:
-					windowRect = new Rect( 5, 5, 340, 140);
-					windowRect = GUI.Window (0,windowRect,windowTips, "Ataque");
-					break;
-				case actions:
+				case act:
 					windowRect = new Rect( 5, 5, 340, 140);
 					windowRect = GUI.Window (0,windowRect,windowTips, "Acciones");
 					break;
@@ -106,7 +99,7 @@ public class controlGUI : MonoBehaviour
 	
 	private void windowPaused(int id)
 	{
-		if(GUILayout.Button("Continuar"))
+		if(GUILayout.Button("Resume"))
 		{
 			paused = false;
 		}
@@ -121,7 +114,7 @@ public class controlGUI : MonoBehaviour
 			Application.LoadLevel(main_menu);
 		}
 		
-		if(GUILayout.Button("Salir del juego"))
+		if(GUILayout.Button("Salir al Escritorio"))
 		{
 			Application.Quit();
 		}
@@ -130,22 +123,18 @@ public class controlGUI : MonoBehaviour
 	private void windowTips(int id)
 	{
 		switch(showTip){
-				case movement:
+				case mov:
 					GUILayout.Label("- Usa las teclas 'W' y 'S' para avanzar y retroceder.");
 					GUILayout.Label("- Usa las teclas 'A' y 'D' para moverte a izquierda y derecha.");
 					break;
-				case camera:
+				case cam:
 					GUILayout.Label("- Mueve el mouse adelante y atras para girar la camara arriba y abajo.");
 					GUILayout.Label("- Mueve el mouse a izquierda y derecha para girar la camara hacia los lados.");
 					break;
-				case attack:
+				case act:
 					GUILayout.Label("- Pulsa el boton MOUSE1 para disparar.");
 					GUILayout.Label("- Pulsa el boton MOUSE2 para el ataque de Melee.");
 					GUILayout.Label("- Pulsa la tecla 'R' para recargar el arma.");
-					break;
-				case actions:
-					GUILayout.Label("- Pulsa la tecla 'F' para encender y apagar la linterna.");
-					GUILayout.Label("- Pulsa la tecla 'CTRL' para agacharte.");
 					GUILayout.Label("- Pulsa la barra espaciadora para saltar.");
 					break;
 				case menu:
