@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour {
 	public int balesTotals;
 	public int balesActualCarregador;
 	public int tamanyCarregador;
-	public float tiempoAnimacionCaminarMAX = 1f;
+	public float tiempoAnimacionCaminarMAX = 3f;
 	private float tiempoAnimacionCaminar = 0f;
 	
 	
@@ -86,15 +86,11 @@ public class Weapon : MonoBehaviour {
 				modelWeapon.animation.Play("Recargar");		
 				//Comprovar quantes bales hi ha el carregador, i afegir les que falten x omplir
 				int num_bales = tamanyCarregador - balesActualCarregador;
-				//Debug.Log("num bales = "+num_bales);
-				//Debug.Log("tamany carregador = "+tamanyCarregador);
-				//Debug.Log("bales actual carregador = "+balesActualCarregador);
 				if(num_bales <= balesTotals){
-					//Debug.Log("entra if");
 					balesActualCarregador += num_bales;
 					balesTotals -= num_bales;
-					Debug.Log("bales totals = "+balesTotals);
-					return num_bales;
+					//Debug.Log("bales totals = "+balesTotals);
+					return balesActualCarregador;
 				}
 
 			else {
@@ -103,7 +99,7 @@ public class Weapon : MonoBehaviour {
 				//Es 0 ja que si entro aqui vol dir que tinc menys bales que posicions al carregador
 				balesTotals = 0;
 				//Debug.Log("bales actual carregador = "+balesActualCarregador);
-				Debug.Log("bales totals = "+balesTotals);
+				//Debug.Log("bales totals = "+balesTotals);
 				return balesActualCarregador;
 			}						
 		}
@@ -116,7 +112,7 @@ public class Weapon : MonoBehaviour {
 		if(balesActualCarregador > 0) 			
 			balesActualCarregador -= 1;
 			modelWeapon.animation.Play("Disparar");
-		Debug.Log("Disparo queden "+balesActualCarregador);
+		//Debug.Log("Disparo queden "+balesActualCarregador);
 		return balesActualCarregador;
 	}
 		
@@ -128,17 +124,23 @@ public class Weapon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-		if(tiempoAnimacionCaminar <= 0){			
-			if( Input.GetButton("Horizontal") || Input.GetButton("Vertical")) {			
+		
+		if(tiempoAnimacionCaminar <= 0){	
+			
+			if( (Input.GetButton("Horizontal") && !Input.GetButton("Caminar")) || (Input.GetButton("Vertical")  && !Input.GetButton("Caminar") )) {		
+				Debug.Log("Entra a correr" );
 				this.moveWeapon();
 				tiempoAnimacionCaminar = tiempoAnimacionCaminarMAX;
 			}			
+			//Fer un OR amb agachasre
+			else if((Input.GetButton("Horizontal") && Input.GetButton("Caminar")) || (Input.GetButton("Vertical") && Input.GetButton("Caminar")))	{
+				Debug.Log("Entra a caminar" );
+				this.walkWeapon();
+				tiempoAnimacionCaminar = tiempoAnimacionCaminarMAX;
+			}
 		}
-		else{
-			this.walkWeapon();
-			tiempoAnimacionCaminar = tiempoAnimacionCaminar - Time.deltaTime;
-		}
+		tiempoAnimacionCaminar = tiempoAnimacionCaminar - Time.deltaTime;
+		
 	}
 	
 }

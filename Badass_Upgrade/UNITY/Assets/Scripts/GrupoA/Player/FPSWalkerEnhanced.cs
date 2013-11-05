@@ -97,9 +97,15 @@ public class FPSWalkerEnhanced: MonoBehaviour {
             }
  
             // If running isn't on a toggle, then use the appropriate speed depending on whether the run button is down
-            if (!toggleRun)
-            	speed = Input.GetButton("Caminar")? SpeedWalk : SpeedRun;
- 
+            if (!toggleRun) {
+				
+				if(Input.GetButton("Caminar"))
+            		speed = Input.GetButton("Caminar")? SpeedWalk : SpeedRun;
+				else if(Input.GetButton("Agacharse"))
+					speed = Input.GetButton("Agacharse")? SpeedWalk : SpeedRun;
+				else
+					speed = Input.GetButton("Caminar")? SpeedWalk : SpeedRun;	
+			}
             // If sliding (and it's allowed), or if we're on an object tagged "Slide", get a vector pointing down the slope we're on
             if ( (sliding && slideWhenOverSlopeLimit) || (slideOnTaggedObjects && hit.collider.tag == "Slide") ) {
                 Vector3 hitNormal = hit.normal;
@@ -144,15 +150,20 @@ public class FPSWalkerEnhanced: MonoBehaviour {
         // Move the controller, and set grounded true or false depending on whether we're standing on something
         grounded = (controller.Move(moveDirection * Time.deltaTime) & CollisionFlags.Below) != 0;
     }
+	
  
     void Update () {
         // If the run button is set to toggle, then switch between walk/run speed. (We use Update for this...
         // FixedUpdate is a poor place to use GetButtonDown, since it doesn't necessarily run every frame and can miss the event)
-		//Debug.Log("walkSpeed = "+SpeedRun);
-		//Debug.Log("runSpeed = "+SpeedWalk);
 		
-        if (toggleRun && grounded && Input.GetButtonDown("Caminar"))
+        if (toggleRun && grounded && Input.GetButtonDown("Caminar")) { 
         	speed = (speed == SpeedRun? SpeedWalk : SpeedRun);
+		}
+		
+		Debug.Log("walkSpeed = "+SpeedRun);
+		Debug.Log("runSpeed = "+SpeedWalk);
+		Debug.Log("speed = "+speed);
+		
     }
  
     // Store point that we're in contact with for use in FixedUpdate if needed

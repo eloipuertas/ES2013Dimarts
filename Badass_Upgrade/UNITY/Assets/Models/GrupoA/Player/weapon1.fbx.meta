@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a3c635fbf3a19b24291e8781bb78805e
+guid: 211fc942d9ca31a4bbc1e17e64474580
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -204,7 +204,7 @@ ModelImporter:
     - name: Correr
       takeName: Default Take
       firstFrame: 151
-      lastFrame: 168
+      lastFrame: 164
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -224,8 +224,8 @@ ModelImporter:
       transformMask: []
     - name: Caminar
       takeName: Default Take
-      firstFrame: 180
-      lastFrame: 219
+      firstFrame: 184
+      lastFrame: 211
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

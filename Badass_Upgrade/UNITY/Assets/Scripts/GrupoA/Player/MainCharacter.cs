@@ -30,11 +30,11 @@ public class MainCharacter : MonoBehaviour {
 	float shotDistance = 20f;
 	int damageMelee = 10;
 	
-	float buttonDistance = 1.5f;
+	float buttonDistance = 1.8f;
 	
 	//down
 	public GameObject player;
-	float minScaleY = 0.2f;
+	float minScaleY = 0.5f;
 	float maxScaleY = 1.0f;
 	
 	public GameObject cameraPlayer;
@@ -46,7 +46,7 @@ public class MainCharacter : MonoBehaviour {
 	//Fall damage
 	float altura;
 	
-	public CharacterMotor a;
+	public FPSWalkerEnhanced fpse;
 	
 	//Fall
 	
@@ -57,7 +57,7 @@ public class MainCharacter : MonoBehaviour {
 	bool grounded = false;
 	
 	void Awake () {	
-	
+		
 	}
 
 	// Use this for initialization
@@ -92,20 +92,6 @@ public class MainCharacter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		if (grounded) {
-			if (falling) {
-	            falling = false;
-	            if (player.transform.localPosition.y < fallStartLevel - fallingDamageThreshold)
-	                FallingDamageAlert(fallStartLevel - player.transform.localPosition.y);
-	       	}
-		}
- 		else {
-		 	if (!falling) {
-	                falling = true;
-	                fallStartLevel = player.transform.localPosition.y;
-	            }
-		}
 		
 		if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0)) {
 			balesCarregador = weapons[posWeapon].disparar();
@@ -157,6 +143,9 @@ public class MainCharacter : MonoBehaviour {
 				Debug.Log("No hi ha mes municio");
 		}
 		else if(Input.GetButtonDown("Agacharse")) {
+			
+			weapons[posWeapon].walkWeapon();
+			//Animacio caminar i caminar logica
 			if(cameraPlayer.transform.localPosition.y > minPosCamera) {
 				Debug.Log("Min = "+minPosCamera);
 				
@@ -213,6 +202,16 @@ public class MainCharacter : MonoBehaviour {
 			}
 		}
 		else if((Input.GetButtonDown("Usar"))) {
+			Debug.Log("Usar boto");
+			weapons[posWeapon].useButton();
+			if(Physics.Raycast(cam.position, cam.forward,out hit, buttonDistance)) { 
+				if(hit.collider.gameObject.tag == "Button") {  
+					hit.transform.gameObject.SendMessage("activarBoto");
+				} 
+			} 
+		}
+		
+		/*else if((Input.GetButtonDown("Usar"))) {
 			
 			//Proves caminar
 			
@@ -227,7 +226,7 @@ public class MainCharacter : MonoBehaviour {
 					//hit.transform.gameObject.SendMessage("rebreDany",damageMelee);
 				}
 			}
-		}
+		}*/
 	}
 	
 	
