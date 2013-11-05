@@ -4,21 +4,35 @@ using System.Collections;
 public class gameOverMenuController : MonoBehaviour {
 
 	//Constants
-	const int main_menu = 0;
 	const int new_game = 1;
-	const int options = 2;
+	const int espera = 10; // Tiempo de espera hasta reiniciar nivel
 	
 	//Variables
-	public bool isQuitButton = false;			//Is the button the quit button?
 	public bool isNewGameButton = false;
-	public bool isMainMenuButton = false;
+	public TextMesh count;
+	//public GameObject ob;
+	//public TextMesh mesh;
+
 	
 	// Use this for initialization
 	void Start () {
 		//Should the cursor be visible?
 		Screen.showCursor = true;
 		//The cursor will automatically be hidden, centered on view and made to never leave the view.
-		Screen.lockCursor = false;	
+		Screen.lockCursor = false;
+		// Muestra la cuenta atras
+		//ob = (GameObject)Instantiate(Resources.Load("Texto"));
+		//mesh = (TextMesh) ob.GetComponent("TextMesh");
+		//mesh.text = ""+espera;
+		count.text = ""+espera;
+	}
+	
+	private void Update()
+	{
+		if(Time.timeSinceLevelLoad > espera)
+			Application.LoadLevel(new_game);
+		else
+			count.text = ""+(10 - (int)Time.timeSinceLevelLoad);
 	}
 
 	//This function is called when the mouse entered the GUIElement or Collider
@@ -33,14 +47,7 @@ public class gameOverMenuController : MonoBehaviour {
 	
 	//This function is called when the user has released the mouse button
 	public void OnMouseUpAsButton(){
-
-		if(isQuitButton)
-			Application.Quit();
-		else if(isNewGameButton)
+		if(isNewGameButton)
 			Application.LoadLevel(new_game);
-		else if(isMainMenuButton)
-			Application.LoadLevel(main_menu);
-		else
-			Application.LoadLevel(options);
 	}
 }
