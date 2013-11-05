@@ -38,6 +38,10 @@ public class ExitDoorTrigger : MonoBehaviour {
 	}
 	
 	public void setNivel_Completado(bool final){
+		
+		if(!nivel_completado){
+			animation.CrossFade("Obrir");
+		}
 		this.nivel_completado = final;
 	}
 }
