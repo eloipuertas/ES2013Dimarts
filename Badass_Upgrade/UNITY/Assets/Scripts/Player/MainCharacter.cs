@@ -69,6 +69,7 @@ public class MainCharacter : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0)) {
+			AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);
                         balesCarregador = weapons[posWeapon].disparar();
                         if(Physics.Raycast(cam.position, cam.forward,out hit, shotDistance)) {
                                 if(hit.collider.gameObject.tag == "Enemy") {
