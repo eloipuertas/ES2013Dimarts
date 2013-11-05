@@ -69,7 +69,7 @@ public class MainCharacter : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0)) {
-			AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);
+			
                         balesCarregador = weapons[posWeapon].disparar();
                         if(Physics.Raycast(cam.position, cam.forward,out hit, shotDistance)) {
                                 if(hit.collider.gameObject.tag == "Enemy") {
@@ -81,7 +81,7 @@ public class MainCharacter : MonoBehaviour {
                                         hit.transform.gameObject.SendMessage("rebreTir");
                                 }
                         }
-                        
+                 AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);       
                 }
 		if((Input.GetButtonDown("Usar"))) { //Proves caminar //Animacio //leftHand.SetActive(true); //leftHand.animation.Play("ArmatureAction"); 
 			Debug.Log("Usar boto");
