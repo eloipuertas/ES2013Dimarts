@@ -14,6 +14,9 @@ public class HUD : MonoBehaviour {
 	//Numero de enemigos en la escena
 	int numOfEnem;
 	
+	//Slot de arma equipada
+	int weaponPos;
+	
 	/* Elementos de texto del HUD
 	 * 
 	 * vidaText: un objeto de tipo GUIText, muestra la vida
@@ -21,12 +24,16 @@ public class HUD : MonoBehaviour {
 	 * balasCargadorText: un objeto de tipo GUIText, muestra las balas del cargador
 	 * balasTotalesText: un objeto de tipo GUIText, muestra las balas totales
 	 * contadorEnemigos: un objeto de tipo GUIText, muestra el numero de enemigos
+	 * slotArma#: un objeto de tipo GUIText, muestra el slot del arma equipada y de las demas
 	 */
 	public GUIText vidaText;
 	public GUIText escudoText;
 	public GUIText balasCargadorText;
 	public GUIText balasTotalesText;
 	public GUIText contadorEnemigos;
+	public GUIText slotArma1;
+	public GUIText slotArma2;
+	public GUIText slotArma3;
 
 	/* Inicializacion de scripts externos
 	 * 
@@ -54,6 +61,12 @@ public class HUD : MonoBehaviour {
 		
 		balasCargadorText.text = robotProtagonista.balesCarregador.ToString();
 		balasTotalesText.text = robotProtagonista.balesTotalsArmaActual.ToString();
+		
+		slotArma1.text = "1";
+		slotArma2.text = "2";
+		slotArma3.text = "3";
+		
+		weaponPos = robotProtagonista.posWeapon;
 	
 		
 	}
@@ -73,9 +86,35 @@ public class HUD : MonoBehaviour {
 		
 		balasCargadorText.text = robotProtagonista.balesCarregador.ToString();;
 		balasTotalesText.text = robotProtagonista.balesTotalsArmaActual.ToString();
+		
+		weaponPos = robotProtagonista.posWeapon;
+		
+		if(weaponPos == 0){
+			slotArma1.fontSize = 20;
+			
+			slotArma2.fontSize = 10;
+			
+			slotArma3.fontSize = 10;
+			
+		}else if(weaponPos == 1){
+			slotArma1.fontSize = 10;
+			
+			slotArma2.fontSize = 20;
+			
+			slotArma3.fontSize = 10;
+			
+		}else if(weaponPos == 2){
+			slotArma1.fontSize = 10;
+			
+			slotArma2.fontSize = 10;
+			
+			slotArma3.fontSize = 20;
+			
+		}
 
 	}
 	
+	//Cuando muere un enemigo, se actualiza el contador de enemigos
 	public void enemyDeath(){
 		
 		numOfEnem--;
