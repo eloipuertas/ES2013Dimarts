@@ -4,7 +4,7 @@ using System.Collections;
 public class codiBotons : MonoBehaviour {
 	
 	public GameObject Plataforma;
-
+	public GameObject Porta;
 	
 	void Start () {
 	
@@ -18,7 +18,12 @@ public class codiBotons : MonoBehaviour {
 	
 	void activarBoto(){
 		Debug.Log("btooooooo");
-		Plataforma.SendMessage("setBotoActivat");
+		if(Plataforma){
+			Plataforma.SendMessage("setBotoActivat");
+		}
+		if(Porta){
+			Porta.SendMessage("setNivel_Completado",true);
+		}
 	}
 		
 }
