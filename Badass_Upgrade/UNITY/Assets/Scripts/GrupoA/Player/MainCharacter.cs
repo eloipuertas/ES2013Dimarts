@@ -156,16 +156,6 @@ public class MainCharacter : MonoBehaviour {
 			}
 			
 			down = true;
-			
-			/*
-			if(player.transform.localScale.y > minScaleY) {
-				player.transform.localScale -= new Vector3(0, minScaleY, 0);
-				//leftHand.transform.localScale += new Vector3(scaleHandx,scaleHandy,scaleHandz);
-				
-				//Per eliminar braç quant s'ajup
-				//leftHand.SetActive(false);
-				//leftHand.transform.localScale -= new Vector3(scaleHandx,scaleHandy,scaleHandz);
-			}*/
 				
 		}
 		else if(Input.GetButtonUp("Agacharse")) {
@@ -178,16 +168,6 @@ public class MainCharacter : MonoBehaviour {
 				cameraPlayer.transform.localPosition += new Vector3(0f,tmp2,0f);	
 			}
 			down = false;
-			
-			/*
-			if(player.transform.localScale.y < maxScaleY) {
-				player.transform.position += new Vector3(0, minScaleY, 0);
-				player.transform.localScale += new Vector3(0, minScaleY, 0);
-				//leftHand.transform.localScale -= new Vector3(scaleHandx,scaleHandy,scaleHandz);
-				//Tornar a posar braç
-				//leftHand.SetActive(true);
-				//leftHand.transform.localScale += new Vector3(scaleHandx,scaleHandy,scaleHandz);
-			}*/
 				
 		}
 		else if((Input.GetButtonDown("Melee")) && (down == false)) {
