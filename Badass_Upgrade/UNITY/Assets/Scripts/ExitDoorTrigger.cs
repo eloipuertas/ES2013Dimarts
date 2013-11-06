@@ -3,10 +3,11 @@ using System.Collections;
 
 public class ExitDoorTrigger : MonoBehaviour {
 	
-	const int game_over = 3;
+	//Aqui hay que poner el numero de la escena que toque
+	const int nivel2 = 3;
 
-	
-	bool nivel_completado;
+	//Este es el flag que indica que se puede pasar por la puerta
+	public bool nivel_completado;
 	
 	// Use this for initialization
 	void Start () {
@@ -27,7 +28,7 @@ public class ExitDoorTrigger : MonoBehaviour {
 	public void OnTriggerEnter (Collider Player) {
 		if (Player.collider.tag == "Player") {       
 	    	Debug.Log ("Juego Terminado");
-			Application.LoadLevel(game_over);
+			Application.LoadLevel(nivel2);
 		}
 	}
 	
