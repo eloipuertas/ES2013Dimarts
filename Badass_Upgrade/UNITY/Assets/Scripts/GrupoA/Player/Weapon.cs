@@ -54,7 +54,8 @@ public class Weapon : MonoBehaviour {
 		balesTotals += bales;
 	}
 	
-	public void showWeapon() {	
+	public void showWeapon() {
+    	//modelWeapon.transform.localScale += new Vector3(scalex,scaley,scalez);	
 		modelWeapon.SetActive(true);
 	}
 	
@@ -72,7 +73,7 @@ public class Weapon : MonoBehaviour {
 	
 	public void meeleWeapon(){
 		if(Random.value<0.5f)
-			    modelWeapon.animation.Play ("AtaqueMelee2");//Aqui utilizare un random para cambiar entre las dos posibles
+			    modelWeapon.animation.Play ("AtaqueMelee2");//    .animation.Play("AtaqueMelee1"); //Aqui utilizare un random para cambiar entre las dos posibles
 			else
 				modelWeapon.animation.Play ("AtaqueMelee1");
 	}
@@ -131,6 +132,7 @@ public class Weapon : MonoBehaviour {
 				this.moveWeapon();
 				tiempoAnimacionCaminar = tiempoAnimacionCaminarMAX;
 			}			
+			//Fer un OR amb agachasre
 			else if((Input.GetButton("Horizontal") && Input.GetButton("Caminar")) || (Input.GetButton("Vertical") && Input.GetButton("Caminar")))	{
 				Debug.Log("Entra a caminar" );
 				this.walkWeapon();
