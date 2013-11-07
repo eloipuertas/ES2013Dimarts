@@ -21,10 +21,9 @@ var inputJump : boolean = false;
 
 class CharacterMotorMovement {
 	// The maximum horizontal speed when moving
-	var maxForwardSpeed : float = 10.0;
+	var maxForwardSpeed : float = 100.0;
 	var maxSidewaysSpeed : float = 10.0;
 	var maxBackwardsSpeed : float = 10.0;
-	
 
 	// Curve for multiplying speed based on slope (negative = downwards)
 	var slopeSpeedMultiplier : AnimationCurve = AnimationCurve(Keyframe(-90, 1), Keyframe(0, 1), Keyframe(90, 0));
@@ -187,17 +186,16 @@ private function UpdateFunction () {
 	// We copy the actual velocity into a temporary variable that we can manipulate.
 	var velocity : Vector3 = movement.velocity;
 	
-	/*
-	Grup C
-	if(Input.GetAxis("Run") > 0.0) {
+	
+	
+	if(Input.GetButtonDown("Usar")) {
+		Debug.Log("entra");
 		//maxForwardSpeed = 100;
-		
-		
-	}*/
-	//else {
-		//maxForwardSpeed = 10;	
-	//}
-
+		//Canviar velocitat
+		//SetVelocity(Vector3(100f,100f,100f));
+		ApplyInputVelocityChange(Vector3(100f,100f,100f));
+	}
+	
 	// Update velocity based on input
 	velocity = ApplyInputVelocityChange(velocity);
 	
