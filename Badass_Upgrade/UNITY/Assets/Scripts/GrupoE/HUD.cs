@@ -93,8 +93,8 @@ public class HUD : MonoBehaviour {
 		healthWidth.width = robotProtagonista.vida;
 		healthLine.pixelInset = healthWidth;
 		
-		healthWidth.width = robotProtagonista.escudo;
-		shieldLine.pixelInset = healthWidth;
+		shieldWidth.width = robotProtagonista.escudo;
+		shieldLine.pixelInset = shieldWidth;
 
 		vidaText.text = robotProtagonista.vida.ToString();
 		escudoText.text = robotProtagonista.escudo.ToString();		
