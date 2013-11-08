@@ -37,7 +37,7 @@ public class AI2 : MonoBehaviour {
     public string state;
     public float timerAtac,timerEscut;
 	RaycastHit hit;
-    GameObject enemyCount;
+    GameObject hud;
     private Transform myTransform;
 
     void Awake(){
@@ -51,7 +51,7 @@ public class AI2 : MonoBehaviour {
     // Use this for initialization
     void Start () {
     	GameObject player = GameObject.FindGameObjectWithTag("Player");
-		enemyCount = GameObject.FindGameObjectWithTag("enemiesCount");
+		hud = GameObject.FindGameObjectWithTag("MainCamera");
 		
         target = player.transform;
         timerAtac=Time.time;
@@ -133,7 +133,7 @@ public class AI2 : MonoBehaviour {
 		Debug.Log("Enemigo atacado quedan "+vida+" puntos de vida");
 		if(vida<=0){
 			Debug.Log("Enemigo muerto");
-			enemyCount.SendMessage("enemyDeath");
+			hud.SendMessage("enemyDeath");
 			Destroy(gameObject);
 		}
 	}

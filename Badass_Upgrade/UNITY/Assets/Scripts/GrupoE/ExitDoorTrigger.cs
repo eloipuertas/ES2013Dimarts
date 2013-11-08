@@ -3,15 +3,16 @@ using System.Collections;
 
 public class ExitDoorTrigger : MonoBehaviour {
 	
-//	public EnemiesAmount enemiesCounter;
-//	private int numberOfEnemies;
+	//Aqui hay que poner el numero de la escena que toque
+	const int nivel2 = 3;
 
+	//Este es el flag que indica que se puede pasar por la puerta
+	public bool nivel_completado;
+	
 	// Use this for initialization
-	bool nivel_completado = false;
-	const int game_over = 3;
 	void Start () {
 		
-//		numberOfEnemies = enemiesCounter.numOfEnem;
+		nivel_completado = false;
 	
 	}
 	
@@ -21,19 +22,13 @@ public class ExitDoorTrigger : MonoBehaviour {
 
 			this.collider.isTrigger = true;
 			
-			
-		}
-//		numberOfEnemies = enemiesCounter.numOfEnem;
-//		if(numberOfEnemies<=0){
-//		// BoxCollider
-//			collider.isTrigger = true;
-//		}	
+		}	
 	}
 	
 	public void OnTriggerEnter (Collider Player) {
 		if (Player.collider.tag == "Player") {       
 	    	Debug.Log ("Juego Terminado");
-			Application.LoadLevel(game_over);
+			Application.LoadLevel(nivel2);
 		}
 	}
 	
