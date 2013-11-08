@@ -44,12 +44,12 @@ public class HUD : MonoBehaviour {
 		//enemiesCounterGUIText.text = "Remaining enemies: "; //+ robotProtagonista.enemies.ToString();
 		//Los atributos vida y escudo del robotProtagonista son public float.
 
-		vidaText.text = robotProtagonista.vida.ToString() + "%";
-		escudoText.text = robotProtagonista.escudo.ToString() + "%";
+		//vidaText.text = robotProtagonista.vida.ToString() + "%";
+		//escudoText.text = robotProtagonista.escudo.ToString() + "%";
 //		enemiesCounterGUIText.text = "Remaining enemies: " + enemiesCounter.numOfEnem.ToString();
 		
-		balasCargadorText.text = armaEquipada.getBalesActualCarregador().ToString();
-		balasTotalesText.text = armaEquipada.getBalesTotals().ToString();
+		//balasCargadorText.text = armaEquipada.getBalesActualCarregador().ToString();
+		//balasTotalesText.text = armaEquipada.getBalesTotals().ToString();
 
 		
 		
@@ -69,13 +69,13 @@ public class HUD : MonoBehaviour {
 		//escudoText.text = "Shield: " + robotProtagonista.escudo.ToString() + "%";
 		//enemiesCounterGUIText.text = "Remaining enemies: "; //+ robotProtagonista.enemies.ToString();
 
-		vidaText.text = robotProtagonista.vida.ToString() + "%";
-		escudoText.text = robotProtagonista.escudo.ToString() + "%";
+		//vidaText.text = robotProtagonista.vida.ToString() + "%";
+		//escudoText.text = robotProtagonista.escudo.ToString() + "%";
 //		enemiesCounterGUIText.text = "Remaining enemies: " + enemiesCounter.numOfEnem.ToString();
 		
 		
-		balasCargadorText.text = armaEquipada.getBalesActualCarregador().ToString();
-		balasTotalesText.text = armaEquipada.getBalesTotals().ToString();
+		//balasCargadorText.text = armaEquipada.getBalesActualCarregador().ToString();
+		//balasTotalesText.text = armaEquipada.getBalesTotals().ToString();
 
 	}
 }

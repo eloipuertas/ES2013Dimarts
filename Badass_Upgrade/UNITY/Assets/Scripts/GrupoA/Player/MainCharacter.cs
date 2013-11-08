@@ -48,7 +48,7 @@ public class MainCharacter : MonoBehaviour {
 	//Fall damage
 	float altura;
 	
-	public FPSWalkerEnhanced fpse;
+	public CharacterMotor cm = new CharacterMotor();
 	
 	//Fall
 	
@@ -76,7 +76,6 @@ public class MainCharacter : MonoBehaviour {
 		weapons[posWeapon].showWeapon();
 		balesTotalsArmaActual = weapons[posWeapon].balesTotals;
 		
-		
 		//melee & down
 		down = false;
 		
@@ -85,7 +84,6 @@ public class MainCharacter : MonoBehaviour {
 		cameraPlayer = GameObject.FindGameObjectWithTag("MainCamera");
 		maxPosCamera = cameraPlayer.transform.localPosition.y;
 		minPosCamera = 0.05f;
-		
 	}
 	
 	 void FallingDamageAlert (float fallDistance) {
@@ -108,7 +106,7 @@ public class MainCharacter : MonoBehaviour {
 		                hit.transform.gameObject.SendMessage("rebreTir");
 		        }
 			}
-			AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);       
+			//AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);       
 		}
 		else if(Input.GetButtonDown("Arma 1")) {
 			//1-Escalo a 0 l'actual posWeapon
@@ -144,44 +142,30 @@ public class MainCharacter : MonoBehaviour {
 			balesTotalsArmaActual = weapons[posWeapon].balesTotals;
 			if(balesCarregador <= 0)
 				Debug.Log("No hi ha mes municio");
-			else
-				AudioSource.PlayClipAtPoint(weaponSound[0],transform.position,0.15F);
+			//else
+				//AudioSource.PlayClipAtPoint(weaponSound[0],transform.position,0.15F);
 		}
 		else if(Input.GetButtonDown("Agacharse")) {
-			
 			weapons[posWeapon].walkWeapon();
 			//Animacio caminar i caminar logica
 			if(cameraPlayer.transform.localPosition.y > minPosCamera) {
-				Debug.Log("Min = "+minPosCamera);
-				
 				float tmp = cameraPlayer.transform.localPosition.y - minPosCamera; 
-				
-				Debug.Log("tmp = "+tmp);
 				cameraPlayer.transform.localPosition -= new Vector3(0f,tmp,0f);	
 			}
-			
 			down = true;
 				
 		}
 		else if(Input.GetButtonUp("Agacharse")) {
-			Debug.Log("Max = "+maxPosCamera);
-			Debug.Log("camera y up= "+cameraPlayer.transform.localPosition.y);
 			if(cameraPlayer.transform.localPosition.y < maxPosCamera) {
-				
 				float tmp2 = maxPosCamera - cameraPlayer.transform.localPosition.y;
-				Debug.Log("tmp2 = "+tmp2);
 				cameraPlayer.transform.localPosition += new Vector3(0f,tmp2,0f);	
 			}
-			down = false;
-				
+			down = false;		
 		}
 		else if((Input.GetButtonDown("Melee")) && (down == false)) {
-			
 			weapons[posWeapon].meeleWeapon();
-
 			if(Physics.Raycast(cam.position, cam.forward,out hit, meleeDistance)) {
 				if(hit.collider.gameObject.tag == "Enemy") {
-					//Enviar el dany directament
 					hit.transform.gameObject.SendMessage("rebreDany",damageMelee);
 				}
 			}
@@ -195,23 +179,6 @@ public class MainCharacter : MonoBehaviour {
 				} 
 			} 
 		}
-		
-		/*else if((Input.GetButtonDown("Usar"))) {
-			
-			//Proves caminar
-			
-			
-			//Animacio
-			//leftHand.SetActive(true);
-			//leftHand.animation.Play("ArmatureAction");
-			weapons[posWeapon].useButton();
-			if(Physics.Raycast(cam.position, cam.forward,out hit, buttonDistance)) {
-				if(hit.collider.gameObject.tag == "Button") {
-					//Enviar que el boto l'he apretat amb el metode que diguin els de escenari (enviar un true)
-					//hit.transform.gameObject.SendMessage("rebreDany",damageMelee);
-				}
-			}
-		}*/
 	}
 	
 	

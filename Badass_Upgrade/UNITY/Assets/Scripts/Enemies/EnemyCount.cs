@@ -22,7 +22,7 @@ public class EnemyCount : MonoBehaviour {
 		if(enemies<=0){
 			Debug.Log ("No Quedan Enemigos");
 			GameObject p=GameObject.FindGameObjectWithTag("porta1");
-			p.SendMessage("setNivel_Completado",true,SendMessageOptions.DontRequireReceiver);
+			//p.SendMessage("setNivel_Completado",true,SendMessageOptions.DontRequireReceiver);
 			Debug.Log("porta oberta");
 		}
 			
