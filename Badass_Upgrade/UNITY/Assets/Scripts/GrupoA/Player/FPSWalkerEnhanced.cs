@@ -130,7 +130,8 @@ public class FPSWalkerEnhanced: MonoBehaviour {
             }
         }
         else {
-            // If we stepped over a cliff or something, set the height at which we started falling
+            Debug.Log("NO GROUND");
+			// If we stepped over a cliff or something, set the height at which we started falling
             if (!falling) {
                 falling = true;
                 fallStartLevel = myTransform.position.y;
