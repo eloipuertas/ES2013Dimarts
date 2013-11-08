@@ -159,11 +159,6 @@ public class FPSWalkerEnhanced: MonoBehaviour {
         if (toggleRun && grounded && Input.GetButtonDown("Caminar")) { 
         	speed = (speed == SpeedRun? SpeedWalk : SpeedRun);
 		}
-		
-		Debug.Log("walkSpeed = "+SpeedRun);
-		Debug.Log("runSpeed = "+SpeedWalk);
-		Debug.Log("speed = "+speed);
-		
     }
  
     // Store point that we're in contact with for use in FixedUpdate if needed

@@ -15,19 +15,19 @@ public class codiPlataformaCs : MonoBehaviour {
 	
 	bool itemBounceUp = false;
 
-	void Start (bool x,bool y,bool z,int dist) {
+	/*void Start (bool x,bool y,bool z,int dist) {
 		eix_X = x;
 		eix_Y = y;
 		eix_Z = z;
 		distancia = dist;
 
-	}
+	}*/
 	
 
 	void Update () {
 		
 
-		if (botoActivat){
+		if (!botoActivat){
 			if (direccio){
 				if(eix_X){
 					
