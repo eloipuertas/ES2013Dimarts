@@ -22,14 +22,14 @@ public class MainMenuController : MonoBehaviour {
 	}
 
 	//This function is called when the mouse entered the GUIElement or Collider
-	public void OnMouseEnter(){
+	/*public void OnMouseEnter(){
 		renderer.material.color = Color.blue;
-	}
+	}*/
 	
 	//This function is called when the mouse is not any longer over the GUIElement or Collider
-	public void OnMouseExit(){
+	/*public void OnMouseExit(){
 		renderer.material.color = Color.white;
-	}
+	}*/
 	
 	//This function is called when the user has released the mouse button
 	public void OnMouseUpAsButton(){
