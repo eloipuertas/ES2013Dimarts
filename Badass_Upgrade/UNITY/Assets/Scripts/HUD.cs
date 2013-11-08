@@ -34,13 +34,18 @@ public class HUD : MonoBehaviour {
 	public GUIText slotArma1;
 	public GUIText slotArma2;
 	public GUIText slotArma3;
+	public GUITexture healthLine;
+	public GUITexture shieldLine;
 
 	/* Inicializacion de scripts externos
 	 * 
 	 * public MainCharacter robotProtagonista: El script que contiene los valores de interes para el HUD
 	 */
 	public MainCharacter robotProtagonista;
-
+	
+	
+	Rect healthWidth;
+	Rect shieldWidth;
 	
 	//The first method to be called
 	void Awake(){
@@ -52,7 +57,7 @@ public class HUD : MonoBehaviour {
 		
 		enem = GameObject.FindGameObjectsWithTag("Enemy");
 		numOfEnem = enem.Length;
-		contadorEnemigos.text="Enemies :"+numOfEnem;
+		contadorEnemigos.text=numOfEnem.ToString();
 		
 		portal = GameObject.FindGameObjectWithTag("porta1");
 
@@ -67,6 +72,9 @@ public class HUD : MonoBehaviour {
 		slotArma3.text = "3";
 		
 		weaponPos = robotProtagonista.posWeapon;
+		
+		healthWidth = healthLine.pixelInset;
+		shieldWidth = shieldLine.pixelInset;
 	
 		
 	}
@@ -74,15 +82,22 @@ public class HUD : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+		
 		//Carga el menu game over si la vida baja a 0.
 		if(robotProtagonista.vida <= 0){
 			Application.LoadLevel(game_over);
 		}
 		
 		//Por cada frame, actualiza los valores
+		
+		healthWidth.width = robotProtagonista.vida;
+		healthLine.pixelInset = healthWidth;
+		
+		healthWidth.width = robotProtagonista.escudo;
+		shieldLine.pixelInset = healthWidth;
 
-		vidaText.text = robotProtagonista.vida.ToString() + "%";
-		escudoText.text = robotProtagonista.escudo.ToString() + "%";		
+		vidaText.text = robotProtagonista.vida.ToString();
+		escudoText.text = robotProtagonista.escudo.ToString();		
 		
 		balasCargadorText.text = robotProtagonista.balesCarregador.ToString();;
 		balasTotalesText.text = robotProtagonista.balesTotalsArmaActual.ToString();
@@ -118,7 +133,7 @@ public class HUD : MonoBehaviour {
 	public void enemyDeath(){
 		
 		numOfEnem--;
-		contadorEnemigos.text="Enemies :"+numOfEnem;
+		contadorEnemigos.text=numOfEnem.ToString();
 		
 		if(numOfEnem<=0){
 			
