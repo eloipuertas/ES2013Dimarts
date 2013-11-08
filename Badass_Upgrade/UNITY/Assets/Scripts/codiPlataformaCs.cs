@@ -27,7 +27,7 @@ public class codiPlataformaCs : MonoBehaviour {
 	void Update () {
 		
 
-		if (!botoActivat){
+		if (botoActivat){
 			if (direccio){
 				if(eix_X){
 					
