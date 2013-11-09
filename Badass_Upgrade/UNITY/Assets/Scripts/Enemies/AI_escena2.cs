@@ -78,8 +78,6 @@ public class AI_escena2 : MonoBehaviour {
 		if(activacio==1){
 			segueix_waypoints();
 		}
-		
-
     }
 	
 	private void segueix_waypoints(){
