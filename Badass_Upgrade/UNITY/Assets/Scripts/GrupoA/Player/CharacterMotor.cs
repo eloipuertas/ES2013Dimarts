@@ -12,7 +12,15 @@ public class CharacterMotor : MonoBehaviour
     // Does this script currently respond to input?
     bool canControl = true;
     bool useFixedUpdate = true;
-
+	
+	//Fall damage
+	public GameObject Player;
+	float hightFallY;
+	public float constDamageFall = 3.5f;
+	public float tresholdDamageFall = 10.0f;
+	float distanceFall;
+	float fallDamage;
+	
     // For the next variables, [System.NonSerialized] tells Unity to not serialize the variable or show it in the inspector view.
     // Very handy for organization!
 
@@ -194,15 +202,13 @@ public class CharacterMotor : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         tr = transform;
+		
+		hightFallY = Player.transform.localPosition.y;
     }
 	
     private void UpdateFunction()
     {
-		
-		Debug.Log("Max forward = "+movement.maxForwardSpeed);
-		Debug.Log("Max forward = "+movement.maxSidewaysSpeed);
-		Debug.Log("Max forward = "+movement.maxBackwardsSpeed);
-		
+		//Walk and ran
 		if(Input.GetButtonDown("Caminar") || Input.GetButtonDown("Agacharse")) {
 			movement.maxForwardSpeed = 2.0f;
         	movement.maxSidewaysSpeed = 1.0f;
@@ -311,7 +317,6 @@ public class CharacterMotor : MonoBehaviour
             }
         }
 
-        // We were grounded but just loosed grounding
         if(grounded && !IsGroundedTest())
         {
             grounded = false;
@@ -325,12 +330,14 @@ public class CharacterMotor : MonoBehaviour
                 movement.frameVelocity = movingPlatform.platformVelocity;
                 movement.velocity += movingPlatform.platformVelocity;
             }
-			Debug.Log("Estic caient");
-			//Agafo pos y i la guardo
             SendMessage("OnFall", SendMessageOptions.DontRequireReceiver);
+			
             // We pushed the character down to ensure it would stay on the ground ifthere was any.
             // But there wasn't so now we cancel the downwards offset to make the fall smoother.
-			Debug.Log("tr  "+tr.position);
+			
+			//Fetch the y position when player fall
+			hightFallY = tr.position.y;
+			
         }
         // We were not grounded but just landed on something
         else if(!grounded && IsGroundedTest())
@@ -338,8 +345,20 @@ public class CharacterMotor : MonoBehaviour
             grounded = true;
             jumping.jumping = false;
             SubtractNewPlatformVelocity();
-			Debug.Log("Estc a terra");
-			//Agafo pos y actual i la resto amb la d'abans
+			
+			
+			distanceFall = hightFallY - tr.position.y;
+			Debug.Log("hightFallY"+hightFallY);
+			Debug.Log("tr.position.y "+tr.position.y);
+			Debug.Log("distanceFall "+distanceFall);
+			
+			if(distanceFall > tresholdDamageFall) {
+				fallDamage = distanceFall * constDamageFall;
+				Player.SendMessage("rebreAtac",(int)fallDamage);
+			}
+			//distanceFall = 0.0f;
+			//Assigned new y position
+			hightFallY = Player.transform.localPosition.y;
             SendMessage("OnLand", SendMessageOptions.DontRequireReceiver);
         }
 

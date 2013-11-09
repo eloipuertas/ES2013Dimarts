@@ -39,13 +39,13 @@ public class HUD : MonoBehaviour {
 	void Start () {
 		
 
-		//vidaText.text = "Health: " + robotProtagonista.vida.ToString() + "%";
-		//escudoText.text = "Shield: " + robotProtagonista.escudo.ToString() + "%";
+		vidaText.text = "Health: " + robotProtagonista.vida.ToString() + "%";
+		escudoText.text = "Shield: " + robotProtagonista.escudo.ToString() + "%";
 		//enemiesCounterGUIText.text = "Remaining enemies: "; //+ robotProtagonista.enemies.ToString();
 		//Los atributos vida y escudo del robotProtagonista son public float.
 
-		//vidaText.text = robotProtagonista.vida.ToString() + "%";
-		//escudoText.text = robotProtagonista.escudo.ToString() + "%";
+		vidaText.text = robotProtagonista.vida.ToString() + "%";
+		escudoText.text = robotProtagonista.escudo.ToString() + "%";
 //		enemiesCounterGUIText.text = "Remaining enemies: " + enemiesCounter.numOfEnem.ToString();
 		
 		//balasCargadorText.text = armaEquipada.getBalesActualCarregador().ToString();

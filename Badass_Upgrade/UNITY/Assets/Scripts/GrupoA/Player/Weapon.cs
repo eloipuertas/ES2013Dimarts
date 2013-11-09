@@ -88,17 +88,13 @@ public class Weapon : MonoBehaviour {
 				if(num_bales <= balesTotals){
 					balesActualCarregador += num_bales;
 					balesTotals -= num_bales;
-					//Debug.Log("bales totals = "+balesTotals);
 					return balesActualCarregador;
 				}
 
 			else {
-				//Debug.Log("entra else");
 				balesActualCarregador += balesTotals;
 				//Es 0 ja que si entro aqui vol dir que tinc menys bales que posicions al carregador
 				balesTotals = 0;
-				//Debug.Log("bales actual carregador = "+balesActualCarregador);
-				//Debug.Log("bales totals = "+balesTotals);
 				return balesActualCarregador;
 			}						
 		}
@@ -107,11 +103,9 @@ public class Weapon : MonoBehaviour {
 	
 	public int disparar() {
 		Debug.Log("tag = "+modelWeapon.tag);
-		//Debug.Log("Disparar");
 		if(balesActualCarregador > 0) 			
 			balesActualCarregador -= 1;
 			modelWeapon.animation.Play("Disparar");
-		//Debug.Log("Disparo queden "+balesActualCarregador);
 		return balesActualCarregador;
 	}
 		

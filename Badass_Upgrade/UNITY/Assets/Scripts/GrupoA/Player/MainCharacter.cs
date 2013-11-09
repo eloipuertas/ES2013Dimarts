@@ -45,18 +45,6 @@ public class MainCharacter : MonoBehaviour {
 	
 	//Per saber si esta ajupit
 	bool down;	
-	//Fall damage
-	float altura;
-	
-	public CharacterMotor cm = new CharacterMotor();
-	
-	//Fall
-	
-	bool falling = false;
-	float fallingDamageThreshold = 5f;
-	float fallStartLevel;
-	
-	bool grounded = false;
 	
 	void Awake () {	
 		
@@ -86,15 +74,10 @@ public class MainCharacter : MonoBehaviour {
 		minPosCamera = 0.05f;
 	}
 	
-	 void FallingDamageAlert (float fallDistance) {
-        Debug.Log("Ouch! Fell " + fallDistance + " units!");   
-    }
-	
 	// Update is called once per frame
 	void Update () {
 		
 		if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0)) {
-			
 			balesCarregador = weapons[posWeapon].disparar();
 			if(Physics.Raycast(cam.position, cam.forward,out hit, shotDistance)) {
 		        if(hit.collider.gameObject.tag == "Enemy") {
@@ -109,16 +92,13 @@ public class MainCharacter : MonoBehaviour {
 			//AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);       
 		}
 		else if(Input.GetButtonDown("Arma 1")) {
-			//1-Escalo a 0 l'actual posWeapon
 			weapons[posWeapon].hideWeapon();
-			//2-Poso a 0 ja que l'arma 1 es a la posicio 0
+			//Poso a 0 ja que l'arma 1 es a la posicio 0
 			posWeapon = 0;
 			actualWeaponDamage = weapons[posWeapon].getDamage();
 			balesCarregador = weapons[posWeapon].getBalesActualCarregador();
 			balesTotalsArmaActual = weapons[posWeapon].balesTotals;
-			//3-Escalo a pos el nou
 			weapons[posWeapon].showWeapon();
-			//Debug.Log("Arma 1 "+weapons[posWeapon].damage);
 		}
 		else if(Input.GetButtonDown("Arma 2")) {
 			weapons[posWeapon].hideWeapon();
@@ -147,7 +127,6 @@ public class MainCharacter : MonoBehaviour {
 		}
 		else if(Input.GetButtonDown("Agacharse")) {
 			weapons[posWeapon].walkWeapon();
-			//Animacio caminar i caminar logica
 			if(cameraPlayer.transform.localPosition.y > minPosCamera) {
 				float tmp = cameraPlayer.transform.localPosition.y - minPosCamera; 
 				cameraPlayer.transform.localPosition -= new Vector3(0f,tmp,0f);	
@@ -215,7 +194,6 @@ public class MainCharacter : MonoBehaviour {
 	}
 	
 	//Metodes per recollir items de vida, escut i municio
-	
 	void addItemVida(int valor) {
 		int novaVida = vida + valor;
 		if(novaVida <= maxVida)
@@ -240,11 +218,8 @@ public class MainCharacter : MonoBehaviour {
 	void rebreAtac(int dany) {
 		//AudioSource.PlayClipAtPoint(impactSound,transform.position,0.15F);
 		Debug.Log("dany "+dany);
-		Debug.Log("escudo "+escudo);
-		Debug.Log("vida "+vida);
 		if(escudo > 0) {
 			escudo -= dany;
-			Debug.Log("escudo - dany = "+escudo);
 			if(escudo < 0) {
 				//Sumu ja que sera negatiu
 				vida += escudo;
@@ -258,6 +233,8 @@ public class MainCharacter : MonoBehaviour {
 				setVivo(false);
 			}
 		}
+	Debug.Log("escudo = "+escudo);
+	Debug.Log("vida = "+vida);
 	}
 	
 	bool PlayerIsLived() {
