@@ -89,10 +89,7 @@ public class MainCharacter : MonoBehaviour {
 		                hit.transform.gameObject.SendMessage("rebreTir");
 		        }
 			}
-<<<<<<< HEAD
 			// Comentado sonido para probar disparos
-=======
->>>>>>> origin/Grupo-A
 			//AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);       
 		}
 		else if(Input.GetButtonDown("Arma 1")) {
@@ -126,10 +123,7 @@ public class MainCharacter : MonoBehaviour {
 			balesTotalsArmaActual = weapons[posWeapon].balesTotals;
 			if(balesCarregador <= 0)
 				Debug.Log("No hi ha mes municio");
-<<<<<<< HEAD
 			// Comentado para poder recargar
-=======
->>>>>>> origin/Grupo-A
 			//else
 				//AudioSource.PlayClipAtPoint(weaponSound[0],transform.position,0.15F);
 		}
