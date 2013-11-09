@@ -45,18 +45,6 @@ public class MainCharacter : MonoBehaviour {
 	
 	//Per saber si esta ajupit
 	bool down;	
-	//Fall damage
-	float altura;
-	
-	public FPSWalkerEnhanced fpse;
-	
-	//Fall
-	
-	bool falling = false;
-	float fallingDamageThreshold = 5f;
-	float fallStartLevel;
-	
-	bool grounded = false;
 	
 	void Awake () {	
 		
@@ -76,7 +64,6 @@ public class MainCharacter : MonoBehaviour {
 		weapons[posWeapon].showWeapon();
 		balesTotalsArmaActual = weapons[posWeapon].balesTotals;
 		
-		
 		//melee & down
 		down = false;
 		
@@ -85,18 +72,12 @@ public class MainCharacter : MonoBehaviour {
 		cameraPlayer = GameObject.FindGameObjectWithTag("MainCamera");
 		maxPosCamera = cameraPlayer.transform.localPosition.y;
 		minPosCamera = 0.05f;
-		
 	}
-	
-	 void FallingDamageAlert (float fallDistance) {
-        Debug.Log("Ouch! Fell " + fallDistance + " units!");   
-    }
 	
 	// Update is called once per frame
 	void Update () {
 		
 		if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0)) {
-			
 			balesCarregador = weapons[posWeapon].disparar();
 			if(Physics.Raycast(cam.position, cam.forward,out hit, shotDistance)) {
 		        if(hit.collider.gameObject.tag == "Enemy") {
@@ -108,20 +89,20 @@ public class MainCharacter : MonoBehaviour {
 		                hit.transform.gameObject.SendMessage("rebreTir");
 		        }
 			}
+<<<<<<< HEAD
 			// Comentado sonido para probar disparos
+=======
+>>>>>>> origin/Grupo-A
 			//AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);       
 		}
 		else if(Input.GetButtonDown("Arma 1")) {
-			//1-Escalo a 0 l'actual posWeapon
 			weapons[posWeapon].hideWeapon();
-			//2-Poso a 0 ja que l'arma 1 es a la posicio 0
+			//Poso a 0 ja que l'arma 1 es a la posicio 0
 			posWeapon = 0;
 			actualWeaponDamage = weapons[posWeapon].getDamage();
 			balesCarregador = weapons[posWeapon].getBalesActualCarregador();
 			balesTotalsArmaActual = weapons[posWeapon].balesTotals;
-			//3-Escalo a pos el nou
 			weapons[posWeapon].showWeapon();
-			//Debug.Log("Arma 1 "+weapons[posWeapon].damage);
 		}
 		else if(Input.GetButtonDown("Arma 2")) {
 			weapons[posWeapon].hideWeapon();
@@ -145,45 +126,33 @@ public class MainCharacter : MonoBehaviour {
 			balesTotalsArmaActual = weapons[posWeapon].balesTotals;
 			if(balesCarregador <= 0)
 				Debug.Log("No hi ha mes municio");
+<<<<<<< HEAD
 			// Comentado para poder recargar
+=======
+>>>>>>> origin/Grupo-A
 			//else
 				//AudioSource.PlayClipAtPoint(weaponSound[0],transform.position,0.15F);
 		}
 		else if(Input.GetButtonDown("Agacharse")) {
-			
 			weapons[posWeapon].walkWeapon();
-			//Animacio caminar i caminar logica
 			if(cameraPlayer.transform.localPosition.y > minPosCamera) {
-				Debug.Log("Min = "+minPosCamera);
-				
 				float tmp = cameraPlayer.transform.localPosition.y - minPosCamera; 
-				
-				Debug.Log("tmp = "+tmp);
 				cameraPlayer.transform.localPosition -= new Vector3(0f,tmp,0f);	
 			}
-			
 			down = true;
 				
 		}
 		else if(Input.GetButtonUp("Agacharse")) {
-			Debug.Log("Max = "+maxPosCamera);
-			Debug.Log("camera y up= "+cameraPlayer.transform.localPosition.y);
 			if(cameraPlayer.transform.localPosition.y < maxPosCamera) {
-				
 				float tmp2 = maxPosCamera - cameraPlayer.transform.localPosition.y;
-				Debug.Log("tmp2 = "+tmp2);
 				cameraPlayer.transform.localPosition += new Vector3(0f,tmp2,0f);	
 			}
-			down = false;
-				
+			down = false;		
 		}
 		else if((Input.GetButtonDown("Melee")) && (down == false)) {
-			
 			weapons[posWeapon].meeleWeapon();
-
 			if(Physics.Raycast(cam.position, cam.forward,out hit, meleeDistance)) {
 				if(hit.collider.gameObject.tag == "Enemy") {
-					//Enviar el dany directament
 					hit.transform.gameObject.SendMessage("rebreDany",damageMelee);
 				}
 			}
@@ -197,23 +166,6 @@ public class MainCharacter : MonoBehaviour {
 				} 
 			} 
 		}
-		
-		/*else if((Input.GetButtonDown("Usar"))) {
-			
-			//Proves caminar
-			
-			
-			//Animacio
-			//leftHand.SetActive(true);
-			//leftHand.animation.Play("ArmatureAction");
-			weapons[posWeapon].useButton();
-			if(Physics.Raycast(cam.position, cam.forward,out hit, buttonDistance)) {
-				if(hit.collider.gameObject.tag == "Button") {
-					//Enviar que el boto l'he apretat amb el metode que diguin els de escenari (enviar un true)
-					//hit.transform.gameObject.SendMessage("rebreDany",damageMelee);
-				}
-			}
-		}*/
 	}
 	
 	
@@ -250,7 +202,6 @@ public class MainCharacter : MonoBehaviour {
 	}
 	
 	//Metodes per recollir items de vida, escut i municio
-	
 	void addItemVida(int valor) {
 		int novaVida = vida + valor;
 		if(novaVida <= maxVida)
@@ -275,11 +226,8 @@ public class MainCharacter : MonoBehaviour {
 	void rebreAtac(int dany) {
 		//AudioSource.PlayClipAtPoint(impactSound,transform.position,0.15F);
 		Debug.Log("dany "+dany);
-		Debug.Log("escudo "+escudo);
-		Debug.Log("vida "+vida);
 		if(escudo > 0) {
 			escudo -= dany;
-			Debug.Log("escudo - dany = "+escudo);
 			if(escudo < 0) {
 				//Sumu ja que sera negatiu
 				vida += escudo;
@@ -293,6 +241,8 @@ public class MainCharacter : MonoBehaviour {
 				setVivo(false);
 			}
 		}
+	Debug.Log("escudo = "+escudo);
+	Debug.Log("vida = "+vida);
 	}
 	
 	bool PlayerIsLived() {
