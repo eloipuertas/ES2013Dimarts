@@ -223,7 +223,7 @@ public class MainCharacter : MonoBehaviour {
 	
 	//Rebre dany de l'enemic
 	void rebreAtac(int dany) {
-		//AudioSource.PlayClipAtPoint(impactSound,transform.position,0.15F);
+		
 		Debug.Log("dany "+dany);
 		if(escudo > 0) {
 			escudo -= dany;
@@ -242,6 +242,8 @@ public class MainCharacter : MonoBehaviour {
 		}
 	Debug.Log("escudo = "+escudo);
 	Debug.Log("vida = "+vida);
+    AudioSource.PlayClipAtPoint(impactSound,transform.position,0.15F);
+		
 	}
 	
 	bool PlayerIsLived() {
