@@ -46,6 +46,9 @@ public class MainCharacter : MonoBehaviour {
 	//Per saber si esta ajupit
 	bool down;	
 	
+	//Per la llum en disparar 
+	//private muzzleFlash shotLight;
+	
 	void Awake () {	
 		
 	}
@@ -72,6 +75,9 @@ public class MainCharacter : MonoBehaviour {
 		cameraPlayer = GameObject.FindGameObjectWithTag("MainCamera");
 		maxPosCamera = cameraPlayer.transform.localPosition.y;
 		minPosCamera = 0.05f;
+		
+		//Iluminacio del cano amb bales realisticament
+		//shotLight = (muzzleFlash)player.GetComponent(typeof(muzzleFlash));
 	}
 	
 	// Update is called once per frame
@@ -89,7 +95,8 @@ public class MainCharacter : MonoBehaviour {
 		                hit.transform.gameObject.SendMessage("rebreTir");
 		        }
 			}
-			//AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);       
+			//shotLight.Shoot();
+			AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);       
 		}
 		else if(Input.GetButtonDown("Arma 1")) {
 			weapons[posWeapon].hideWeapon();
@@ -122,8 +129,8 @@ public class MainCharacter : MonoBehaviour {
 			balesTotalsArmaActual = weapons[posWeapon].balesTotals;
 			if(balesCarregador <= 0)
 				Debug.Log("No hi ha mes municio");
-			//else
-				//AudioSource.PlayClipAtPoint(weaponSound[0],transform.position,0.15F);
+			else
+				AudioSource.PlayClipAtPoint(weaponSound[0],transform.position,0.15F);
 		}
 		else if(Input.GetButtonDown("Agacharse")) {
 			weapons[posWeapon].walkWeapon();
@@ -216,7 +223,7 @@ public class MainCharacter : MonoBehaviour {
 	
 	//Rebre dany de l'enemic
 	void rebreAtac(int dany) {
-		//AudioSource.PlayClipAtPoint(impactSound,transform.position,0.15F);
+		
 		Debug.Log("dany "+dany);
 		if(escudo > 0) {
 			escudo -= dany;
@@ -235,6 +242,8 @@ public class MainCharacter : MonoBehaviour {
 		}
 	Debug.Log("escudo = "+escudo);
 	Debug.Log("vida = "+vida);
+    AudioSource.PlayClipAtPoint(impactSound,transform.position,0.15F);
+		
 	}
 	
 	bool PlayerIsLived() {

@@ -5,6 +5,7 @@ var muzzleLight : Light;
  
 
 function Start(){
+	Debug.Log("yoo");
     muzzleFlash.enabled = false;
     muzzleLight.enabled = false;
 }
@@ -23,7 +24,8 @@ function Update()
 
 }
  
-function Shoot(){
+public function Shoot(){
+	Debug.Log("yolo");
     muzzleFlash.renderer.enabled = true;
     muzzleLight.enabled = true;
     yield WaitForSeconds(0.02);
