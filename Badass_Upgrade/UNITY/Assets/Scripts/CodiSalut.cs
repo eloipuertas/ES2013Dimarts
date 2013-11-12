@@ -16,7 +16,7 @@ public class CodiSalut : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider other) {
-		//Player.SendMessage("setVida",35);
+		Player.SendMessage("addItemVida",35);
         Destroy(gameObject);
 
 	}
