@@ -15,13 +15,21 @@ public class codiPlataformaCs : MonoBehaviour {
 	
 	bool itemBounceUp = false;
 
+<<<<<<< HEAD
 	void Start (bool x,bool y,bool z,int dist) {
+=======
+	/*void Start (bool x,bool y,bool z,int dist) {
+>>>>>>> origin/dev
 		eix_X = x;
 		eix_Y = y;
 		eix_Z = z;
 		distancia = dist;
 
+<<<<<<< HEAD
 	}
+=======
+	}*/
+>>>>>>> origin/dev
 	
 
 	void Update () {
