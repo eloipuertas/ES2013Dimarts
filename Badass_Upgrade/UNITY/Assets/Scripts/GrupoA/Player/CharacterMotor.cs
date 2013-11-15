@@ -348,9 +348,9 @@ public class CharacterMotor : MonoBehaviour
 			
 			
 			distanceFall = hightFallY - tr.position.y;
-			Debug.Log("hightFallY"+hightFallY);
-			Debug.Log("tr.position.y "+tr.position.y);
-			Debug.Log("distanceFall "+distanceFall);
+			//Debug.Log("hightFallY"+hightFallY);
+			//Debug.Log("tr.position.y "+tr.position.y);
+			//Debug.Log("distanceFall "+distanceFall);
 			
 			if(distanceFall > tresholdDamageFall) {
 				fallDamage = distanceFall * constDamageFall;
