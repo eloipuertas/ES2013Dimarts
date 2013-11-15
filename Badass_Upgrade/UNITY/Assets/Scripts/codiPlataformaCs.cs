@@ -15,9 +15,9 @@ public class codiPlataformaCs : MonoBehaviour {
 	
 	bool itemBounceUp = false;
 
-<<<<<<< HEAD
-	void Start (bool x,bool y,bool z,int dist) {
-=======
+//<<<<<<< HEAD
+	//void Start (bool x,bool y,bool z,int dist) {
+//=======
 	/*void Start (bool x,bool y,bool z,int dist) {
 >>>>>>> origin/dev
 		eix_X = x;
@@ -29,7 +29,7 @@ public class codiPlataformaCs : MonoBehaviour {
 	}
 =======
 	}*/
->>>>>>> origin/dev
+//>>>>>>> origin/dev
 	
 
 	void Update () {
