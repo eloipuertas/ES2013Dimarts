@@ -31,13 +31,8 @@ public class MainCharacter : MonoBehaviour {
 	Transform cam;
 	float meleeDistance = 1.8f;
 	float shotDistance = 20f;
-<<<<<<< HEAD:Badass_Upgrade/UNITY/Assets/Scripts/Player/MainCharacter.cs
-	float buttonDistance = 20f;
-	int damageMelee = 10;
-=======
 	int damageMelee = 10;	
 	float buttonDistance = 2.5f;
->>>>>>> origin/dev:Badass_Upgrade/UNITY/Assets/Scripts/GrupoA/Player/MainCharacter.cs
 	
 	//down
 	public GameObject player;
@@ -89,32 +84,6 @@ public class MainCharacter : MonoBehaviour {
 	void Update () {
 		
 		if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0)) {
-<<<<<<< HEAD:Badass_Upgrade/UNITY/Assets/Scripts/Player/MainCharacter.cs
-			
-                        balesCarregador = weapons[posWeapon].disparar();
-                        if(Physics.Raycast(cam.position, cam.forward,out hit, shotDistance)) {
-                                if(hit.collider.gameObject.tag == "Enemy") {
-                                        Debug.Log("Disparo i toco l'enemic i li faig "+actualWeaponDamage+" punts de dany");
-                                        hit.transform.gameObject.SendMessage("rebreDany",actualWeaponDamage);
-                                }
-                                else if(hit.collider.gameObject.tag == "Barril") {
-                                        Debug.Log("Disparo contre el barril");
-                                        hit.transform.gameObject.SendMessage("rebreTir");
-                                }
-                        }
-                 AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);       
-                }
-		if((Input.GetButtonDown("Usar"))) { //Proves caminar //Animacio //leftHand.SetActive(true); //leftHand.animation.Play("ArmatureAction"); 
-			Debug.Log("Usar boto");
-			if(Physics.Raycast(cam.position, cam.forward,out hit, buttonDistance)) { 
-				Debug.Log("111111111");
-				if(hit.collider.gameObject.tag == "Button") { //Enviar que el boto l'he apretat amb el metode que diguin els de escenari (enviar un true) //hit.transform.gameObject.SendMessage("rebreDany",damageMelee); 
-					Debug.Log("22222222222");
-					hit.transform.gameObject.SendMessage("activarBoto");
-					Debug.Log("3333333");
-				} 
-			} 
-=======
 			balesCarregador = weapons[posWeapon].disparar();
 			if(Physics.Raycast(cam.position, cam.forward,out hit, shotDistance)) {
 		        if(hit.collider.gameObject.tag == "Enemy") {
@@ -127,8 +96,7 @@ public class MainCharacter : MonoBehaviour {
 		        }
 			}
 			//shotLight.Shoot();
-			AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);       
->>>>>>> origin/dev:Badass_Upgrade/UNITY/Assets/Scripts/GrupoA/Player/MainCharacter.cs
+			AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);      
 		}
 		
 					
