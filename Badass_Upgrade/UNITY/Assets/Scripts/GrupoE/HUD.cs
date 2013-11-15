@@ -17,6 +17,9 @@ public class HUD : MonoBehaviour {
 	//Slot de arma equipada
 	int weaponPos;
 	
+	public Texture2D linternaApagada;
+	public Texture2D linternaEncendida;
+	
 	/* Elementos de texto del HUD
 	 * 
 	 * vidaText: un objeto de tipo GUIText, muestra la vida
@@ -36,12 +39,14 @@ public class HUD : MonoBehaviour {
 	public GUIText slotArma3;
 	public GUITexture healthLine;
 	public GUITexture shieldLine;
+	public GUITexture linternaTexture;
 
 	/* Inicializacion de scripts externos
 	 * 
 	 * public MainCharacter robotProtagonista: El script que contiene los valores de interes para el HUD
 	 */
 	public MainCharacter robotProtagonista;
+	public linterna linterna;
 	
 	
 	Rect healthWidth;
@@ -55,14 +60,20 @@ public class HUD : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
+		if(linterna.activeLinterna){
+			linternaTexture.texture = linternaEncendida;
+		}else{
+			linternaTexture.texture = linternaApagada;
+		}
+		
 		enem = GameObject.FindGameObjectsWithTag("Enemy");
 		numOfEnem = enem.Length;
 		contadorEnemigos.text=numOfEnem.ToString();
 		
 		portal = GameObject.FindGameObjectWithTag("porta1");
 
-		vidaText.text = robotProtagonista.vida.ToString() + "%";
-		escudoText.text = robotProtagonista.escudo.ToString() + "%";
+		vidaText.text = robotProtagonista.vida.ToString();
+		escudoText.text = robotProtagonista.escudo.ToString();
 		
 		balasCargadorText.text = robotProtagonista.balesCarregador.ToString();
 		balasTotalesText.text = robotProtagonista.balesTotalsArmaActual.ToString();
@@ -82,6 +93,11 @@ public class HUD : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+		if(linterna.activeLinterna){
+			linternaTexture.texture = linternaEncendida;
+		}else{
+			linternaTexture.texture = linternaApagada;
+		}
 		
 		//Carga el menu game over si la vida baja a 0.
 		if(robotProtagonista.vida <= 0){
