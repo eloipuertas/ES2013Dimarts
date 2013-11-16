@@ -35,11 +35,44 @@ public class Homing_missile : MonoBehaviour {
 	    myTransform.position += myTransform.forward * moveSpeed * Time.deltaTime;
     }
 	
-	private void disparar(int dis,int dmg){
-		if(Physics.Raycast(transform.position, (target.position- transform.position), out hit, dis)) {
-			//Debug.DrawLine(target.position, transform.position, Color.green);
-			//Debug.DrawRay(transform.position, transform.forward,Color.blue);
-			//print (hit.collider.gameObject.tag);
+	/*private void disparar(int distancia,int dmg){
+		RaycastHit[] hits;
+		hits = Physics.RaycastAll (transform.position, (target.position- transform.position), distancia);; 
+	    int i = 0;
+        while (i < hits.Length) {
+            RaycastHit hit = hits[i];
+			Debug.Log (hits[i]);
+	        if (hits[i].collider.tag == "Player"){
+				Debug.Log("ataco al player i li faig "+dmg+" punts de dany");
+				hit.transform.gameObject.SendMessage("rebreAtac",dmg);
+				break;
+			}else if(hits[i].collider.tag == null){
+				break;
+			}
+			i++;
+	    }
+	}*/
+	
+	
+	private void disparar(float distancia,int dmg){
+		RaycastHit[] hits;
+
+		hits = Physics.RaycastAll (transform.position, (target.position - transform.position), distancia);; 
+	    int i = 0;
+        while (i < hits.Length) {
+			Debug.Log("Tocat a: "+hits[i].collider.gameObject.tag);
+			if(hits[i].collider.gameObject.tag == "Player") {
+				Debug.Log("Missil ha fet "+dmg+" punts de dany");
+				hits[i].transform.gameObject.SendMessage("rebreAtac",dmg);
+				Destroy(gameObject);
+				break;
+			}
+			i++;
+		}
+		Destroy(gameObject);
+	}
+	/*private void disparar(float distancia,int dmg){
+		if(Physics.Raycast(transform.position, (target.position- transform.position), out hit, distancia)) {
 			if(hit.collider.gameObject.tag == "Player") {
 				Debug.Log("Missil ha fet "+dmg+" punts de dany");
 				hit.transform.gameObject.SendMessage("rebreAtac",dmg);
@@ -49,11 +82,11 @@ public class Homing_missile : MonoBehaviour {
 			}
 		}
 		
-	}
+	}*/
 	
 	private void OnCollisionEnter(Collision collision)
 	{
-		disparar(2,damage);
+		disparar(4.0f,damage);
 	}
 	
 	

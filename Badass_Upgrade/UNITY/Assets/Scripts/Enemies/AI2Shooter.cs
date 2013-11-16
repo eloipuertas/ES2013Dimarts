@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class AI2Homing : MonoBehaviour {
+public class AI2Shooter : MonoBehaviour {
     public Transform target;
 
     //Noms de les animacions:
@@ -21,11 +21,11 @@ public class AI2Homing : MonoBehaviour {
 	int melee_dmg=25;
 
 	//----------------------------------
-    private int fireRate=3;
-    private int distancia_alerta=35;
+    private int fireRate=2;
+    private int distancia_alerta=20;
     private int distancia_perseguir=6;
     private int distancia_melee=2;
-	private int distancia_disparar = 25;
+	private int distancia_disparar = 15;
 	private float escut =100, max_escut=100;
 	private int temps_recarga_escut=2;
 	private float regen_escut=20;
@@ -39,13 +39,7 @@ public class AI2Homing : MonoBehaviour {
 	RaycastHit hit;
     GameObject hud;
     private Transform myTransform;
-	
-	
-	
-	public GameObject Homing_missile;
-	
-	
-	
+
     void Awake(){
         myTransform = transform;
         spawnPoint=new Vector3(transform.position.x,transform.position.y,transform.position.z);
@@ -61,6 +55,7 @@ public class AI2Homing : MonoBehaviour {
 		
         target = player.transform;
         timerAtac=Time.time;
+                
      }
         
      // Update is called once per frame
@@ -121,13 +116,9 @@ public class AI2Homing : MonoBehaviour {
     private void attack(int dmg,bool ranged){
         if(Time.time>timerAtac){
 			if(ranged){
+				Debug.Log("Shooting");
 				animation.CrossFade("disparar");
-				Debug.Log("Missile!");
-				Vector3 temp = myTransform.position;
-				temp.y = temp.y+4.0f;
-				timerAtac=Time.time+fireRate;
-				GameObject missile = (GameObject)Instantiate(Resources.Load("Homing_missile_1"),temp,myTransform.rotation);
-				//GameObject missile = (GameObject)Instantiate(Resources.Load("enemy"),temp,myTransform.rotation);
+				disparar(distancia_disparar,dist_dmg);
 			}else{
 				Debug.Log("Melee");
 				animation.CrossFade("melee");
@@ -147,16 +138,30 @@ public class AI2Homing : MonoBehaviour {
 		}
 	}
 	
-	private void disparar(int dis,int dmg){
-		if(Physics.Raycast(transform.position, (target.position- transform.position), out hit, dis)) {
+	private void disparar(int distancia,int dmg){
+		RaycastHit[] hits;
+		hits = Physics.RaycastAll (transform.position, (target.position- transform.position), distancia);
+	    int i = 0;
+        while (i < hits.Length) {
+            RaycastHit hit = hits[i];
+			Debug.Log (hits[i]);
+	        if (hits[i].collider.tag == "Player"){
+				Debug.Log("ataco al player i li faig "+dmg+" punts de dany");
+				hit.transform.gameObject.SendMessage("rebreAtac",dmg);
+				break;
+			}else if(hits[i].collider.tag == null){
+				break;
+			}
+			i++;
+	    }
+		/*if(Physics.Raycast(transform.position, (target.position- transform.position), out hit, dis)) {
 			Debug.DrawLine(target.position, transform.position, Color.green);
 			Debug.DrawRay(transform.position, transform.forward,Color.blue);
 			//print (hit.collider.gameObject.tag);
 			if(hit.collider.gameObject.tag == "Player") {
-				Debug.Log("ataco al player i li faig "+dmg+" punts de dany");
-				hit.transform.gameObject.SendMessage("rebreAtac",dmg);
+				
 			}
-		}
+		}*/
 	}
 	
 	private void regenerar_escut(){

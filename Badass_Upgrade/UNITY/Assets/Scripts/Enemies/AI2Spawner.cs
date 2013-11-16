@@ -91,7 +91,6 @@ public class AI2Spawner : MonoBehaviour {
 				timerDirection=Time.time+directionChangeRate;
         	}
             state = "walking";
-			animation.CrossFade("caminar");
             spawn_enemy();
         }
 	}
