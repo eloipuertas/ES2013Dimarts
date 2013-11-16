@@ -49,9 +49,9 @@ public class MainCharacter : MonoBehaviour {
 	//Per la llum en disparar 
 	//private muzzleFlash shotLight;
 	
-	Vector3 offset = new Vector3(0,2f,0);
-	
-	
+	//public GameObject bullet;
+	public float speed = 100f; 
+	public Rigidbody projectile;
 	
 	void Awake () {	
 		
@@ -76,32 +76,42 @@ public class MainCharacter : MonoBehaviour {
 		
 		cam = Camera.main.transform;
 		
+		
 		cameraPlayer = GameObject.FindGameObjectWithTag("MainCamera");
 		maxPosCamera = cameraPlayer.transform.localPosition.y;
 		minPosCamera = 0.05f;
 		
-		//Iluminacio del cano amb bales realisticament
-		//shotLight = (muzzleFlash)player.GetComponent(typeof(muzzleFlash));
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 		if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0)) {
-			balesCarregador = weapons[posWeapon].disparar();
-			if(Physics.Raycast(cam.position, cam.forward,out hit, shotDistance)) {
-				
-		        if(hit.collider.gameObject.tag == "Enemy") {
-		                Debug.Log("Disparo i toco l'enemic i li faig "+actualWeaponDamage+" punts de dany");
-		                hit.transform.gameObject.SendMessage("rebreDany",actualWeaponDamage);
-		        }
-		        else if(hit.collider.gameObject.tag == "Barril") {
-		                Debug.Log("Disparo contre el barril");
-		                hit.transform.gameObject.SendMessage("rebreTir");
-		        }
+			//balesCarregador = weapons[posWeapon].disparar();
+			//Pistola
+			if(posWeapon == 0) {
+				balesCarregador = weapons[posWeapon].disparar();
+				if(Physics.Raycast(cam.position, cam.forward,out hit, shotDistance)) {
+					
+			        if(hit.collider.gameObject.tag == "Enemy") {
+			                Debug.Log("Disparo i toco l'enemic i li faig "+actualWeaponDamage+" punts de dany");
+			                hit.transform.gameObject.SendMessage("rebreDany",actualWeaponDamage);
+			        }
+			        else if(hit.collider.gameObject.tag == "Barril") {
+			                Debug.Log("Disparo contre el barril");
+			                hit.transform.gameObject.SendMessage("rebreTir");
+			        }
+				}
+				//shotLight.Shoot();
+				AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);
 			}
-			//shotLight.Shoot();
-			AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);       
+			//Rifle
+			else if(posWeapon == 1) {
+				Rigidbody instantedProjectile = Instantiate(projectile,cam.position,transform.rotation) as Rigidbody;
+				instantedProjectile.velocity = transform.TransformDirection(new Vector3(0,0,speed));
+				instantedProjectile.SendMessage("addDamage",weapons[posWeapon].damage);
+			}
 		}
 		else if(Input.GetButtonDown("Arma 1")) {
 			weapons[posWeapon].hideWeapon();
