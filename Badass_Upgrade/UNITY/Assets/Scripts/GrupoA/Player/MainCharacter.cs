@@ -49,6 +49,10 @@ public class MainCharacter : MonoBehaviour {
 	//Per la llum en disparar 
 	//private muzzleFlash shotLight;
 	
+	Vector3 offset = new Vector3(0,2f,0);
+	
+	
+	
 	void Awake () {	
 		
 	}
@@ -86,6 +90,7 @@ public class MainCharacter : MonoBehaviour {
 		if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0)) {
 			balesCarregador = weapons[posWeapon].disparar();
 			if(Physics.Raycast(cam.position, cam.forward,out hit, shotDistance)) {
+				
 		        if(hit.collider.gameObject.tag == "Enemy") {
 		                Debug.Log("Disparo i toco l'enemic i li faig "+actualWeaponDamage+" punts de dany");
 		                hit.transform.gameObject.SendMessage("rebreDany",actualWeaponDamage);
@@ -115,14 +120,6 @@ public class MainCharacter : MonoBehaviour {
 			balesTotalsArmaActual = weapons[posWeapon].balesTotals;
 			weapons[posWeapon].showWeapon();
 			
-		}
-		else if(Input.GetButtonDown("Arma 3")) {
-			weapons[posWeapon].hideWeapon();
-			posWeapon = 2;
-			actualWeaponDamage = weapons[posWeapon].getDamage();
-			balesCarregador = weapons[posWeapon].getBalesActualCarregador();
-			balesTotalsArmaActual = weapons[posWeapon].balesTotals;
-			weapons[posWeapon].showWeapon();
 		}
 		else if(Input.GetButtonDown("Recargar")) {
 			balesCarregador = weapons[posWeapon].recarregar();
@@ -258,16 +255,13 @@ public class MainCharacter : MonoBehaviour {
 		
 		Weapon w1 = new Weapon();
 		Weapon w2 = new Weapon();
-		Weapon w3 = new Weapon();
 		
 		//dany, tag model, bales totals, bales carregador, tamany carregador
 		w1.init(10,"weapon1",100,10,10);
 		w2.init(25,"weapon2",40,4,4);
-		w3.init(50,"weapon3",3,6,6);
 		
 		weapons.Add(w1);
 		weapons.Add(w2);
-		weapons.Add(w3);
 		
 		//Arma actual la primera (weapon 1) i les bales que te al carregador
 		actualWeaponDamage = weapons[posWeapon].getDamage();
