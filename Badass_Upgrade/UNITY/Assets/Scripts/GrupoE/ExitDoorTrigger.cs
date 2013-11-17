@@ -8,6 +8,7 @@ public class ExitDoorTrigger : MonoBehaviour {
 
 	//Este es el flag que indica que se puede pasar por la puerta
 	public bool nivel_completado;
+	public GameObject Cube;
 	
 	// Use this for initialization
 	void Start () {
@@ -19,8 +20,8 @@ public class ExitDoorTrigger : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(nivel_completado){
-
-			this.collider.isTrigger = true;
+			Destroy(Cube);
+			//this.collider.isTrigger = true;
 			
 		}	
 	}
