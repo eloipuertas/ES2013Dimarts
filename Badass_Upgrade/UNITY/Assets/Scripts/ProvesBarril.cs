@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ProvesBarril : MonoBehaviour {
 	
-	int vida = 4;
+	int vida = 3;
 	public GameObject Barril;
 	public GameObject Destroy;
 	public GameObject Fire;
