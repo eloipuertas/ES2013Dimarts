@@ -5,6 +5,7 @@ public class codiPlataformaCs : MonoBehaviour {
 	
 	//public GameObject Plataforma;
 	//public GameObject Player;
+	public GameObject player;
 	bool direccio=false;
 	bool botoActivat=false;
 	public bool eix_X;
@@ -72,6 +73,15 @@ public class codiPlataformaCs : MonoBehaviour {
 		}
 		
 	}
+	
+	 void OnTriggerStay(Collider other){
+		
+            if(other.gameObject == player){
+				Debug.Log("Estic sota la Plataforma");
+				//player.SendMessage();
+                        
+            }
+        }
 	
 	void setBotoActivat(){
 		Debug.Log("he activat boto");
