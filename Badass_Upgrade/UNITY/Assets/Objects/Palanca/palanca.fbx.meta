@@ -1,46 +1,39 @@
 fileFormatVersion: 2
-guid: a85403498d6387342a64557b4ae11fb5
+guid: d4736fd0126540944b421a8cdeddbfbf
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
-    100000: Armature
-    100002: Bone_001
-    100004: Camera
+    100000: //RootNode
+    100002: Armature
+    100004: Bone_001
     100006: Cube_000
     100008: Cube_003
     100010: Cylinder
     100012: Cylinder_001
-    100014: Lamp
-    100016: Lamp_001
-    100018: Lamp_002
-    100020: Lamp_003
-    100022: Lamp_004
-    100024: Lamp_005
-    100026: //RootNode
-    400000: Armature
-    400002: Bone_001
-    400004: Camera
+    400000: //RootNode
+    400002: Armature
+    400004: Bone_001
     400006: Cube_000
     400008: Cube_003
     400010: Cylinder
     400012: Cylinder_001
-    400014: Lamp
-    400016: Lamp_001
-    400018: Lamp_002
-    400020: Lamp_003
-    400022: Lamp_004
-    400024: Lamp_005
-    400026: //RootNode
-    2300000: Cube_000
-    2300002: Cube_003
-    2300004: Cylinder_001
-    3300000: Cube_000
-    3300002: Cube_003
-    3300004: Cylinder_001
-    4300000: Cylinder
-    4300002: Cube_003
-    7400000: Default Take
-    7400002: Action
+    2300000: //RootNode
+    2300002: Cube_000
+    2300004: Cube_003
+    2300006: Cylinder_001
+    2300008: Cylinder
+    3300000: //RootNode
+    3300002: Cube_000
+    3300004: Cube_003
+    3300006: Cylinder_001
+    3300008: Cylinder
+    4300000: Cube_003
+    4300002: Cylinder
+    6400000: Cube_000
+    6400002: Cube_003
+    6400004: Cylinder_001
+    7400000: Activar
+    7400002: Desactivar
     9500000: //RootNode
     11100000: //RootNode
     13700000: Cylinder
@@ -56,13 +49,55 @@ ModelImporter:
     animationPositionError: .5
     animationScaleError: .5
     animationWrapMode: 0
-    clipAnimations: []
+    clipAnimations:
+    - name: Activar
+      takeName: Action
+      firstFrame: 0
+      lastFrame: 98
+      wrapMode: 1
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: Desactivar
+      takeName: Action
+      firstFrame: 0
+      lastFrame: 98
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
