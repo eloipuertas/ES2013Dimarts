@@ -90,7 +90,7 @@ public class codiPlataformaCs : MonoBehaviour {
 	}
 	
 	IEnumerator DelayedPlatformMove(){
-   		yield return new WaitForSeconds(3);
+   		yield return new WaitForSeconds(2);
 		this.transform.position += Vector3.up * -0.5f; //TODO: Its only works for UP/DOWN platforms
 		this.botoActivat = true;
 	}
