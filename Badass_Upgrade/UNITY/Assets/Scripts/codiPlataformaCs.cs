@@ -35,32 +35,38 @@ public class codiPlataformaCs : MonoBehaviour {
 
 	void Update () {
 		
-
+		float translation = Time.deltaTime * 2;
+        
 		if (botoActivat){
 			if (direccio){
 				if(eix_X){
-					
-					this.transform.position += Vector3.right * 0.05f;
+					this.transform.Translate(translation, 0, 0);
+					//this.transform.position += Vector3.right * 0.05f;
 				}
 				if(eix_Y){
-					this.transform.position += Vector3.up * 0.05f;
+					this.transform.Translate(0, translation, 0);
+					//this.transform.position += Vector3.up * 0.05f;
 				
 				}
 				if(eix_Z){
-					this.transform.position += Vector3.back * 0.05f;
+					this.transform.Translate(0, 0, translation);
+					//this.transform.position += Vector3.back * 0.05f;
 				}
 				
 			}else{
 				if(eix_X){
+					this.transform.Translate(-translation, 0, 0);
 					
-					this.transform.position += Vector3.right * -0.05f;
+					//this.transform.position += Vector3.right * -0.05f;
 				}
 				if(eix_Y){
-					this.transform.position += Vector3.up * -0.05f;
+					this.transform.Translate(0, -translation, 0);
+					//this.transform.position += Vector3.up * -0.05f;
 				
 				}
 				if(eix_Z){
-					this.transform.position += Vector3.back * -0.05f;
+					this.transform.Translate(0, 0, -translation);
+					//this.transform.position += Vector3.back * -0.05f;
 					
 				}
 			}
@@ -72,9 +78,17 @@ public class codiPlataformaCs : MonoBehaviour {
 			}
 		}
 		
+		
 	}
+	/*
+	void mourePlataforma(){
+		float translation = Time.deltaTime * 10;
+        this.transform.Translate(0, translation, 0);
+		//transform.Translate(0, -translation, 0);
+	}*/
 	
-	 void OnTriggerStay(Collider other){
+	
+	void OnTriggerStay(Collider other){
 		
             if(other.gameObject == player){
 				Debug.Log("Estic sota la Plataforma");
@@ -86,6 +100,7 @@ public class codiPlataformaCs : MonoBehaviour {
 	void setBotoActivat(){
 		Debug.Log("he activat boto");
 		botoActivat = !this.botoActivat;
+		//mourePlataforma();
 	}
 	
 	
