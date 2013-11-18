@@ -36,7 +36,6 @@ public class HUD : MonoBehaviour {
 	public GUIText contadorEnemigos;
 	public GUIText slotArma1;
 	public GUIText slotArma2;
-	public GUIText slotArma3;
 	public GUITexture healthLine;
 	public GUITexture shieldLine;
 	public GUITexture linternaTexture;
@@ -80,7 +79,6 @@ public class HUD : MonoBehaviour {
 		
 		slotArma1.text = "1";
 		slotArma2.text = "2";
-		slotArma3.text = "3";
 		
 		weaponPos = robotProtagonista.posWeapon;
 		
@@ -125,21 +123,10 @@ public class HUD : MonoBehaviour {
 			
 			slotArma2.fontSize = 10;
 			
-			slotArma3.fontSize = 10;
-			
 		}else if(weaponPos == 1){
 			slotArma1.fontSize = 10;
 			
 			slotArma2.fontSize = 20;
-			
-			slotArma3.fontSize = 10;
-			
-		}else if(weaponPos == 2){
-			slotArma1.fontSize = 10;
-			
-			slotArma2.fontSize = 10;
-			
-			slotArma3.fontSize = 20;
 			
 		}
 
