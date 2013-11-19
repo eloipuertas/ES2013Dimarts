@@ -129,6 +129,7 @@ public class AI2 : MonoBehaviour {
      }
 	
 	public void rebreDany(int dmg){
+		Debug.Log("Entra");
 		vida-=dmg;
 		Debug.Log("Enemigo atacado quedan "+vida+" puntos de vida");
 		if(vida<=0){

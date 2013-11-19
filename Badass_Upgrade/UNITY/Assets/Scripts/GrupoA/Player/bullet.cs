@@ -20,7 +20,7 @@ public class bullet : MonoBehaviour {
 			other.transform.gameObject.SendMessage("rebreDany",damage);
 			Debug.Log("Li faic dany a l'eneimic = "+damage);
 		}
-		//Destroy(this.gameObject);
+		Destroy(this.gameObject,5f);
     }
 	
 	void addDamage(int damage) {

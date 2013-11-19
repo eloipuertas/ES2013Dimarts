@@ -28,9 +28,9 @@ public class MainCharacter : MonoBehaviour {
 	
 	//Atributs de l'accio disparar & melee
 	RaycastHit hit;
-	Transform cam;
+	public Transform cam;
 	float meleeDistance = 1.8f;
-	float shotDistance = 20f;
+	public float shotDistance = 20f;
 	int damageMelee = 10;	
 	float buttonDistance = 2.5f;
 	
@@ -50,9 +50,10 @@ public class MainCharacter : MonoBehaviour {
 	//private muzzleFlash shotLight;
 	
 	//public GameObject bullet;
-	public float speed = 200f; 
+	public float speed = 500f; 
 	public Rigidbody projectile;
 	public GameObject weapon2;
+	MouseLook mouseLook;
 	
 	void Awake () {	
 		
@@ -60,6 +61,8 @@ public class MainCharacter : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		
+		//ypos = ml.getYPosition();
 		
 		//armes
 		weapons = new List<Weapon>();
@@ -83,6 +86,7 @@ public class MainCharacter : MonoBehaviour {
 		minPosCamera = 0.05f;
 		
 		
+		mouseLook = cam.GetComponent <MouseLook>();
 	}
 	
 	// Update is called once per frame
@@ -94,10 +98,11 @@ public class MainCharacter : MonoBehaviour {
 			if(posWeapon == 0) {
 				balesCarregador = weapons[posWeapon].disparar();
 				if(Physics.Raycast(cam.position, cam.forward,out hit, shotDistance)) {
-					
+					Debug.Log("Toco a "+hit.collider.gameObject.tag);
 			        if(hit.collider.gameObject.tag == "Enemy") {
 			                Debug.Log("Disparo i toco l'enemic i li faig "+actualWeaponDamage+" punts de dany");
 			                hit.transform.gameObject.SendMessage("rebreDany",actualWeaponDamage);
+							
 			        }
 			        else if(hit.collider.gameObject.tag == "Barril") {
 			                Debug.Log("Disparo contre el barril");
@@ -109,9 +114,9 @@ public class MainCharacter : MonoBehaviour {
 			}
 			//Rifle
 			else if(posWeapon == 1) {
-				//Rigidbody instantedProjectile = Instantiate(projectile,cam.position,transform.rotation) as Rigidbody;
 				Rigidbody instantedProjectile = Instantiate(projectile,weapon2.transform.position,cameraPlayer.transform.rotation) as Rigidbody;
-				instantedProjectile.velocity = transform.TransformDirection(new Vector3(0,0,speed));
+				//instantedProjectile.velocity = transform.TransformDirection(new Vector3(0,0,speed));
+				instantedProjectile.velocity = transform.TransformDirection(new Vector3(0,mouseLook.rotationY,speed));
 				instantedProjectile.SendMessage("addDamage",weapons[posWeapon].damage);
 			}
 		}
