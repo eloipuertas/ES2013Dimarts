@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 211fc942d9ca31a4bbc1e17e64474580
+guid: 142cc4d0b4b95d7499d9b4deec0b97db
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -98,7 +98,9 @@ ModelImporter:
     7400018: ActivarBoton
     7400020: AtaqueMelee1
     7400022: AtaqueMelee2
-    7400024: Enfundar
+    7400024: Dany
+    7400026: StandBy
+    7400028: Enfundar
     9500000: //RootNode
     11100000: //RootNode
     13700000: Cube_005
@@ -120,7 +122,7 @@ ModelImporter:
     - name: Default Take
       takeName: Default Take
       firstFrame: 0
-      lastFrame: 439
+      lastFrame: 530
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -306,10 +308,52 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       transformMask: []
+    - name: Dany
+      takeName: Default Take
+      firstFrame: 389
+      lastFrame: 405
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: StandBy
+      takeName: Default Take
+      firstFrame: 415
+      lastFrame: 485
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
     - name: Enfundar
       takeName: Default Take
-      firstFrame: 396
-      lastFrame: 439
+      firstFrame: 498
+      lastFrame: 530
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

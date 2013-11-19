@@ -54,7 +54,7 @@ public class MainCharacter : MonoBehaviour {
 	public Rigidbody projectile;
 	public GameObject weapon2;
 	MouseLook mouseLook;
-	
+	public GameObject weapon1;
 	void Awake () {	
 		
 	}
@@ -91,13 +91,14 @@ public class MainCharacter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		//if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0) && (posWeapon == 0))
 		if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0)) {
 			//balesCarregador = weapons[posWeapon].disparar();
 			//Pistola
 			if(posWeapon == 0) {
 				balesCarregador = weapons[posWeapon].disparar();
-				if(Physics.Raycast(cam.position, cam.forward,out hit, shotDistance)) {
+				//if(Physics.Raycast(cam.position,cam.forward,out hit, shotDistance)) {
+				if(Physics.Raycast(weapon1.transform.position,cam.forward,out hit, shotDistance)) {
 					Debug.Log("Toco a "+hit.collider.gameObject.tag);
 			        if(hit.collider.gameObject.tag == "Enemy") {
 			                Debug.Log("Disparo i toco l'enemic i li faig "+actualWeaponDamage+" punts de dany");
@@ -111,13 +112,15 @@ public class MainCharacter : MonoBehaviour {
 				}
 				//shotLight.Shoot();
 				AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);
-			}
-			//Rifle
-			else if(posWeapon == 1) {
+			//Rifle mentres esta apretat fer un timer i anar disparant
+			} else if((Input.GetButtonDown("Disparar")) && (posWeapon == 1) && (balesCarregador > 0)) {
+				Debug.Log("RIFLE SEMIAUTOMATIC");
+				//Decrementar bales
 				Rigidbody instantedProjectile = Instantiate(projectile,weapon2.transform.position,cameraPlayer.transform.rotation) as Rigidbody;
 				//instantedProjectile.velocity = transform.TransformDirection(new Vector3(0,0,speed));
 				instantedProjectile.velocity = transform.TransformDirection(new Vector3(0,mouseLook.rotationY,speed));
 				instantedProjectile.SendMessage("addDamage",weapons[posWeapon].damage);
+				
 			}
 		}
 		else if(Input.GetButtonDown("Arma 1")) {
@@ -254,6 +257,7 @@ public class MainCharacter : MonoBehaviour {
 				setVivo(false);
 			}
 		}
+	weapons[posWeapon].rebreDany();
 	Debug.Log("escudo = "+escudo);
 	Debug.Log("vida = "+vida);
     AudioSource.PlayClipAtPoint(impactSound,transform.position,0.15F);

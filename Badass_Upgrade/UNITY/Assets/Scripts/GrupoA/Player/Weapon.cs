@@ -70,6 +70,10 @@ public class Weapon : MonoBehaviour {
 		modelWeapon.animation.Play ("ActivarBoton");
 	}
 	
+	public void rebreDany(){
+		modelWeapon.animation.Play ("Dany");
+	}
+	
 	public void meeleWeapon(){
 		if(Random.value<0.5f)
 			    modelWeapon.animation.Play ("AtaqueMelee2");//Aqui utilizare un random para cambiar entre las dos posibles
