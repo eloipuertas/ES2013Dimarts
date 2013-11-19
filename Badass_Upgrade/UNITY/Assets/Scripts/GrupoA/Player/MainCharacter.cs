@@ -50,8 +50,9 @@ public class MainCharacter : MonoBehaviour {
 	//private muzzleFlash shotLight;
 	
 	//public GameObject bullet;
-	public float speed = 100f; 
+	public float speed = 200f; 
 	public Rigidbody projectile;
+	public GameObject weapon2;
 	
 	void Awake () {	
 		
@@ -108,7 +109,8 @@ public class MainCharacter : MonoBehaviour {
 			}
 			//Rifle
 			else if(posWeapon == 1) {
-				Rigidbody instantedProjectile = Instantiate(projectile,cam.position,transform.rotation) as Rigidbody;
+				//Rigidbody instantedProjectile = Instantiate(projectile,cam.position,transform.rotation) as Rigidbody;
+				Rigidbody instantedProjectile = Instantiate(projectile,weapon2.transform.position,cameraPlayer.transform.rotation) as Rigidbody;
 				instantedProjectile.velocity = transform.TransformDirection(new Vector3(0,0,speed));
 				instantedProjectile.SendMessage("addDamage",weapons[posWeapon].damage);
 			}
