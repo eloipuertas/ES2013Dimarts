@@ -19,7 +19,12 @@ public class bullet : MonoBehaviour {
 			Debug.Log("Toco l'eneimc");
 			other.transform.gameObject.SendMessage("rebreDany",damage);
 			Debug.Log("Li faic dany a l'eneimic = "+damage);
+			Destroy(this.gameObject);
 		}
+		/*else if(other.collider.gameObject.tag != "Enemy") {
+			Destroy(this.gameObject);
+		}*/
+		//Si no toca re, al cap de 5 segons desapareix
 		Destroy(this.gameObject,5f);
     }
 	
