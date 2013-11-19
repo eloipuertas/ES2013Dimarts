@@ -10,10 +10,10 @@ FBXHeaderExtension:  {
 		Version: 1000
 		Year: 2013
 		Month: 11
-		Day: 18
-		Hour: 23
-		Minute: 12
-		Second: 05
+		Day: 19
+		Hour: 17
+		Minute: 34
+		Second: 04
 		Millisecond: 0
 	}
 	Creator: "FBX SDK/FBX Plugins build 20070228"
@@ -21,7 +21,7 @@ FBXHeaderExtension:  {
 		FlagPLE: 0
 	}
 }
-CreationTime: "2013-11-18 23:12:05:000"
+CreationTime: "2013-11-19 17:34:04:000"
 Creator: "Blender version 2.68 (sub 0)"
 
 ; Object definitions
@@ -29,7 +29,7 @@ Creator: "Blender version 2.68 (sub 0)"
 
 Definitions:  {
 	Version: 100
-	Count: 19
+	Count: 18
 	ObjectType: "Model" {
 		Count: 10
 	}
@@ -37,7 +37,7 @@ Definitions:  {
 		Count: 2
 	}
 	ObjectType: "Material" {
-		Count: 4
+		Count: 3
 	}
 	ObjectType: "Texture" {
 		Count: 2
@@ -345,8 +345,8 @@ Objects:  {
 		Properties60:  {
 			Property: "QuaternionInterpolate", "bool", "",0
 			Property: "Visibility", "Visibility", "A+",1
-			Property: "Lcl Translation", "Lcl Translation", "A+",0.000000000000000,-2.111082792282104,0.000000000000000
-			Property: "Lcl Rotation", "Lcl Rotation", "A+",-90.000009334538021,0.000000000000000,0.000000000000000
+			Property: "Lcl Translation", "Lcl Translation", "A+",0.000000000000000,-2.095997095108032,0.000000000000000
+			Property: "Lcl Rotation", "Lcl Rotation", "A+",-90.005050014145482,0.000000000000000,0.000000000000000
 			Property: "Lcl Scaling", "Lcl Scaling", "A+",29.600696563720703,32.047084808349609,0.289191484451294
 			Property: "RotationOffset", "Vector3D", "",0,0,0
 			Property: "RotationPivot", "Vector3D", "",0,0,0
@@ -490,18 +490,18 @@ Objects:  {
 		LayerElementTexture: 0 {
 			Version: 101
 			Name: "MapaUV"
-			MappingInformationType: "ByPolygon"
+			MappingInformationType: "AllSame"
 			ReferenceInformationType: "IndexToDirect"
 			BlendMode: "Translucent"
 			TextureAlpha: 1
-			TextureId: 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,-1,-1,0,0,-1,0,-1,0,-1,0,-1,-1,-1,-1,-1,-1,-1,-1,-1
+			TextureId: 0
 		}
 		LayerElementMaterial: 0 {
 			Version: 101
 			Name: ""
-			MappingInformationType: "ByPolygon"
+			MappingInformationType: "AllSame"
 			ReferenceInformationType: "IndexToDirect"
-			Materials: 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0
+			Materials: 0
 		}
 		Layer: 0 {
 			Version: 100
@@ -1665,36 +1665,6 @@ Objects:  {
 			Property: "Reflectivity", "double", "",0
 		}
 	}
-	Material: "Material::Suelo", "" {
-		Version: 102
-		ShadingModel: "lambert"
-		MultiLayer: 0
-		Properties60:  {
-			Property: "ShadingModel", "KString", "", "Lambert"
-			Property: "MultiLayer", "bool", "",0
-			Property: "EmissiveColor", "ColorRGB", "",0.8000,0.8000,0.8000
-			Property: "EmissiveFactor", "double", "",0.0000
-			Property: "AmbientColor", "ColorRGB", "",0.0000,0.0000,0.0000
-			Property: "AmbientFactor", "double", "",1.0000
-			Property: "DiffuseColor", "ColorRGB", "",0.8000,0.8000,0.8000
-			Property: "DiffuseFactor", "double", "",0.8000
-			Property: "Bump", "Vector3D", "",0,0,0
-			Property: "TransparentColor", "ColorRGB", "",1,1,1
-			Property: "TransparencyFactor", "double", "",0.0000
-			Property: "SpecularColor", "ColorRGB", "",1.0000,1.0000,1.0000
-			Property: "SpecularFactor", "double", "",0.2500
-			Property: "ShininessExponent", "double", "",80.0
-			Property: "ReflectionColor", "ColorRGB", "",0,0,0
-			Property: "ReflectionFactor", "double", "",1
-			Property: "Emissive", "ColorRGB", "",0,0,0
-			Property: "Ambient", "ColorRGB", "",0.0,0.0,0.0
-			Property: "Diffuse", "ColorRGB", "",0.8,0.8,0.8
-			Property: "Specular", "ColorRGB", "",1.0,1.0,1.0
-			Property: "Shininess", "double", "",9.6
-			Property: "Opacity", "double", "",1.0
-			Property: "Reflectivity", "double", "",0
-		}
-	}
 	Material: "Material::Suelo__base2_png", "" {
 		Version: 102
 		ShadingModel: "lambert"
@@ -1837,7 +1807,7 @@ Objects:  {
 		}
 		PoseNode:  {
 			Node: "Model::Cubo"
-			Matrix: 0.000002234790372,0.000000000000000,-32.047084808349609,0.000000000000000,-29.600696563720703,0.000000000000000,-0.000002419487600,0.000000000000000,0.000000000000000,0.289191484451294,0.000000000000000,0.000000000000000,0.000000000000000,-2.111082792282104,0.000000000000000,1.000000000000000
+			Matrix: 0.000002234790372,-0.002821426140144,-32.047084808349609,0.000000000000000,-29.600696563720703,-0.000000000213012,-0.000002419487600,0.000000000000000,0.000000000000000,0.289191484451294,-0.000025460425604,0.000000000000000,0.000000000000000,-2.095997095108032,0.000000000000000,1.000000000000000
 		}
 	}
 	GlobalSettings:  {
@@ -1882,8 +1852,6 @@ Relations:  {
 	}
 	Material: "Material::Paredes__base1_png", "" {
 	}
-	Material: "Material::Suelo", "" {
-	}
 	Material: "Material::Suelo__base2_png", "" {
 	}
 	Texture: "Texture::base1_png", "TextureVideoClip" {
@@ -1904,7 +1872,6 @@ Connections:  {
 	Connect: "OO", "Model::Cubo", "Model::Scene"
 	Connect: "OO", "Material::Paredes", "Model::Cubo_1"
 	Connect: "OO", "Material::Paredes__base1_png", "Model::Cubo_1"
-	Connect: "OO", "Material::Suelo", "Model::Cubo"
 	Connect: "OO", "Material::Suelo__base2_png", "Model::Cubo"
 	Connect: "OO", "Texture::base1_png", "Model::Cubo_1"
 	Connect: "OO", "Texture::base2_png", "Model::Cubo"
@@ -2022,11 +1989,11 @@ Takes:  {
 						Color: 1,0,0
 					}
 					Channel: "Y" {
-						Default: -2.111082792282104
+						Default: -2.095997095108032
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							1924423250,-2.111082792282104,L
+							1924423250,-2.095997095108032,L
 						Color: 0,1,0
 					}
 					Channel: "Z" {
@@ -2041,11 +2008,11 @@ Takes:  {
 				}
 				Channel: "R" {
 					Channel: "X" {
-						Default: -90.000002504348856
+						Default: -90.005043183956317
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							1924423250,-90.000002504348856,L
+							1924423250,-90.005043183956317,L
 						Color: 1,0,0
 					}
 					Channel: "Y" {
