@@ -10,19 +10,6 @@ function Start(){
     muzzleLight.enabled = false;
 }
 
-function Update()
-
-{
-
-    if(Input.GetButtonDown("Disparar"))
-
-    {
-
-        Shoot();
-
-    }
-
-}
  
 public function Shoot(){
 	Debug.Log("yolo");

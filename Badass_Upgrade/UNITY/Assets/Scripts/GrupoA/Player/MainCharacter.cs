@@ -76,8 +76,8 @@ public class MainCharacter : MonoBehaviour {
 		maxPosCamera = cameraPlayer.transform.localPosition.y;
 		minPosCamera = 0.05f;
 		
-		//Iluminacio del cano amb bales realisticament
-		//shotLight = (muzzleFlash)player.GetComponent(typeof(muzzleFlash));
+		
+
 	}
 	
 	// Update is called once per frame
@@ -95,7 +95,8 @@ public class MainCharacter : MonoBehaviour {
 		                hit.transform.gameObject.SendMessage("rebreTir");
 		        }
 			}
-			//shotLight.Shoot();
+			//Iluminacio del cano amb bales realisticament
+			player.SendMessage("Shoot");
 			AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);      
 		}
 		
