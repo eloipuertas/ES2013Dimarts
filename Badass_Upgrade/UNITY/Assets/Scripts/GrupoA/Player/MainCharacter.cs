@@ -80,12 +80,6 @@ public class MainCharacter : MonoBehaviour {
 		cameraPlayer = GameObject.FindGameObjectWithTag("MainCamera");
 		maxPosCamera = cameraPlayer.transform.localPosition.y;
 		minPosCamera = 0.05f;
-		
-		
-<<<<<<< HEAD
-
-=======
->>>>>>> d908deb96a0b9f347d8f92532a56edcd3a5030ca
 	}
 	
 	// Update is called once per frame
@@ -116,12 +110,9 @@ public class MainCharacter : MonoBehaviour {
 				instantedProjectile.velocity = transform.TransformDirection(new Vector3(0,0,speed));
 				instantedProjectile.SendMessage("addDamage",weapons[posWeapon].damage);
 			}
-<<<<<<< HEAD
 			//Iluminacio del cano amb bales realisticament
 			player.SendMessage("Shoot");
 			AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.9F);      
-=======
->>>>>>> d908deb96a0b9f347d8f92532a56edcd3a5030ca
 		}
 		
 					
