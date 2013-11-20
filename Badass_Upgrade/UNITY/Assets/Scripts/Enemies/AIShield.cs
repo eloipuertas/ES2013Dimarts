@@ -13,7 +13,7 @@ public class AIShield : MonoBehaviour {
 
 
     //variables modificables segons la ia--------
-	public float vida=40;
+	public float vida=40.0f;
     public int moveSpeed=3;
 	public int rotationSpeed=2;
     float Distance;
@@ -41,8 +41,9 @@ public class AIShield : MonoBehaviour {
     private Transform myTransform;
 	
 	GameObject shield;
-	
-	
+	//vida
+	public GUITexture enemy_Healthbar;
+	float maxvida = 0.0f;
 	
     void Awake(){
         myTransform = transform;
@@ -59,11 +60,25 @@ public class AIShield : MonoBehaviour {
 		
         target = player.transform;
         timerAtac=Time.time;
+		
+		maxvida = vida;
+		
+					
+		float percent = 0.0f;
+		percent = vida/maxvida;
+		percent = percent*100;
+		float Size_width = 0.001f;
+		float Size_height = 0.010f;
+		
+		Size_width = percent*Size_width;
+		enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,1);
                 
      }
         
      // Update is called once per frame
      void Update () {
+		Debug.Log ("TEXTURE SIZE:"+ enemy_Healthbar.pixelInset.ToString());
+		
 		//regenerar_escut();
        	//myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
 		Distance=Vector3.Distance(target.position,transform.position);
@@ -142,6 +157,21 @@ public class AIShield : MonoBehaviour {
 	public void rebreDany(int dmg){
 		if (state != "away"){
 			vida-=dmg;
+			
+			float percent = 0.0f;
+			percent = vida/maxvida;
+			percent = percent*100;
+			//enemy_Healthbar.guiTexture.pixelInset.Set(enemy_Healthbar.guiTexture.pixelInset.x,enemy_Healthbar.guiTexture.pixelInset.y,percent,enemy_Healthbar.guiTexture.pixelInset.height);
+			//Rect temp1 = new Rect(0, 0, percent, 10);
+			//enemy_Healthbar.guiTexture.pixelInset=temp1;
+			float Size_width = 0.001f;
+			float Size_height = 0.010f;
+			
+			Size_width = percent*Size_width;
+			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,1);
+			
+			
+			Debug.Log ("QUEDA UN "+percent+" % DE VIDA");
 			Debug.Log("Enemigo atacado quedan "+vida+" puntos de vida");
 			if(vida<=0){
 				Debug.Log("Enemigo muerto");
