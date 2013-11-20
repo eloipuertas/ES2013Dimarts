@@ -28,9 +28,9 @@ public class MainCharacter : MonoBehaviour {
 	
 	//Atributs de l'accio disparar & melee
 	RaycastHit hit;
-	Transform cam;
+	public Transform cam;
 	float meleeDistance = 1.8f;
-	float shotDistance = 20f;
+	public float shotDistance = 20f;
 	int damageMelee = 10;	
 	float buttonDistance = 2.5f;
 	
@@ -50,8 +50,21 @@ public class MainCharacter : MonoBehaviour {
 	//private muzzleFlash shotLight;
 	
 	//public GameObject bullet;
-	public float speed = 100f; 
+	public float speed = 500f; 
 	public Rigidbody projectile;
+	public GameObject weapon2;
+	MouseLook mouseLook;
+	public GameObject weapon1;
+	
+	//S'haura d'ajustar en funcio del model de l'arma
+	float xPosShot = -0.5f;
+	float yPosShot;
+	float constY = 1.5f;
+	
+	float tempsActual;
+	float tempsAnterior;
+	public float fireRate = 0.5f;
+	
 	
 	void Awake () {	
 		
@@ -59,6 +72,8 @@ public class MainCharacter : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		
+		//ypos = ml.getYPosition();
 		
 		//armes
 		weapons = new List<Weapon>();
@@ -80,39 +95,56 @@ public class MainCharacter : MonoBehaviour {
 		cameraPlayer = GameObject.FindGameObjectWithTag("MainCamera");
 		maxPosCamera = cameraPlayer.transform.localPosition.y;
 		minPosCamera = 0.05f;
+<<<<<<< HEAD
+=======
+		
+		
+		mouseLook = cam.GetComponent <MouseLook>();
+		
+		//Inicialitzo el temps
+		tempsAnterior = Time.time;
+>>>>>>> origin/Grupo-A
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-		if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0)) {
-			//balesCarregador = weapons[posWeapon].disparar();
-			//Pistola
-			if(posWeapon == 0) {
-				balesCarregador = weapons[posWeapon].disparar();
-				if(Physics.Raycast(cam.position, cam.forward,out hit, shotDistance)) {
-					
-			        if(hit.collider.gameObject.tag == "Enemy") {
-			                Debug.Log("Disparo i toco l'enemic i li faig "+actualWeaponDamage+" punts de dany");
-			                hit.transform.gameObject.SendMessage("rebreDany",actualWeaponDamage);
-			        }
-			        else if(hit.collider.gameObject.tag == "Barril") {
-			                Debug.Log("Disparo contre el barril");
-			                hit.transform.gameObject.SendMessage("rebreTir");
-			        }
-				}
+		//if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0) && (posWeapon == 0))
+		if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0) && (posWeapon == 0) ) {
+			balesCarregador = weapons[posWeapon].disparar();
+			if(Physics.Raycast(weapon1.transform.position,cam.forward,out hit, shotDistance)) {
+				Debug.Log("Toco a "+hit.collider.gameObject.tag);
+		        if(hit.collider.gameObject.tag == "Enemy") {
+		                Debug.Log("Disparo i toco l'enemic i li faig "+actualWeaponDamage+" punts de dany");
+		                hit.transform.gameObject.SendMessage("rebreDany",actualWeaponDamage);
+						
+		        }
+		        else if(hit.collider.gameObject.tag == "Barril") {
+		                Debug.Log("Disparo contre el barril");
+		                hit.transform.gameObject.SendMessage("rebreTir");
+		        }
 				//shotLight.Shoot();
 				AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);
+			//Rifle mentres esta apretat fer un timer i anar disparant
 			}
-			//Rifle
-			else if(posWeapon == 1) {
-				Rigidbody instantedProjectile = Instantiate(projectile,cam.position,transform.rotation) as Rigidbody;
-				instantedProjectile.velocity = transform.TransformDirection(new Vector3(0,0,speed));
+		}
+		else if((Input.GetButton("Disparar")) && (posWeapon == 1) && (balesCarregador > 0)) {
+			//balesCarregador = weapons[posWeapon].disparar();
+			tempsActual = Time.time;
+			if(tempsActual - tempsAnterior > fireRate) {
+				//Actualitzo el temps anterior
+				tempsAnterior = tempsActual;
+				yPosShot = mouseLook.rotationY + constY;	
+				Rigidbody instantedProjectile = Instantiate(projectile,weapon2.transform.position,cameraPlayer.transform.rotation) as Rigidbody;
+				instantedProjectile.velocity = transform.TransformDirection(new Vector3(xPosShot,yPosShot,speed));
 				instantedProjectile.SendMessage("addDamage",weapons[posWeapon].damage);
+<<<<<<< HEAD
 			}
 			//Iluminacio del cano amb bales realisticament
 			player.SendMessage("Shoot");
 			AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.9F);      
+=======
+			}			
+>>>>>>> origin/Grupo-A
 		}
 		
 					
@@ -251,6 +283,7 @@ public class MainCharacter : MonoBehaviour {
 				setVivo(false);
 			}
 		}
+	weapons[posWeapon].rebreDany();
 	Debug.Log("escudo = "+escudo);
 	Debug.Log("vida = "+vida);
     AudioSource.PlayClipAtPoint(impactSound,transform.position,0.9F);

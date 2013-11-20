@@ -33,7 +33,7 @@ public class CharacterMotor : MonoBehaviour
     [System.NonSerialized]
     public bool inputJump = false;
 	
-    [System.Serializable]
+    [System.Serializable] 
     public class CharacterMotorMovement
     {
         // The maximum horizontal speed when moving

@@ -12,10 +12,12 @@ function Start(){
 
  
 public function Shoot(){
-	//Debug.Log("yolo");
+        //Debug.Log("yolo");
     muzzleFlash.renderer.enabled = true;
     muzzleLight.enabled = true;
+	muzzleLight.active = true; //Grupo A add
     yield WaitForSeconds(0.02);
     muzzleFlash.renderer.enabled = false;
     muzzleLight.enabled = false;
+	muzzleLight.active = false; //Grupo A add
 }
