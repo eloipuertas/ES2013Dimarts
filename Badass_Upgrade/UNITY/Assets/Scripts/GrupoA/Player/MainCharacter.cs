@@ -97,7 +97,7 @@ public class MainCharacter : MonoBehaviour {
 			}
 			//Iluminacio del cano amb bales realisticament
 			player.SendMessage("Shoot");
-			AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);      
+			AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.9F);      
 		}
 		
 					
@@ -134,7 +134,7 @@ public class MainCharacter : MonoBehaviour {
 			if(balesCarregador <= 0)
 				Debug.Log("No hi ha mes municio");
 			else
-				AudioSource.PlayClipAtPoint(weaponSound[0],transform.position,0.15F);
+				AudioSource.PlayClipAtPoint(weaponSound[0],transform.position,0.9F);
 		}
 		else if(Input.GetButtonDown("Agacharse")) {
 			weapons[posWeapon].walkWeapon();
@@ -246,7 +246,7 @@ public class MainCharacter : MonoBehaviour {
 		}
 	Debug.Log("escudo = "+escudo);
 	Debug.Log("vida = "+vida);
-    AudioSource.PlayClipAtPoint(impactSound,transform.position,0.15F);
+    AudioSource.PlayClipAtPoint(impactSound,transform.position,0.9F);
 		
 	}
 	
