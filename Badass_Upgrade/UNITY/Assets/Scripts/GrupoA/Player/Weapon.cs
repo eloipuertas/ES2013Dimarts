@@ -121,12 +121,12 @@ public class Weapon : MonoBehaviour {
 		if(tiempoAnimacionCaminar <= 0){	
 			
 			if( (Input.GetButton("Horizontal") && !Input.GetButton("Caminar")) || (Input.GetButton("Vertical")  && !Input.GetButton("Caminar") )) {		
-				Debug.Log("Entra a correr" );
+				//Debug.Log("Entra a correr" );
 				this.moveWeapon();
 				tiempoAnimacionCaminar = tiempoAnimacionCaminarMAX;
 			}			
 			else if((Input.GetButton("Horizontal") && Input.GetButton("Caminar")) || (Input.GetButton("Vertical") && Input.GetButton("Caminar")))	{
-				Debug.Log("Entra a caminar" );
+				//Debug.Log("Entra a caminar" );
 				this.walkWeapon();
 				tiempoAnimacionCaminar = tiempoAnimacionCaminarMAX;
 			}

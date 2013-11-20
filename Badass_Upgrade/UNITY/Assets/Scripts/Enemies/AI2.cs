@@ -133,7 +133,7 @@ public class AI2 : MonoBehaviour {
 		Debug.Log("Enemigo atacado quedan "+vida+" puntos de vida");
 		if(vida<=0){
 			Debug.Log("Enemigo muerto");
-			hud.SendMessage("enemyDeath");
+			//hud.SendMessage("enemyDeath");
 			Destroy(gameObject);
 		}
 	}

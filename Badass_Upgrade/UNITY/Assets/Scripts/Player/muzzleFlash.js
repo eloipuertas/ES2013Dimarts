@@ -12,7 +12,7 @@ function Start(){
 
  
 public function Shoot(){
-	Debug.Log("yolo");
+	//Debug.Log("yolo");
     muzzleFlash.renderer.enabled = true;
     muzzleLight.enabled = true;
     yield WaitForSeconds(0.02);
