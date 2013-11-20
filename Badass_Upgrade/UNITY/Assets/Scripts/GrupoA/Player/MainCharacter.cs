@@ -55,6 +55,17 @@ public class MainCharacter : MonoBehaviour {
 	public GameObject weapon2;
 	MouseLook mouseLook;
 	public GameObject weapon1;
+	
+	//S'haura d'ajustar en funcio del model de l'arma
+	float xPosShot = -0.5f;
+	float yPosShot;
+	float constY = 1.5f;
+	
+	float tempsActual;
+	float tempsAnterior;
+	public float fireRate = 0.5f;
+	
+	
 	void Awake () {	
 		
 	}
@@ -87,41 +98,43 @@ public class MainCharacter : MonoBehaviour {
 		
 		
 		mouseLook = cam.GetComponent <MouseLook>();
+		
+		//Inicialitzo el temps
+		tempsAnterior = Time.time;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		//if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0) && (posWeapon == 0))
-		if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0)) {
-			//balesCarregador = weapons[posWeapon].disparar();
-			//Pistola
-			if(posWeapon == 0) {
-				balesCarregador = weapons[posWeapon].disparar();
-				//if(Physics.Raycast(cam.position,cam.forward,out hit, shotDistance)) {
-				if(Physics.Raycast(weapon1.transform.position,cam.forward,out hit, shotDistance)) {
-					Debug.Log("Toco a "+hit.collider.gameObject.tag);
-			        if(hit.collider.gameObject.tag == "Enemy") {
-			                Debug.Log("Disparo i toco l'enemic i li faig "+actualWeaponDamage+" punts de dany");
-			                hit.transform.gameObject.SendMessage("rebreDany",actualWeaponDamage);
-							
-			        }
-			        else if(hit.collider.gameObject.tag == "Barril") {
-			                Debug.Log("Disparo contre el barril");
-			                hit.transform.gameObject.SendMessage("rebreTir");
-			        }
-				}
+		if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0) && (posWeapon == 0) ) {
+			balesCarregador = weapons[posWeapon].disparar();
+			if(Physics.Raycast(weapon1.transform.position,cam.forward,out hit, shotDistance)) {
+				Debug.Log("Toco a "+hit.collider.gameObject.tag);
+		        if(hit.collider.gameObject.tag == "Enemy") {
+		                Debug.Log("Disparo i toco l'enemic i li faig "+actualWeaponDamage+" punts de dany");
+		                hit.transform.gameObject.SendMessage("rebreDany",actualWeaponDamage);
+						
+		        }
+		        else if(hit.collider.gameObject.tag == "Barril") {
+		                Debug.Log("Disparo contre el barril");
+		                hit.transform.gameObject.SendMessage("rebreTir");
+		        }
 				//shotLight.Shoot();
 				AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);
 			//Rifle mentres esta apretat fer un timer i anar disparant
-			} else if((Input.GetButtonDown("Disparar")) && (posWeapon == 1) && (balesCarregador > 0)) {
-				Debug.Log("RIFLE SEMIAUTOMATIC");
-				//Decrementar bales
-				Rigidbody instantedProjectile = Instantiate(projectile,weapon2.transform.position,cameraPlayer.transform.rotation) as Rigidbody;
-				//instantedProjectile.velocity = transform.TransformDirection(new Vector3(0,0,speed));
-				instantedProjectile.velocity = transform.TransformDirection(new Vector3(0,mouseLook.rotationY,speed));
-				instantedProjectile.SendMessage("addDamage",weapons[posWeapon].damage);
-				
 			}
+		}
+		else if((Input.GetButton("Disparar")) && (posWeapon == 1) && (balesCarregador > 0)) {
+			//balesCarregador = weapons[posWeapon].disparar();
+			tempsActual = Time.time;
+			if(tempsActual - tempsAnterior > fireRate) {
+				//Actualitzo el temps anterior
+				tempsAnterior = tempsActual;
+				yPosShot = mouseLook.rotationY + constY;	
+				Rigidbody instantedProjectile = Instantiate(projectile,weapon2.transform.position,cameraPlayer.transform.rotation) as Rigidbody;
+				instantedProjectile.velocity = transform.TransformDirection(new Vector3(xPosShot,yPosShot,speed));
+				instantedProjectile.SendMessage("addDamage",weapons[posWeapon].damage);
+			}			
 		}
 		else if(Input.GetButtonDown("Arma 1")) {
 			weapons[posWeapon].hideWeapon();
