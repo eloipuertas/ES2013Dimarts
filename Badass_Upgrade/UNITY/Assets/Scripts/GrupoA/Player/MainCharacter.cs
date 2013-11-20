@@ -95,15 +95,11 @@ public class MainCharacter : MonoBehaviour {
 		cameraPlayer = GameObject.FindGameObjectWithTag("MainCamera");
 		maxPosCamera = cameraPlayer.transform.localPosition.y;
 		minPosCamera = 0.05f;
-<<<<<<< HEAD
-=======
-		
 		
 		mouseLook = cam.GetComponent <MouseLook>();
 		
 		//Inicialitzo el temps
 		tempsAnterior = Time.time;
->>>>>>> origin/Grupo-A
 	}
 	
 	// Update is called once per frame
@@ -122,7 +118,7 @@ public class MainCharacter : MonoBehaviour {
 		                Debug.Log("Disparo contre el barril");
 		                hit.transform.gameObject.SendMessage("rebreTir");
 		        }
-				//shotLight.Shoot();
+				player.SendMessage("Shoot");
 				AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);
 			//Rifle mentres esta apretat fer un timer i anar disparant
 			}
@@ -137,18 +133,11 @@ public class MainCharacter : MonoBehaviour {
 				Rigidbody instantedProjectile = Instantiate(projectile,weapon2.transform.position,cameraPlayer.transform.rotation) as Rigidbody;
 				instantedProjectile.velocity = transform.TransformDirection(new Vector3(xPosShot,yPosShot,speed));
 				instantedProjectile.SendMessage("addDamage",weapons[posWeapon].damage);
-<<<<<<< HEAD
 			}
 			//Iluminacio del cano amb bales realisticament
 			player.SendMessage("Shoot");
 			AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.9F);      
-=======
-			}			
->>>>>>> origin/Grupo-A
-		}
-		
-					
-					
+		}										
 		else if(Input.GetButtonDown("Arma 1")) {
 			weapons[posWeapon].hideWeapon();
 			//Poso a 0 ja que l'arma 1 es a la posicio 0
