@@ -82,7 +82,6 @@ public class Weapon : MonoBehaviour {
 	
 	public void enfundar(){
 		modelWeapon.animation.Play("Enfundar");
-		Debug.Log("Enfundar");
 	}
 	
 	public void meeleWeapon(){

@@ -59,7 +59,7 @@ public class MainCharacter : MonoBehaviour {
 	//S'haura d'ajustar en funcio del model de l'arma
 	float xPosShot = -0.5f;
 	float yPosShot;
-	float constY = 1.5f;
+	float constY = 3.5f;
 	
 	float tempsActual;
 	float tempsAnterior;
@@ -144,10 +144,10 @@ public class MainCharacter : MonoBehaviour {
 				tempsAnterior = tempsActual;
 				yPosShot = mouseLook.rotationY + constY;	
 				Rigidbody instantedProjectile = Instantiate(projectile,weapon2.transform.position,cameraPlayer.transform.rotation) as Rigidbody;
-				balesCarregador = weapons[posWeapon].disparar();
-				instantedProjectile.velocity = transform.TransformDirection(new Vector3(xPosShot,yPosShot,speed));
-				//instantedProjectile.velocity = transform.TransformDirection(new Vector3(5f,yPosShot,speed));
+				//instantedProjectile.velocity = transform.TransformDirection(new Vector3(xPosShot,yPosShot,speed));
+				instantedProjectile.velocity = transform.TransformDirection(new Vector3(-1f,yPosShot,speed));
 				instantedProjectile.SendMessage("addDamage",weapons[posWeapon].damage);
+				balesCarregador = weapons[posWeapon].disparar();
 			}			
 		}
 		else if(Input.GetButtonDown("Arma 1")) {
@@ -364,7 +364,7 @@ public class MainCharacter : MonoBehaviour {
 		
 		//dany, tag model, bales totals, bales carregador, tamany carregador
 		w1.init(10,"weapon1",100,10,10);
-		w2.init(25,"weapon2",40,4,4);
+		w2.init(25,"weapon2",16,4,4);
 		
 		weapons.Add(w1);
 		weapons.Add(w2);
