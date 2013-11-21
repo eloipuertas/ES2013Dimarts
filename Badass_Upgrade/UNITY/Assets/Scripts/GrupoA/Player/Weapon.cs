@@ -27,7 +27,7 @@ public class Weapon : MonoBehaviour {
 	public int getDamage() {
 		return damage;
 	}
-	
+	 
 	public int getBalesTotals() {
 		return balesTotals;
 	}
@@ -72,6 +72,10 @@ public class Weapon : MonoBehaviour {
 	
 	public void rebreDany(){
 		modelWeapon.animation.Play ("Dany");
+	}
+	
+	public void standBy(){
+		modelWeapon.animation.Play ("StandBy");
 	}
 	
 	public void meeleWeapon(){

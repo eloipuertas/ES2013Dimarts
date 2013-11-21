@@ -65,6 +65,9 @@ public class MainCharacter : MonoBehaviour {
 	float tempsAnterior;
 	public float fireRate = 0.5f;
 	
+	float tempsActualStandBy;
+	float tempsAnteriorStandBy;
+	public float thresholdStandBy = 5f;
 	
 	void Awake () {	
 		
@@ -96,16 +99,19 @@ public class MainCharacter : MonoBehaviour {
 		maxPosCamera = cameraPlayer.transform.localPosition.y;
 		minPosCamera = 0.05f;
 		
+		
 		mouseLook = cam.GetComponent <MouseLook>();
 		
 		//Inicialitzo el temps
 		tempsAnterior = Time.time;
+		tempsAnteriorStandBy = tempsAnterior;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0) && (posWeapon == 0))
+		
 		if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0) && (posWeapon == 0) ) {
+			tempsAnteriorStandBy = Time.time;
 			balesCarregador = weapons[posWeapon].disparar();
 			if(Physics.Raycast(weapon1.transform.position,cam.forward,out hit, shotDistance)) {
 				Debug.Log("Toco a "+hit.collider.gameObject.tag);
@@ -118,12 +124,13 @@ public class MainCharacter : MonoBehaviour {
 		                Debug.Log("Disparo contre el barril");
 		                hit.transform.gameObject.SendMessage("rebreTir");
 		        }
-				player.SendMessage("Shoot");
-				AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.9F);
+				//shotLight.Shoot();
+				AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);
 			//Rifle mentres esta apretat fer un timer i anar disparant
 			}
 		}
 		else if((Input.GetButton("Disparar")) && (posWeapon == 1) && (balesCarregador > 0)) {
+			tempsAnteriorStandBy = Time.time;
 			//balesCarregador = weapons[posWeapon].disparar();
 			tempsActual = Time.time;
 			if(tempsActual - tempsAnterior > fireRate) {
@@ -133,12 +140,10 @@ public class MainCharacter : MonoBehaviour {
 				Rigidbody instantedProjectile = Instantiate(projectile,weapon2.transform.position,cameraPlayer.transform.rotation) as Rigidbody;
 				instantedProjectile.velocity = transform.TransformDirection(new Vector3(xPosShot,yPosShot,speed));
 				instantedProjectile.SendMessage("addDamage",weapons[posWeapon].damage);
-			}
-			//Iluminacio del cano amb bales realisticament
-			player.SendMessage("Shoot");
-			AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.9F);      
-		}										
+			}			
+		}
 		else if(Input.GetButtonDown("Arma 1")) {
+			tempsAnteriorStandBy = Time.time;
 			weapons[posWeapon].hideWeapon();
 			//Poso a 0 ja que l'arma 1 es a la posicio 0
 			posWeapon = 0;
@@ -148,6 +153,7 @@ public class MainCharacter : MonoBehaviour {
 			weapons[posWeapon].showWeapon();
 		}
 		else if(Input.GetButtonDown("Arma 2")) {
+			tempsAnteriorStandBy = Time.time;
 			weapons[posWeapon].hideWeapon();
 			posWeapon = 1;
 			actualWeaponDamage = weapons[posWeapon].getDamage();
@@ -157,14 +163,16 @@ public class MainCharacter : MonoBehaviour {
 			
 		}
 		else if(Input.GetButtonDown("Recargar")) {
+			tempsAnteriorStandBy = Time.time;
 			balesCarregador = weapons[posWeapon].recarregar();
 			balesTotalsArmaActual = weapons[posWeapon].balesTotals;
 			if(balesCarregador <= 0)
 				Debug.Log("No hi ha mes municio");
 			else
-				AudioSource.PlayClipAtPoint(weaponSound[0],transform.position,0.9F);
+				AudioSource.PlayClipAtPoint(weaponSound[0],transform.position,0.15F);
 		}
 		else if(Input.GetButtonDown("Agacharse")) {
+			tempsAnteriorStandBy = Time.time;
 			weapons[posWeapon].walkWeapon();
 			if(cameraPlayer.transform.localPosition.y > minPosCamera) {
 				float tmp = cameraPlayer.transform.localPosition.y - minPosCamera; 
@@ -174,6 +182,7 @@ public class MainCharacter : MonoBehaviour {
 				
 		}
 		else if(Input.GetButtonUp("Agacharse")) {
+			tempsAnteriorStandBy = Time.time;
 			if(cameraPlayer.transform.localPosition.y < maxPosCamera) {
 				float tmp2 = maxPosCamera - cameraPlayer.transform.localPosition.y;
 				cameraPlayer.transform.localPosition += new Vector3(0f,tmp2,0f);	
@@ -181,6 +190,7 @@ public class MainCharacter : MonoBehaviour {
 			down = false;		
 		}
 		else if((Input.GetButtonDown("Melee")) && (down == false)) {
+			tempsAnteriorStandBy = Time.time;
 			weapons[posWeapon].meeleWeapon();
 			if(Physics.Raycast(cam.position, cam.forward,out hit, meleeDistance)) {
 				if(hit.collider.gameObject.tag == "Enemy") {
@@ -190,6 +200,7 @@ public class MainCharacter : MonoBehaviour {
 		}
 		else if((Input.GetButtonDown("Usar"))) {
 			Debug.Log("Usar boto");
+			tempsAnteriorStandBy = Time.time;
 			weapons[posWeapon].useButton();			
 			if(Physics.Raycast(cam.position, cam.forward,out hit, buttonDistance)) { 
 				if(hit.collider.gameObject.tag == "Button") {  
@@ -197,8 +208,20 @@ public class MainCharacter : MonoBehaviour {
 				} 
 			} 
 		}
+		//Actualitzar el temps dels altres botons
+		else if((Input.GetButtonDown("Horizontal")) || (Input.GetButtonDown("Vertical")) || (Input.GetButtonDown("Saltar")) || (Input.GetAxis("Mouse X") != 0) || (Input.GetAxis("Mouse Y") > 0) || (Input.GetButtonDown("Linterna")) || (Input.GetButton("Caminar"))) {
+			tempsAnteriorStandBy = Time.time;
+			Debug.Log("Actualitzo temps standBy");
+		}
+		
+		
+		if(Time.time - tempsAnteriorStandBy > thresholdStandBy) {
+			Debug.Log("Animacio StandBy");
+			tempsAnteriorStandBy = Time.time;
+			weapons[posWeapon].standBy();
+		}
 	}
-	
+	 
 	
 	void init(int vida, int escudo) {
 		this.vida = vida;
@@ -255,7 +278,7 @@ public class MainCharacter : MonoBehaviour {
 	
 	//Rebre dany de l'enemic
 	void rebreAtac(int dany) {
-		
+		tempsAnteriorStandBy = Time.time;
 		Debug.Log("dany "+dany);
 		if(escudo > 0) {
 			escudo -= dany;
@@ -275,7 +298,7 @@ public class MainCharacter : MonoBehaviour {
 	weapons[posWeapon].rebreDany();
 	Debug.Log("escudo = "+escudo);
 	Debug.Log("vida = "+vida);
-    AudioSource.PlayClipAtPoint(impactSound,transform.position,0.9F);
+    AudioSource.PlayClipAtPoint(impactSound,transform.position,0.15F);
 		
 	}
 	
