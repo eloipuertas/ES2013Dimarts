@@ -39,6 +39,14 @@ public class AI2Shooter : MonoBehaviour {
 	RaycastHit hit;
     GameObject hud;
     private Transform myTransform;
+	
+	GameObject shield;
+	//vida
+	public GUITexture enemy_Healthbar;
+	float maxvida = 0.0f;
+	bool inSight,prev_inSight;
+	
+	
 
     void Awake(){
         myTransform = transform;
@@ -55,11 +63,59 @@ public class AI2Shooter : MonoBehaviour {
 		
         target = player.transform;
         timerAtac=Time.time;
-                
+		
+		
+		ParticleSystem particlesystem = (ParticleSystem)gameObject.GetComponent("ParticleSystem");
+		particlesystem.enableEmission = false;
+		
+		
+		maxvida = vida;
+		
+					
+		float percent = 0.0f;
+		percent = vida/maxvida;
+		percent = percent*100;
+		float Size_width = 0.001f;
+		float Size_height = 0.010f;
+		
+		Size_width = percent*Size_width;
+		enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,1);
+		
+		inSight=false;
+		prev_inSight=false;
+		
+		
      }
         
      // Update is called once per frame
      void Update () {
+		Debug.Log (state);
+		
+		if(Vector3.Dot(target.forward, myTransform.position - target.position)>=0) {
+			inSight = true;
+			//Debug.Log (target.forward.ToString()+" "+myTransform.position.ToString()+" "+target.position.ToString());
+		}else{
+			inSight = false;	
+		}
+		if (inSight && !prev_inSight){
+			float percent = 0.0f;
+			percent = vida/maxvida;
+			percent = percent*100;
+			float Size_width = 0.001f;
+			float Size_height = 0.010f;
+			
+			Size_width = percent*Size_width;
+			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,1);
+			prev_inSight = true;
+		}else if(!inSight){
+			//Debug.Log ("NOT PAINTING");
+			float Size_width = 0.0001f;
+			float Size_height = 0.010f;
+			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(0.0f,0.0f,0.0f);
+			prev_inSight = false;
+		}
+		
+		
 		//regenerar_escut();
        	//myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
 		Distance=Vector3.Distance(target.position,transform.position);
@@ -74,8 +130,9 @@ public class AI2Shooter : MonoBehaviour {
             //renderer.material.color=Color.blue;
             //retorn al spawnpoint?
 		}else if(Distance<distancia_alerta && Distance>distancia_disparar){
-			if(state != "alerta"){
+			if(state != "alerta" && state != "shooting"){
 				animation.CrossFade("activar");
+				Destroy (shield);
 			}
 			state="alerta";
 			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
@@ -98,6 +155,7 @@ public class AI2Shooter : MonoBehaviour {
         }else{
 			if(state != "away"){
 				animation.CrossFade("desactivar");
+				shield = (GameObject)Instantiate(Resources.Load("Enemy_Shield"),myTransform.position,myTransform.rotation);
 			}
 			state="away";
 			//Debug.Log("Enemic inactiu");
@@ -129,12 +187,35 @@ public class AI2Shooter : MonoBehaviour {
      }
 	
 	public void rebreDany(int dmg){
-		vida-=dmg;
-		Debug.Log("Enemigo atacado quedan "+vida+" puntos de vida");
-		if(vida<=0){
-			Debug.Log("Enemigo muerto");
-			hud.SendMessage("enemyDeath");
-			Destroy(gameObject);
+		if (state != "away"){
+			vida-=dmg;
+			
+			if (vida < maxvida*0.5f){
+				Debug.Log ("FESTA");
+				ParticleSystem particlesystem = (ParticleSystem)gameObject.GetComponent("ParticleSystem");
+				particlesystem.enableEmission = true;
+			}
+			
+			float percent = 0.0f;
+			percent = vida/maxvida;
+			percent = percent*100;
+			//enemy_Healthbar.guiTexture.pixelInset.Set(enemy_Healthbar.guiTexture.pixelInset.x,enemy_Healthbar.guiTexture.pixelInset.y,percent,enemy_Healthbar.guiTexture.pixelInset.height);
+			//Rect temp1 = new Rect(0, 0, percent, 10);
+			//enemy_Healthbar.guiTexture.pixelInset=temp1;
+			float Size_width = 0.001f;
+			float Size_height = 0.010f;
+			
+			Size_width = percent*Size_width;
+			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,1);
+			
+			
+			Debug.Log ("QUEDA UN "+percent+" % DE VIDA");
+			Debug.Log("Enemigo atacado quedan "+vida+" puntos de vida");
+			if(vida<=0){
+				Debug.Log("Enemigo muerto");
+				hud.SendMessage("enemyDeath");
+				Destroy(gameObject);
+			}
 		}
 	}
 	
