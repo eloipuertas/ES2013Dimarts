@@ -238,8 +238,8 @@ ModelImporter:
       transformMask: []
     - name: Correr
       takeName: Default Take
-      firstFrame: 120
-      lastFrame: 145
+      firstFrame: 123
+      lastFrame: 147
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -259,8 +259,8 @@ ModelImporter:
       transformMask: []
     - name: Caminar
       takeName: Default Take
-      firstFrame: 150
-      lastFrame: 175
+      firstFrame: 154
+      lastFrame: 176
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -280,8 +280,8 @@ ModelImporter:
       transformMask: []
     - name: ActivarBoton
       takeName: Default Take
-      firstFrame: 175
-      lastFrame: 240
+      firstFrame: 190
+      lastFrame: 237
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -322,8 +322,8 @@ ModelImporter:
       transformMask: []
     - name: AtaqueMelee2
       takeName: Default Take
-      firstFrame: 260
-      lastFrame: 300
+      firstFrame: 185
+      lastFrame: 235
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -343,8 +343,8 @@ ModelImporter:
       transformMask: []
     - name: Dany
       takeName: Default Take
-      firstFrame: 290
-      lastFrame: 306
+      firstFrame: 244
+      lastFrame: 260
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -364,8 +364,8 @@ ModelImporter:
       transformMask: []
     - name: StandBy
       takeName: Default Take
-      firstFrame: 306
-      lastFrame: 349
+      firstFrame: 264
+      lastFrame: 311
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
