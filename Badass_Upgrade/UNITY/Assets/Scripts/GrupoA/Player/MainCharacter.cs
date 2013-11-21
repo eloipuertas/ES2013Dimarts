@@ -69,6 +69,12 @@ public class MainCharacter : MonoBehaviour {
 	float tempsAnteriorStandBy;
 	public float thresholdStandBy = 5f;
 	
+	public float tiempoAnimacionCaminarMAXWeapon1 = 3f;
+	private float tiempoAnimacionCaminarWeapon1 = 0f;
+	
+	public float tiempoAnimacionCaminarMAXWeapon2 = 2f;
+	private float tiempoAnimacionCaminarWeapon2 = 0f;
+	
 	void Awake () {	
 		
 	}
@@ -116,12 +122,12 @@ public class MainCharacter : MonoBehaviour {
 			if(Physics.Raycast(weapon1.transform.position,cam.forward,out hit, shotDistance)) {
 				Debug.Log("Toco a "+hit.collider.gameObject.tag);
 		        if(hit.collider.gameObject.tag == "Enemy") {
-		                Debug.Log("Disparo i toco l'enemic i li faig "+actualWeaponDamage+" punts de dany");
+		                //Debug.Log("Disparo i toco l'enemic i li faig "+actualWeaponDamage+" punts de dany");
 		                hit.transform.gameObject.SendMessage("rebreDany",actualWeaponDamage);
 						
 		        }
 		        else if(hit.collider.gameObject.tag == "Barril") {
-		                Debug.Log("Disparo contre el barril");
+		                //Debug.Log("Disparo contre el barril");
 		                hit.transform.gameObject.SendMessage("rebreTir");
 		        }
 				//shotLight.Shoot();
@@ -138,12 +144,15 @@ public class MainCharacter : MonoBehaviour {
 				tempsAnterior = tempsActual;
 				yPosShot = mouseLook.rotationY + constY;	
 				Rigidbody instantedProjectile = Instantiate(projectile,weapon2.transform.position,cameraPlayer.transform.rotation) as Rigidbody;
+				balesCarregador = weapons[posWeapon].disparar();
 				instantedProjectile.velocity = transform.TransformDirection(new Vector3(xPosShot,yPosShot,speed));
+				//instantedProjectile.velocity = transform.TransformDirection(new Vector3(5f,yPosShot,speed));
 				instantedProjectile.SendMessage("addDamage",weapons[posWeapon].damage);
 			}			
 		}
 		else if(Input.GetButtonDown("Arma 1")) {
 			tempsAnteriorStandBy = Time.time;
+			weapons[posWeapon].enfundar();
 			weapons[posWeapon].hideWeapon();
 			//Poso a 0 ja que l'arma 1 es a la posicio 0
 			posWeapon = 0;
@@ -151,9 +160,11 @@ public class MainCharacter : MonoBehaviour {
 			balesCarregador = weapons[posWeapon].getBalesActualCarregador();
 			balesTotalsArmaActual = weapons[posWeapon].balesTotals;
 			weapons[posWeapon].showWeapon();
+			
 		}
 		else if(Input.GetButtonDown("Arma 2")) {
 			tempsAnteriorStandBy = Time.time;
+			weapons[posWeapon].enfundar();
 			weapons[posWeapon].hideWeapon();
 			posWeapon = 1;
 			actualWeaponDamage = weapons[posWeapon].getDamage();
@@ -211,14 +222,50 @@ public class MainCharacter : MonoBehaviour {
 		//Actualitzar el temps dels altres botons
 		else if((Input.GetButtonDown("Horizontal")) || (Input.GetButtonDown("Vertical")) || (Input.GetButtonDown("Saltar")) || (Input.GetAxis("Mouse X") != 0) || (Input.GetAxis("Mouse Y") > 0) || (Input.GetButtonDown("Linterna")) || (Input.GetButton("Caminar"))) {
 			tempsAnteriorStandBy = Time.time;
-			Debug.Log("Actualitzo temps standBy");
 		}
 		
 		
 		if(Time.time - tempsAnteriorStandBy > thresholdStandBy) {
-			Debug.Log("Animacio StandBy");
+			//Debug.Log("Animacio StandBy");
 			tempsAnteriorStandBy = Time.time;
 			weapons[posWeapon].standBy();
+		}
+		
+		if(posWeapon == 0) {
+			if(tiempoAnimacionCaminarWeapon1 <= 0){
+				//Debug.Log("Animacio caminar posweapon "+weapons[posWeapon].tag);
+				if((Input.GetButton("Horizontal") && !Input.GetButton("Caminar")) || (Input.GetButton("Vertical")  && !Input.GetButton("Caminar") )) {		
+					//Debug.Log("Entra a correr" );
+					weapons[posWeapon].moveWeapon();
+					tiempoAnimacionCaminarWeapon1 = tiempoAnimacionCaminarMAXWeapon1;
+					tempsAnteriorStandBy = Time.time;
+				}			
+				else if((Input.GetButton("Horizontal") && Input.GetButton("Caminar")) || (Input.GetButton("Vertical") && Input.GetButton("Caminar")))	{
+					//Debug.Log("Entra a caminar" );
+					weapons[posWeapon].walkWeapon();
+					tiempoAnimacionCaminarWeapon1 = tiempoAnimacionCaminarMAXWeapon1;
+					tempsAnteriorStandBy = Time.time;
+				}
+			}
+			tiempoAnimacionCaminarWeapon1 = tiempoAnimacionCaminarWeapon1 - Time.deltaTime;
+		}
+		else if(posWeapon == 1) {
+			if(tiempoAnimacionCaminarWeapon2 <= 0){	
+				//Debug.Log("Animacio caminar posweapon "+weapons[posWeapon].tag);
+				if((Input.GetButton("Horizontal") && !Input.GetButton("Caminar")) || (Input.GetButton("Vertical")  && !Input.GetButton("Caminar") )) {		
+					//Debug.Log("Entra a correr" );
+					weapons[posWeapon].moveWeapon();
+					tiempoAnimacionCaminarWeapon2 = tiempoAnimacionCaminarMAXWeapon2;
+					tempsAnteriorStandBy = Time.time;
+				}			
+				else if((Input.GetButton("Horizontal") && Input.GetButton("Caminar")) || (Input.GetButton("Vertical") && Input.GetButton("Caminar")))	{
+					//Debug.Log("Entra a caminar" );
+					weapons[posWeapon].walkWeapon();
+					tiempoAnimacionCaminarWeapon2 = tiempoAnimacionCaminarMAXWeapon2;
+					tempsAnteriorStandBy = Time.time;
+				}
+			}
+			tiempoAnimacionCaminarWeapon2 = tiempoAnimacionCaminarWeapon2 - Time.deltaTime;	
 		}
 	}
 	 
