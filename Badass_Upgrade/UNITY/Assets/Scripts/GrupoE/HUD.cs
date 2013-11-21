@@ -17,8 +17,11 @@ public class HUD : MonoBehaviour {
 	//Slot de arma equipada
 	int weaponPos;
 	
+	
+	
 	public Texture2D linternaApagada;
 	public Texture2D linternaEncendida;
+	
 	
 	/* Elementos de texto del HUD
 	 * 
@@ -34,11 +37,14 @@ public class HUD : MonoBehaviour {
 	public GUIText balasCargadorText;
 	public GUIText balasTotalesText;
 	public GUIText contadorEnemigos;
-	public GUIText slotArma1;
-	public GUIText slotArma2;
+	//public GUIText slotArma1;
+	//public GUIText slotArma2;
 	public GUITexture healthLine;
 	public GUITexture shieldLine;
 	public GUITexture linternaTexture;
+	
+	public GUITexture slotArma1;
+	public GUITexture slotArma2;
 
 	/* Inicializacion de scripts externos
 	 * 
@@ -50,6 +56,9 @@ public class HUD : MonoBehaviour {
 	
 	Rect healthWidth;
 	Rect shieldWidth;
+	
+	Rect arma1;
+	Rect arma2;
 	
 	//The first method to be called
 	void Awake(){
@@ -77,8 +86,14 @@ public class HUD : MonoBehaviour {
 		balasCargadorText.text = robotProtagonista.balesCarregador.ToString();
 		balasTotalesText.text = robotProtagonista.balesTotalsArmaActual.ToString();
 		
-		slotArma1.text = "1";
-		slotArma2.text = "2";
+		//slotArma1.text = "1";
+		//slotArma2.text = "2";
+		
+
+		
+		arma1 = slotArma1.pixelInset;
+		arma2 = slotArma2.pixelInset;
+		
 		
 		weaponPos = robotProtagonista.posWeapon;
 		
@@ -119,14 +134,32 @@ public class HUD : MonoBehaviour {
 		weaponPos = robotProtagonista.posWeapon;
 		
 		if(weaponPos == 0){
-			slotArma1.fontSize = 20;
+			//slotArma1.fontSize = 20;
 			
-			slotArma2.fontSize = 10;
+			//slotArma2.fontSize = 10;
+			
+			arma1.width = 40;
+			arma1.height = 28;
+			slotArma1.pixelInset = arma1;
+		
+				
+			arma2.width = 36;
+			arma2.height = 24;
+			slotArma2.pixelInset = arma2;
+			
 			
 		}else if(weaponPos == 1){
-			slotArma1.fontSize = 10;
+			//slotArma1.fontSize = 10;
 			
-			slotArma2.fontSize = 20;
+			//slotArma2.fontSize = 20;
+			arma1.width = 36;
+			arma1.height = 24;
+			slotArma1.pixelInset = arma1;
+			
+			
+			arma2.width = 40;
+			arma2.height = 28;
+			slotArma2.pixelInset = arma2;
 			
 		}
 
