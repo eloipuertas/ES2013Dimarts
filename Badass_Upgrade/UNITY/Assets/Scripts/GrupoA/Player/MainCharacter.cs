@@ -119,7 +119,7 @@ public class MainCharacter : MonoBehaviour {
 		                hit.transform.gameObject.SendMessage("rebreTir");
 		        }
 				player.SendMessage("Shoot");
-				AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);
+				AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.9F);
 			//Rifle mentres esta apretat fer un timer i anar disparant
 			}
 		}
