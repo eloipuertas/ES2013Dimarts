@@ -44,6 +44,7 @@ public class AIShield : MonoBehaviour {
 	//vida
 	public GUITexture enemy_Healthbar;
 	float maxvida = 0.0f;
+	bool inSight,prev_inSight;
 	
     void Awake(){
         myTransform = transform;
@@ -72,12 +73,38 @@ public class AIShield : MonoBehaviour {
 		
 		Size_width = percent*Size_width;
 		enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,1);
+		
+		inSight=false;
+		prev_inSight=false;
                 
      }
         
      // Update is called once per frame
      void Update () {
-		Debug.Log ("TEXTURE SIZE:"+ enemy_Healthbar.pixelInset.ToString());
+		
+	     if(Vector3.Dot(target.forward, myTransform.position - target.position)>=0) {
+			inSight = true;
+			Debug.Log (target.forward.ToString()+" "+myTransform.position.ToString()+" "+target.position.ToString());
+		}else{
+			inSight = false;	
+		}
+		if (inSight && !prev_inSight){
+			float percent = 0.0f;
+			percent = vida/maxvida;
+			percent = percent*100;
+			float Size_width = 0.001f;
+			float Size_height = 0.010f;
+			
+			Size_width = percent*Size_width;
+			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,1);
+			prev_inSight = true;
+		}else if(!inSight){
+			Debug.Log ("NOT PAINTING");
+			float Size_width = 0.0001f;
+			float Size_height = 0.010f;
+			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(0.0f,0.0f,0.0f);
+			prev_inSight = false;
+		}
 		
 		//regenerar_escut();
        	//myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
@@ -96,8 +123,8 @@ public class AIShield : MonoBehaviour {
 			if(state != "alerta"){
 				animation.CrossFade("activar");
 				Destroy (shield);
-				ParticleSystem particlesystem = (ParticleSystem)gameObject.GetComponent("ParticleSystem");
-				particlesystem.enableEmission = false;				
+				//ParticleSystem particlesystem = (ParticleSystem)gameObject.GetComponent("ParticleSystem");
+				//particlesystem.enableEmission = false;				
 			}
 			state="alerta";
 			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
@@ -121,8 +148,8 @@ public class AIShield : MonoBehaviour {
 			if(state != "away"){
 				animation.CrossFade("desactivar");
 				shield = (GameObject)Instantiate(Resources.Load("Enemy_Shield"),myTransform.position,myTransform.rotation);
-				ParticleSystem particlesystem = (ParticleSystem)gameObject.GetComponent("ParticleSystem");
-				particlesystem.enableEmission = true;
+				//ParticleSystem particlesystem = (ParticleSystem)gameObject.GetComponent("ParticleSystem");
+				//particlesystem.enableEmission = true;
 			}
 			
 			state="away";
