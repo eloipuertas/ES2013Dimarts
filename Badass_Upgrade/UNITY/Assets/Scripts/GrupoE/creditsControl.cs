@@ -5,14 +5,15 @@ public class creditsControl : MonoBehaviour {
 	
 	//Constants
 	const int main_menu = 0;
-	
-	public int t;
+
+	public float t;
 	public TextMesh text;
 	public Vector3 origen;
 	public Vector3 destino;
 	
 	// Use this for initialization
 	void Start () {
+		Time.timeScale = 1;
 		origen = new Vector3(0,6,-10);
 		destino = new Vector3(0,-108,-10);
 		Camera.main.gameObject.transform.position = origen;
@@ -24,13 +25,13 @@ public class creditsControl : MonoBehaviour {
 		if(Input.anyKey)
 			Application.LoadLevel(main_menu);
 		
-		if(t>3050)
+		if(t>70)
 			Application.LoadLevel(main_menu);
-		t++;
+		t = Time.timeSinceLevelLoad;
 		moveCamera(origen, destino, t);
 	}
 	
-	void moveCamera(Vector3 o, Vector3 d, int t){
-		Camera.main.gameObject.transform.position = Vector3.Lerp(o, d, t/3000F);
+	void moveCamera(Vector3 o, Vector3 d, float t){
+		Camera.main.gameObject.transform.position = Vector3.Lerp(o, d, t/60F);
 	}
 }
