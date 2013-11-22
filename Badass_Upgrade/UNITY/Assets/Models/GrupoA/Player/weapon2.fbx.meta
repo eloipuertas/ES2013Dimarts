@@ -196,7 +196,7 @@ ModelImporter:
       transformMask: []
     - name: Disparar
       takeName: Default Take
-      firstFrame: 30
+      firstFrame: 43
       lastFrame: 55
       wrapMode: 0
       orientationOffsetY: 0

@@ -364,7 +364,7 @@ public class MainCharacter : MonoBehaviour {
 		
 		//dany, tag model, bales totals, bales carregador, tamany carregador
 		w1.init(10,"weapon1",100,10,10);
-		w2.init(25,"weapon2",16,4,4);
+		w2.init(25,"weapon2",75,25,25);
 		
 		weapons.Add(w1);
 		weapons.Add(w2);
