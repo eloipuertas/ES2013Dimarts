@@ -10,6 +10,12 @@ public class ExitDoorTrigger : MonoBehaviour {
 	//Este es el flag que indica que se puede pasar por la puerta
 	public bool nivel_completado;
 	
+	//Instanciacion de otros scripts
+	public HUD hud;
+	
+	//Variables
+	int score;
+	
 	// Use this for initialization
 	void Start () {
 		
@@ -31,6 +37,7 @@ public class ExitDoorTrigger : MonoBehaviour {
 		if (Player.collider.tag == "Player") {       
 	    	Debug.Log ("Juego Terminado");
 			PlayerPrefs.SetInt("Nivel",nivel2);
+			PlayerPrefs.SetInt("ScoreNivel1",hud.getCurrentTotalScore());
 			Application.LoadLevel(nivel2);
 		}
 	}
