@@ -81,10 +81,10 @@ public class AIShield : MonoBehaviour {
         
      // Update is called once per frame
      void Update () {
-		
+		Debug.Log("State: "+state);
 	     if(Vector3.Dot(target.forward, myTransform.position - target.position)>=0) {
 			inSight = true;
-			Debug.Log (target.forward.ToString()+" "+myTransform.position.ToString()+" "+target.position.ToString());
+			//Debug.Log (target.forward.ToString()+" "+myTransform.position.ToString()+" "+target.position.ToString());
 		}else{
 			inSight = false;	
 		}
@@ -99,7 +99,7 @@ public class AIShield : MonoBehaviour {
 			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,1);
 			prev_inSight = true;
 		}else if(!inSight){
-			Debug.Log ("NOT PAINTING");
+			//Debug.Log ("NOT PAINTING");
 			float Size_width = 0.0001f;
 			float Size_height = 0.010f;
 			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(0.0f,0.0f,0.0f);
@@ -120,7 +120,7 @@ public class AIShield : MonoBehaviour {
             //renderer.material.color=Color.blue;
             //retorn al spawnpoint?
 		}else if(Distance<distancia_alerta && Distance>distancia_disparar){
-			if(state != "alerta"){
+			if(state != "alerta" && state != "shooting"){
 				animation.CrossFade("activar");
 				Destroy (shield);
 				//ParticleSystem particlesystem = (ParticleSystem)gameObject.GetComponent("ParticleSystem");
