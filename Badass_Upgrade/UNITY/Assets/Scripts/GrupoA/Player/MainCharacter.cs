@@ -130,8 +130,8 @@ public class MainCharacter : MonoBehaviour {
 		                //Debug.Log("Disparo contre el barril");
 		                hit.transform.gameObject.SendMessage("rebreTir");
 		        }
-				//shotLight.Shoot();
-				AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);
+				player.SendMessage("Shoot");
+				AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.9F);
 			//Rifle mentres esta apretat fer un timer i anar disparant
 			}
 		}
@@ -148,6 +148,9 @@ public class MainCharacter : MonoBehaviour {
 				instantedProjectile.velocity = transform.TransformDirection(new Vector3(-1f,yPosShot,speed));
 				instantedProjectile.SendMessage("addDamage",weapons[posWeapon].damage);
 				balesCarregador = weapons[posWeapon].disparar();
+				
+				player.SendMessage("Shoot");
+				AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.9F);
 			}			
 		}
 		else if(Input.GetButtonDown("Arma 1")) {
