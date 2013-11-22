@@ -137,8 +137,8 @@ public class HUD : MonoBehaviour {
 		
 		if(weaponPos == 0){
 			
-			arma1.width = 40;
-			arma1.height = 28;
+			arma1.width = 54;
+			arma1.height = 36;
 			slotArma1.pixelInset = arma1;
 		
 				
@@ -154,8 +154,8 @@ public class HUD : MonoBehaviour {
 			slotArma1.pixelInset = arma1;
 			
 			
-			arma2.width = 40;
-			arma2.height = 28;
+			arma2.width = 54;
+			arma2.height = 36;
 			slotArma2.pixelInset = arma2;
 			
 		}
