@@ -17,6 +17,9 @@ public class HUD : MonoBehaviour {
 	//Slot de arma equipada
 	int weaponPos;
 	
+	//Puntuacion
+	private int score;
+	
 	
 	
 	public Texture2D linternaApagada;
@@ -86,9 +89,6 @@ public class HUD : MonoBehaviour {
 		balasCargadorText.text = robotProtagonista.balesCarregador.ToString();
 		balasTotalesText.text = robotProtagonista.balesTotalsArmaActual.ToString();
 		
-		//slotArma1.text = "1";
-		//slotArma2.text = "2";
-		
 
 		
 		arma1 = slotArma1.pixelInset;
@@ -99,6 +99,8 @@ public class HUD : MonoBehaviour {
 		
 		healthWidth = healthLine.pixelInset;
 		shieldWidth = shieldLine.pixelInset;
+		
+		score = 0;
 	
 		
 	}
@@ -134,9 +136,6 @@ public class HUD : MonoBehaviour {
 		weaponPos = robotProtagonista.posWeapon;
 		
 		if(weaponPos == 0){
-			//slotArma1.fontSize = 20;
-			
-			//slotArma2.fontSize = 10;
 			
 			arma1.width = 40;
 			arma1.height = 28;
@@ -149,9 +148,7 @@ public class HUD : MonoBehaviour {
 			
 			
 		}else if(weaponPos == 1){
-			//slotArma1.fontSize = 10;
 			
-			//slotArma2.fontSize = 20;
 			arma1.width = 36;
 			arma1.height = 24;
 			slotArma1.pixelInset = arma1;
@@ -171,10 +168,16 @@ public class HUD : MonoBehaviour {
 		numOfEnem--;
 		contadorEnemigos.text=numOfEnem.ToString();
 		
-		if(numOfEnem<=0){
-			
-			portal.SendMessage("setNivel_Completado",true,SendMessageOptions.DontRequireReceiver);
-			
-		}	
+		score = score +10;
+		
+	}
+	public int getCurrentTotalScore(){
+		
+		score = score + robotProtagonista.vida;
+		score = score + robotProtagonista.escudo;
+		score = score + robotProtagonista.balesCarregador;
+		score = score + robotProtagonista.balesTotalsArmaActual;
+		
+		return score;
 	}
 }
