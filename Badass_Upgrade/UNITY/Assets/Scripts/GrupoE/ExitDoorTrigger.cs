@@ -13,9 +13,6 @@ public class ExitDoorTrigger : MonoBehaviour {
 	//Instanciacion de otros scripts
 	public HUD hud;
 	
-	//Variables
-	int score;
-	
 	// Use this for initialization
 	void Start () {
 		
