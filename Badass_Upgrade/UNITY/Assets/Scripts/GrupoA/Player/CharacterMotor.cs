@@ -209,11 +209,12 @@ public class CharacterMotor : MonoBehaviour
     private void UpdateFunction()
     {
 		//Walk and ran
-		if(Input.GetButtonDown("Caminar") || Input.GetButtonDown("Agacharse")) {
-			movement.maxForwardSpeed = 2.0f;
-        	movement.maxSidewaysSpeed = 1.0f;
-        	movement.maxBackwardsSpeed = 1.0f;
-		}else if(Input.GetButtonUp("Caminar") || Input.GetButtonUp("Agacharse")) {
+		if(Input.GetButton("Caminar") || Input.GetButton("Agacharse")) {			
+			movement.maxForwardSpeed = 5.0f;
+        	movement.maxSidewaysSpeed = 4.0f;
+        	movement.maxBackwardsSpeed = 4.0f;
+		}
+		else{
 			movement.maxForwardSpeed = 10.0f;
         	movement.maxSidewaysSpeed = 9.0f;
         	movement.maxBackwardsSpeed = 9.0f;		
