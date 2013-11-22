@@ -32,6 +32,6 @@ public class creditsControl : MonoBehaviour {
 	}
 	
 	void moveCamera(Vector3 o, Vector3 d, float t){
-		Camera.main.gameObject.transform.position = Vector3.Lerp(o, d, t/60F);
+		Camera.main.gameObject.transform.position = Vector3.Lerp(o, d, t/50F);
 	}
 }
