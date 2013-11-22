@@ -7,7 +7,7 @@ public class MainMenuController : MonoBehaviour {
 	
 	//Constants
 	const int new_game = 1;
-	const int options = 2;
+	const int options = 6;
 	const int credits = 5;
 	
 	//Variables

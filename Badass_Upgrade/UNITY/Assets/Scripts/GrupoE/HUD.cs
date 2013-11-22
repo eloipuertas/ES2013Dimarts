@@ -3,7 +3,7 @@ using System.Collections;
 
 public class HUD : MonoBehaviour {
 	
-	const int game_over = 3;
+	const int game_over = 4;
 	
 	//Contendra todos de enemigos en la escena
 	GameObject[] enem;

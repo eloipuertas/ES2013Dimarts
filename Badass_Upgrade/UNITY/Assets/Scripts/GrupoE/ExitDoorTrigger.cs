@@ -4,8 +4,8 @@ using System.Collections;
 public class ExitDoorTrigger : MonoBehaviour {
 	
 	//Aqui hay que poner el numero de la escena que toque
-	const int nivel2 = 5;
-	const int nivel1 = 2;
+	const int nivel1 = 1;
+	const int nivel2 = 2;
 
 	//Este es el flag que indica que se puede pasar por la puerta
 	public bool nivel_completado;
