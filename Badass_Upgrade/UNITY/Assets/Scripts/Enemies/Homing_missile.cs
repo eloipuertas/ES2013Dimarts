@@ -69,7 +69,7 @@ public class Homing_missile : MonoBehaviour {
 			}
 			i++;
 		}
-		//Destroy(gameObject);
+		Destroy(gameObject);
 	}
 	/*private void disparar(float distancia,int dmg){
 		if(Physics.Raycast(transform.position, (target.position- transform.position), out hit, distancia)) {

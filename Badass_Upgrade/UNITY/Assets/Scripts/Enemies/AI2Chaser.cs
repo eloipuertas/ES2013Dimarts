@@ -18,13 +18,13 @@ public class AI2Chaser : MonoBehaviour {
 	public int rotationSpeed=2;
     float Distance;
     int dist_dmg=15;
-	int melee_dmg=25;
+	int melee_dmg=2;
 
 	//----------------------------------
-    private int fireRate=1;
+    private float fireRate=0.15f;
     private int distancia_alerta=20;
     private int distancia_perseguir=6;
-    private int distancia_melee=2;
+    private int distancia_melee=3;
 	private int distancia_disparar = 15;
 	private float escut =100, max_escut=100;
 	private int temps_recarga_escut=2;
@@ -39,6 +39,11 @@ public class AI2Chaser : MonoBehaviour {
 	RaycastHit hit;
     GameObject hud;
     private Transform myTransform;
+	
+	//vida
+	public GUITexture enemy_Healthbar;
+	float maxvida = 0.0f;
+	bool inSight,prev_inSight;
 
     void Awake(){
         myTransform = transform;
@@ -55,24 +60,68 @@ public class AI2Chaser : MonoBehaviour {
 		
         target = player.transform;
         timerAtac=Time.time;
+		
+		/*ParticleSystem particlesystem = (ParticleSystem)gameObject.GetComponent("ParticleSystem");
+		particlesystem.enableEmission = false;*/
+		
+		
+		maxvida = vida;
+		
+					
+		float percent = 0.0f;
+		percent = vida/maxvida;
+		percent = percent*100;
+		float Size_width = 0.001f;
+		float Size_height = 0.010f;
+		
+		Size_width = percent*Size_width;
+		enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,1);
+		
+		inSight=false;
+		prev_inSight=false;
                 
      }
         
      // Update is called once per frame
      void Update () {
+		if(Vector3.Dot(target.forward, myTransform.position - target.position)>=0) {
+			inSight = true;
+			//Debug.Log (target.forward.ToString()+" "+myTransform.position.ToString()+" "+target.position.ToString());
+		}else{
+			inSight = false;	
+		}
+		if (inSight && !prev_inSight){
+			float percent = 0.0f;
+			percent = vida/maxvida;
+			percent = percent*100;
+			float Size_width = 0.0005f;
+			float Size_height = 0.0050f;
+			
+			Size_width = percent*Size_width;
+			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,1);
+			prev_inSight = true;
+		}else if(!inSight){
+			//Debug.Log ("NOT PAINTING");
+			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(0.0f,0.0f,0.0f);
+			prev_inSight = false;
+		}
 		//regenerar_escut();
        	//myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
 		Distance=Vector3.Distance(target.position,transform.position);
 		
-        Debug.DrawRay(transform.position, transform.forward);
+		
+		Vector3 enemyChest = myTransform.position+Vector3.up*0.8f;
+        Debug.DrawRay(enemyChest, transform.forward);
 		//Debug.DrawLine(target.position, myTransform.position, Color.yellow);
                 
         if((Distance>distancia_melee)){
 			moveTo();
             state = "walking";
 			animation.CrossFade("caminar");
-        }else if(Distance<distancia_melee){
-			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
+        }else{
+			Vector3 temp = target.position;
+			temp.y = 0.0f;
+			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(temp - enemyChest), rotationSpeed * Time.deltaTime);
 	        state="attack";
 	        //renderer.material.color=Color.red;
 			Debug.Log("Atacant a melee");
@@ -82,7 +131,8 @@ public class AI2Chaser : MonoBehaviour {
         
         
     void moveTo(){
-	    myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
+		Vector3 enemyChest = myTransform.position+Vector3.up*0.8f;
+	    myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - enemyChest), rotationSpeed * Time.deltaTime);
 	    myTransform.position += myTransform.forward * moveSpeed * Time.deltaTime;
 	    //float mov= myTransform.position.y -(gravetat * Time.deltaTime);
 	    //myTransform.position.y =mov;
@@ -106,16 +156,37 @@ public class AI2Chaser : MonoBehaviour {
 	
 	public void rebreDany(int dmg){
 		vida-=dmg;
+		
+		/*if (vida < maxvida*0.5f){
+			ParticleSystem particlesystem = (ParticleSystem)gameObject.GetComponent("ParticleSystem");
+			particlesystem.enableEmission = true;
+		}*/
+		
+		float percent = 0.0f;
+		percent = vida/maxvida;
+		percent = percent*100;
+		//enemy_Healthbar.guiTexture.pixelInset.Set(enemy_Healthbar.guiTexture.pixelInset.x,enemy_Healthbar.guiTexture.pixelInset.y,percent,enemy_Healthbar.guiTexture.pixelInset.height);
+		//Rect temp1 = new Rect(0, 0, percent, 10);
+		//enemy_Healthbar.guiTexture.pixelInset=temp1;
+		float Size_width = 0.0005f;
+		float Size_height = 0.0050f;
+		
+		Size_width = percent*Size_width;
+		enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,1);
+		
+		
+		Debug.Log ("QUEDA UN "+percent+" % DE VIDA");
 		Debug.Log("Enemigo atacado quedan "+vida+" puntos de vida");
 		if(vida<=0){
 			Debug.Log("Enemigo muerto");
-			//hud.SendMessage("enemyDeath");
+			hud.SendMessage("enemyDeath");
 			Destroy(gameObject);
 		}
 	}
 	
 	private void disparar(int dis,int dmg){
-		if(Physics.Raycast(transform.position, (target.position- transform.position), out hit, dis)) {
+		Vector3 enemyChest = myTransform.position+Vector3.up*0.8f;
+		if(Physics.Raycast(transform.position, (target.position- enemyChest), out hit, dis)) {
 			Debug.DrawLine(target.position, transform.position, Color.green);
 			Debug.DrawRay(transform.position, transform.forward,Color.blue);
 			//print (hit.collider.gameObject.tag);

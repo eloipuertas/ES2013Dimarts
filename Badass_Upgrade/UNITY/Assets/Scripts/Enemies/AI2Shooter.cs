@@ -75,8 +75,8 @@ public class AI2Shooter : MonoBehaviour {
 		float percent = 0.0f;
 		percent = vida/maxvida;
 		percent = percent*100;
-		float Size_width = 0.001f;
-		float Size_height = 0.010f;
+		float Size_width = 0.0005f;
+		float Size_height = 0.0050f;
 		
 		Size_width = percent*Size_width;
 		enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,1);
@@ -89,7 +89,7 @@ public class AI2Shooter : MonoBehaviour {
         
      // Update is called once per frame
      void Update () {
-		Debug.Log (state);
+		//Debug.Log (state);
 		
 		if(Vector3.Dot(target.forward, myTransform.position - target.position)>=0) {
 			inSight = true;
@@ -101,16 +101,14 @@ public class AI2Shooter : MonoBehaviour {
 			float percent = 0.0f;
 			percent = vida/maxvida;
 			percent = percent*100;
-			float Size_width = 0.001f;
-			float Size_height = 0.010f;
+			float Size_width = 0.0005f;
+			float Size_height = 0.0050f;
 			
 			Size_width = percent*Size_width;
 			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,1);
 			prev_inSight = true;
 		}else if(!inSight){
 			//Debug.Log ("NOT PAINTING");
-			float Size_width = 0.0001f;
-			float Size_height = 0.010f;
 			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(0.0f,0.0f,0.0f);
 			prev_inSight = false;
 		}
@@ -120,29 +118,30 @@ public class AI2Shooter : MonoBehaviour {
        	//myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
 		Distance=Vector3.Distance(target.position,transform.position);
 		
-        Debug.DrawRay(transform.position, transform.forward);
+		Vector3 enemyChest = myTransform.position+Vector3.up*1.6f;
+        Debug.DrawRay(enemyChest, transform.forward);
 		//Debug.DrawLine(target.position, myTransform.position, Color.yellow);
                 
-        if(Distance>distancia_alerta && Vector3.Distance(spawnPoint, transform.position)>3){
+       /* if(Distance>distancia_alerta && Vector3.Distance(spawnPoint, transform.position)>3){
         	state="away";
-			//Debug.Log("Enemic inactiu");
-			animation.CrossFade("ajupit");
+			Debug.Log("Enemic inactiu");
+			animation.Play("ajupit");
             //renderer.material.color=Color.blue;
             //retorn al spawnpoint?
-		}else if(Distance<distancia_alerta && Distance>distancia_disparar){
+		}else */if(Distance<distancia_alerta && Distance>distancia_disparar){
 			if(state != "alerta" && state != "shooting"){
-				animation.CrossFade("activar");
+				animation.Play("activar");
 				Destroy (shield);
 			}
 			state="alerta";
-			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
+			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - enemyChest), rotationSpeed * Time.deltaTime);
 			/*animation.CrossFade("activar");*/
 				
-        }else if(Distance<distancia_disparar && Distance>distancia_perseguir){
-			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
+        }else if(Distance<distancia_disparar /*&& Distance>distancia_perseguir*/){
+			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - enemyChest), rotationSpeed * Time.deltaTime);
 			state="shooting";
             attack(dist_dmg,true);
-        }else if((Distance <=distancia_perseguir) && (Distance>distancia_melee)){
+        }/*else if((Distance <=distancia_perseguir) && (Distance>distancia_melee)){
 			moveTo();
             state = "walking";
 			animation.CrossFade("caminar");
@@ -152,11 +151,12 @@ public class AI2Shooter : MonoBehaviour {
 	        //renderer.material.color=Color.red;
 			Debug.Log("Atacant a melee");
 	        attack(melee_dmg,false);
-        }else{
+        }*/else{
 			if(state != "away"){
-				animation.CrossFade("desactivar");
+				animation.Play("desactivar");
 				shield = (GameObject)Instantiate(Resources.Load("Enemy_Shield"),myTransform.position,myTransform.rotation);
 			}
+			animation.Play("ajupit");
 			state="away";
 			//Debug.Log("Enemic inactiu");
 		}
@@ -164,7 +164,8 @@ public class AI2Shooter : MonoBehaviour {
         
         
     void moveTo(){
-	    myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
+		Vector3 enemyChest = myTransform.position+Vector3.up*1.6f;
+	    myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - enemyChest), rotationSpeed * Time.deltaTime);
 	    myTransform.position += myTransform.forward * moveSpeed * Time.deltaTime;
 	    //float mov= myTransform.position.y -(gravetat * Time.deltaTime);
 	    //myTransform.position.y =mov;
@@ -191,7 +192,6 @@ public class AI2Shooter : MonoBehaviour {
 			vida-=dmg;
 			
 			if (vida < maxvida*0.5f){
-				Debug.Log ("FESTA");
 				ParticleSystem particlesystem = (ParticleSystem)gameObject.GetComponent("ParticleSystem");
 				particlesystem.enableEmission = true;
 			}
@@ -202,8 +202,8 @@ public class AI2Shooter : MonoBehaviour {
 			//enemy_Healthbar.guiTexture.pixelInset.Set(enemy_Healthbar.guiTexture.pixelInset.x,enemy_Healthbar.guiTexture.pixelInset.y,percent,enemy_Healthbar.guiTexture.pixelInset.height);
 			//Rect temp1 = new Rect(0, 0, percent, 10);
 			//enemy_Healthbar.guiTexture.pixelInset=temp1;
-			float Size_width = 0.001f;
-			float Size_height = 0.010f;
+			float Size_width = 0.0005f;
+			float Size_height = 0.0050f;
 			
 			Size_width = percent*Size_width;
 			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,1);
