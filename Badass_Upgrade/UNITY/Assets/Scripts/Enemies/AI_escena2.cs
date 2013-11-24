@@ -24,7 +24,7 @@ public class AI_escena2 : MonoBehaviour {
 	
 	//-------------------------
 	int patrullar =1;
-	string[] points={"Waypoint1","Waypoint2","Waypoint3"};
+	string[] points={"Waypoint1","Waypoint2","Waypoint3","Waypoint4"};
 	int i=0;
 	int activacio=1;
 	
