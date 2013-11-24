@@ -15,7 +15,7 @@ public class AI_escena2 : MonoBehaviour {
 
 
     //variables modificables segons la ia--------
-	public float vida=40;
+	public float vida=100;
     public int moveSpeed=3;
 	public int rotationSpeed=2;
     float Distance;
@@ -26,7 +26,7 @@ public class AI_escena2 : MonoBehaviour {
 	int patrullar =1;
 	string[] points={"Waypoint1","Waypoint2","Waypoint3"};
 	int i=0;
-	int activacio=0;
+	int activacio=1;
 	
 
 
@@ -75,14 +75,12 @@ public class AI_escena2 : MonoBehaviour {
      // Update is called once per frame
     void Update()
     {
-		if(activacio==1){
 			segueix_waypoints();
-		}
     }
 	
 	private void segueix_waypoints(){
 
-		animation.CrossFade("caminar");
+		//animation.CrossFade("caminar");
         GameObject punt = GameObject.Find(points[i]);
         Distance = Vector3.Distance(transform.position, punt.transform.position);
         if (patrullar == 1 || patrullar ==2)
