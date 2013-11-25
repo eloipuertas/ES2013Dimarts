@@ -16,6 +16,9 @@ public class MainCharacter : MonoBehaviour {
 	// So en rebre un impacte
 	public AudioClip impactSound;
 	
+	// So del cop de puny
+	public AudioClip meleSound;
+	
 	// So de les armes 
 	public AudioClip[] weaponSound;
 	
@@ -166,6 +169,7 @@ public class MainCharacter : MonoBehaviour {
 					hit.transform.gameObject.SendMessage("rebreDany",damageMelee);
 				}
 			}
+			AudioSource.PlayClipAtPoint(meleSound,transform.position,0.9F);
 		}
 		else if((Input.GetButtonDown("Usar"))) {
 			Debug.Log("Usar boto");
