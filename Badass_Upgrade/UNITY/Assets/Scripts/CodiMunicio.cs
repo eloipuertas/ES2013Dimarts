@@ -4,7 +4,7 @@ using System.Collections;
 public class CodiMunicio : MonoBehaviour {
 	
 	public GameObject Municio;
-	public GameObject Cosa;
+	public GameObject Player;
 	
 	
 	// Use this for initialization
@@ -19,7 +19,7 @@ public class CodiMunicio : MonoBehaviour {
 	
 
 	void OnTriggerEnter(Collider other) {
-		////////   funcio incrementar municio!!!!!! //////
+		Player.SendMessage("addItemMunicio",10);
         Destroy(gameObject);
 
 	}
