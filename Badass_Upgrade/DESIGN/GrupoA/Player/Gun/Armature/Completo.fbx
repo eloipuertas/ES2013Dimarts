@@ -10,10 +10,10 @@ FBXHeaderExtension:  {
 		Version: 1000
 		Year: 2013
 		Month: 11
-		Day: 18
-		Hour: 23
-		Minute: 30
-		Second: 14
+		Day: 25
+		Hour: 14
+		Minute: 04
+		Second: 50
 		Millisecond: 0
 	}
 	Creator: "FBX SDK/FBX Plugins build 20070228"
@@ -21,7 +21,7 @@ FBXHeaderExtension:  {
 		FlagPLE: 0
 	}
 }
-CreationTime: "2013-11-18 23:30:14:000"
+CreationTime: "2013-11-25 14:04:50:000"
 Creator: "Blender version 2.68 (sub 0)"
 
 ; Object definitions
@@ -6815,7 +6815,7 @@ Objects:  {
 		}
 		UseMipMap: 0
 		Filename: "leftArm_v2_edited3.tga"
-		RelativeFilename: "C:\Users\st0le\Documents\GitHub\ES2013Dimarts\Badass_Upgrade\DESIGN\GrupoA\Player\LeftArm\Mesh\Textures\leftArm_v2_edited3.tga"
+		RelativeFilename: "E:\UB 4\Part1\ES\treball_ES\Badass_Upgrade\DESIGN\GrupoA\Player\LeftArm\Mesh\Textures\leftArm_v2_edited3.tga"
 	}
 	Video: "Video::GunImage", "Clip" {
 		Type: "Clip"
@@ -6861,7 +6861,7 @@ Objects:  {
 		}
 		Media: "Video::ArmImage"
 		FileName: "leftArm_v2_edited3.tga"
-		RelativeFilename: "C:\Users\st0le\Documents\GitHub\ES2013Dimarts\Badass_Upgrade\DESIGN\GrupoA\Player\LeftArm\Mesh\Textures\leftArm_v2_edited3.tga"
+		RelativeFilename: "E:\UB 4\Part1\ES\treball_ES\Badass_Upgrade\DESIGN\GrupoA\Player\LeftArm\Mesh\Textures\leftArm_v2_edited3.tga"
 		ModelUVTranslation: 0,0
 		ModelUVScaling: 1,1
 		Texture_Alpha_Source: "None"
