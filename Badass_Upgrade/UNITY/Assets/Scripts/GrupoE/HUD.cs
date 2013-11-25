@@ -3,7 +3,7 @@ using System.Collections;
 
 public class HUD : MonoBehaviour {
 	
-	const int game_over = 3;
+	const int game_over = 4;
 	
 	//Contendra todos de enemigos en la escena
 	GameObject[] enem;
@@ -16,6 +16,15 @@ public class HUD : MonoBehaviour {
 	
 	//Slot de arma equipada
 	int weaponPos;
+	
+	//Puntuacion
+	private int score;
+	
+	
+	
+	public Texture2D linternaApagada;
+	public Texture2D linternaEncendida;
+	
 	
 	/* Elementos de texto del HUD
 	 * 
@@ -31,21 +40,28 @@ public class HUD : MonoBehaviour {
 	public GUIText balasCargadorText;
 	public GUIText balasTotalesText;
 	public GUIText contadorEnemigos;
-	public GUIText slotArma1;
-	public GUIText slotArma2;
-	public GUIText slotArma3;
+	//public GUIText slotArma1;
+	//public GUIText slotArma2;
 	public GUITexture healthLine;
 	public GUITexture shieldLine;
+	public GUITexture linternaTexture;
+	
+	public GUITexture slotArma1;
+	public GUITexture slotArma2;
 
 	/* Inicializacion de scripts externos
 	 * 
 	 * public MainCharacter robotProtagonista: El script que contiene los valores de interes para el HUD
 	 */
 	public MainCharacter robotProtagonista;
+	public linterna linterna;
 	
 	
 	Rect healthWidth;
 	Rect shieldWidth;
+	
+	Rect arma1;
+	Rect arma2;
 	
 	//The first method to be called
 	void Awake(){
@@ -55,26 +71,36 @@ public class HUD : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
+		if(linterna.activeLinterna){
+			linternaTexture.texture = linternaEncendida;
+		}else{
+			linternaTexture.texture = linternaApagada;
+		}
+		
 		enem = GameObject.FindGameObjectsWithTag("Enemy");
 		numOfEnem = enem.Length;
 		contadorEnemigos.text=numOfEnem.ToString();
 		
 		portal = GameObject.FindGameObjectWithTag("porta1");
 
-		vidaText.text = robotProtagonista.vida.ToString() + "%";
-		escudoText.text = robotProtagonista.escudo.ToString() + "%";
+		vidaText.text = robotProtagonista.vida.ToString();
+		escudoText.text = robotProtagonista.escudo.ToString();
 		
 		balasCargadorText.text = robotProtagonista.balesCarregador.ToString();
 		balasTotalesText.text = robotProtagonista.balesTotalsArmaActual.ToString();
 		
-		slotArma1.text = "1";
-		slotArma2.text = "2";
-		slotArma3.text = "3";
+
+		
+		arma1 = slotArma1.pixelInset;
+		arma2 = slotArma2.pixelInset;
+		
 		
 		weaponPos = robotProtagonista.posWeapon;
 		
 		healthWidth = healthLine.pixelInset;
 		shieldWidth = shieldLine.pixelInset;
+		
+		score = 0;
 	
 		
 	}
@@ -82,6 +108,11 @@ public class HUD : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+		if(linterna.activeLinterna){
+			linternaTexture.texture = linternaEncendida;
+		}else{
+			linternaTexture.texture = linternaApagada;
+		}
 		
 		//Carga el menu game over si la vida baja a 0.
 		if(robotProtagonista.vida <= 0){
@@ -105,25 +136,27 @@ public class HUD : MonoBehaviour {
 		weaponPos = robotProtagonista.posWeapon;
 		
 		if(weaponPos == 0){
-			slotArma1.fontSize = 20;
 			
-			slotArma2.fontSize = 10;
+			arma1.width = 54;
+			arma1.height = 36;
+			slotArma1.pixelInset = arma1;
+		
+				
+			arma2.width = 36;
+			arma2.height = 24;
+			slotArma2.pixelInset = arma2;
 			
-			slotArma3.fontSize = 10;
 			
 		}else if(weaponPos == 1){
-			slotArma1.fontSize = 10;
 			
-			slotArma2.fontSize = 20;
+			arma1.width = 36;
+			arma1.height = 24;
+			slotArma1.pixelInset = arma1;
 			
-			slotArma3.fontSize = 10;
 			
-		}else if(weaponPos == 2){
-			slotArma1.fontSize = 10;
-			
-			slotArma2.fontSize = 10;
-			
-			slotArma3.fontSize = 20;
+			arma2.width = 54;
+			arma2.height = 36;
+			slotArma2.pixelInset = arma2;
 			
 		}
 
@@ -135,10 +168,16 @@ public class HUD : MonoBehaviour {
 		numOfEnem--;
 		contadorEnemigos.text=numOfEnem.ToString();
 		
-		if(numOfEnem<=0){
-			
-			portal.SendMessage("setNivel_Completado",true,SendMessageOptions.DontRequireReceiver);
-			
-		}	
+		score = score +10;
+		
+	}
+	public int getCurrentTotalScore(){
+		
+		score = score + robotProtagonista.vida;
+		score = score + robotProtagonista.escudo;
+		score = score + robotProtagonista.balesCarregador;
+		score = score + robotProtagonista.balesTotalsArmaActual;
+		
+		return score;
 	}
 }
