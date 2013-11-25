@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class codiBotons : MonoBehaviour {
 	
 	public GameObject Plataforma;
 	public GameObject Porta;
-	public GameObject Buto_Palanca;
+	public GameObject Buto;
+	public GameObject Palanca;
+		
 	bool activat=false;
 	
 	void Start () {
@@ -23,26 +26,39 @@ public class codiBotons : MonoBehaviour {
 	
 	void invertirAnimacio(){
 		Debug.Log("INvertitttttt");
-		Buto_Palanca.animation["Desactivar"].speed = -1;
-    	Buto_Palanca.animation["Desactivar"].time = Buto_Palanca.animation["Desactivar"].length;
+		Palanca.animation["Desactivar"].speed = -1;
+    	Palanca.animation["Desactivar"].time = Palanca.animation["Desactivar"].length;
 
 	}
 	
 	
-	void activarBoto(){
+	IEnumerator activarBoto(){
 		Debug.Log("btooooooo");
 		
-		if (!activat){
-			Buto_Palanca.animation.CrossFade("Activar");
-			activat=true;
-		}else{
-			invertirAnimacio();
-			Buto_Palanca.animation.CrossFade("Desactivar");
-			invertirAnimacio();
-			activat=false;
 		
+		if (Palanca){
+			if (!activat){
+				Palanca.animation.CrossFade("Activar");
+				activat=true;
+			}else{
+				invertirAnimacio();
+				Palanca.animation.CrossFade("Desactivar");
+				invertirAnimacio();
+				activat=false;
+			
+			}
+		}
+		if (Buto){
+			Buto.animation.CrossFade("Activar");
+			/*if (!activat){
+				activat=true;
+			}else{
+				activat=false;
+			
+			}*/
 		}
 		
+		yield return new WaitForSeconds(2);
 		if(Plataforma){
 			Plataforma.SendMessage("setBotoActivat");
 		}
@@ -50,5 +66,7 @@ public class codiBotons : MonoBehaviour {
 			Porta.SendMessage("setNivel_Completado",true);
 		}
 	}
+	
+
 		
 }
