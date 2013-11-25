@@ -27,7 +27,7 @@ public class Weapon : MonoBehaviour {
 	public int getDamage() {
 		return damage;
 	}
-	
+	 
 	public int getBalesTotals() {
 		return balesTotals;
 	}
@@ -59,15 +59,29 @@ public class Weapon : MonoBehaviour {
 	}
 	
 	public void moveWeapon(){
+		Debug.Log("Animacio Correr");
 		modelWeapon.animation.Play("Correr");		
 	}
 	
 	public void walkWeapon(){
-		modelWeapon.animation.Play ("Caminar");
+		Debug.Log("Animacio Caminar");
+		modelWeapon.animation.Play("Caminar");
 	}
 	
 	public void useButton(){
-		modelWeapon.animation.Play ("ActivarBoton");
+		modelWeapon.animation.Play("ActivarBoton");
+	}
+	
+	public void rebreDany(){
+		modelWeapon.animation.Play("Dany");
+	}
+	
+	public void standBy(){
+		modelWeapon.animation.Play("StandBy");
+	}
+	
+	public void enfundar(){
+		modelWeapon.animation.Play("Enfundar");
 	}
 	
 	public void meeleWeapon(){
@@ -78,8 +92,8 @@ public class Weapon : MonoBehaviour {
 	}
 	
 	public int recarregar() {
-		Debug.Log("bales totals "+balesTotals);
-		Debug.Log("bales actuals carregador "+balesActualCarregador);
+		//Debug.Log("bales totals "+balesTotals);
+		//Debug.Log("bales actuals carregador "+balesActualCarregador);
 		if((balesTotals > 0) && (balesActualCarregador < tamanyCarregador)) {
 			Debug.Log("entra if");
 				modelWeapon.animation.Play("Recargar");		
@@ -102,7 +116,7 @@ public class Weapon : MonoBehaviour {
 	}
 	
 	public int disparar() {
-		Debug.Log("tag = "+modelWeapon.tag);
+		//Debug.Log("tag = "+modelWeapon.tag);
 		if(balesActualCarregador > 0) 			
 			balesActualCarregador -= 1;
 			modelWeapon.animation.Play("Disparar");
@@ -117,22 +131,20 @@ public class Weapon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		if(tiempoAnimacionCaminar <= 0){	
-			
-			if( (Input.GetButton("Horizontal") && !Input.GetButton("Caminar")) || (Input.GetButton("Vertical")  && !Input.GetButton("Caminar") )) {		
-				Debug.Log("Entra a correr" );
-				this.moveWeapon();
+		/*if(tiempoAnimacionCaminar <= 0){	
+			Debug.Log("Animacio caminar posweapon "+modelWeapon.tag);
+			if((Input.GetButton("Horizontal") && !Input.GetButton("Caminar")) || (Input.GetButton("Vertical")  && !Input.GetButton("Caminar") )) {		
+				//Debug.Log("Entra a correr" );
+				moveWeapon();
 				tiempoAnimacionCaminar = tiempoAnimacionCaminarMAX;
 			}			
 			else if((Input.GetButton("Horizontal") && Input.GetButton("Caminar")) || (Input.GetButton("Vertical") && Input.GetButton("Caminar")))	{
-				Debug.Log("Entra a caminar" );
-				this.walkWeapon();
+				//Debug.Log("Entra a caminar" );
+				walkWeapon();
 				tiempoAnimacionCaminar = tiempoAnimacionCaminarMAX;
 			}
 		}
-		tiempoAnimacionCaminar = tiempoAnimacionCaminar - Time.deltaTime;
-		
+		tiempoAnimacionCaminar = tiempoAnimacionCaminar - Time.deltaTime;*/	
 	}
 	
 }

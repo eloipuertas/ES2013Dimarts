@@ -7,11 +7,17 @@ public class MainMenuController : MonoBehaviour {
 	
 	//Constants
 	const int new_game = 1;
-	const int options = 2;
+	const int options = 6;
+	const int credits = 5;
 	
 	//Variables
 	public bool isQuitButton = false;			//Is the button the quit button?
 	public bool isNewGameButton = false;
+	public bool isCreditsButton = false;
+	
+	public Texture originalTexture;
+	public Texture hoverTexture;
+	public Vector3 scale;
 	
 	// Use this for initialization
 	void Start () {
@@ -22,14 +28,34 @@ public class MainMenuController : MonoBehaviour {
 	}
 
 	//This function is called when the mouse entered the GUIElement or Collider
-	/*public void OnMouseEnter(){
-		renderer.material.color = Color.blue;
-	}*/
+	public void OnMouseEnter(){
+		originalTexture = guiTexture.texture;
+		scale = transform.localScale;
+		
+		if(isQuitButton){
+			hoverTexture = Resources.Load("exit") as Texture;
+			guiTexture.texture = hoverTexture;
+			transform.localScale = new Vector3(0.01F, 0.01F, transform.localScale.z);
+		}else if(isNewGameButton){
+			hoverTexture = Resources.Load("newGame") as Texture;
+			guiTexture.texture = hoverTexture;
+			transform.localScale = new Vector3(0.01F, 0.01F, transform.localScale.z);
+		}else if(isCreditsButton){
+			hoverTexture = Resources.Load("creditos") as Texture;
+			guiTexture.texture = hoverTexture;
+			transform.localScale = new Vector3(0.01F, 0.01F, transform.localScale.z);
+		}else{
+			hoverTexture = Resources.Load("options") as Texture;
+			guiTexture.texture = hoverTexture;
+			transform.localScale = new Vector3(0.01F, 0.01F, transform.localScale.z);
+		}
+	}
 	
 	//This function is called when the mouse is not any longer over the GUIElement or Collider
-	/*public void OnMouseExit(){
-		renderer.material.color = Color.white;
-	}*/
+	public void OnMouseExit(){
+		guiTexture.texture = originalTexture;
+		transform.localScale = scale;
+	}
 	
 	//This function is called when the user has released the mouse button
 	public void OnMouseUpAsButton(){
@@ -38,6 +64,8 @@ public class MainMenuController : MonoBehaviour {
 			Application.Quit();
 		else if(isNewGameButton)
 			Application.LoadLevel(new_game);
+		else if(isCreditsButton)
+			Application.LoadLevel(credits);
 		else
 			Application.LoadLevel(options);
 	}

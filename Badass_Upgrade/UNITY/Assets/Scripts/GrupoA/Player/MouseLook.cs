@@ -28,8 +28,8 @@ public class MouseLook : MonoBehaviour {
 	public float minimumY = -60F;
 	public float maximumY = 60F;
 
-	float rotationX = 0F;
-	float rotationY = 0F;
+	public float rotationX = 0F;
+	public float rotationY = 0F;
 	
 	Quaternion originalRotation;
 
@@ -73,7 +73,8 @@ public class MouseLook : MonoBehaviour {
 	 					
 	        Quaternion yQuaternion = Quaternion.AngleAxis (rotationY, Vector3.left);
 	        transform.localRotation = originalRotation * yQuaternion;
-    	}	
+    	}
+		
 	}
 	
 	void Start ()

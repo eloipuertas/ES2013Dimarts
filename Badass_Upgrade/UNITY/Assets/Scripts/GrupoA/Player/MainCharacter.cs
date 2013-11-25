@@ -16,6 +16,9 @@ public class MainCharacter : MonoBehaviour {
 	// So en rebre un impacte
 	public AudioClip impactSound;
 	
+	// So del cop de puny
+	public AudioClip meleSound;
+	
 	// So de les armes 
 	public AudioClip[] weaponSound;
 	
@@ -28,9 +31,9 @@ public class MainCharacter : MonoBehaviour {
 	
 	//Atributs de l'accio disparar & melee
 	RaycastHit hit;
-	Transform cam;
+	public Transform cam;
 	float meleeDistance = 1.8f;
-	float shotDistance = 20f;
+	public float shotDistance = 20f;
 	int damageMelee = 10;	
 	float buttonDistance = 2.5f;
 	
@@ -49,12 +52,40 @@ public class MainCharacter : MonoBehaviour {
 	//Per la llum en disparar 
 	//private muzzleFlash shotLight;
 	
+	//public GameObject bullet;
+	public float speed = 500f; 
+	public Rigidbody projectile;
+	public GameObject weapon2;
+	MouseLook mouseLook;
+	public GameObject weapon1;
+	
+	//S'haura d'ajustar en funcio del model de l'arma
+	float xPosShot = -0.5f;
+	float yPosShot;
+	float constY = 3.5f;
+	
+	float tempsActual;
+	float tempsAnterior;
+	public float fireRate = 0.5f;
+	
+	float tempsActualStandBy;
+	float tempsAnteriorStandBy;
+	public float thresholdStandBy = 5f;
+	
+	public float tiempoAnimacionCaminarMAXWeapon1 = 3f;
+	private float tiempoAnimacionCaminarWeapon1 = 0f;
+	
+	public float tiempoAnimacionCaminarMAXWeapon2 = 2f;
+	private float tiempoAnimacionCaminarWeapon2 = 0f;
+	
 	void Awake () {	
 		
 	}
 
 	// Use this for initialization
 	void Start () {
+		
+		//ypos = ml.getYPosition();
 		
 		//armes
 		weapons = new List<Weapon>();
@@ -72,33 +103,62 @@ public class MainCharacter : MonoBehaviour {
 		
 		cam = Camera.main.transform;
 		
+		
 		cameraPlayer = GameObject.FindGameObjectWithTag("MainCamera");
 		maxPosCamera = cameraPlayer.transform.localPosition.y;
 		minPosCamera = 0.05f;
 		
-		//Iluminacio del cano amb bales realisticament
-		//shotLight = (muzzleFlash)player.GetComponent(typeof(muzzleFlash));
+		
+		mouseLook = cam.GetComponent <MouseLook>();
+		
+		//Inicialitzo el temps
+		tempsAnterior = Time.time;
+		tempsAnteriorStandBy = tempsAnterior;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
-		if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0)) {
+		if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0) && (posWeapon == 0) ) {
+			tempsAnteriorStandBy = Time.time;
 			balesCarregador = weapons[posWeapon].disparar();
-			if(Physics.Raycast(cam.position, cam.forward,out hit, shotDistance)) {
+			if(Physics.Raycast(weapon1.transform.position,cam.forward,out hit, shotDistance)) {
+				Debug.Log("Toco a "+hit.collider.gameObject.tag);
 		        if(hit.collider.gameObject.tag == "Enemy") {
-		                Debug.Log("Disparo i toco l'enemic i li faig "+actualWeaponDamage+" punts de dany");
+		                //Debug.Log("Disparo i toco l'enemic i li faig "+actualWeaponDamage+" punts de dany");
 		                hit.transform.gameObject.SendMessage("rebreDany",actualWeaponDamage);
+						
 		        }
 		        else if(hit.collider.gameObject.tag == "Barril") {
-		                Debug.Log("Disparo contre el barril");
+		                //Debug.Log("Disparo contre el barril");
 		                hit.transform.gameObject.SendMessage("rebreTir");
 		        }
+				player.SendMessage("Shoot");
+				AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.9F);
+			//Rifle mentres esta apretat fer un timer i anar disparant
 			}
-			//shotLight.Shoot();
-			AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.15F);       
+		}
+		else if((Input.GetButton("Disparar")) && (posWeapon == 1) && (balesCarregador > 0)) {
+			tempsAnteriorStandBy = Time.time;
+			//balesCarregador = weapons[posWeapon].disparar();
+			tempsActual = Time.time;
+			if(tempsActual - tempsAnterior > fireRate) {
+				//Actualitzo el temps anterior
+				tempsAnterior = tempsActual;
+				yPosShot = mouseLook.rotationY + constY;	
+				Rigidbody instantedProjectile = Instantiate(projectile,weapon2.transform.position,cameraPlayer.transform.rotation) as Rigidbody;
+				//instantedProjectile.velocity = transform.TransformDirection(new Vector3(xPosShot,yPosShot,speed));
+				instantedProjectile.velocity = transform.TransformDirection(new Vector3(-1f,yPosShot,speed));
+				instantedProjectile.SendMessage("addDamage",weapons[posWeapon].damage);
+				balesCarregador = weapons[posWeapon].disparar();
+				
+				player.SendMessage("Shoot");
+				AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.9F);
+			}			
 		}
 		else if(Input.GetButtonDown("Arma 1")) {
+			tempsAnteriorStandBy = Time.time;
+			weapons[posWeapon].enfundar();
 			weapons[posWeapon].hideWeapon();
 			//Poso a 0 ja que l'arma 1 es a la posicio 0
 			posWeapon = 0;
@@ -106,8 +166,11 @@ public class MainCharacter : MonoBehaviour {
 			balesCarregador = weapons[posWeapon].getBalesActualCarregador();
 			balesTotalsArmaActual = weapons[posWeapon].balesTotals;
 			weapons[posWeapon].showWeapon();
+			
 		}
 		else if(Input.GetButtonDown("Arma 2")) {
+			tempsAnteriorStandBy = Time.time;
+			weapons[posWeapon].enfundar();
 			weapons[posWeapon].hideWeapon();
 			posWeapon = 1;
 			actualWeaponDamage = weapons[posWeapon].getDamage();
@@ -116,15 +179,8 @@ public class MainCharacter : MonoBehaviour {
 			weapons[posWeapon].showWeapon();
 			
 		}
-		else if(Input.GetButtonDown("Arma 3")) {
-			weapons[posWeapon].hideWeapon();
-			posWeapon = 2;
-			actualWeaponDamage = weapons[posWeapon].getDamage();
-			balesCarregador = weapons[posWeapon].getBalesActualCarregador();
-			balesTotalsArmaActual = weapons[posWeapon].balesTotals;
-			weapons[posWeapon].showWeapon();
-		}
 		else if(Input.GetButtonDown("Recargar")) {
+			tempsAnteriorStandBy = Time.time;
 			balesCarregador = weapons[posWeapon].recarregar();
 			balesTotalsArmaActual = weapons[posWeapon].balesTotals;
 			if(balesCarregador <= 0)
@@ -133,6 +189,7 @@ public class MainCharacter : MonoBehaviour {
 				AudioSource.PlayClipAtPoint(weaponSound[0],transform.position,0.15F);
 		}
 		else if(Input.GetButtonDown("Agacharse")) {
+			tempsAnteriorStandBy = Time.time;
 			weapons[posWeapon].walkWeapon();
 			if(cameraPlayer.transform.localPosition.y > minPosCamera) {
 				float tmp = cameraPlayer.transform.localPosition.y - minPosCamera; 
@@ -142,6 +199,7 @@ public class MainCharacter : MonoBehaviour {
 				
 		}
 		else if(Input.GetButtonUp("Agacharse")) {
+			tempsAnteriorStandBy = Time.time;
 			if(cameraPlayer.transform.localPosition.y < maxPosCamera) {
 				float tmp2 = maxPosCamera - cameraPlayer.transform.localPosition.y;
 				cameraPlayer.transform.localPosition += new Vector3(0f,tmp2,0f);	
@@ -149,15 +207,18 @@ public class MainCharacter : MonoBehaviour {
 			down = false;		
 		}
 		else if((Input.GetButtonDown("Melee")) && (down == false)) {
+			tempsAnteriorStandBy = Time.time;
 			weapons[posWeapon].meeleWeapon();
 			if(Physics.Raycast(cam.position, cam.forward,out hit, meleeDistance)) {
 				if(hit.collider.gameObject.tag == "Enemy") {
 					hit.transform.gameObject.SendMessage("rebreDany",damageMelee);
 				}
 			}
+			AudioSource.PlayClipAtPoint(meleSound,transform.position,0.9F);
 		}
 		else if((Input.GetButtonDown("Usar"))) {
 			Debug.Log("Usar boto");
+			tempsAnteriorStandBy = Time.time;
 			weapons[posWeapon].useButton();			
 			if(Physics.Raycast(cam.position, cam.forward,out hit, buttonDistance)) { 
 				if(hit.collider.gameObject.tag == "Button") {  
@@ -165,8 +226,56 @@ public class MainCharacter : MonoBehaviour {
 				} 
 			} 
 		}
+		//Actualitzar el temps dels altres botons
+		else if((Input.GetButtonDown("Horizontal")) || (Input.GetButtonDown("Vertical")) || (Input.GetButtonDown("Saltar")) || (Input.GetAxis("Mouse X") != 0) || (Input.GetAxis("Mouse Y") > 0) || (Input.GetButtonDown("Linterna")) || (Input.GetButton("Caminar"))) {
+			tempsAnteriorStandBy = Time.time;
+		}
+		
+		
+		if(Time.time - tempsAnteriorStandBy > thresholdStandBy) {
+			//Debug.Log("Animacio StandBy");
+			tempsAnteriorStandBy = Time.time;
+			weapons[posWeapon].standBy();
+		}
+		
+		if(posWeapon == 0) {
+			if(tiempoAnimacionCaminarWeapon1 <= 0){
+				//Debug.Log("Animacio caminar posweapon "+weapons[posWeapon].tag);
+				if((Input.GetButton("Horizontal") && !Input.GetButton("Caminar")) || (Input.GetButton("Vertical")  && !Input.GetButton("Caminar") )) {		
+					//Debug.Log("Entra a correr" );
+					weapons[posWeapon].moveWeapon();
+					tiempoAnimacionCaminarWeapon1 = tiempoAnimacionCaminarMAXWeapon1;
+					tempsAnteriorStandBy = Time.time;
+				}			
+				else if((Input.GetButton("Horizontal") && Input.GetButton("Caminar")) || (Input.GetButton("Vertical") && Input.GetButton("Caminar")))	{
+					//Debug.Log("Entra a caminar" );
+					weapons[posWeapon].walkWeapon();
+					tiempoAnimacionCaminarWeapon1 = tiempoAnimacionCaminarMAXWeapon1;
+					tempsAnteriorStandBy = Time.time;
+				}
+			}
+			tiempoAnimacionCaminarWeapon1 = tiempoAnimacionCaminarWeapon1 - Time.deltaTime;
+		}
+		else if(posWeapon == 1) {
+			if(tiempoAnimacionCaminarWeapon2 <= 0){	
+				//Debug.Log("Animacio caminar posweapon "+weapons[posWeapon].tag);
+				if((Input.GetButton("Horizontal") && !Input.GetButton("Caminar")) || (Input.GetButton("Vertical")  && !Input.GetButton("Caminar") )) {		
+					//Debug.Log("Entra a correr" );
+					weapons[posWeapon].moveWeapon();
+					tiempoAnimacionCaminarWeapon2 = tiempoAnimacionCaminarMAXWeapon2;
+					tempsAnteriorStandBy = Time.time;
+				}			
+				else if((Input.GetButton("Horizontal") && Input.GetButton("Caminar")) || (Input.GetButton("Vertical") && Input.GetButton("Caminar")))	{
+					//Debug.Log("Entra a caminar" );
+					weapons[posWeapon].walkWeapon();
+					tiempoAnimacionCaminarWeapon2 = tiempoAnimacionCaminarMAXWeapon2;
+					tempsAnteriorStandBy = Time.time;
+				}
+			}
+			tiempoAnimacionCaminarWeapon2 = tiempoAnimacionCaminarWeapon2 - Time.deltaTime;	
+		}
 	}
-	
+	 
 	
 	void init(int vida, int escudo) {
 		this.vida = vida;
@@ -223,7 +332,7 @@ public class MainCharacter : MonoBehaviour {
 	
 	//Rebre dany de l'enemic
 	void rebreAtac(int dany) {
-		
+		tempsAnteriorStandBy = Time.time;
 		Debug.Log("dany "+dany);
 		if(escudo > 0) {
 			escudo -= dany;
@@ -240,6 +349,7 @@ public class MainCharacter : MonoBehaviour {
 				setVivo(false);
 			}
 		}
+	weapons[posWeapon].rebreDany();
 	Debug.Log("escudo = "+escudo);
 	Debug.Log("vida = "+vida);
     AudioSource.PlayClipAtPoint(impactSound,transform.position,0.15F);
@@ -258,16 +368,13 @@ public class MainCharacter : MonoBehaviour {
 		
 		Weapon w1 = new Weapon();
 		Weapon w2 = new Weapon();
-		Weapon w3 = new Weapon();
 		
 		//dany, tag model, bales totals, bales carregador, tamany carregador
 		w1.init(10,"weapon1",100,10,10);
-		w2.init(25,"weapon2",40,4,4);
-		w3.init(50,"weapon3",3,6,6);
+		w2.init(25,"weapon2",75,25,25);
 		
 		weapons.Add(w1);
 		weapons.Add(w2);
-		weapons.Add(w3);
 		
 		//Arma actual la primera (weapon 1) i les bales que te al carregador
 		actualWeaponDamage = weapons[posWeapon].getDamage();
