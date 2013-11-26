@@ -35,7 +35,7 @@ public class MainCharacter : MonoBehaviour {
 	float meleeDistance = 1.8f;
 	public float shotDistance = 20f;
 	int damageMelee = 10;	
-	float buttonDistance = 2.5f;
+	float buttonDistance = 2.2f;
 	
 	//down
 	public GameObject player;
