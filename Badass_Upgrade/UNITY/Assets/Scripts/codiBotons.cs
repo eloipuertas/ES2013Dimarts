@@ -8,17 +8,57 @@ public class codiBotons : MonoBehaviour {
 	public GameObject Porta;
 	public GameObject Buto;
 	public GameObject Palanca;
+	public GameObject Pulsador;
+	public GameObject Player;
+	public GameObject DeteccioProximitat;
+	
+	Color colorRed = Color.red;
+    Color colorGreen = Color.green;
+	Color colorYellow = Color.yellow;
+	float duration = 1.0F;
 		
 	bool activat=false;
 	
 	void Start () {
-		
+		if(Buto){
+			Pulsador.renderer.material.color = colorRed; 
+			
+		}
 	}
 	
 
 	void Update () {
+			
+	}
+	/*
+	void OnTriggerStay(Collider other){
+		Debug.Log("Estic al trigger");
+		if(other.gameObject == Player){
+				Debug.Log("Estic davant el boto");
+				float lerp = Mathf.PingPong(Time.time, duration) / duration;
+        		Pulsador.renderer.material.color = Color.Lerp(colorRed, colorGreen, lerp);
+                        
+            }
+	}*/
+	
+	void proximAlBoto(){
+		float lerp = Mathf.PingPong(Time.time, duration) / duration;
+	    Pulsador.renderer.material.color = Color.Lerp(colorRed, colorGreen, lerp);
+		//Pulsador.renderer.material.color = colorYellow;
 	
 	}
+	
+	void sortirDeLaDeteccio(){
+		Debug.Log("sortitttttt");
+		if (activat){
+			Pulsador.renderer.material.color = colorGreen;
+		}else{
+			Pulsador.renderer.material.color = colorRed;	
+		} 
+	}
+	
+	
+	
 	
 	
 	// Aixo inverteix la animacio de activar per tal de fer que la palanca pugui baixar i quedi desactivat, el
@@ -28,6 +68,7 @@ public class codiBotons : MonoBehaviour {
 		Debug.Log("INvertitttttt");
 		Palanca.animation["Desactivar"].speed = -1;
     	Palanca.animation["Desactivar"].time = Palanca.animation["Desactivar"].length;
+		
 
 	}
 	
@@ -50,12 +91,16 @@ public class codiBotons : MonoBehaviour {
 		}
 		if (Buto){
 			Buto.animation.CrossFade("Activar");
-			/*if (!activat){
+		
+			 
+			if (!activat){
 				activat=true;
+				Pulsador.renderer.material.color = colorGreen;
 			}else{
 				activat=false;
+				Pulsador.renderer.material.color = colorRed;
 			
-			}*/
+			}
 		}
 		
 		yield return new WaitForSeconds(2);
