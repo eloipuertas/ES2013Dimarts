@@ -9,13 +9,17 @@ public class gameOverMenuController : MonoBehaviour {
 	
 	//Variables
 	public bool isNewGameButton = false;
-	public TextMesh count;
+	public GUIText count;
 	//public GameObject ob;
 	//public TextMesh mesh;
+	public Texture originalTexture;
+	public Texture hoverTexture;
+	public Vector3 scale;
 
 	
 	// Use this for initialization
 	void Start () {
+		Time.timeScale=1;
 		//Should the cursor be visible?
 		Screen.showCursor = true;
 		//The cursor will automatically be hidden, centered on view and made to never leave the view.
@@ -39,12 +43,20 @@ public class gameOverMenuController : MonoBehaviour {
 
 	//This function is called when the mouse entered the GUIElement or Collider
 	public void OnMouseEnter(){
-		renderer.material.color = Color.blue;
+		originalTexture = guiTexture.texture;
+		scale = transform.localScale;
+		
+		if(isNewGameButton){
+			hoverTexture = Resources.Load("restartGame") as Texture;
+			guiTexture.texture = hoverTexture;
+			transform.localScale = new Vector3(0.01F, 0.01F, transform.localScale.z);
+		}
 	}
 	
 	//This function is called when the mouse is not any longer over the GUIElement or Collider
 	public void OnMouseExit(){
-		renderer.material.color = Color.white;
+		guiTexture.texture = originalTexture;
+		transform.localScale = scale;
 	}
 	
 	//This function is called when the user has released the mouse button
