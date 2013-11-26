@@ -12,11 +12,13 @@ public class codiBotons : MonoBehaviour {
 	public GameObject Player;
 	public GameObject DeteccioProximitat;
 	
+	
 	Color colorRed = Color.red;
     Color colorGreen = Color.green;
 	Color colorYellow = Color.yellow;
 	float duration = 1.0F;
-		
+	
+	bool saClicat=false;
 	bool activat=false;
 	
 	void Start () {
@@ -42,14 +44,16 @@ public class codiBotons : MonoBehaviour {
 	}*/
 	
 	void proximAlBoto(){
-		float lerp = Mathf.PingPong(Time.time, duration) / duration;
-	    Pulsador.renderer.material.color = Color.Lerp(colorRed, colorGreen, lerp);
-		//Pulsador.renderer.material.color = colorYellow;
-	
+		if (!saClicat){
+			float lerp = Mathf.PingPong(Time.time, duration) / duration;
+		    Pulsador.renderer.material.color = Color.Lerp(colorRed, colorGreen, lerp);
+			//Pulsador.renderer.material.color = colorYellow;
+		}
 	}
 	
 	void sortirDeLaDeteccio(){
 		Debug.Log("sortitttttt");
+		saClicat=false;
 		if (activat){
 			Pulsador.renderer.material.color = colorGreen;
 		}else{
@@ -91,7 +95,7 @@ public class codiBotons : MonoBehaviour {
 		}
 		if (Buto){
 			Buto.animation.CrossFade("Activar");
-		
+			saClicat=true;
 			 
 			if (!activat){
 				activat=true;
