@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cfb957be76b63d3439f7371dd4153b0b
+guid: 52c815f7052f2814c8c8c4cc5111dd48
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -155,7 +155,7 @@ ModelImporter:
     - name: Default Take
       takeName: Default Take
       firstFrame: 0
-      lastFrame: 349
+      lastFrame: 379
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -280,8 +280,8 @@ ModelImporter:
       transformMask: []
     - name: ActivarBoton
       takeName: Default Take
-      firstFrame: 190
-      lastFrame: 237
+      firstFrame: 307
+      lastFrame: 340
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -365,7 +365,7 @@ ModelImporter:
     - name: StandBy
       takeName: Default Take
       firstFrame: 264
-      lastFrame: 311
+      lastFrame: 309
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -385,8 +385,8 @@ ModelImporter:
       transformMask: []
     - name: Enfundar
       takeName: Default Take
-      firstFrame: 306
-      lastFrame: 349
+      firstFrame: 346
+      lastFrame: 379
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
