@@ -10,10 +10,10 @@ FBXHeaderExtension:  {
 		Version: 1000
 		Year: 2013
 		Month: 11
-		Day: 21
-		Hour: 17
-		Minute: 19
-		Second: 14
+		Day: 25
+		Hour: 19
+		Minute: 40
+		Second: 49
 		Millisecond: 0
 	}
 	Creator: "FBX SDK/FBX Plugins build 20070228"
@@ -21,7 +21,7 @@ FBXHeaderExtension:  {
 		FlagPLE: 0
 	}
 }
-CreationTime: "2013-11-21 17:19:14:000"
+CreationTime: "2013-11-25 19:40:49:000"
 Creator: "Blender version 2.68 (sub 0)"
 
 ; Object definitions
@@ -1428,7 +1428,7 @@ Objects:  {
 		}
 		UseMipMap: 0
 		Filename: "rifle_bullet_v1_full.png"
-		RelativeFilename: "Mesh\Textures\rifle_bullet_v1_full.png"
+		RelativeFilename: "Textures\rifle_bullet_v1_full.png"
 	}
 	Texture: "Texture::rifle_bullet_v1_full_png", "TextureVideoClip" {
 		Type: "TextureVideoClip"
@@ -1453,7 +1453,7 @@ Objects:  {
 		}
 		Media: "Video::rifle_bullet_v1_full_png"
 		FileName: "rifle_bullet_v1_full.png"
-		RelativeFilename: "Mesh\Textures\rifle_bullet_v1_full.png"
+		RelativeFilename: "Textures\rifle_bullet_v1_full.png"
 		ModelUVTranslation: 0,0
 		ModelUVScaling: 1,1
 		Texture_Alpha_Source: "None"
