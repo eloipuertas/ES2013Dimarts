@@ -5,6 +5,7 @@ using System.Collections;
 
 public class Homing_missile : MonoBehaviour {
 	public Transform target;
+	private Vector3 attack_location;
 	float Distance;
     public int moveSpeed=8;
 	public int rotationSpeed=2;
@@ -16,22 +17,23 @@ public class Homing_missile : MonoBehaviour {
 		myTransform = transform;
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
         target = player.transform;
+		attack_location = target.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Distance=Vector3.Distance(target.position,transform.position);
+		Distance=Vector3.Distance(attack_location,transform.position);
 		Debug.DrawRay(transform.position, transform.forward);
-		GameObject player = GameObject.FindGameObjectWithTag("Player");
-        target = player.transform;
+		//GameObject player = GameObject.FindGameObjectWithTag("Player");
+        //target = player.transform;
 		moveTo();
 		if(Distance<1){
-			disparar(2,damage);
+			disparar(4.0f,damage);
 		}
 	}
 	
 	void moveTo(){
-	    myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
+	    myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(attack_location - myTransform.position), rotationSpeed * Time.deltaTime);
 	    myTransform.position += myTransform.forward * moveSpeed * Time.deltaTime;
     }
 	
@@ -56,7 +58,7 @@ public class Homing_missile : MonoBehaviour {
 	
 	private void disparar(float distancia,int dmg){
 		RaycastHit[] hits;
-
+		GameObject Explosion = (GameObject)Instantiate(Resources.Load("Homing_explosion"),myTransform.position,myTransform.rotation);
 		hits = Physics.RaycastAll (transform.position, (target.position - transform.position), distancia);; 
 	    int i = 0;
         while (i < hits.Length) {
@@ -71,18 +73,6 @@ public class Homing_missile : MonoBehaviour {
 		}
 		Destroy(gameObject);
 	}
-	/*private void disparar(float distancia,int dmg){
-		if(Physics.Raycast(transform.position, (target.position- transform.position), out hit, distancia)) {
-			if(hit.collider.gameObject.tag == "Player") {
-				Debug.Log("Missil ha fet "+dmg+" punts de dany");
-				hit.transform.gameObject.SendMessage("rebreAtac",dmg);
-			}
-			if(hit.collider.gameObject.tag != "Enemy") {
-				Destroy(gameObject);
-			}
-		}
-		
-	}*/
 	
 	private void OnCollisionEnter(Collision collision)
 	{
