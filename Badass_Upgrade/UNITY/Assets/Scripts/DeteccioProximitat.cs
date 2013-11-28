@@ -19,7 +19,7 @@ public class DeteccioProximitat : MonoBehaviour {
 	void OnTriggerStay(Collider other){
 		
             if(other.gameObject == player){
-				Debug.Log("Estic davan el boto");
+				//Debug.Log("Estic davan el boto");
 				CubOnVaCodi.SendMessage("proximAlBoto");
                         
             }
@@ -27,7 +27,7 @@ public class DeteccioProximitat : MonoBehaviour {
 	
 	
 	void OnTriggerExit(Collider other) {
-        Debug.Log("sortir de la deteccio");
+        //Debug.Log("sortir de la deteccio");
 		CubOnVaCodi.SendMessage("sortirDeLaDeteccio");
     }
 }
