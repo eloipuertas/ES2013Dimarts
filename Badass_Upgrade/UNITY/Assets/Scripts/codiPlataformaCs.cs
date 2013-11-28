@@ -44,12 +44,17 @@ public class codiPlataformaCs : MonoBehaviour {
 //>>>>>>> origin/dev
 	
 	void Start(){
+		PosicioInicialX = (this.transform.localPosition.x);  
+		PosicioInicialY = (this.transform.localPosition.y); 
+		PosicioInicialZ = (this.transform.localPosition.z); 
+		/*
 		PosicioInicialX = this.transform.position.x; 
-		PosicioInicialY = this.transform.position.y; 
-		PosicioInicialZ = this.transform.position.z; 
-		//Debug.Log(PosicioInicialX);
-		//Debug.Log(PosicioInicialY);
-		//Debug.Log(PosicioInicialZ);
+		PosicioInicialY = this.transform.position.y;
+		PosicioInicialZ = this.transform.position.z;
+		*/
+		Debug.Log(PosicioInicialX);
+		Debug.Log(PosicioInicialY);
+		Debug.Log(PosicioInicialZ);
 		
 	}
 	
@@ -89,39 +94,53 @@ public class codiPlataformaCs : MonoBehaviour {
 						
 					}
 				}
-				float x = this.transform.position.x;
-				float y = this.transform.position.y;
+				float x = this.transform.localPosition.x; 
+				float y = this.transform.localPosition.y; 
+				float z = (this.transform.localPosition.z); 
+				/*
+				float x = this.transform.position.x; 
+				float y = this.transform.position.y; 
 				float z = this.transform.position.z;
+				*/ 
+				Debug.Log(x);
 				Debug.Log(y);
-				if (x<PosicioFinalX){
-					paraPlataforma=true;
-					StartCoroutine(paraDelay());
-					direccio = !this.direccio;
+				Debug.Log(z);
+				
+				if(eix_X){
+					if (x<PosicioFinalX){
+						paraPlataforma=true;
+						StartCoroutine(paraDelay());
+						direccio = !this.direccio;
+					}
+					if (x>PosicioInicialX){
+						paraPlataforma=true;
+						StartCoroutine(paraDelay());
+						direccio = !this.direccio;
+					}
 				}
-				if (x>PosicioInicialX){
-					paraPlataforma=true;
-					StartCoroutine(paraDelay());
-					direccio = !this.direccio;
+				if(eix_Y){	
+					if (y<PosicioFinalY){
+						paraPlataforma=true;
+						StartCoroutine(paraDelay());
+						direccio = !this.direccio;
+					}
+					if (y>PosicioInicialY){
+						paraPlataforma=true;
+						StartCoroutine(paraDelay());
+						direccio = !this.direccio;
+					}
 				}
-				if (y<PosicioFinalY){
-					paraPlataforma=true;
-					StartCoroutine(paraDelay());
-					direccio = !this.direccio;
-				}
-				if (y>PosicioInicialY){
-					paraPlataforma=true;
-					StartCoroutine(paraDelay());
-					direccio = !this.direccio;
-				}
-				if (z<PosicioFinalZ){
-					paraPlataforma=true;
-					StartCoroutine(paraDelay());
-					direccio = !this.direccio;
-				}
-				if (z>PosicioInicialZ){
-					paraPlataforma=true;
-					StartCoroutine(paraDelay());
-					direccio = !this.direccio;
+				if(eix_Z){
+					if (z<PosicioFinalZ){
+						paraPlataforma=true;
+						StartCoroutine(paraDelay());
+						direccio = !this.direccio;
+					}
+					if (z>PosicioInicialZ){
+						paraPlataforma=true;
+						StartCoroutine(paraDelay());
+						direccio = !this.direccio;
+					}
 				}
 					
 			}else{
