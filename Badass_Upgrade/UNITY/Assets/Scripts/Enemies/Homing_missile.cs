@@ -12,6 +12,9 @@ public class Homing_missile : MonoBehaviour {
 	private int damage = 25;
 	RaycastHit hit;
 	private Transform myTransform;
+	private bool destroyed = false;
+	public float timerDestroyed = 0.0f;
+	
 	// Use this for initialization
 	void Start () {
 		myTransform = transform;
@@ -26,10 +29,20 @@ public class Homing_missile : MonoBehaviour {
 		Debug.DrawRay(transform.position, transform.forward);
 		//GameObject player = GameObject.FindGameObjectWithTag("Player");
         //target = player.transform;
-		moveTo();
-		if(Distance<1){
-			disparar(4.0f,damage);
+		
+		if(destroyed){
+			if(timerDestroyed+1.0f < Time.time){
+				Destroy(gameObject);
+			}
 		}
+		
+		if(!destroyed){
+			moveTo();
+			if(Distance<1){
+				disparar(4.0f,damage);
+			}
+		}
+		
 	}
 	
 	void moveTo(){
@@ -57,21 +70,30 @@ public class Homing_missile : MonoBehaviour {
 	
 	
 	private void disparar(float distancia,int dmg){
+		Component halo = GetComponent("Halo"); 		
 		RaycastHit[] hits;
-		GameObject Explosion = (GameObject)Instantiate(Resources.Load("Homing_explosion"),myTransform.position,myTransform.rotation);
-		hits = Physics.RaycastAll (transform.position, (target.position - transform.position), distancia);; 
-	    int i = 0;
-        while (i < hits.Length) {
-			Debug.Log("Tocat a: "+hits[i].collider.gameObject.tag);
-			if(hits[i].collider.gameObject.tag == "Player") {
-				Debug.Log("Missil ha fet "+dmg+" punts de dany");
-				hits[i].transform.gameObject.SendMessage("rebreAtac",dmg);
-				Destroy(gameObject);
-				break;
+		if(!destroyed){
+			GameObject Explosion = (GameObject)Instantiate(Resources.Load("Homing_explosion"),myTransform.position,myTransform.rotation);
+			hits = Physics.RaycastAll (transform.position, (target.position - transform.position), distancia);; 
+		    int i = 0;
+	        while (i < hits.Length) {
+				Debug.Log("Tocat a: "+hits[i].collider.gameObject.tag);
+				if(hits[i].collider.gameObject.tag == "Player") {
+					Debug.Log("Missil ha fet "+dmg+" punts de dany");
+					hits[i].transform.gameObject.SendMessage("rebreAtac",dmg);
+					halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
+					destroyed = true;
+					timerDestroyed = Time.time;
+					//Destroy(gameObject);
+					break;
+				}
+				i++;
 			}
-			i++;
+			destroyed = true;
+			timerDestroyed = Time.time;
+			halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
+			//Destroy(gameObject);
 		}
-		Destroy(gameObject);
 	}
 	
 	private void OnCollisionEnter(Collision collision)
