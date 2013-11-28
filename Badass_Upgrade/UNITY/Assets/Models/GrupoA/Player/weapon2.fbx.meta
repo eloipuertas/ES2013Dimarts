@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 52c815f7052f2814c8c8c4cc5111dd48
+guid: 20e2da8fed08f504abb683f4c57f6079
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -155,7 +155,7 @@ ModelImporter:
     - name: Default Take
       takeName: Default Take
       firstFrame: 0
-      lastFrame: 379
+      lastFrame: 419
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -238,7 +238,7 @@ ModelImporter:
       transformMask: []
     - name: Correr
       takeName: Default Take
-      firstFrame: 123
+      firstFrame: 120
       lastFrame: 147
       wrapMode: 0
       orientationOffsetY: 0
@@ -280,8 +280,8 @@ ModelImporter:
       transformMask: []
     - name: ActivarBoton
       takeName: Default Take
-      firstFrame: 307
-      lastFrame: 340
+      firstFrame: 333
+      lastFrame: 366
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -301,8 +301,8 @@ ModelImporter:
       transformMask: []
     - name: AtaqueMelee1
       takeName: Default Take
-      firstFrame: 185
-      lastFrame: 235
+      firstFrame: 190
+      lastFrame: 229
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -322,8 +322,8 @@ ModelImporter:
       transformMask: []
     - name: AtaqueMelee2
       takeName: Default Take
-      firstFrame: 185
-      lastFrame: 235
+      firstFrame: 190
+      lastFrame: 229
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -343,7 +343,7 @@ ModelImporter:
       transformMask: []
     - name: Dany
       takeName: Default Take
-      firstFrame: 244
+      firstFrame: 239
       lastFrame: 260
       wrapMode: 0
       orientationOffsetY: 0
@@ -364,8 +364,8 @@ ModelImporter:
       transformMask: []
     - name: StandBy
       takeName: Default Take
-      firstFrame: 264
-      lastFrame: 309
+      firstFrame: 258
+      lastFrame: 313
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -385,8 +385,8 @@ ModelImporter:
       transformMask: []
     - name: Enfundar
       takeName: Default Take
-      firstFrame: 346
-      lastFrame: 379
+      firstFrame: 361
+      lastFrame: 406
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
