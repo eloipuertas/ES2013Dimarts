@@ -7,12 +7,23 @@ public class codiPlataformaCs : MonoBehaviour {
 	//public GameObject Player;
 	public GameObject player;
 	bool direccio=false;
+	bool plataformaQuieta = false;
 	public bool botoActivat=false;
+	
 	public bool eix_X;
 	public bool eix_Y;
 	public bool eix_Z;
-	public int distancia = 250;
-	int cont = 0;
+	public float PosicioFinalX;
+	public float PosicioFinalY;
+	public float PosicioFinalZ;
+	
+	float PosicioInicialX; 
+	float PosicioInicialY;
+	float PosicioInicialZ;
+	bool paraPlataforma=false;
+
+	//public int distancia = 250;
+	//int cont = 0;
 	
 	bool itemBounceUp = false;
 
@@ -32,54 +43,116 @@ public class codiPlataformaCs : MonoBehaviour {
 	}*/
 //>>>>>>> origin/dev
 	
-
-	void Update () {
+	void Start(){
+		PosicioInicialX = this.transform.position.x; 
+		PosicioInicialY = this.transform.position.y; 
+		PosicioInicialZ = this.transform.position.z; 
+		//Debug.Log(PosicioInicialX);
+		//Debug.Log(PosicioInicialY);
+		//Debug.Log(PosicioInicialZ);
 		
+	}
+	
+	void Update(){
+		moviment();
+	}
+	
+	void moviment() {
 		float translation = Time.deltaTime * 2;
         
 		if (botoActivat){
-			if (direccio){
-				if(eix_X){
-					this.transform.Translate(translation, 0, 0);
-					//this.transform.position += Vector3.right * 0.05f;
+			if(!paraPlataforma){
+				if (direccio){
+					if(eix_X){
+						this.transform.Translate(translation, 0, 0);
+						
+					}
+					if(eix_Y){
+						this.transform.Translate(0, translation, 0);
+					
+					}
+					if(eix_Z){
+						this.transform.Translate(0, 0, translation);
+					}
+					
+				}else{
+					if(eix_X){
+						this.transform.Translate(-translation, 0, 0);
+						
+					}
+					if(eix_Y){
+						this.transform.Translate(0, -translation, 0);
+					
+					}
+					if(eix_Z){
+						this.transform.Translate(0, 0, -translation);
+						
+					}
 				}
-				if(eix_Y){
-					this.transform.Translate(0, translation, 0);
-					//this.transform.position += Vector3.up * 0.05f;
-				
+				float x = this.transform.position.x;
+				float y = this.transform.position.y;
+				float z = this.transform.position.z;
+				Debug.Log(y);
+				if (x<PosicioFinalX){
+					paraPlataforma=true;
+					StartCoroutine(paraDelay());
+					direccio = !this.direccio;
 				}
-				if(eix_Z){
-					this.transform.Translate(0, 0, translation);
-					//this.transform.position += Vector3.back * 0.05f;
+				if (x>PosicioInicialX){
+					paraPlataforma=true;
+					StartCoroutine(paraDelay());
+					direccio = !this.direccio;
 				}
-				
+				if (y<PosicioFinalY){
+					paraPlataforma=true;
+					StartCoroutine(paraDelay());
+					direccio = !this.direccio;
+				}
+				if (y>PosicioInicialY){
+					paraPlataforma=true;
+					StartCoroutine(paraDelay());
+					direccio = !this.direccio;
+				}
+				if (z<PosicioFinalZ){
+					paraPlataforma=true;
+					StartCoroutine(paraDelay());
+					direccio = !this.direccio;
+				}
+				if (z>PosicioInicialZ){
+					paraPlataforma=true;
+					StartCoroutine(paraDelay());
+					direccio = !this.direccio;
+				}
+					
 			}else{
-				if(eix_X){
-					this.transform.Translate(-translation, 0, 0);
-					
-					//this.transform.position += Vector3.right * -0.05f;
-				}
-				if(eix_Y){
-					this.transform.Translate(0, -translation, 0);
-					//this.transform.position += Vector3.up * -0.05f;
+				this.transform.Translate(0, 0, 0);
+			}
 				
-				}
-				if(eix_Z){
-					this.transform.Translate(0, 0, -translation);
-					//this.transform.position += Vector3.back * -0.05f;
-					
-				}
-			}
 			
-			cont++;
-			if(distancia==cont){
-				direccio = !this.direccio;
-				cont=0;
-			}
+			
 		}
 		
 		
+		
 	}
+		
+	IEnumerator paraDelay(){
+		yield return new WaitForSeconds(2);
+		paraPlataforma=false;
+		Debug.Log("despres");
+		
+	}
+		
+		
+	/*
+	IEnumerator canviarDireccio(){
+		Debug.Log("dintre");
+		yield return new WaitForSeconds(2);
+		//this.direccio = !this.direccio;
+		Debug.Log("despres");
+		direccio = !this.direccio;
+		
+	}*/
 	/*
 	void mourePlataforma(){
 		float translation = Time.deltaTime * 10;
