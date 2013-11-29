@@ -14,10 +14,13 @@ public class ExitDoorTrigger : MonoBehaviour {
 	//Instanciacion de otros scripts
 	public HUD hud;
 	
+	int score;
+	
 	// Use this for initialization
 	void Start () {
 		
 		nivel_completado = false;
+		score = 0;
 		PlayerPrefs.SetInt("Nivel",nivel1);//Si el jugador empieza el nivel 1, se sobreescribe la partida.
 	
 	}
@@ -34,8 +37,14 @@ public class ExitDoorTrigger : MonoBehaviour {
 	public void OnTriggerEnter (Collider Player) {
 		if (Player.collider.tag == "Player") {       
 	    	Debug.Log ("Juego Terminado");
+			score = hud.getCurrentTotalScore();
+			
+			if (score>PlayerPrefs.GetInt("ScoreNivel1")){
+				PlayerPrefs.SetInt("ScoreNivel1",score);
+			}
+			
 			PlayerPrefs.SetInt("Nivel",nivel2);
-			PlayerPrefs.SetInt("ScoreNivel1",hud.getCurrentTotalScore());
+			
 			Application.LoadLevel(nivel2);
 		}
 	}
