@@ -120,12 +120,17 @@ public class AI2Spawner : MonoBehaviour {
 			if(state != "alerta"){
 				animation.Play("activar");
 				Destroy (shield);
+				Vector3 temp = target.position;
+				temp.y = 0.0f;
+				myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(temp - enemyChest), rotationSpeed * Time.deltaTime);
 			}
 			state="alerta";
 			//myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
 			/*animation.CrossFade("activar");*/
         }else if(Distance<=distancia_disparar){
-			//myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
+			Vector3 tp = target.position;
+			tp.y = 0.0f;
+			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(tp - enemyChest), rotationSpeed * Time.deltaTime);
 			state="shooting";
 			if(Time.time>timerDirection){
 				timerDirection=Time.time+directionChangeRate;

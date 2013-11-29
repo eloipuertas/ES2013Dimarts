@@ -143,11 +143,15 @@ public class AI2Shooter : MonoBehaviour {
 				Destroy (shield);
 			}
 			state="alerta";
-			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - enemyChest), rotationSpeed * Time.deltaTime);
+			Vector3 temp = target.position;
+			temp.y = 0.0f;
+			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(temp - enemyChest), rotationSpeed * Time.deltaTime);
 			/*animation.CrossFade("activar");*/
 				
         }else if(Distance<distancia_disparar /*&& Distance>distancia_perseguir*/){
-			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - enemyChest), rotationSpeed * Time.deltaTime);
+			Vector3 temp = target.position;
+			temp.y = 0.0f;
+			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(temp - enemyChest), rotationSpeed * Time.deltaTime);
 			state="shooting";
             attack(dist_dmg,true);
         }/*else if((Distance <=distancia_perseguir) && (Distance>distancia_melee)){
