@@ -201,14 +201,25 @@ public class AI2Spawner : MonoBehaviour {
 			if(vida<=0){
 				Debug.Log("Enemigo muerto");
 				hud.SendMessage("enemyDeath");
-				Vector3 temp = myTransform.position;
-				GameObject missile = (GameObject)Instantiate(Resources.Load("cura"),temp,myTransform.rotation);
+				drop();
 				Destroy(gameObject);
 			}
 		}
 	}
 	
-
+	
+	private void drop(){
+		Vector3 temp = myTransform.position;
+		int ra = Random.Range(0, 2);
+		if(ra==0){
+			ra = Random.Range(0, 2);
+			if(ra==0){
+				GameObject missile = (GameObject)Instantiate(Resources.Load("cura"),temp,myTransform.rotation);
+			}else{
+				GameObject missile = (GameObject)Instantiate(Resources.Load("municio"),temp,myTransform.rotation);
+			}
+		}	
+	}
 	
 	private void regenerar_escut(){
 		if(Time.time>timerEscut && escut<max_escut){

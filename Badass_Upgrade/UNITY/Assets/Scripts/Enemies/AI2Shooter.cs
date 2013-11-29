@@ -226,6 +226,7 @@ public class AI2Shooter : MonoBehaviour {
 			if(vida<=0){
 				Debug.Log("Enemigo muerto");
 				hud.SendMessage("enemyDeath");
+				drop();
 				Destroy(gameObject);
 			}
 		}
@@ -257,6 +258,18 @@ public class AI2Shooter : MonoBehaviour {
 
 	}
 	
+	private void drop(){
+		Vector3 temp = myTransform.position;
+		int ra = Random.Range(0, 2);
+		if(ra==0){
+			ra = Random.Range(0, 2);
+			if(ra==0){
+				GameObject missile = (GameObject)Instantiate(Resources.Load("cura"),temp,myTransform.rotation);
+			}else{
+				GameObject missile = (GameObject)Instantiate(Resources.Load("municio"),temp,myTransform.rotation);
+			}
+		}	
+	}
 	
 	private float reduir_mal(int dmg){
 		float v2;
