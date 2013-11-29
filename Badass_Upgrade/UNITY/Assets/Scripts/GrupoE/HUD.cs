@@ -171,6 +171,14 @@ public class HUD : MonoBehaviour {
 		score = score +10;
 		
 	}
+	
+	public void addEnemy(){
+		
+		numOfEnem++;
+		contadorEnemigos.text=numOfEnem.ToString();
+		
+	}
+	
 	public int getCurrentTotalScore(){
 		
 		score = score + robotProtagonista.vida;
