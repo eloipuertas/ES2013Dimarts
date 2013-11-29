@@ -218,32 +218,20 @@ public class AI2Shooter : MonoBehaviour {
 			}
 		}
 	}
+
 	
-	private void disparar(int distancia,int dmg){
-		RaycastHit[] hits;
-		hits = Physics.RaycastAll (transform.position, (target.position- transform.position), distancia);
-	    int i = 0;
-        while (i < hits.Length) {
-            RaycastHit hit = hits[i];
-			Debug.Log (hits[i]);
-	        if (hits[i].collider.tag == "Player"){
-				Debug.Log("ataco al player i li faig "+dmg+" punts de dany");
-				hit.transform.gameObject.SendMessage("rebreAtac",dmg);
-				break;
-			}else if(hits[i].collider.tag == null){
-				break;
-			}
-			i++;
-	    }
-		/*if(Physics.Raycast(transform.position, (target.position- transform.position), out hit, dis)) {
+	private void disparar(int dis,int dmg){
+		if(Physics.Raycast(transform.position, (target.position- transform.position), out hit, dis)) {
 			Debug.DrawLine(target.position, transform.position, Color.green);
 			Debug.DrawRay(transform.position, transform.forward,Color.blue);
 			//print (hit.collider.gameObject.tag);
 			if(hit.collider.gameObject.tag == "Player") {
-				
+				Debug.Log("ataco al player i li faig "+dmg+" punts de dany");
+				hit.transform.gameObject.SendMessage("rebreAtac",dmg,SendMessageOptions.DontRequireReceiver);
 			}
-		}*/
+		}
 	}
+	
 	
 	private void regenerar_escut(){
 		if(Time.time>timerEscut && escut<max_escut){
