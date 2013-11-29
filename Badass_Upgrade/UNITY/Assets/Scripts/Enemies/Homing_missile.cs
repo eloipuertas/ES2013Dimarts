@@ -34,9 +34,7 @@ public class Homing_missile : MonoBehaviour {
 			if(timerDestroyed+1.0f < Time.time){
 				Destroy(gameObject);
 			}
-		}
-		
-		if(!destroyed){
+		}else{
 			moveTo();
 			if(Distance<1){
 				disparar(4.0f,damage);
