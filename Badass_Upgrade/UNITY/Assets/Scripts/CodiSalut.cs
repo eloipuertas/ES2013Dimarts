@@ -3,11 +3,10 @@ using System.Collections;
 
 public class CodiSalut : MonoBehaviour {
 	
-	public GameObject CreuSalut;
-	public GameObject Player;
+	public GameObject player;
 	// Use this for initialization
 	void Start () {
-	
+		player = GameObject.FindGameObjectWithTag("Player");
 	}
 	
 	// Update is called once per frame
@@ -16,8 +15,10 @@ public class CodiSalut : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider other) {
-		Player.SendMessage("addItemVida",35);
-        Destroy(gameObject);
+		if(other.gameObject==player){
+			player.SendMessage("addItemVida",35);
+        	Destroy(gameObject);
+		}
 
 	}
 }

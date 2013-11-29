@@ -3,12 +3,12 @@ using System.Collections;
 
 public class CodiMunicio : MonoBehaviour {
 	
-	public GameObject Municio;
-	public GameObject Player;
+	public GameObject player;
 	
 	
 	// Use this for initialization
 	void Start () {
+		player = GameObject.FindGameObjectWithTag("Player");
 	
 	}
 	
@@ -19,9 +19,10 @@ public class CodiMunicio : MonoBehaviour {
 	
 
 	void OnTriggerEnter(Collider other) {
-		Player.SendMessage("addItemMunicio",10);
-        Destroy(gameObject);
-
+		if(other.gameObject==player){
+			player.SendMessage("addItemMunicio",10);
+	        Destroy(gameObject);
+		}
 	}
     
 
