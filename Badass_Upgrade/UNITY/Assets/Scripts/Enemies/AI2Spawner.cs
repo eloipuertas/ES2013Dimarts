@@ -27,6 +27,8 @@ public class AI2Spawner : MonoBehaviour {
 	private int temps_recarga_escut=2;
 	private float regen_escut=20;
 	private int armadura=3;
+	private int spawnmode=0;
+	private int totalsummoned=0;
 	
     //-------------------------------------------
     
@@ -128,7 +130,17 @@ public class AI2Spawner : MonoBehaviour {
 			if(Time.time>timerDirection){
 				timerDirection=Time.time+directionChangeRate;
         	}
-            spawn_enemy();
+			if(totalsummoned<3){
+            	spawn_enemy();
+			}else{
+				if(Time.time>timerAtac){
+					Vector3 temp = myTransform.position;
+					temp.y = temp.y+4.0f;
+					timerAtac=Time.time+fireRate;
+					GameObject missile = (GameObject)Instantiate(Resources.Load("Homing_missile_1"),temp,myTransform.rotation);
+				}
+			
+			}
         }else{
 			if(state != "away"){
 				animation.Play("desactivar");
@@ -158,6 +170,7 @@ public class AI2Spawner : MonoBehaviour {
 				temp.z = temp.z+Random.Range(2, 10);
 				timerAtac=Time.time+fireRate;
 				GameObject Spawned_Enemy = (GameObject)Instantiate(Resources.Load("enemy_chaser"),temp,myTransform.rotation);
+				totalsummoned+=1;
         }
      }
 	
@@ -192,6 +205,8 @@ public class AI2Spawner : MonoBehaviour {
 			}
 		}
 	}
+	
+
 	
 	private void regenerar_escut(){
 		if(Time.time>timerEscut && escut<max_escut){
