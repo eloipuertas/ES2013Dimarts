@@ -201,6 +201,8 @@ public class AI2Spawner : MonoBehaviour {
 			if(vida<=0){
 				Debug.Log("Enemigo muerto");
 				hud.SendMessage("enemyDeath");
+				Vector3 temp = myTransform.position;
+				GameObject missile = (GameObject)Instantiate(Resources.Load("cura"),temp,myTransform.rotation);
 				Destroy(gameObject);
 			}
 		}
