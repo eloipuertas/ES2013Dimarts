@@ -43,7 +43,8 @@ public class AI2Chaser : MonoBehaviour {
 	//vida
 	public GUITexture enemy_Healthbar;
 	float maxvida = 0.0f;
-	bool inSight,prev_inSight;
+	float timerShot;
+	bool inSight,prev_inSight,recently_shot;
 
     void Awake(){
         myTransform = transform;
@@ -79,6 +80,9 @@ public class AI2Chaser : MonoBehaviour {
 		
 		inSight=false;
 		prev_inSight=false;
+		
+		timerShot = Time.time;
+		recently_shot = false;
                 
      }
         
@@ -90,7 +94,11 @@ public class AI2Chaser : MonoBehaviour {
 		}else{
 			inSight = false;	
 		}
-		if (inSight && !prev_inSight){
+		if(timerShot+3.0f < Time.time){
+			recently_shot = false;
+		}
+		
+		if (inSight && !prev_inSight && recently_shot){
 			float percent = 0.0f;
 			percent = vida/maxvida;
 			percent = percent*100;
@@ -100,7 +108,7 @@ public class AI2Chaser : MonoBehaviour {
 			Size_width = percent*Size_width;
 			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,1);
 			prev_inSight = true;
-		}else if(!inSight){
+		}else if(!inSight|| !recently_shot){
 			//Debug.Log ("NOT PAINTING");
 			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(0.0f,0.0f,0.0f);
 			prev_inSight = false;
@@ -156,6 +164,8 @@ public class AI2Chaser : MonoBehaviour {
 	
 	public void rebreDany(int dmg){
 		vida-=dmg;
+			recently_shot = true;
+			timerShot = Time.time;
 		
 		/*if (vida < maxvida*0.5f){
 			ParticleSystem particlesystem = (ParticleSystem)gameObject.GetComponent("ParticleSystem");
