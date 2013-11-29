@@ -30,7 +30,7 @@ ModelImporter:
     400022: Lamp_005
     400024: //RootNode
     4300000: Cube
-    7400000: Default Take
+    7400000: Rotacion
     7400002: Action
     9500000: //RootNode
     11100000: //RootNode
@@ -46,9 +46,9 @@ ModelImporter:
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
-    animationWrapMode: 0
+    animationWrapMode: 2
     clipAnimations:
-    - name: Default Take
+    - name: Rotacion
       takeName: Default Take
       firstFrame: 0
       lastFrame: 99
@@ -56,7 +56,7 @@ ModelImporter:
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
-      loop: 0
+      loop: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
