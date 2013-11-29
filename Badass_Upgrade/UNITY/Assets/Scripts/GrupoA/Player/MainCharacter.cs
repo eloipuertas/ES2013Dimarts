@@ -35,7 +35,7 @@ public class MainCharacter : MonoBehaviour {
 	float meleeDistance = 1.8f;
 	public float shotDistance = 20f;
 	int damageMelee = 10;	
-	float buttonDistance = 2.2f;
+	float buttonDistance = 1.7f;
 	
 	//down
 	public GameObject player;
@@ -217,7 +217,6 @@ public class MainCharacter : MonoBehaviour {
 			AudioSource.PlayClipAtPoint(meleSound,transform.position,0.9F);
 		}
 		else if((Input.GetButtonDown("Usar"))) {
-			Debug.Log("Usar boto");
 			tempsAnteriorStandBy = Time.time;
 			weapons[posWeapon].useButton();			
 			if(Physics.Raycast(cam.position, cam.forward,out hit, buttonDistance)) { 
