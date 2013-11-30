@@ -37,16 +37,16 @@ public class controlGUI : MonoBehaviour
 		{	
 			Time.timeScale = 0;
 			AudioListener.pause = true;
-			cameraML.enabled = false;
-			playerML.enabled = false;
+//			cameraML.enabled = false;
+			//playerML.enabled = false;
 			Screen.showCursor=true;
 			Screen.lockCursor = false; //Queremos usar el cursor cuando se muestra el menu.
 		}
 		else{
 			Time.timeScale = 1;
 			AudioListener.pause = false;
-			cameraML.enabled = true;
-			playerML.enabled = true;
+//			cameraML.enabled = true;
+//			playerML.enabled = true;
 			Screen.showCursor = false;
 			Screen.lockCursor = true; //No queremos ver el cursor durante la partida.
 			
