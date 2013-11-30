@@ -62,7 +62,8 @@ public class MainCharacter : MonoBehaviour {
 	//S'haura d'ajustar en funcio del model de l'arma
 	float xPosShot = -0.5f;
 	float yPosShot;
-	float constY = 3.5f;
+	float constY = 2.5f;
+	public GameObject posBullet;
 	
 	float tempsActual;
 	float tempsAnterior;
@@ -140,15 +141,15 @@ public class MainCharacter : MonoBehaviour {
 		}
 		else if((Input.GetButton("Disparar")) && (posWeapon == 1) && (balesCarregador > 0)) {
 			tempsAnteriorStandBy = Time.time;
-			//balesCarregador = weapons[posWeapon].disparar();
 			tempsActual = Time.time;
 			if(tempsActual - tempsAnterior > fireRate) {
 				//Actualitzo el temps anterior
 				tempsAnterior = tempsActual;
 				yPosShot = mouseLook.rotationY + constY;	
-				Rigidbody instantedProjectile = Instantiate(projectile,weapon2.transform.position,cameraPlayer.transform.rotation) as Rigidbody;
+				Rigidbody instantedProjectile = Instantiate(projectile,posBullet.transform.position,cameraPlayer.transform.rotation) as Rigidbody;
 				//instantedProjectile.velocity = transform.TransformDirection(new Vector3(xPosShot,yPosShot,speed));
-				instantedProjectile.velocity = transform.TransformDirection(new Vector3(-1f,yPosShot,speed));
+				instantedProjectile.velocity = transform.TransformDirection(new Vector3(0f,yPosShot,speed));
+				//instantedProjectile.velocity = transform.TransformDirection(new Vector3(0f,0f,speed));
 				instantedProjectile.SendMessage("addDamage",weapons[posWeapon].damage);
 				balesCarregador = weapons[posWeapon].disparar();
 				
