@@ -92,8 +92,6 @@ public class Weapon : MonoBehaviour {
 	}
 	
 	public int recarregar() {
-		//Debug.Log("bales totals "+balesTotals);
-		//Debug.Log("bales actuals carregador "+balesActualCarregador);
 		if((balesTotals > 0) && (balesActualCarregador < tamanyCarregador)) {
 			Debug.Log("entra if");
 				modelWeapon.animation.Play("Recargar");		
@@ -125,26 +123,11 @@ public class Weapon : MonoBehaviour {
 		
 	
 	// Use this for initialization
-	void Start () {	
-		
+	void Start () {		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		/*if(tiempoAnimacionCaminar <= 0){	
-			Debug.Log("Animacio caminar posweapon "+modelWeapon.tag);
-			if((Input.GetButton("Horizontal") && !Input.GetButton("Caminar")) || (Input.GetButton("Vertical")  && !Input.GetButton("Caminar") )) {		
-				//Debug.Log("Entra a correr" );
-				moveWeapon();
-				tiempoAnimacionCaminar = tiempoAnimacionCaminarMAX;
-			}			
-			else if((Input.GetButton("Horizontal") && Input.GetButton("Caminar")) || (Input.GetButton("Vertical") && Input.GetButton("Caminar")))	{
-				//Debug.Log("Entra a caminar" );
-				walkWeapon();
-				tiempoAnimacionCaminar = tiempoAnimacionCaminarMAX;
-			}
-		}
-		tiempoAnimacionCaminar = tiempoAnimacionCaminar - Time.deltaTime;*/	
 	}
 	
 }

@@ -112,6 +112,7 @@ public class MainCharacter : MonoBehaviour {
 		
 		mouseLook = cam.GetComponent <MouseLook>();
 		
+		
 		//Inicialitzo el temps
 		tempsAnterior = Time.time;
 		tempsAnteriorStandBy = tempsAnterior;
@@ -119,7 +120,6 @@ public class MainCharacter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
 		if((Input.GetButtonDown("Disparar")) && (balesCarregador > 0) && (posWeapon == 0) ) {
 			tempsAnteriorStandBy = Time.time;
 			balesCarregador = weapons[posWeapon].disparar();
@@ -326,10 +326,14 @@ public class MainCharacter : MonoBehaviour {
 			this.escudo = maxEscudo;
 	}
 	
-	void addItemMunicio(int municio) {
-		weapons[posWeapon].addBalesTotals(municio);
+	void addItemMunicio(int[] municioWeapon) {
+		int municio = municioWeapon[0];
+		int pos = municioWeapon[1];
+		weapons[municioWeapon[1]].addBalesTotals(municio);
+		if(posWeapon == pos)
+			balesTotalsArmaActual += municio;
+		
 	}
-	
 	//Rebre dany de l'enemic
 	void rebreAtac(int dany) {
 		tempsAnteriorStandBy = Time.time;

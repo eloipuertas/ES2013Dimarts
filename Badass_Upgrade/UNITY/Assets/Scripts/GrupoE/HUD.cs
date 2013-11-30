@@ -130,7 +130,7 @@ public class HUD : MonoBehaviour {
 		vidaText.text = robotProtagonista.vida.ToString();
 		escudoText.text = robotProtagonista.escudo.ToString();		
 		
-		balasCargadorText.text = robotProtagonista.balesCarregador.ToString();;
+		balasCargadorText.text = robotProtagonista.balesCarregador.ToString();
 		balasTotalesText.text = robotProtagonista.balesTotalsArmaActual.ToString();
 		
 		weaponPos = robotProtagonista.posWeapon;
@@ -187,5 +187,15 @@ public class HUD : MonoBehaviour {
 		score = score + robotProtagonista.balesTotalsArmaActual;
 		
 		return score;
+	}
+	
+	public void actualitzarBales(int[] municioWeapon) {
+		int municio = municioWeapon[0];
+		int posWeapon = municioWeapon[1];
+		
+		if(posWeapon == weaponPos) {
+			balasTotalesText.text = municio.ToString();	
+		}
+		
 	}
 }
