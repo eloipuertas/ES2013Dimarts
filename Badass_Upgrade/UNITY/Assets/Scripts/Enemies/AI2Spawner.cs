@@ -157,7 +157,7 @@ public class AI2Spawner : MonoBehaviour {
         }else{
 			if(state != "away"){
 				animation.Play("desactivar");
-				shield = (GameObject)Instantiate(Resources.Load("Enemy_Shield"),myTransform.position,myTransform.rotation);
+				//shield = (GameObject)Instantiate(Resources.Load("Enemy_Shield"),myTransform.position,myTransform.rotation);
 			}
 			state="away";
 			//Debug.Log("Enemic inactiu");
