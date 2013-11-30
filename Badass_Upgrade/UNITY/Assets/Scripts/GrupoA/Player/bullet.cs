@@ -7,11 +7,13 @@ public class bullet : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-	
+		//Si no toca re, al cap de 5 segons desapareix
+		Destroy(this.gameObject,5f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		
 	}
 	
 	void OnTriggerEnter(Collider other) {
@@ -25,8 +27,7 @@ public class bullet : MonoBehaviour {
 		else if(other.collider.gameObject.tag != "Enemy" && (other.collider.gameObject.tag != "Player")) {
 			Destroy(this.gameObject);
 		}
-		//Si no toca re, al cap de 5 segons desapareix
-		Destroy(this.gameObject,5f);
+		
     }
 	
 	void addDamage(int damage) {
