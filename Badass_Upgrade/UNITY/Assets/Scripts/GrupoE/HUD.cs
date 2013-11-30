@@ -164,7 +164,7 @@ public class HUD : MonoBehaviour {
 	
 	//Cuando muere un enemigo, se actualiza el contador de enemigos
 	public void enemyDeath(){
-		
+		Debug.Log("Entra enemyDeath");
 		numOfEnem--;
 		contadorEnemigos.text=numOfEnem.ToString();
 		

@@ -155,7 +155,7 @@ public class AI2Homing : MonoBehaviour {
         }*/else{
 			if(state != "away"){
 				animation.Play("desactivar");
-//				shield = (GameObject)Instantiate(Resources.Load("Enemy_Shield"),myTransform.position,myTransform.rotation);
+				shield = (GameObject)Instantiate(Resources.Load("Enemy_Shield"),myTransform.position,myTransform.rotation);
 			}
 			animation.Play("ajupit");
 			state="away";
