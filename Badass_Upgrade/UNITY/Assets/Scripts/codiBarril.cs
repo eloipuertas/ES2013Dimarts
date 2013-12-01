@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ProvesBarril : MonoBehaviour {
+public class codiBarril : MonoBehaviour {
 	
 	const int MULTIPLICADOR = 20;
 	const float DISTANCIA_MAXIMA = 15;
@@ -13,10 +13,11 @@ public class ProvesBarril : MonoBehaviour {
 	public GameObject Barril;
 	public GameObject Destroy;
 	public GameObject Fire;
-	public GameObject Player;
+	GameObject Player;
 	
 	// Use this for initialization
 	void Start () {
+		Player = GameObject.FindGameObjectWithTag("Player");
 		Destroy.SetActive(false);
 		Fire.SetActive(false);
 		//Barril.SetActive(false);
@@ -28,13 +29,10 @@ public class ProvesBarril : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		
+			
 	}
 	
 	void rebreTir(){
-		
-		
 		vida -= 1;
 		if (vida<=2){
 			Fire.SetActive(true);
@@ -49,8 +47,5 @@ public class ProvesBarril : MonoBehaviour {
 			Destroy.SetActive(true);
 			
 		}
-		
 	}
-	
-	
 }
