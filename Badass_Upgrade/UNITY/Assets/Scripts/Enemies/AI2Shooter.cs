@@ -45,7 +45,8 @@ public class AI2Shooter : MonoBehaviour {
 	public GUITexture enemy_Healthbar;
 	float maxvida = 0.0f;
 	float timerShot;
-	bool inSight,prev_inSight,recently_shot;
+	bool inSight,prev_inSight,recently_shot,isShowingLaser;
+	LineRenderer linerenderer;
 	
 	
 
@@ -89,6 +90,10 @@ public class AI2Shooter : MonoBehaviour {
 		recently_shot = false;
 		
 		hud.SendMessage("addEnemy");
+		
+		isShowingLaser=false;
+		linerenderer = (LineRenderer)gameObject.GetComponent("LineRenderer");
+		linerenderer.enabled = false;
 		
      }
         
@@ -145,13 +150,13 @@ public class AI2Shooter : MonoBehaviour {
 			}
 			state="alerta";
 			Vector3 temp = target.position;
-			temp.y = 0.0f;
+			//temp.y = 0.0f;
 			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(temp - enemyChest), rotationSpeed * Time.deltaTime);
 			/*animation.CrossFade("activar");*/
 				
         }else if(Distance<distancia_disparar /*&& Distance>distancia_perseguir*/){
 			Vector3 temp = target.position;
-			temp.y = 0.0f;
+			//temp.y = 0.0f;
 			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(temp - enemyChest), rotationSpeed * Time.deltaTime);
 			state="shooting";
             attack(dist_dmg,true);
@@ -239,6 +244,7 @@ public class AI2Shooter : MonoBehaviour {
 
 	
 	private void disparar(int dis,int dmg){
+		showLaser();
 		if(Physics.Raycast(transform.position, (target.position- transform.position), out hit, dis)) {
 			Debug.DrawLine(target.position, transform.position, Color.green);
 			Debug.DrawRay(transform.position, transform.forward,Color.blue);
@@ -291,6 +297,26 @@ public class AI2Shooter : MonoBehaviour {
 
 		return v2;
 
+	}
+	
+	public void showLaser()
+	{	
+		Debug.Log("LASERLASERLASER ON");
+		if(isShowingLaser){
+				return;
+		}
+		isShowingLaser = true;
+		linerenderer.enabled = true;
+		
+		//Invoke ("resetLaser", 0.1f);
+		Invoke ("resetLaser", 0.1f);
+	}
+		
+	public void resetLaser()
+	{    
+		linerenderer.enabled = false;
+		isShowingLaser = false;
+		Debug.Log("LASERLASERLASER OFF");
 	}
 
 }
