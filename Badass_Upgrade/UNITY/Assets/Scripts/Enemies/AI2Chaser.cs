@@ -57,7 +57,7 @@ public class AI2Chaser : MonoBehaviour {
     // Use this for initialization
     void Start () {
     	GameObject player = GameObject.FindGameObjectWithTag("Player");
-		hud = GameObject.FindGameObjectWithTag("MainCamera");
+		hud = GameObject.FindGameObjectWithTag("HUD Camera");
 		
         target = player.transform;
         timerAtac=Time.time;
@@ -83,6 +83,8 @@ public class AI2Chaser : MonoBehaviour {
 		
 		timerShot = Time.time;
 		recently_shot = false;
+		
+		hud.SendMessage("addEnemy");
                 
      }
         
