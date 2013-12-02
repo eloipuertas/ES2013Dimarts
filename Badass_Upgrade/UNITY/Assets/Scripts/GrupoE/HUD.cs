@@ -6,10 +6,10 @@ public class HUD : MonoBehaviour {
 	const int game_over = 4;
 	
 	//Contendra todos de enemigos en la escena
-	GameObject[] enem;
+	//GameObject[] enem;
 	
 	//El bloque que impide el paso en la salida
-	GameObject portal;
+	//GameObject portal;
 	
 	//Numero de enemigos en la escena
 	int numOfEnem;
@@ -18,7 +18,6 @@ public class HUD : MonoBehaviour {
 	int weaponPos;
 	
 	//Puntuacion
-	private int score;
 	
 	
 	
@@ -40,6 +39,8 @@ public class HUD : MonoBehaviour {
 	public GUIText balasCargadorText;
 	public GUIText balasTotalesText;
 	public GUIText contadorEnemigos;
+	public GUIText scoreText;	//Puntuacion
+	private int score;		// variable donde guardamos el resultado del score
 	//public GUIText slotArma1;
 	//public GUIText slotArma2;
 	public GUITexture healthLine;
@@ -82,11 +83,12 @@ public class HUD : MonoBehaviour {
 			linternaTexture.texture = linternaApagada;
 		}
 		
-		enem = GameObject.FindGameObjectsWithTag("Enemy");
-		numOfEnem = enem.Length;
-		contadorEnemigos.text=numOfEnem.ToString();
+		//enem = GameObject.FindGameObjectsWithTag("Enemy");
+		//numOfEnem = enem.Length;
+		numOfEnem=0;
+		//contadorEnemigos.text=numOfEnem.ToString();
 		
-		portal = GameObject.FindGameObjectWithTag("porta1");
+		//portal = GameObject.FindGameObjectWithTag("porta1");
 
 		vidaText.text = robotProtagonista.vida.ToString();
 		escudoText.text = robotProtagonista.escudo.ToString();
@@ -105,7 +107,7 @@ public class HUD : MonoBehaviour {
 		healthWidth = healthLine.pixelInset;
 		shieldWidth = shieldLine.pixelInset;
 		
-		score = 0;
+		scoreText.text = "0";
 	
 		c = wounded.color;
 		c.a = 0;
@@ -192,7 +194,8 @@ public class HUD : MonoBehaviour {
 		numOfEnem--;
 		contadorEnemigos.text=numOfEnem.ToString();
 		
-		score = score +10;
+		score = int.Parse(scoreText.text) + 10;
+		scoreText.text = score.ToString();
 		
 	}
 	
@@ -205,7 +208,7 @@ public class HUD : MonoBehaviour {
 	
 	public int getCurrentTotalScore(){
 		
-		score = score + robotProtagonista.vida;
+		score = int.Parse(scoreText.text) + robotProtagonista.vida;
 		score = score + robotProtagonista.escudo;
 		score = score + robotProtagonista.balesCarregador;
 		score = score + robotProtagonista.balesTotalsArmaActual;
