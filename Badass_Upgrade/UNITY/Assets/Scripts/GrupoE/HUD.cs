@@ -18,7 +18,6 @@ public class HUD : MonoBehaviour {
 	int weaponPos;
 	
 	//Puntuacion
-	private int score;
 	
 	
 	
@@ -40,6 +39,8 @@ public class HUD : MonoBehaviour {
 	public GUIText balasCargadorText;
 	public GUIText balasTotalesText;
 	public GUIText contadorEnemigos;
+	public GUIText scoreText;	//Puntuacion
+	private int score;		// variable donde guardamos el resultado del score
 	//public GUIText slotArma1;
 	//public GUIText slotArma2;
 	public GUITexture healthLine;
@@ -79,6 +80,7 @@ public class HUD : MonoBehaviour {
 		
 		//enem = GameObject.FindGameObjectsWithTag("Enemy");
 		//numOfEnem = enem.Length;
+		numOfEnem=0;
 		//contadorEnemigos.text=numOfEnem.ToString();
 		
 		//portal = GameObject.FindGameObjectWithTag("porta1");
@@ -100,7 +102,7 @@ public class HUD : MonoBehaviour {
 		healthWidth = healthLine.pixelInset;
 		shieldWidth = shieldLine.pixelInset;
 		
-		score = 0;
+		scoreText.text = "0";
 	
 		
 	}
@@ -168,7 +170,8 @@ public class HUD : MonoBehaviour {
 		numOfEnem--;
 		contadorEnemigos.text=numOfEnem.ToString();
 		
-		score = score +10;
+		score = int.Parse(scoreText.text) + 10;
+		scoreText.text = score.ToString();
 		
 	}
 	
@@ -181,7 +184,7 @@ public class HUD : MonoBehaviour {
 	
 	public int getCurrentTotalScore(){
 		
-		score = score + robotProtagonista.vida;
+		score = int.Parse(scoreText.text) + robotProtagonista.vida;
 		score = score + robotProtagonista.escudo;
 		score = score + robotProtagonista.balesCarregador;
 		score = score + robotProtagonista.balesTotalsArmaActual;
