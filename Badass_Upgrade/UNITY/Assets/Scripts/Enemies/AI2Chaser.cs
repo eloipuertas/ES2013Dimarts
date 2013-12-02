@@ -242,14 +242,15 @@ public class AI2Chaser : MonoBehaviour {
 	
 	private void drop(){
 		Vector3 temp = myTransform.position;
-		
 		int ra = Random.Range(0, 2);
 		if(ra==0){
-			ra = Random.Range(0, 2);
+			ra = Random.Range(0, 3);
 			if(ra==0){
 				GameObject missile = (GameObject)Instantiate(Resources.Load("cura"),temp,myTransform.rotation);
+			}else if(ra==1){
+				GameObject missile = (GameObject)Instantiate(Resources.Load("municio_pistola"),temp,myTransform.rotation);
 			}else{
-				GameObject missile = (GameObject)Instantiate(Resources.Load("municio"),temp,myTransform.rotation);
+				GameObject missile = (GameObject)Instantiate(Resources.Load("municio_rifle"),temp,myTransform.rotation);
 			}
 		}	
 	}

@@ -223,6 +223,7 @@ public class AI2Homing : MonoBehaviour {
 			if(vida<=0){
 				Debug.Log("Enemigo muerto");
 				hud.SendMessage("enemyDeath");
+				drop();
 				Destroy(gameObject);
 			}
 		}
@@ -252,6 +253,21 @@ public class AI2Homing : MonoBehaviour {
 
 	}
 	
+	
+	private void drop(){
+		Vector3 temp = myTransform.position;
+		int ra = Random.Range(0, 2);
+		if(ra==0){
+			ra = Random.Range(0, 3);
+			if(ra==0){
+				GameObject missile = (GameObject)Instantiate(Resources.Load("cura"),temp,myTransform.rotation);
+			}else if(ra==1){
+				GameObject missile = (GameObject)Instantiate(Resources.Load("municio_pistola"),temp,myTransform.rotation);
+			}else{
+				GameObject missile = (GameObject)Instantiate(Resources.Load("municio_rifle"),temp,myTransform.rotation);
+			}
+		}	
+	}
 	
 	private float reduir_mal(int dmg){
 		float v2;
