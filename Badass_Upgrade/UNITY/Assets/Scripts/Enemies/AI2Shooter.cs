@@ -160,7 +160,7 @@ public class AI2Shooter : MonoBehaviour {
 			//temp.y = 0.0f;
 			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(temp - enemyChest), rotationSpeed * Time.deltaTime);
 			state="shooting";
-            attack(dist_dmg,true);
+            attack(dist_dmg,true,Distance);
         }/*else if((Distance <=distancia_perseguir) && (Distance>distancia_melee)){
 			moveTo();
             state = "walking";
@@ -192,22 +192,27 @@ public class AI2Shooter : MonoBehaviour {
 	    //myTransform.position=new Vector3(myTransform.position.x,mov,myTransform.position.z);
     }
 
-    private void attack(int dmg,bool ranged){
+    private void attack(int dmg,bool ranged,float distancia){
+
+		
+		
         if(Time.time>timerAtac){
 			if(ranged){
 				Debug.Log("Shooting");
 				animation.CrossFade("disparar");
-				disparar(distancia_disparar,dist_dmg);
+				disparar(distancia_disparar,dist_dmg,distancia);
 			}else{
 				Debug.Log("Melee");
 				animation.CrossFade("melee");
-				disparar(distancia_disparar,melee_dmg);
+				disparar(distancia_disparar,melee_dmg,distancia);
 			}
             timerAtac=Time.time+fireRate;
         }
      }
 	
 	public void rebreDany(int dmg){
+
+		
 		if (state != "away" || !unhit){
 			vida-=dmg;
 			unhit=false;
@@ -246,16 +251,33 @@ public class AI2Shooter : MonoBehaviour {
 	}
 
 	
-	private void disparar(int dis,int dmg){
+	private void disparar(int dis,int dmg,float distancia){
 		showLaser();
 		if(Physics.Raycast(transform.position, (target.position- transform.position), out hit, dis)) {
 			Debug.DrawLine(target.position, transform.position, Color.green);
 			Debug.DrawRay(transform.position, transform.forward,Color.blue);
 			//print (hit.collider.gameObject.tag);
 			if(hit.collider.gameObject.tag == "Player") {
-				Debug.Log("ataco al player i li faig "+dmg+" punts de dany");
-				hit.transform.gameObject.SendMessage("rebreAtac",dmg,SendMessageOptions.DontRequireReceiver);
+				bool success=false;
+				int rr=Random.Range(0,11);
+
+				if(distancia<10){
+					success=true;
+				}else if (distancia>10 && distancia <20){
+					if(rr>2) success=true;
+					
+				}else if(distancia>20 && distancia<40){
+					if(rr>5) success=true;
+				else{
+					if(rr>8) success=true;
+				}
+				print ("lol"+success);
+				if (success){
+					Debug.Log("ataco al player i li faig "+dmg+" punts de dany");
+					hit.transform.gameObject.SendMessage("rebreAtac",dmg,SendMessageOptions.DontRequireReceiver);
+				}
 			}
+		}
 		}
 	}
 	
