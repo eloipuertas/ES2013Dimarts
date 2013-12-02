@@ -30,7 +30,7 @@ public class AI2Shooter : MonoBehaviour {
 	private int temps_recarga_escut=2;
 	private float regen_escut=20;
 	private int armadura=3;
-	
+	private bool unhit=true;
     //-------------------------------------------
     
     public Vector3 spawnPoint;
@@ -39,6 +39,7 @@ public class AI2Shooter : MonoBehaviour {
 	RaycastHit hit;
     GameObject hud;
     private Transform myTransform;
+	
 	
 	GameObject shield;
 	//vida
@@ -143,7 +144,7 @@ public class AI2Shooter : MonoBehaviour {
 			animation.Play("ajupit");
             //renderer.material.color=Color.blue;
             //retorn al spawnpoint?
-		}else */if(Distance<distancia_alerta && Distance>distancia_disparar){
+		}else */if(Distance<distancia_alerta && Distance>distancia_disparar && unhit){
 			if(state != "alerta" && state != "shooting"){
 				animation.Play("activar");
 				Destroy (shield);
@@ -171,11 +172,11 @@ public class AI2Shooter : MonoBehaviour {
 			Debug.Log("Atacant a melee");
 	        attack(melee_dmg,false);
         }*/else{
-			if(state != "away"){
+			if(state != "away" && unhit){
 				animation.Play("desactivar");
 				shield = (GameObject)Instantiate(Resources.Load("Enemy_Shield"),myTransform.position,myTransform.rotation);
 			}
-			animation.Play("ajupit");
+			//animation.Play("ajupit");
 			state="away";
 			//Debug.Log("Enemic inactiu");
 		}
@@ -207,8 +208,10 @@ public class AI2Shooter : MonoBehaviour {
      }
 	
 	public void rebreDany(int dmg){
-		if (state != "away"){
+		if (state != "away" || !unhit){
 			vida-=dmg;
+			unhit=false;
+			distancia_disparar=100;
 			recently_shot = true;
 			timerShot = Time.time;
 			

@@ -30,6 +30,7 @@ public class AI2Homing : MonoBehaviour {
 	private int temps_recarga_escut=2;
 	private float regen_escut=20;
 	private int armadura=3;
+	private bool unhit =true;
 	
     //-------------------------------------------
     
@@ -159,7 +160,7 @@ public class AI2Homing : MonoBehaviour {
 				animation.Play("desactivar");
 				shield = (GameObject)Instantiate(Resources.Load("Enemy_Shield"),myTransform.position,myTransform.rotation);
 			}
-			animation.Play("ajupit");
+			//animation.Play("ajupit");
 			state="away";
 			//Debug.Log("Enemic inactiu");
 		}
@@ -195,8 +196,10 @@ public class AI2Homing : MonoBehaviour {
      }
 	
 	public void rebreDany(int dmg){
-		if (state != "away"){
+		if (state != "away" || !unhit){
 			vida-=dmg;
+			unhit=false;
+			distancia_disparar=100;
 			recently_shot = true;
 			timerShot = Time.time;
 			
