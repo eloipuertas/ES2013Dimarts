@@ -227,8 +227,16 @@ public class codiPlataformaCs : MonoBehaviour {
 	}
 	
 	 void OnTriggerEnter(Collider other) {
+		Debug.Log("lalalalaIntotheshit");
         if(other.CompareTag("Player")){ 
         	other.gameObject.SendMessage("playerOnPlataforma", true);
+        }
+    }
+	
+	void OnTriggerExit(Collider other) {
+		Debug.Log("outoftheshit");
+        if(other.CompareTag("Player")){ 
+        	other.gameObject.SendMessage("playerOnPlataforma", false);
         }
     }
 
