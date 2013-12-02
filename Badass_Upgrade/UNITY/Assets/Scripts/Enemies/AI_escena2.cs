@@ -4,23 +4,15 @@ using System.Collections.Generic;
 using System;
 
 public class AI_escena2 : MonoBehaviour {
-    public Transform target;
-
-    //Noms de les animacions:
-	//ajupit
-	//actiu
-	//caminar
-	//disparar
-	//melee
-
+    private Transform target;
 
     //variables modificables segons la ia--------
-	public float vida=100;
-    public int moveSpeed=3;
-	public int rotationSpeed=2;
+	public float vida=1000;
+    private int moveSpeed=10;
+	private int rotationSpeed=10;
     float Distance;
-    int dist_dmg=15;
-	int melee_dmg=25;
+	int missile_dmg=1;
+
 	
 	//-------------------------
 	int patrullar =1;
@@ -31,7 +23,10 @@ public class AI_escena2 : MonoBehaviour {
 
 
 	//----------------------------------
-    private int fireRate=2;
+	private int numMissils=3;
+    private int fireRateMissils=5;
+	private int fireRateFoc=2;
+	private int fireRateTrail=1;
     private int distancia_alerta=20;
     private int distancia_perseguir=6;
     private int distancia_melee=2;
@@ -47,11 +42,12 @@ public class AI_escena2 : MonoBehaviour {
     
     public Vector3 spawnPoint;
     public string state;
-    public float timerAtac,timerEscut;
+    public float timerAtacMissils,timerAtacFoc,timerAtacTrail;
 	RaycastHit hit;
     GameObject enemyCount;
     private Transform myTransform;
 	GameObject player;
+	//private Vector3 attack_location;
 
     void Awake(){
         myTransform = transform;
@@ -63,11 +59,14 @@ public class AI_escena2 : MonoBehaviour {
 	
     // Use this for initialization
     void Start () {
-    	player = GameObject.FindGameObjectWithTag("Player");
-		enemyCount = GameObject.FindGameObjectWithTag("enemiesCount");
+    	GameObject player = GameObject.FindGameObjectWithTag("Player");
+        target = player.transform;
+		//attack_location = target.position;
 		
         target = player.transform;
-        timerAtac=Time.time;
+        timerAtacMissils=Time.time+fireRateMissils;
+		timerAtacFoc=Time.time+fireRateFoc;
+		timerAtacTrail=Time.time+fireRateTrail;
 		
 		
      }
@@ -75,11 +74,13 @@ public class AI_escena2 : MonoBehaviour {
      // Update is called once per frame
     void Update()
     {
-			segueix_waypoints();
+		segueix_waypoints();
+		missile_attack();
+		fire_area_attack();
+		trail_attack();
     }
 	
 	private void segueix_waypoints(){
-
 		//animation.CrossFade("caminar");
         GameObject punt = GameObject.Find(points[i]);
         Distance = Vector3.Distance(transform.position, punt.transform.position);
@@ -112,8 +113,59 @@ public class AI_escena2 : MonoBehaviour {
 	}
 	
 	
+	private void missile_attack(){
+		if(Time.time>timerAtacMissils){
+			int i=0;
+			for (i = 0;i<numMissils;i++){
+				//animation.CrossFade("disparar");
+				Debug.Log("Missile!");
+				Vector3 temp = myTransform.position;
+				int randomNumber = UnityEngine.Random.Range(-10, 10);
+				temp.x = temp.x+randomNumber;
+				temp.y = temp.y+12.0f;
+				randomNumber = UnityEngine.Random.Range(-10, 10);
+				temp.z = temp.x+randomNumber;
+				GameObject missile = (GameObject)Instantiate(Resources.Load("Homing_missile_1"),temp,myTransform.rotation);
+			}
+			timerAtacMissils=Time.time+fireRateMissils;
+		}
+	}
+	
+	private void fire_area_attack(){
+		if(Time.time>timerAtacFoc){
+			Debug.Log("Foc!");
+			/*GameObject player_temp = GameObject.FindGameObjectWithTag("Player");
+	        Transform target_temp = player_temp.transform;*/
+			//Vector3 attack_location = target.position;
+			Vector3 attack_location = target.position+(target.forward*5.0F);;
+			/*int randomNumber = UnityEngine.Random.Range(-2, 2);
+			attack_location.x = attack_location.x+randomNumber;
+			attack_location.y = attack_location.y+3.0f;
+			randomNumber = UnityEngine.Random.Range(-2, 2);
+			attack_location.z = attack_location.z+randomNumber;*/
+			GameObject foc = (GameObject)Instantiate(Resources.Load("boss_area_fire"),attack_location,myTransform.rotation);
+			timerAtacFoc=Time.time+fireRateFoc;
+		}
+	
+	}
 	
 	
+	private void trail_attack(){
+		if(Time.time>timerAtacTrail){
+			Debug.Log("Trail!");
+			/*GameObject player_temp = GameObject.FindGameObjectWithTag("Player");
+	        Transform target_temp = player_temp.transform;*/
+			Vector3 attack_location = myTransform.position-(myTransform.forward*8.0F);;
+			/*int randomNumber = UnityEngine.Random.Range(-2, 2);
+			attack_location.x = attack_location.x+randomNumber;
+			attack_location.y = attack_location.y+3.0f;
+			randomNumber = UnityEngine.Random.Range(-2, 2);
+			attack_location.z = attack_location.z+randomNumber;*/
+			GameObject foc = (GameObject)Instantiate(Resources.Load("boss_area_fire"),attack_location,myTransform.rotation);
+			timerAtacTrail=Time.time+fireRateTrail;
+		}
+	
+	}
 	
 	
     void moveTo(){
@@ -124,7 +176,7 @@ public class AI_escena2 : MonoBehaviour {
 	    //myTransform.position=new Vector3(myTransform.position.x,mov,myTransform.position.z);
     }
 
-    private void attack(int dmg,bool ranged){
+    /*private void attack(int dmg,bool ranged){
         if(Time.time>timerAtac){
 			if(ranged){
 				Debug.Log("Shooting");
@@ -137,14 +189,14 @@ public class AI_escena2 : MonoBehaviour {
 			}
             timerAtac=Time.time+fireRate;
         }
-     }
+     }*/
 	
 	public void rebreDany(int dmg){
 		vida-=dmg;
 		Debug.Log("Enemigo atacado quedan "+vida+" puntos de vida");
 		if(vida<=0){
 			Debug.Log("Enemigo muerto");
-			enemyCount.SendMessage("enemyDeath");
+			//enemyCount.SendMessage("enemyDeath");
 			Destroy(gameObject);
 		}
 	}
@@ -160,19 +212,6 @@ public class AI_escena2 : MonoBehaviour {
 			}
 		}
 	}
-	
-	private void regenerar_escut(){
-		if(Time.time>timerEscut && escut<max_escut){
-			escut+=max_escut *(regen_escut/100);
-			if(escut>max_escut){
-					escut=max_escut;
-			}
-			
-			timerEscut=Time.time+temps_recarga_escut;
-		}
-
-	}
-	
 	
 	private float reduir_mal(int dmg){
 		float v2;

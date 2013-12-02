@@ -9,7 +9,7 @@ public class Homing_missile : MonoBehaviour {
 	float Distance;
     public int moveSpeed=8;
 	public int rotationSpeed=2;
-	private int damage = 25;
+	private int damage = 1;
 	RaycastHit hit;
 	private Transform myTransform;
 	private bool destroyed = false;
@@ -17,6 +17,7 @@ public class Homing_missile : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		Destroy(this.gameObject,5.0f);
 		myTransform = transform;
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
         target = player.transform;
