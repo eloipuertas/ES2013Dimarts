@@ -29,6 +29,10 @@ public class walkingSound : MonoBehaviour {
 			}
 		}
 	}
-		
+	
+	void playerOnPlataforma(bool plataforma){
+		onPlataforma = plataforma;
+		Debug.Log("yolooooooo");
+	}
 
 }

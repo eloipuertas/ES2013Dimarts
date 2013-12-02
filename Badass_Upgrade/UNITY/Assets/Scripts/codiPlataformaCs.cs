@@ -225,5 +225,11 @@ public class codiPlataformaCs : MonoBehaviour {
 		this.transform.position += Vector3.up * -0.5f; //TODO: Its only works for UP/DOWN platforms
 		this.botoActivat = true;
 	}
+	
+	 void OnTriggerEnter(Collider other) {
+        if(other.CompareTag("Player")){ 
+        	other.gameObject.SendMessage("playerOnPlataforma", true);
+        }
+    }
 
 }
