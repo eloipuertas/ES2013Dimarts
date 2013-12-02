@@ -6,10 +6,10 @@ public class HUD : MonoBehaviour {
 	const int game_over = 4;
 	
 	//Contendra todos de enemigos en la escena
-	GameObject[] enem;
+	//GameObject[] enem;
 	
 	//El bloque que impide el paso en la salida
-	GameObject portal;
+	//GameObject portal;
 	
 	//Numero de enemigos en la escena
 	int numOfEnem;
@@ -77,11 +77,11 @@ public class HUD : MonoBehaviour {
 			linternaTexture.texture = linternaApagada;
 		}
 		
-		enem = GameObject.FindGameObjectsWithTag("Enemy");
-		numOfEnem = enem.Length;
-		contadorEnemigos.text=numOfEnem.ToString();
+		//enem = GameObject.FindGameObjectsWithTag("Enemy");
+		//numOfEnem = enem.Length;
+		//contadorEnemigos.text=numOfEnem.ToString();
 		
-		portal = GameObject.FindGameObjectWithTag("porta1");
+		//portal = GameObject.FindGameObjectWithTag("porta1");
 
 		vidaText.text = robotProtagonista.vida.ToString();
 		escudoText.text = robotProtagonista.escudo.ToString();
