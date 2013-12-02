@@ -63,6 +63,11 @@ public class HUD : MonoBehaviour {
 	Rect arma1;
 	Rect arma2;
 	
+	public int previousStat;
+	public GUITexture wounded;
+	private Color c;
+	public float fadeTime, fadeMax;
+	
 	//The first method to be called
 	void Awake(){
 				
@@ -102,11 +107,30 @@ public class HUD : MonoBehaviour {
 		
 		score = 0;
 	
+		c = wounded.color;
+		c.a = 0;
+		wounded.color = c;
+		previousStat = 200;
+		fadeMax = 1;
+		fadeTime = 0;
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		
+		/* Shows damage in the HUD when the player's heald or shield decreases*/
+		if(previousStat > robotProtagonista.vida + robotProtagonista.escudo){
+			fadeTime = 1;
+		}
+		previousStat = robotProtagonista.vida + robotProtagonista.escudo;
+		if(fadeTime > 0.0f){
+			float Alpha = Mathf.InverseLerp(0.0f,1.0f,fadeTime/fadeMax);
+			Color MyColor = wounded.color;
+	        MyColor.a = Alpha;
+		    wounded.color = MyColor;
+			fadeTime -= Time.deltaTime;
+		}
 		
 		if(linterna.activeLinterna){
 			linternaTexture.texture = linternaEncendida;
