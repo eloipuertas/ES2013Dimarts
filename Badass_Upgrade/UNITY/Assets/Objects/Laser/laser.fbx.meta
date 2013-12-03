@@ -14,6 +14,7 @@ ModelImporter:
     2300000: Cylinder
     3300000: Cylinder
     4300000: Cylinder
+    6400000: Cylinder
     7400000: Default Take
     9500000: //RootNode
     11100000: //RootNode
@@ -51,7 +52,7 @@ ModelImporter:
     splitTangentsAcrossUV: 1
     normalImportMode: 0
     tangentImportMode: 1
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     human: []
