@@ -12,7 +12,7 @@ public class HUD : MonoBehaviour {
 	//GameObject portal;
 	
 	//Numero de enemigos en la escena
-	int numOfEnem;
+	int numOfEnem=0;
 	
 	//Slot de arma equipada
 	int weaponPos;
@@ -85,7 +85,7 @@ public class HUD : MonoBehaviour {
 		
 		//enem = GameObject.FindGameObjectsWithTag("Enemy");
 		//numOfEnem = enem.Length;
-		numOfEnem=0;
+		//numOfEnem=0;
 		//contadorEnemigos.text=numOfEnem.ToString();
 		
 		//portal = GameObject.FindGameObjectWithTag("porta1");
