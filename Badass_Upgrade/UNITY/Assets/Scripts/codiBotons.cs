@@ -9,9 +9,9 @@ public class codiBotons : MonoBehaviour {
 	public GameObject Buto;
 	public GameObject Palanca;
 	public GameObject Pulsador;
-	public GameObject Player;
 	public GameObject DeteccioProximitat;
 	public AudioClip buttonSound;
+	GameObject Player;
 	
 	
 	Color colorRed = Color.red;
@@ -25,6 +25,7 @@ public class codiBotons : MonoBehaviour {
 	bool activat=false;
 	
 	void Start () {
+		Player = GameObject.FindGameObjectWithTag("Player");		
 		if(Buto){
 			Pulsador.renderer.material.color = colorRed; 
 			
@@ -80,8 +81,6 @@ public class codiBotons : MonoBehaviour {
 		Debug.Log("INvertitttttt");
 		Palanca.animation["Desactivar"].speed = -1;
     	Palanca.animation["Desactivar"].time = Palanca.animation["Desactivar"].length;
-		
-
 	}
 	
 	
