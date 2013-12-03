@@ -7,12 +7,10 @@ public class AI_escena2 : MonoBehaviour {
     private Transform target;
 
     //variables modificables segons la ia--------
-	public float vida=1000;
-    private int moveSpeed=10;
+	public float vida=100;
+    private int moveSpeed=8;
 	private int rotationSpeed=10;
     float Distance;
-	int missile_dmg=1;
-
 	
 	//-------------------------
 	int patrullar =1;
@@ -24,13 +22,12 @@ public class AI_escena2 : MonoBehaviour {
 
 	//----------------------------------
 	private int numMissils=3;
-    private int fireRateMissils=5;
-	private int fireRateFoc=2;
-	private int fireRateTrail=1;
-    private int distancia_alerta=20;
-    private int distancia_perseguir=6;
-    private int distancia_melee=2;
-	private int distancia_disparar = 15;
+    private int fireRateMissils=15;
+	private int fireRateFoc=10;
+	private float fireRateTrail=0.5f;
+	private float fireRateMelee=3.0f;
+    private float distancia_melee=8.0f;
+	private float melee_damage=50.0f;
 	private float escut =100, max_escut=100;
 	private int temps_recarga_escut=2;
 	private float regen_escut=20;
@@ -42,7 +39,7 @@ public class AI_escena2 : MonoBehaviour {
     
     public Vector3 spawnPoint;
     public string state;
-    public float timerAtacMissils,timerAtacFoc,timerAtacTrail;
+    public float timerAtacMissils,timerAtacFoc,timerAtacTrail,timerAtacMelee;
 	RaycastHit hit;
     GameObject enemyCount;
     private Transform myTransform;
@@ -67,6 +64,7 @@ public class AI_escena2 : MonoBehaviour {
         timerAtacMissils=Time.time+fireRateMissils;
 		timerAtacFoc=Time.time+fireRateFoc;
 		timerAtacTrail=Time.time+fireRateTrail;
+		timerAtacMelee=Time.time+fireRateMelee;
 		
 		
      }
@@ -78,6 +76,7 @@ public class AI_escena2 : MonoBehaviour {
 		missile_attack();
 		fire_area_attack();
 		trail_attack();
+		melee_attack();
     }
 	
 	private void segueix_waypoints(){
@@ -134,10 +133,7 @@ public class AI_escena2 : MonoBehaviour {
 	private void fire_area_attack(){
 		if(Time.time>timerAtacFoc){
 			Debug.Log("Foc!");
-			/*GameObject player_temp = GameObject.FindGameObjectWithTag("Player");
-	        Transform target_temp = player_temp.transform;*/
-			//Vector3 attack_location = target.position;
-			Vector3 attack_location = target.position+(target.forward*5.0F);;
+			Vector3 attack_location = target.position+(target.forward*5.0F);
 			/*int randomNumber = UnityEngine.Random.Range(-2, 2);
 			attack_location.x = attack_location.x+randomNumber;
 			attack_location.y = attack_location.y+3.0f;
@@ -153,20 +149,37 @@ public class AI_escena2 : MonoBehaviour {
 	private void trail_attack(){
 		if(Time.time>timerAtacTrail){
 			Debug.Log("Trail!");
-			/*GameObject player_temp = GameObject.FindGameObjectWithTag("Player");
-	        Transform target_temp = player_temp.transform;*/
-			Vector3 attack_location = myTransform.position-(myTransform.forward*8.0F);;
+			Vector3 attack_location = myTransform.position-(myTransform.forward*8.0F);
+			attack_location.y = attack_location.y+2.0f;
 			/*int randomNumber = UnityEngine.Random.Range(-2, 2);
 			attack_location.x = attack_location.x+randomNumber;
 			attack_location.y = attack_location.y+3.0f;
 			randomNumber = UnityEngine.Random.Range(-2, 2);
 			attack_location.z = attack_location.z+randomNumber;*/
-			GameObject foc = (GameObject)Instantiate(Resources.Load("boss_area_fire"),attack_location,myTransform.rotation);
+			GameObject acid = (GameObject)Instantiate(Resources.Load("boss_trail"),attack_location,myTransform.rotation);
 			timerAtacTrail=Time.time+fireRateTrail;
 		}
 	
 	}
 	
+	private void melee_attack(){
+		if(Time.time>timerAtacMelee){
+			float player_distance=Vector3.Distance(target.position,transform.position);
+			if(player_distance<distancia_melee){
+				patrullar = 0;
+				Invoke ("set_patrullar_on", 2);
+				GameObject temp_player = GameObject.FindGameObjectWithTag("Player");
+				Debug.Log("Melee!");
+				temp_player.SendMessage("rebreAtac", melee_damage);
+				timerAtacMelee=Time.time+fireRateMelee;
+			}
+		}
+	
+	}
+	
+	private void set_patrullar_on(){
+		patrullar = 1;	
+	}
 	
     void moveTo(){
 	    myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
