@@ -11,7 +11,7 @@ public class codiBotons : MonoBehaviour {
 	public GameObject Pulsador;
 	public GameObject Player;
 	public GameObject DeteccioProximitat;
-//	public AudioClip buttonSound;
+	public AudioClip buttonSound;
 	
 	
 	Color colorRed = Color.red;
@@ -81,7 +81,7 @@ public class codiBotons : MonoBehaviour {
 	IEnumerator activarBoto(){
 		Debug.Log("btooooooo");
 		
-//		AudioSource.PlayClipAtPoint(buttonSound,transform.position,0.9F);
+		AudioSource.PlayClipAtPoint(buttonSound,transform.position,0.9F);
 		if (Palanca){
 			if (!activat){
 				Palanca.animation.CrossFade("Activar");
