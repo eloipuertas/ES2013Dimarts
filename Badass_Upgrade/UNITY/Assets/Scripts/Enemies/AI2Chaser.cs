@@ -14,14 +14,14 @@ public class AI2Chaser : MonoBehaviour {
 
     //variables modificables segons la ia--------
 	public float vida=40;
-    public int moveSpeed=10;
-	public int rotationSpeed=2;
+    private int moveSpeed=7;
+	private int rotationSpeed=2;
     float Distance;
     int dist_dmg=15;
-	int melee_dmg=2;
+	private int melee_dmg=1;
 
 	//----------------------------------
-    private float fireRate=0.15f;
+    private float fireRate=0.5f;
     private int distancia_alerta=20;
     private int distancia_perseguir=6;
     private int distancia_melee=3;
