@@ -3,11 +3,11 @@ using System.Collections;
 
 public class CodiLaserVermell : MonoBehaviour {
 	
-	public GameObject Player;
+	GameObject player;
 	public int valorDany;
 	// Use this for initialization
 	void Start () {
-	
+		player = GameObject.FindGameObjectWithTag("Player");
 	}
 	
 	// Update is called once per frame
@@ -19,7 +19,7 @@ public class CodiLaserVermell : MonoBehaviour {
 		Debug.Log("Dintre laser vermell");
 		if(other.CompareTag("Player")){ 
 	
-        	Player.gameObject.SendMessage("rebreAtac", valorDany);
+        	player.gameObject.SendMessage("rebreAtac", valorDany);
         }
 	}
 }
