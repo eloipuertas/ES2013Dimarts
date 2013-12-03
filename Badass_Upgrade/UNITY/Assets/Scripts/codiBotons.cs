@@ -16,7 +16,9 @@ public class codiBotons : MonoBehaviour {
 	
 	Color colorRed = Color.red;
     Color colorGreen = Color.green;
-	Color colorYellow = Color.yellow;
+	Color colorWhite = Color.white;
+	//Color colorGreenGamma = Color.green;
+	//Color colorRedGamma = Color.red.gamma;
 	float duration = 1.0F;
 	
 	bool saClicat=false;
@@ -46,9 +48,14 @@ public class codiBotons : MonoBehaviour {
 	
 	void proximAlBoto(){
 		if (!saClicat){
-			float lerp = Mathf.PingPong(Time.time, duration) / duration;
-		    Pulsador.renderer.material.color = Color.Lerp(colorRed, colorGreen, lerp);
-			//Pulsador.renderer.material.color = colorYellow;
+			if(activat){
+				float lerp = Mathf.PingPong(Time.time, duration) / duration;
+			    Pulsador.renderer.material.color = Color.Lerp( colorWhite, colorGreen,lerp);
+			}else{
+				float lerp = Mathf.PingPong(Time.time, duration) / duration;
+			    Pulsador.renderer.material.color = Color.Lerp(colorWhite,colorRed,  lerp);
+			}
+		
 		}
 	}
 	
