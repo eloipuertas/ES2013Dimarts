@@ -21,6 +21,7 @@ public class MainCharacter : MonoBehaviour {
 	
 	// So de les armes 
 	public AudioClip[] weaponSound;
+	// public AudioClip weaponSwap;
 	
 	//Atributs de les armes
 	public int posWeapon;
@@ -168,6 +169,8 @@ public class MainCharacter : MonoBehaviour {
 			balesTotalsArmaActual = weapons[posWeapon].balesTotals;
 			weapons[posWeapon].showWeapon();
 			
+			// AudioSource.PlayClipAtPoint(weaponSwap, transform.position, 0.9f);
+			
 		}
 		else if(Input.GetButtonDown("Arma 2")) {
 			tempsAnteriorStandBy = Time.time;
@@ -178,6 +181,8 @@ public class MainCharacter : MonoBehaviour {
 			balesCarregador = weapons[posWeapon].getBalesActualCarregador();
 			balesTotalsArmaActual = weapons[posWeapon].balesTotals;
 			weapons[posWeapon].showWeapon();
+			
+			// AudioSource.PlayClipAtPoint(weaponSwap, transform.position, 0.9f);
 			
 		}
 		else if(Input.GetButtonDown("Recargar")) {
