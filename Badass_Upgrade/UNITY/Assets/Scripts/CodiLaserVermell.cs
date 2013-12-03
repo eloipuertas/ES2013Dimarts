@@ -16,9 +16,7 @@ public class CodiLaserVermell : MonoBehaviour {
 	}
 	
 	void OnTriggerStay(Collider other){
-		Debug.Log("Dintre laser vermell");
 		if(other.CompareTag("Player")){ 
-	
         	player.gameObject.SendMessage("rebreAtac", valorDany);
         }
 	}
