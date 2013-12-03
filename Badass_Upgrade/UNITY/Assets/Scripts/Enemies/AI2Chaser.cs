@@ -84,7 +84,9 @@ public class AI2Chaser : MonoBehaviour {
 		timerShot = Time.time;
 		recently_shot = false;
 		
-		hud.SendMessage("addEnemy");
+		Destroy(this.gameObject,20.0f);
+		
+		//hud.SendMessage("addEnemy");
                 
      }
         
@@ -191,7 +193,7 @@ public class AI2Chaser : MonoBehaviour {
 		Debug.Log("Enemigo atacado quedan "+vida+" puntos de vida");
 		if(vida<=0){
 			Debug.Log("Enemigo muerto");
-			hud.SendMessage("enemyDeath");
+			//hud.SendMessage("enemyDeath");
 			drop();
 			Destroy(gameObject);
 		}

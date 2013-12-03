@@ -14,7 +14,7 @@ public class AI_escena2 : MonoBehaviour {
 	
 	//-------------------------
 	int patrullar =1;
-	string[] points={"Waypoint1","Waypoint2","Waypoint3","Waypoint4"};
+	string[] points={"Waypoint1","Waypoint2","Waypoint3","Waypoint4","Waypoint5","Waypoint6"};
 	int i=0;
 	int activacio=1;
 	
@@ -72,11 +72,22 @@ public class AI_escena2 : MonoBehaviour {
      // Update is called once per frame
     void Update()
     {
+		float player_distance=Vector3.Distance(target.position,transform.position);
+		if(player_distance>distancia_melee){
+			patrullar = 1;	
+			trail_attack();
+		}else{
+			melee_attack();
+		}
 		segueix_waypoints();
-		missile_attack();
-		fire_area_attack();
-		trail_attack();
-		melee_attack();
+		
+		if(player_distance<50.0f){
+			missile_attack();
+			fire_area_attack();
+		}
+		
+		
+		
     }
 	
 	private void segueix_waypoints(){
@@ -163,16 +174,16 @@ public class AI_escena2 : MonoBehaviour {
 	}
 	
 	private void melee_attack(){
+		patrullar = 0;
 		if(Time.time>timerAtacMelee){
-			float player_distance=Vector3.Distance(target.position,transform.position);
-			if(player_distance<distancia_melee){
-				patrullar = 0;
-				Invoke ("set_patrullar_on", 2);
+			/*float player_distance=Vector3.Distance(target.position,transform.position);
+			if(player_distance<distancia_melee){*/
+				//Invoke ("set_patrullar_on", 2);
 				GameObject temp_player = GameObject.FindGameObjectWithTag("Player");
 				Debug.Log("Melee!");
 				temp_player.SendMessage("rebreAtac", melee_damage);
 				timerAtacMelee=Time.time+fireRateMelee;
-			}
+			//}
 		}
 	
 	}
