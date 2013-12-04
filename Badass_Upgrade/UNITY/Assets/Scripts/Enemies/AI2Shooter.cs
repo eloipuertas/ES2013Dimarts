@@ -42,7 +42,6 @@ public class AI2Shooter : MonoBehaviour {
 	
 	
 	GameObject shield;
-	//vida
 	public GUITexture enemy_Healthbar;
 	float maxvida = 0.0f;
 	float timerShot;
@@ -100,11 +99,10 @@ public class AI2Shooter : MonoBehaviour {
         
      // Update is called once per frame
      void Update () {
-		//Debug.Log (state);
 		
 		if(Vector3.Dot(target.forward, myTransform.position - target.position)>=0) {
 			inSight = true;
-			//Debug.Log (target.forward.ToString()+" "+myTransform.position.ToString()+" "+target.position.ToString());
+
 		}else{
 			inSight = false;	
 		}
@@ -124,61 +122,38 @@ public class AI2Shooter : MonoBehaviour {
 			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,1);
 			prev_inSight = true;
 		}else if(!inSight || !recently_shot){
-			//Debug.Log ("NOT PAINTING");
 			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(0.0f,0.0f,0.0f);
 			prev_inSight = false;
 		}
 		
-		
-		//regenerar_escut();
-       	//myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
 		Distance=Vector3.Distance(target.position,transform.position);
 		
 		Vector3 enemyChest = myTransform.position+Vector3.up*1.6f;
         Debug.DrawRay(enemyChest, transform.forward);
-		//Debug.DrawLine(target.position, myTransform.position, Color.yellow);
-                
-       /* if(Distance>distancia_alerta && Vector3.Distance(spawnPoint, transform.position)>3){
-        	state="away";
-			Debug.Log("Enemic inactiu");
-			animation.Play("ajupit");
-            //renderer.material.color=Color.blue;
-            //retorn al spawnpoint?
-		}else */if(Distance<distancia_alerta && Distance>distancia_disparar && unhit){
+		if(Distance<distancia_alerta && Distance>distancia_disparar && unhit){
 			if(state != "alerta" && state != "shooting"){
 				animation.Play("activar");
 				Destroy (shield);
 			}
 			state="alerta";
 			Vector3 temp = target.position;
-			//temp.y = 0.0f;
 			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(temp - enemyChest), rotationSpeed * Time.deltaTime);
-			/*animation.CrossFade("activar");*/
+
 				
-        }else if(Distance<distancia_disparar /*&& Distance>distancia_perseguir*/){
+        }else if(Distance<distancia_disparar){
 			Vector3 temp = target.position;
 			//temp.y = 0.0f;
 			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(temp - enemyChest), rotationSpeed * Time.deltaTime);
 			state="shooting";
             attack(dist_dmg,true,Distance);
-        }/*else if((Distance <=distancia_perseguir) && (Distance>distancia_melee)){
-			moveTo();
-            state = "walking";
-			animation.CrossFade("caminar");
-        }else if(Distance<distancia_melee ){
-			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
-	        state="attack";
-	        //renderer.material.color=Color.red;
-			Debug.Log("Atacant a melee");
-	        attack(melee_dmg,false);
-        }*/else{
+        }else{
 			if(state != "away" && unhit){
 				animation.Play("desactivar");
 				shield = (GameObject)Instantiate(Resources.Load("Enemy_Shield"),myTransform.position,myTransform.rotation);
 			}
-			//animation.Play("ajupit");
+
 			state="away";
-			//Debug.Log("Enemic inactiu");
+
 		}
 	}
         
@@ -187,9 +162,6 @@ public class AI2Shooter : MonoBehaviour {
 		Vector3 enemyChest = myTransform.position+Vector3.up*1.6f;
 	    myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - enemyChest), rotationSpeed * Time.deltaTime);
 	    myTransform.position += myTransform.forward * moveSpeed * Time.deltaTime;
-	    //float mov= myTransform.position.y -(gravetat * Time.deltaTime);
-	    //myTransform.position.y =mov;
-	    //myTransform.position=new Vector3(myTransform.position.x,mov,myTransform.position.z);
     }
 
     private void attack(int dmg,bool ranged,float distancia){
@@ -229,9 +201,6 @@ public class AI2Shooter : MonoBehaviour {
 			float percent = 0.0f;
 			percent = vida/maxvida;
 			percent = percent*100;
-			//enemy_Healthbar.guiTexture.pixelInset.Set(enemy_Healthbar.guiTexture.pixelInset.x,enemy_Healthbar.guiTexture.pixelInset.y,percent,enemy_Healthbar.guiTexture.pixelInset.height);
-			//Rect temp1 = new Rect(0, 0, percent, 10);
-			//enemy_Healthbar.guiTexture.pixelInset=temp1;
 			float Size_width = 0.0005f;
 			float Size_height = 0.0050f;
 			
@@ -256,7 +225,7 @@ public class AI2Shooter : MonoBehaviour {
 		if(Physics.Raycast(transform.position, (target.position- transform.position), out hit, dis)) {
 			Debug.DrawLine(target.position, transform.position, Color.green);
 			Debug.DrawRay(transform.position, transform.forward,Color.blue);
-			//print (hit.collider.gameObject.tag);
+			print ("wtf is this"+hit.collider.gameObject.tag);
 			if(hit.collider.gameObject.tag == "Player") {
 				bool success=false;
 				int rr=Random.Range(0,11);
@@ -268,16 +237,15 @@ public class AI2Shooter : MonoBehaviour {
 					
 				}else if(distancia>20 && distancia<40){
 					if(rr>5) success=true;
-				else{
+				}else{
 					if(rr>8) success=true;
 				}
 				print ("lol"+success);
 				if (success){
-					Debug.Log("ataco al player i li faig "+dmg+" punts de dany");
-					hit.transform.gameObject.SendMessage("rebreAtac",dmg,SendMessageOptions.DontRequireReceiver);
+					GameObject.FindGameObjectWithTag("Player").SendMessage("rebreAtac",dmg);
 				}
 			}
-		}
+			
 		}
 	}
 	
@@ -309,6 +277,7 @@ public class AI2Shooter : MonoBehaviour {
 		}	
 	}
 	
+	
 	private float reduir_mal(int dmg){
 		float v2;
 		if(escut==0){
@@ -326,6 +295,7 @@ public class AI2Shooter : MonoBehaviour {
 
 	}
 	
+	
 	public void showLaser()
 	{	
 		Debug.Log("LASERLASERLASER ON");
@@ -334,11 +304,10 @@ public class AI2Shooter : MonoBehaviour {
 		}
 		isShowingLaser = true;
 		linerenderer.enabled = true;
-		
-		//Invoke ("resetLaser", 0.1f);
 		Invoke ("resetLaser", 0.1f);
 	}
 		
+	
 	public void resetLaser()
 	{    
 		linerenderer.enabled = false;
