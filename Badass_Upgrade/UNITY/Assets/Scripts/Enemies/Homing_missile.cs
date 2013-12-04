@@ -7,13 +7,14 @@ public class Homing_missile : MonoBehaviour {
 	public Transform target;
 	private Vector3 attack_location;
 	float Distance;
-    public int moveSpeed=8;
-	public int rotationSpeed=2;
+    private int moveSpeed=13;
+	private int rotationSpeed=20;
 	private int damage = 10;
 	RaycastHit hit;
 	private Transform myTransform;
 	private bool destroyed = false;
-	public float timerDestroyed = 0.0f;
+	public GameObject bomba;
+	public GameObject smoke_trail;
 	
 	// Use this for initialization
 	void Start () {
@@ -31,13 +32,10 @@ public class Homing_missile : MonoBehaviour {
 		//GameObject player = GameObject.FindGameObjectWithTag("Player");
         //target = player.transform;
 		
-		if(destroyed){
-			if(timerDestroyed+1.0f < Time.time){
-				Destroy(gameObject);
-			}
-		}else{
+		if(!destroyed){
 			moveTo();
 			if(Distance<1){
+			Debug.Log("DISPARAR");
 				disparar(4.0f,damage);
 			}
 		}
@@ -49,52 +47,30 @@ public class Homing_missile : MonoBehaviour {
 	    myTransform.position += myTransform.forward * moveSpeed * Time.deltaTime;
     }
 	
-	/*private void disparar(int distancia,int dmg){
+	private void disparar(float distancia,int dmg){
+		//Component halo = GetComponent("Halo");
 		RaycastHit[] hits;
-		hits = Physics.RaycastAll (transform.position, (target.position- transform.position), distancia);; 
+		//GameObject obj = gameObject.transform.Find("bombaNpc").gameObject;
+		//obj.activeSelf = false;
+		//halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
+		//Destroy (bomba);
+		//Destroy (smoke_trail);
+		GameObject Explosion = (GameObject)Instantiate(Resources.Load("Homing_explosion"),myTransform.position,myTransform.rotation);
+		hits = Physics.RaycastAll (transform.position, (target.position - transform.position), distancia);; 
 	    int i = 0;
-        while (i < hits.Length) {
-            RaycastHit hit = hits[i];
-			Debug.Log (hits[i]);
-	        if (hits[i].collider.tag == "Player"){
-				Debug.Log("ataco al player i li faig "+dmg+" punts de dany");
-				hit.transform.gameObject.SendMessage("rebreAtac",dmg);
-				break;
-			}else if(hits[i].collider.tag == null){
+        while (i < hits.Length){
+			Debug.Log("Missil ha tocat a: "+hits[i].collider.gameObject.tag);
+			if(hits[i].collider.gameObject.tag == "Player") {
+				Debug.Log("Missil ha fet "+dmg+" punts de dany");
+				hits[i].transform.gameObject.SendMessage("rebreAtac",dmg);
 				break;
 			}
 			i++;
-	    }
-	}*/
-	
-	
-	private void disparar(float distancia,int dmg){
-		Component halo = GetComponent("Halo"); 		
-		RaycastHit[] hits;
-		if(!destroyed){
-			GameObject obj = gameObject.transform.Find("bombaNpc").gameObject;
-			Destroy (obj);
-			GameObject Explosion = (GameObject)Instantiate(Resources.Load("Homing_explosion"),myTransform.position,myTransform.rotation);
-			hits = Physics.RaycastAll (transform.position, (target.position - transform.position), distancia);; 
-		    int i = 0;
-	        while (i < hits.Length) {
-				Debug.Log("Tocat a: "+hits[i].collider.gameObject.tag);
-				if(hits[i].collider.gameObject.tag == "Player") {
-					Debug.Log("Missil ha fet "+dmg+" punts de dany");
-					hits[i].transform.gameObject.SendMessage("rebreAtac",dmg);
-					halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
-					destroyed = true;
-					timerDestroyed = Time.time;
-					//Destroy(gameObject);
-					break;
-				}
-				i++;
-			}
-			destroyed = true;
-			timerDestroyed = Time.time;
-			halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
-			//Destroy(gameObject);
 		}
+		
+		destroyed = true;
+		//Destroy(this.gameObject,1.0f);
+		Destroy(gameObject);
 	}
 	
 	private void OnCollisionEnter(Collision collision)
