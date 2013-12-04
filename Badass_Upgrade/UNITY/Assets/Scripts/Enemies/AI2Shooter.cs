@@ -26,7 +26,7 @@ public class AI2Shooter : MonoBehaviour {
     private int distancia_perseguir=6;
     private int distancia_melee=2;
 	private int distancia_disparar = 15;
-	private float escut =100, max_escut=100;
+	private float escut =40, max_escut=100;
 	private int temps_recarga_escut=2;
 	private float regen_escut=20;
 	private int armadura=3;
@@ -263,7 +263,7 @@ public class AI2Shooter : MonoBehaviour {
 	}
 	
 	private void drop(){
-		myTransform.rotation.Set(0,0,0);
+		myTransform.rotation.Set(0,0,0,0);
 		Vector3 temp = myTransform.position;
 		int ra = Random.Range(0, 2);
 		if(ra==0){

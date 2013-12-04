@@ -226,7 +226,7 @@ public class AI2Spawner : MonoBehaviour {
 	
 	
 	private void drop(){
-		myTransform.rotation.Set(0,0,0);
+		myTransform.rotation.Set(0,0,0,0);
 		Vector3 temp = myTransform.position;
 		int ra = Random.Range(0, 2);
 		if(ra==0){
