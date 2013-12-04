@@ -99,7 +99,6 @@ public class AI2Homing : MonoBehaviour {
 		
 		if(Vector3.Dot(target.forward, myTransform.position - target.position)>=0) {
 			inSight = true;
-			//Debug.Log (target.forward.ToString()+" "+myTransform.position.ToString()+" "+target.position.ToString());
 		}else{
 			inSight = false;	
 		}
@@ -119,50 +118,32 @@ public class AI2Homing : MonoBehaviour {
 			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,1);
 			prev_inSight = true;
 		}else if(!inSight || !recently_shot){
-			//Debug.Log ("NOT PAINTING");
 			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(0.0f,0.0f,0.0f);
 			prev_inSight = false;
 		}
-		//regenerar_escut();
-       	//myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
 		Distance=Vector3.Distance(target.position,transform.position);
 		
 		
 		Vector3 enemyChest = myTransform.position+Vector3.up*1.6f;
         Debug.DrawRay(enemyChest, transform.forward);
-		//Debug.DrawLine(target.position, myTransform.position, Color.yellow);
-                
-        /*if(Distance>distancia_alerta && Vector3.Distance(spawnPoint, transform.position)>3){
-        	state="away";
-			//Debug.Log("Enemic inactiu");
-			animation.Play("ajupit");
-            //renderer.material.color=Color.blue;
-            //retorn al spawnpoint?
-		}else */if(Distance<distancia_alerta && Distance>distancia_disparar){
+		if(Distance<distancia_alerta && Distance>distancia_disparar){
 			if(state != "alerta"){
 				animation.Play("activar");
 				Destroy (shield);
 			}
 			state="alerta";
 			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - enemyChest), rotationSpeed * Time.deltaTime);
-			/*animation.CrossFade("activar");*/
 				
-        }else if(Distance<distancia_disparar/* && Distance>distancia_perseguir*/){
+        }else if(Distance<distancia_disparar){
 			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - enemyChest), rotationSpeed * Time.deltaTime);
 			state="shooting";
             attack(dist_dmg,true);
-        }/*else if((Distance <=distancia_perseguir) && (Distance>distancia_melee)){
-			moveTo();
-            state = "walking";
-			animation.CrossFade("caminar");
-        }*/else{
+        }else{
 			if(state != "away"){
 				animation.Play("desactivar");
 				shield = (GameObject)Instantiate(Resources.Load("Enemy_Shield"),myTransform.position,myTransform.rotation);
 			}
-			//animation.Play("ajupit");
 			state="away";
-			//Debug.Log("Enemic inactiu");
 		}
 	}
         
@@ -171,9 +152,6 @@ public class AI2Homing : MonoBehaviour {
 		Vector3 enemyChest = myTransform.position+Vector3.up*1.6f;
 	    myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - enemyChest), rotationSpeed * Time.deltaTime);
 	    myTransform.position += myTransform.forward * moveSpeed * Time.deltaTime;
-	    //float mov= myTransform.position.y -(gravetat * Time.deltaTime);
-	    //myTransform.position.y =mov;
-	    //myTransform.position=new Vector3(myTransform.position.x,mov,myTransform.position.z);
     }
 
     private void attack(int dmg,bool ranged){
@@ -185,7 +163,6 @@ public class AI2Homing : MonoBehaviour {
 				temp.y = temp.y+4.0f;
 				timerAtac=Time.time+fireRate;
 				GameObject missile = (GameObject)Instantiate(Resources.Load("Homing_missile_1"),temp,myTransform.rotation);
-				//GameObject missile = (GameObject)Instantiate(Resources.Load("enemy"),temp,myTransform.rotation);
 			}else{
 				Debug.Log("Melee");
 				animation.CrossFade("melee");
@@ -211,9 +188,6 @@ public class AI2Homing : MonoBehaviour {
 			float percent = 0.0f;
 			percent = vida/maxvida;
 			percent = percent*100;
-			//enemy_Healthbar.guiTexture.pixelInset.Set(enemy_Healthbar.guiTexture.pixelInset.x,enemy_Healthbar.guiTexture.pixelInset.y,percent,enemy_Healthbar.guiTexture.pixelInset.height);
-			//Rect temp1 = new Rect(0, 0, percent, 10);
-			//enemy_Healthbar.guiTexture.pixelInset=temp1;
 			float Size_width = 0.0005f;
 			float Size_height = 0.0050f;
 			
@@ -236,7 +210,6 @@ public class AI2Homing : MonoBehaviour {
 		if(Physics.Raycast(transform.position, (target.position- transform.position), out hit, dis)) {
 			Debug.DrawLine(target.position, transform.position, Color.green);
 			Debug.DrawRay(transform.position, transform.forward,Color.blue);
-			//print (hit.collider.gameObject.tag);
 			if(hit.collider.gameObject.tag == "Player") {
 				Debug.Log("ataco al player i li faig "+dmg+" punts de dany");
 				hit.transform.gameObject.SendMessage("rebreAtac",dmg);
@@ -258,6 +231,7 @@ public class AI2Homing : MonoBehaviour {
 	
 	
 	private void drop(){
+		myTransform.rotation.Set(0,0,0);
 		Vector3 temp = myTransform.position;
 		int ra = Random.Range(0, 2);
 		if(ra==0){
