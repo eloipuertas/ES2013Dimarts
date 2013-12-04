@@ -40,10 +40,11 @@ public class AI2Homing : MonoBehaviour {
 	RaycastHit hit;
     GameObject hud;
     private Transform myTransform;
+	GameObject player;
 	
 	
+	GameObject Homing_missile;
 	
-	public GameObject Homing_missile;
 	GameObject shield;
 	//vida
 	public GUITexture enemy_Healthbar;
@@ -63,7 +64,7 @@ public class AI2Homing : MonoBehaviour {
 	
     // Use this for initialization
     void Start () {
-    	GameObject player = GameObject.FindGameObjectWithTag("Player");
+    	player = GameObject.FindGameObjectWithTag("Player");
 		hud = GameObject.FindGameObjectWithTag("HUD Camera");
 		
         target = player.transform;
@@ -132,9 +133,10 @@ public class AI2Homing : MonoBehaviour {
 				Destroy (shield);
 			}
 			state="alerta";
-			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - enemyChest), rotationSpeed * Time.deltaTime);
-				
-        }else if(Distance<distancia_disparar){
+			if(player.transform.position.y<5){
+				myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - enemyChest), rotationSpeed * Time.deltaTime);
+			}
+        }else if(Distance<distancia_disparar && player.transform.position.y<5){
 			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - enemyChest), rotationSpeed * Time.deltaTime);
 			state="shooting";
             attack(dist_dmg,true);

@@ -39,7 +39,7 @@ public class AI2Shooter : MonoBehaviour {
 	RaycastHit hit;
     GameObject hud;
     private Transform myTransform;
-	
+	GameObject player;
 	
 	GameObject shield;
 	public GUITexture enemy_Healthbar;
@@ -60,7 +60,7 @@ public class AI2Shooter : MonoBehaviour {
 	
     // Use this for initialization
     void Start () {
-    	GameObject player = GameObject.FindGameObjectWithTag("Player");
+    	player = GameObject.FindGameObjectWithTag("Player");
 		hud = GameObject.FindGameObjectWithTag("HUD Camera");
 		
         target = player.transform;
@@ -137,10 +137,11 @@ public class AI2Shooter : MonoBehaviour {
 			}
 			state="alerta";
 			Vector3 temp = target.position;
-			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(temp - enemyChest), rotationSpeed * Time.deltaTime);
-
+			if(player.transform.position.y<5){
+				myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(temp - enemyChest), rotationSpeed * Time.deltaTime);
+			}
 				
-        }else if(Distance<distancia_disparar){
+        }else if(Distance<distancia_disparar && player.transform.position.y<5){
 			Vector3 temp = target.position;
 			//temp.y = 0.0f;
 			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(temp - enemyChest), rotationSpeed * Time.deltaTime);
