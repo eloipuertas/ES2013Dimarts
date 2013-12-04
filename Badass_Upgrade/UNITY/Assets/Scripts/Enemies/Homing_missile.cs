@@ -17,7 +17,7 @@ public class Homing_missile : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		Destroy(this.gameObject,5.0f);
+		Destroy(this.gameObject,15.0f);
 		myTransform = transform;
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
         target = player.transform;
@@ -72,6 +72,8 @@ public class Homing_missile : MonoBehaviour {
 		Component halo = GetComponent("Halo"); 		
 		RaycastHit[] hits;
 		if(!destroyed){
+			GameObject obj = gameObject.transform.Find("bombaNpc").gameObject;
+			Destroy (obj);
 			GameObject Explosion = (GameObject)Instantiate(Resources.Load("Homing_explosion"),myTransform.position,myTransform.rotation);
 			hits = Physics.RaycastAll (transform.position, (target.position - transform.position), distancia);; 
 		    int i = 0;
