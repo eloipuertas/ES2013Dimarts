@@ -7,8 +7,8 @@ public class AI_escena2 : MonoBehaviour {
     private Transform target;
 
     //variables modificables segons la ia--------
-	public float vida=100;
-    private int moveSpeed=8;
+	private float vida=100;
+    private int moveSpeed=6;
 	private int rotationSpeed=10;
     float Distance;
 	
@@ -37,14 +37,21 @@ public class AI_escena2 : MonoBehaviour {
 
     //-------------------------------------------
     
-    public Vector3 spawnPoint;
-    public string state;
-    public float timerAtacMissils,timerAtacFoc,timerAtacTrail,timerAtacMelee;
+    private Vector3 spawnPoint;
+    private string state;
+    private float timerAtacMissils,timerAtacFoc,timerAtacTrail,timerAtacMelee;
 	RaycastHit hit;
     GameObject enemyCount;
     private Transform myTransform;
 	GameObject player;
 	//private Vector3 attack_location;
+	
+	public GUITexture enemy_Healthbar;
+	private float maxvida = 0.0f;
+	private	float timerShot;
+	private bool inSight,prev_inSight,recently_shot,isShowingLaser;
+	
+	GameObject hud;
 
     void Awake(){
         myTransform = transform;
@@ -66,12 +73,55 @@ public class AI_escena2 : MonoBehaviour {
 		timerAtacTrail=Time.time+fireRateTrail;
 		timerAtacMelee=Time.time+fireRateMelee;
 		
+		maxvida = vida;
+		float percent = 0.0f;
+		percent = vida/maxvida;
+		percent = percent*100;
+		float Size_width = 0.0005f;
+		float Size_height = 0.0050f;
+		Size_width = percent*Size_width;
+		enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,3);
+		inSight=false;
+		prev_inSight=false;
+		timerShot = Time.time;
+		recently_shot = false;
+		
+		hud = GameObject.FindGameObjectWithTag("HUD Camera");
+		hud.SendMessage("addEnemy");
 		
      }
         
      // Update is called once per frame
     void Update()
     {
+		if(Vector3.Dot(target.forward, myTransform.position - target.position)>=0) {
+			inSight = true;
+			//Debug.Log (target.forward.ToString()+" "+myTransform.position.ToString()+" "+target.position.ToString());
+		}else{
+			inSight = false;	
+		}
+		
+		if(timerShot+3.0f < Time.time){
+			recently_shot = false;
+		}
+		
+		if (inSight && !prev_inSight && recently_shot){
+			float percent = 0.0f;
+			percent = vida/maxvida;
+			percent = percent*100;
+			float Size_width = 0.0005f;
+			float Size_height = 0.0050f;
+			
+			Size_width = percent*Size_width;
+			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,3);
+			prev_inSight = true;
+		}else if(!inSight || !recently_shot){
+			//Debug.Log ("NOT PAINTING");
+			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(0.0f,0.0f,0.0f);
+			prev_inSight = false;
+		}
+		
+		
 		float player_distance=Vector3.Distance(target.position,transform.position);
 		if(player_distance>distancia_melee){
 			patrullar = 1;	
@@ -145,11 +195,6 @@ public class AI_escena2 : MonoBehaviour {
 		if(Time.time>timerAtacFoc){
 			Debug.Log("Foc!");
 			Vector3 attack_location = target.position+(target.forward*5.0F);
-			/*int randomNumber = UnityEngine.Random.Range(-2, 2);
-			attack_location.x = attack_location.x+randomNumber;
-			attack_location.y = attack_location.y+3.0f;
-			randomNumber = UnityEngine.Random.Range(-2, 2);
-			attack_location.z = attack_location.z+randomNumber;*/
 			GameObject foc = (GameObject)Instantiate(Resources.Load("boss_area_fire"),attack_location,myTransform.rotation);
 			timerAtacFoc=Time.time+fireRateFoc;
 		}
@@ -161,12 +206,7 @@ public class AI_escena2 : MonoBehaviour {
 		if(Time.time>timerAtacTrail){
 			Debug.Log("Trail!");
 			Vector3 attack_location = myTransform.position-(myTransform.forward*8.0F);
-			attack_location.y = attack_location.y+2.0f;
-			/*int randomNumber = UnityEngine.Random.Range(-2, 2);
-			attack_location.x = attack_location.x+randomNumber;
-			attack_location.y = attack_location.y+3.0f;
-			randomNumber = UnityEngine.Random.Range(-2, 2);
-			attack_location.z = attack_location.z+randomNumber;*/
+			attack_location.y = attack_location.y+0.5f;
 			GameObject acid = (GameObject)Instantiate(Resources.Load("boss_trail"),attack_location,myTransform.rotation);
 			timerAtacTrail=Time.time+fireRateTrail;
 		}
@@ -176,16 +216,11 @@ public class AI_escena2 : MonoBehaviour {
 	private void melee_attack(){
 		patrullar = 0;
 		if(Time.time>timerAtacMelee){
-			/*float player_distance=Vector3.Distance(target.position,transform.position);
-			if(player_distance<distancia_melee){*/
-				//Invoke ("set_patrullar_on", 2);
 				GameObject temp_player = GameObject.FindGameObjectWithTag("Player");
 				Debug.Log("Melee!");
 				temp_player.SendMessage("rebreAtac", melee_damage);
 				timerAtacMelee=Time.time+fireRateMelee;
-			//}
 		}
-	
 	}
 	
 	private void set_patrullar_on(){
@@ -195,32 +230,39 @@ public class AI_escena2 : MonoBehaviour {
     void moveTo(){
 	    myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
 	    myTransform.position += myTransform.forward * moveSpeed * Time.deltaTime;
-	    //float mov= myTransform.position.y -(gravetat * Time.deltaTime);
-	    //myTransform.position.y =mov;
-	    //myTransform.position=new Vector3(myTransform.position.x,mov,myTransform.position.z);
     }
 
-    /*private void attack(int dmg,bool ranged){
-        if(Time.time>timerAtac){
-			if(ranged){
-				Debug.Log("Shooting");
-				animation.CrossFade("disparar");
-				disparar(distancia_disparar,dist_dmg);
-			}else{
-				Debug.Log("Melee");
-				animation.CrossFade("melee");
-				disparar(distancia_disparar,melee_dmg);
-			}
-            timerAtac=Time.time+fireRate;
-        }
-     }*/
-	
 	public void rebreDany(int dmg){
 		vida-=dmg;
-		Debug.Log("Enemigo atacado quedan "+vida+" puntos de vida");
-		if(vida<=0){
+		
+		recently_shot = true;
+		timerShot = Time.time;
+		
+		float percent = 0.0f;
+		percent = vida/maxvida;
+		percent = percent*100;
+		float Size_width = 0.0005f;
+		float Size_height = 0.0050f;
+		Size_width = percent*Size_width;
+		enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,3);
+
+		
+		
+		Debug.Log("Boss atacado quedan "+vida+" puntos de vida.");
+		Debug.Log ("Boss:"+percent+"%");
+		if(percent <= 50.0f){
+			Vector3 temp = myTransform.position;
+			temp.x = 0.0f;
+			temp.y = 5.5f;
+			temp.z = 3.5f;
+			GameObject fire = (GameObject)Instantiate(Resources.Load("Boss_damaged_fire"),myTransform.position,myTransform.rotation);
+			fire.transform.parent = myTransform;
+			//fire.transform.position = myTransform.position;
+			fire.transform.localPosition = temp;
+		}else if(vida<=0){
 			Debug.Log("Enemigo muerto");
-			//enemyCount.SendMessage("enemyDeath");
+			GameObject Explosion = (GameObject)Instantiate(Resources.Load("Homing_explosion"),myTransform.position,myTransform.rotation);
+			hud.SendMessage("enemyDeath");
 			Destroy(gameObject);
 		}
 	}
@@ -229,7 +271,6 @@ public class AI_escena2 : MonoBehaviour {
 		if(Physics.Raycast(transform.position, (target.position- transform.position), out hit, dis)) {
 			Debug.DrawLine(target.position, transform.position, Color.green);
 			Debug.DrawRay(transform.position, transform.forward,Color.blue);
-			//print (hit.collider.gameObject.tag);
 			if(hit.collider.gameObject.tag == "Player") {
 				Debug.Log("ataco al player i li faig "+dmg+" punts de dany");
 				hit.transform.gameObject.SendMessage("rebreAtac",dmg);

@@ -9,7 +9,7 @@ public class Homing_missile : MonoBehaviour {
 	float Distance;
     public int moveSpeed=8;
 	public int rotationSpeed=2;
-	private int damage = 1;
+	private int damage = 10;
 	RaycastHit hit;
 	private Transform myTransform;
 	private bool destroyed = false;
