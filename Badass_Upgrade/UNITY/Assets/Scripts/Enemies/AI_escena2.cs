@@ -49,8 +49,7 @@ public class AI_escena2 : MonoBehaviour {
 	public GUITexture enemy_Healthbar;
 	private float maxvida = 0.0f;
 	private	float timerShot;
-	private bool inSight,prev_inSight,recently_shot,isShowingLaser;
-	
+	private bool inSight,prev_inSight,recently_shot,isShowingLaser,isFireOn;
 	GameObject hud;
 
     void Awake(){
@@ -85,6 +84,8 @@ public class AI_escena2 : MonoBehaviour {
 		prev_inSight=false;
 		timerShot = Time.time;
 		recently_shot = false;
+		
+		isFireOn = false;
 		
 		hud = GameObject.FindGameObjectWithTag("HUD Camera");
 		hud.SendMessage("addEnemy");
@@ -250,7 +251,8 @@ public class AI_escena2 : MonoBehaviour {
 		
 		Debug.Log("Boss atacado quedan "+vida+" puntos de vida.");
 		Debug.Log ("Boss:"+percent+"%");
-		if(percent <= 50.0f){
+		if(percent <= 50.0f && !isFireOn){
+			isFireOn = true;
 			Vector3 temp = myTransform.position;
 			temp.x = 0.0f;
 			temp.y = 5.5f;
