@@ -70,7 +70,7 @@ public class AI_escena2 : MonoBehaviour {
         timerAtacMissils=Time.time+fireRateMissils;
 		timerAtacFoc=Time.time+fireRateFoc;
 		timerAtacTrail=Time.time+fireRateTrail;
-		timerAtacMelee=Time.time+fireRateMelee;
+		timerAtacMelee=Time.time;//+fireRateMelee;
 		
 		maxvida = vida;
 		float percent = 0.0f;
@@ -124,7 +124,7 @@ public class AI_escena2 : MonoBehaviour {
 		
 		
 		float player_distance=Vector3.Distance(target.position,transform.position);
-		if(player_distance>distancia_melee){
+		if((player_distance>distancia_melee) && (Time.time>timerAtacMelee)){
 			patrullar = 1;	
 			trail_attack();
 		}else{
@@ -199,7 +199,6 @@ public class AI_escena2 : MonoBehaviour {
 			GameObject foc = (GameObject)Instantiate(Resources.Load("boss_area_fire"),attack_location,myTransform.rotation);
 			timerAtacFoc=Time.time+fireRateFoc;
 		}
-	
 	}
 	
 	
@@ -211,18 +210,22 @@ public class AI_escena2 : MonoBehaviour {
 			GameObject acid = (GameObject)Instantiate(Resources.Load("boss_trail"),attack_location,myTransform.rotation);
 			timerAtacTrail=Time.time+fireRateTrail;
 		}
-	
 	}
 	
 	private void melee_attack(){
 		patrullar = 0;
 		if(Time.time>timerAtacMelee){
 				animation.CrossFade("melee");
-				GameObject temp_player = GameObject.FindGameObjectWithTag("Player");
+				Invoke("melee_attack_damage", 1);
 				Debug.Log("Melee!");
-				temp_player.SendMessage("rebreAtac", melee_damage);
 				timerAtacMelee=Time.time+fireRateMelee;
 		}
+	}
+	
+	private void melee_attack_damage(){
+		GameObject temp_player = GameObject.FindGameObjectWithTag("Player");
+		temp_player.SendMessage("rebreAtac", melee_damage);
+		GameObject Explosion = (GameObject)Instantiate(Resources.Load("Boss_explosion"),myTransform.position,myTransform.rotation);
 	}
 	
 	private void set_patrullar_on(){
@@ -258,7 +261,7 @@ public class AI_escena2 : MonoBehaviour {
 		}else if(vida<=0){
 			Debug.Log("Enemigo muerto");
 			GameObject Explosion = (GameObject)Instantiate(Resources.Load("Homing_explosion"),myTransform.position,myTransform.rotation);
-			hud.SendMessage("enemyDeath");
+			hud.SendMessage("bossDeath");
 			Destroy(gameObject);
 		}
 	}
