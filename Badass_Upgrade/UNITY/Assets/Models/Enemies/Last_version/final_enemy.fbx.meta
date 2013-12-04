@@ -1,0 +1,202 @@
+fileFormatVersion: 2
+guid: a781c228101fc154b8e8b448b898b681
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Bone
+    100004: Bone_001
+    100006: Bone_002
+    100008: Bone_004
+    100010: Bone_006
+    100012: Bone_007
+    100014: Bone_008
+    100016: Bone_009
+    100018: Bone_010
+    100020: Bone_011
+    100022: Bone_012
+    100024: Bone_015
+    100026: Bone_016
+    100028: Bone_017
+    100030: Bone_018
+    100032: Bone_019
+    100034: Circle
+    100036: Circle_001
+    100038: Cube_005
+    100040: Cube_006
+    100042: Cube_007
+    100044: Cube_011
+    100046: Cube_013
+    100048: Cube_023
+    100050: Cylinder_001
+    100052: Cylinder_004
+    100054: //RootNode
+    400000: Armature
+    400002: Bone
+    400004: Bone_001
+    400006: Bone_002
+    400008: Bone_004
+    400010: Bone_006
+    400012: Bone_007
+    400014: Bone_008
+    400016: Bone_009
+    400018: Bone_010
+    400020: Bone_011
+    400022: Bone_012
+    400024: Bone_015
+    400026: Bone_016
+    400028: Bone_017
+    400030: Bone_018
+    400032: Bone_019
+    400034: Circle
+    400036: Circle_001
+    400038: Cube_005
+    400040: Cube_006
+    400042: Cube_007
+    400044: Cube_011
+    400046: Cube_013
+    400048: Cube_023
+    400050: Cylinder_001
+    400052: Cylinder_004
+    400054: //RootNode
+    2300000: Cube_013
+    3300000: Cube_013
+    4300000: Cylinder_004
+    4300004: Cube_023
+    4300006: Cube_011
+    4300008: Circle_001
+    4300010: Cube_007
+    4300012: Cube_006
+    4300014: Circle
+    4300016: Cube_005
+    4300018: Cylinder_001
+    7400000: caminar
+    7400002: ArmatureAction
+    7400004: melee
+    7400006: activat
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Circle
+    13700002: Circle_001
+    13700004: Cube_005
+    13700006: Cube_006
+    13700008: Cube_007
+    13700010: Cube_011
+    13700012: Cube_023
+    13700014: Cylinder_001
+    13700016: Cylinder_004
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations:
+    - name: caminar
+      takeName: Default Take
+      firstFrame: 47
+      lastFrame: 92
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: melee
+      takeName: Default Take
+      firstFrame: 120
+      lastFrame: 157
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: activat
+      takeName: Default Take
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 1
+  userData: 

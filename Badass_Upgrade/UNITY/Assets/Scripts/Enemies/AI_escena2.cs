@@ -8,7 +8,7 @@ public class AI_escena2 : MonoBehaviour {
 
     //variables modificables segons la ia--------
 	private float vida=100;
-    private int moveSpeed=6;
+    private int moveSpeed=3;
 	private int rotationSpeed=10;
     float Distance;
 	
@@ -142,11 +142,11 @@ public class AI_escena2 : MonoBehaviour {
     }
 	
 	private void segueix_waypoints(){
-		//animation.CrossFade("caminar");
         GameObject punt = GameObject.Find(points[i]);
         Distance = Vector3.Distance(transform.position, punt.transform.position);
         if (patrullar == 1 || patrullar ==2)
         {
+			animation.CrossFade("caminar");
             if (Distance > 1)
             {
               
@@ -217,6 +217,7 @@ public class AI_escena2 : MonoBehaviour {
 	private void melee_attack(){
 		patrullar = 0;
 		if(Time.time>timerAtacMelee){
+				animation.CrossFade("melee");
 				GameObject temp_player = GameObject.FindGameObjectWithTag("Player");
 				Debug.Log("Melee!");
 				temp_player.SendMessage("rebreAtac", melee_damage);
@@ -227,11 +228,6 @@ public class AI_escena2 : MonoBehaviour {
 	private void set_patrullar_on(){
 		patrullar = 1;	
 	}
-	
-    void moveTo(){
-	    myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
-	    myTransform.position += myTransform.forward * moveSpeed * Time.deltaTime;
-    }
 
 	public void rebreDany(int dmg){
 		vida-=dmg;
@@ -247,8 +243,6 @@ public class AI_escena2 : MonoBehaviour {
 		Size_width = percent*Size_width;
 		enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,3);
 
-		
-		
 		Debug.Log("Boss atacado quedan "+vida+" puntos de vida.");
 		Debug.Log ("Boss:"+percent+"%");
 		if(percent <= 50.0f && !isFireOn){
