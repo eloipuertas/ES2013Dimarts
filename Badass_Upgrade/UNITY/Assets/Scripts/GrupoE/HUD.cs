@@ -199,6 +199,17 @@ public class HUD : MonoBehaviour {
 		
 	}
 	
+	//Cuando muere el boss, se actualiza el contador de enemigos
+	public void bossDeath(){
+		
+		numOfEnem--;
+		contadorEnemigos.text=numOfEnem.ToString();
+		
+		score = int.Parse(scoreText.text) + 30;
+		scoreText.text = score.ToString();
+		
+	}
+	
 	public void addEnemy(){
 		
 		numOfEnem++;
