@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class boss_area_fire : MonoBehaviour {
-	private int dmg = 4;
+	private int dmg = 8;
 	private float timerAtac = 0.0f;
-	private int fireRate=2;
+	private int fireRate=1;
 	// Use this for initialization
 	void Start () {
 		timerAtac=Time.time;

@@ -21,9 +21,9 @@ public class AI_escena2 : MonoBehaviour {
 
 
 	//----------------------------------
-	private int numMissils=3;
-    private int fireRateMissils=15;
-	private int fireRateFoc=10;
+	private int numMissils=2;
+    private int fireRateMissils=12;
+	private int fireRateFoc=15;
 	private float fireRateTrail=0.5f;
 	private float fireRateMelee=3.0f;
     private float distancia_melee=8.0f;
@@ -49,7 +49,7 @@ public class AI_escena2 : MonoBehaviour {
 	public GUITexture enemy_Healthbar;
 	private float maxvida = 0.0f;
 	private	float timerShot;
-	private bool inSight,prev_inSight,recently_shot,isShowingLaser,isFireOn;
+	private bool inSight,prev_inSight,recently_shot,isShowingLaser,isFireOn,attacked;
 	GameObject hud;
 
     void Awake(){
@@ -89,6 +89,7 @@ public class AI_escena2 : MonoBehaviour {
 		
 		hud = GameObject.FindGameObjectWithTag("HUD Camera");
 		hud.SendMessage("addEnemy");
+		attacked = false;
 		
      }
         
@@ -132,13 +133,10 @@ public class AI_escena2 : MonoBehaviour {
 		}
 		segueix_waypoints();
 		
-		if(player_distance<50.0f){
+		if(player_distance<40.0f || attacked){
 			missile_attack();
 			fire_area_attack();
 		}
-		
-		
-		
     }
 	
 	private void segueix_waypoints(){
@@ -157,35 +155,32 @@ public class AI_escena2 : MonoBehaviour {
             else
             {
                 i++;
-
                 if (i >= points.Length)
                 {
                     i = 0;
                     if(patrullar==2){
                         Array.Reverse(points);
-
                 	}
             	}
-
         	}
-
         }
-		
 	}
 	
 	
 	private void missile_attack(){
 		if(Time.time>timerAtacMissils){
-			int i=0;
-			for (i = 0;i<numMissils;i++){
+			for (int i = 0;i<numMissils;i++){
 				//animation.CrossFade("disparar");
 				Debug.Log("Missile!");
-				Vector3 temp = myTransform.position;
-				int randomNumber = UnityEngine.Random.Range(-10, 10);
-				temp.x = temp.x+randomNumber;
-				temp.y = temp.y+12.0f;
-				randomNumber = UnityEngine.Random.Range(-10, 10);
-				temp.z = temp.x+randomNumber;
+				Vector3 temp = myTransform.position+(myTransform.up*6.0f);
+				//Vector3 temp = myTransform.position;
+				//int randomNumber = UnityEngine.Random.Range(-5, 5);
+				//temp.x = temp.x+randomNumber;
+				temp.x = temp.x+2*i;
+				temp.z = temp.z-2*i;
+				temp.y = temp.y+2.0f;
+				//randomNumber = UnityEngine.Random.Range(-5, 5);
+				//temp.z = temp.z+randomNumber;
 				GameObject missile = (GameObject)Instantiate(Resources.Load("Homing_missile_1"),temp,myTransform.rotation);
 			}
 			timerAtacMissils=Time.time+fireRateMissils;
@@ -233,6 +228,9 @@ public class AI_escena2 : MonoBehaviour {
 	}
 
 	public void rebreDany(int dmg){
+		if(!attacked){
+			attacked = true;
+		}
 		vida-=dmg;
 		
 		recently_shot = true;
