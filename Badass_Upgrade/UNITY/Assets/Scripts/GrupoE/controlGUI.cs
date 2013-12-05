@@ -153,7 +153,6 @@ public class controlGUI : MonoBehaviour
 				case weapons:
 					GUILayout.Label("- Pulsa la tecla '1' para elegir la Pistola.");
 					GUILayout.Label("- Pulsa la tecla '2' para elegir el Rifle.");
-					GUILayout.Label("- Pulsa la tecla '3' para elegir la Escopeta.");
 					break;
 				case actions:
 					GUILayout.Label("- Pulsa la tecla 'F' para encender y apagar la linterna.");
