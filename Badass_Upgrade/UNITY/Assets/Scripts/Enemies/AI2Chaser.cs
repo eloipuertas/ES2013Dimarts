@@ -131,15 +131,14 @@ public class AI2Chaser : MonoBehaviour {
         if((Distance>distancia_melee)){
 			moveTo();
             state = "walking";
-			animation.CrossFade("caminar");
+			animation.Play("caminar");
         }else{
 			Vector3 temp = target.position;
 			temp.y = 0.0f;
 			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(temp - enemyChest), rotationSpeed * Time.deltaTime);
 	        state="attack";
 	        //renderer.material.color=Color.red;
-			Debug.Log("Atacant a melee");
-	        attack(melee_dmg,false);
+	        attack(melee_dmg);
         }
 	}
         
@@ -153,25 +152,20 @@ public class AI2Chaser : MonoBehaviour {
 	    //myTransform.position=new Vector3(myTransform.position.x,mov,myTransform.position.z);
     }
 
-    private void attack(int dmg,bool ranged){
+    private void attack(int dmg){
         if(Time.time>timerAtac){
-			if(ranged){
-				Debug.Log("Shooting");
-				animation.CrossFade("disparar");
-				disparar(distancia_disparar,dist_dmg);
-			}else{
-				Debug.Log("Melee");
-				animation.CrossFade("melee");
-				disparar(distancia_disparar,melee_dmg);
-			}
+			Debug.Log("Melee");
+			animation["melee"].speed = 0.3f;
+			animation.Play("melee");
+			disparar(distancia_disparar,melee_dmg);
             timerAtac=Time.time+fireRate;
         }
      }
 	
 	public void rebreDany(int dmg){
 		vida-=dmg;
-			recently_shot = true;
-			timerShot = Time.time;
+		recently_shot = true;
+		timerShot = Time.time;
 		
 		/*if (vida < maxvida*0.5f){
 			ParticleSystem particlesystem = (ParticleSystem)gameObject.GetComponent("ParticleSystem");
