@@ -16,6 +16,8 @@ public class Homing_missile : MonoBehaviour {
 	public GameObject bomba;
 	public GameObject smoke_trail;
 	
+	public AudioClip expSound;
+	
 	// Use this for initialization
 	void Start () {
 		Destroy(this.gameObject,15.0f);
@@ -55,6 +57,9 @@ public class Homing_missile : MonoBehaviour {
 		//halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
 		//Destroy (bomba);
 		//Destroy (smoke_trail);
+		
+		AudioSource.PlayClipAtPoint(expSound, transform.position, 0.9f);
+		
 		GameObject Explosion = (GameObject)Instantiate(Resources.Load("Homing_explosion"),myTransform.position,myTransform.rotation);
 		hits = Physics.RaycastAll (transform.position, (target.position - transform.position), distancia);; 
 	    int i = 0;
