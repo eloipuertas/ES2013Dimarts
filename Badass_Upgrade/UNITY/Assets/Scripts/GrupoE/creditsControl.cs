@@ -11,8 +11,6 @@ public class creditsControl : MonoBehaviour {
 	public Vector3 origen;
 	public Vector3 destino;
 	
-	// public AudioClip soundTrack;
-	
 	// Use this for initialization
 	void Start () {
 		Time.timeScale = 1;
@@ -20,7 +18,6 @@ public class creditsControl : MonoBehaviour {
 		destino = new Vector3(0,-100,-10);
 		Camera.main.gameObject.transform.position = origen;
 		//text.text = "A nuestros familiares, amigos y a todos los que han\ncolaborado en la realización de este proyecto.";
-		// AudioSource.PlayClipAtPoint(soundTrack, transform.position, 0.9F);
 	}
 	
 	// Update is called once per frame
@@ -32,6 +29,7 @@ public class creditsControl : MonoBehaviour {
 			Application.LoadLevel(main_menu);
 		t = Time.timeSinceLevelLoad;
 		moveCamera(origen, destino, t);
+		
 	}
 	
 	void moveCamera(Vector3 o, Vector3 d, float t){

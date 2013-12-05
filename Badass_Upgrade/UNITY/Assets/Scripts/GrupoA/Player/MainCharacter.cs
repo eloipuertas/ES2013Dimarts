@@ -21,7 +21,7 @@ public class MainCharacter : MonoBehaviour {
 	
 	// So de les armes 
 	public AudioClip[] weaponSound;
-	// public AudioClip weaponSwap;
+	public AudioClip weaponSwap;
 	
 	//Atributs de les armes
 	public int posWeapon;
@@ -169,7 +169,7 @@ public class MainCharacter : MonoBehaviour {
 			balesTotalsArmaActual = weapons[posWeapon].balesTotals;
 			weapons[posWeapon].showWeapon();
 			
-			// AudioSource.PlayClipAtPoint(weaponSwap, transform.position, 0.9f);
+			AudioSource.PlayClipAtPoint(weaponSwap, transform.position, 0.9f);
 			
 		}
 		else if(Input.GetButtonDown("Arma 2")) {
@@ -182,7 +182,7 @@ public class MainCharacter : MonoBehaviour {
 			balesTotalsArmaActual = weapons[posWeapon].balesTotals;
 			weapons[posWeapon].showWeapon();
 			
-			// AudioSource.PlayClipAtPoint(weaponSwap, transform.position, 0.9f);
+			AudioSource.PlayClipAtPoint(weaponSwap, transform.position, 0.9f);
 			
 		}
 		else if(Input.GetButtonDown("Recargar")) {
