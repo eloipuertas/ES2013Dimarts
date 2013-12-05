@@ -125,20 +125,15 @@ public class MainCharacter : MonoBehaviour {
 			tempsAnteriorStandBy = Time.time;
 			balesCarregador = weapons[posWeapon].disparar();
 			if(Physics.Raycast(weapon1.transform.position,cam.forward,out hit, shotDistance)) {
-				Debug.Log("Toco a "+hit.collider.gameObject.tag);
 		        if(hit.collider.gameObject.tag == "Enemy") {
-		                //Debug.Log("Disparo i toco l'enemic i li faig "+actualWeaponDamage+" punts de dany");
-		                hit.transform.gameObject.SendMessage("rebreDany",actualWeaponDamage);
-						
+	                hit.transform.gameObject.SendMessage("rebreDany",actualWeaponDamage);
 		        }
 		        else if(hit.collider.gameObject.tag == "Barril") {
-		                //Debug.Log("Disparo contre el barril");
-		                hit.transform.gameObject.SendMessage("rebreTir");
+	                hit.transform.gameObject.SendMessage("rebreTir");
 		        }
-				player.SendMessage("Shoot");
-				AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.9F);
-			//Rifle mentres esta apretat fer un timer i anar disparant
 			}
+			player.SendMessage("Shoot");
+			AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.9F);			
 		}
 		else if((Input.GetButton("Disparar")) && (posWeapon == 1) && (balesCarregador > 0)) {
 			tempsAnteriorStandBy = Time.time;
