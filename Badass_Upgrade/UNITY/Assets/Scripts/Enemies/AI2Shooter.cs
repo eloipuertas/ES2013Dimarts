@@ -141,7 +141,8 @@ public class AI2Shooter : MonoBehaviour {
 				myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(temp - enemyChest), rotationSpeed * Time.deltaTime);
 			}
 				
-        }else if(Distance<distancia_disparar && player.transform.position.y<5){
+        }else if((Distance<distancia_disparar && player.transform.position.y<5)|| (!unhit && Distance<distancia_disparar)){
+			if(state=="away") Destroy(shield);		
 			Vector3 temp = target.position;
 			//temp.y = 0.0f;
 			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(temp - enemyChest), rotationSpeed * Time.deltaTime);

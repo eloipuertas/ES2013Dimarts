@@ -40,7 +40,7 @@ public class AI2Spawner : MonoBehaviour {
 	RaycastHit hit;
     GameObject hud;
     private Transform myTransform;
-	
+	GameObject player;
 	
 	GameObject shield;
 	//vida
@@ -61,7 +61,7 @@ public class AI2Spawner : MonoBehaviour {
 	
     // Use this for initialization
     void Start () {
-    	GameObject player = GameObject.FindGameObjectWithTag("Player");
+    	player = GameObject.FindGameObjectWithTag("Player");
 		hud = GameObject.FindGameObjectWithTag("HUD Camera");
 		
         target = player.transform;
@@ -135,7 +135,7 @@ public class AI2Spawner : MonoBehaviour {
 			}
 			state="alerta";
 
-        }else if(Distance<=distancia_invocar){
+        }else if(((Distance<distancia_invocar && player.transform.position.y<5)|| (!unhit && Distance<distancia_invocar))){
 			Vector3 tp = target.position;
 			tp.y = 0.0f;
 			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(tp - enemyChest), rotationSpeed * Time.deltaTime);

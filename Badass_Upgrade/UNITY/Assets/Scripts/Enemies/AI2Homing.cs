@@ -136,7 +136,8 @@ public class AI2Homing : MonoBehaviour {
 			if(player.transform.position.y<5){
 				myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - enemyChest), rotationSpeed * Time.deltaTime);
 			}
-        }else if(Distance<distancia_disparar && player.transform.position.y<5){
+        }else if(((Distance<distancia_disparar && player.transform.position.y<5)|| (!unhit && Distance<distancia_disparar))){
+			if(state=="away") Destroy(shield);
 			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - enemyChest), rotationSpeed * Time.deltaTime);
 			state="shooting";
             attack(dist_dmg,true);
