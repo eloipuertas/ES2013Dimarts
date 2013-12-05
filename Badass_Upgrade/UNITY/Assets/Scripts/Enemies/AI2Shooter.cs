@@ -19,6 +19,7 @@ public class AI2Shooter : MonoBehaviour {
     float Distance;
     int dist_dmg=15;
 	int melee_dmg=25;
+	// public AudioClip escopetazo;
 
 	//----------------------------------
     private int fireRate=2;
@@ -172,6 +173,9 @@ public class AI2Shooter : MonoBehaviour {
 		
         if(Time.time>timerAtac){
 			if(ranged){
+				
+				// AudioSource.PlayClipAtPoint(escopetazo, transform.position, 0.9f);
+				
 				Debug.Log("Shooting");
 				animation.CrossFade("disparar");
 				disparar(distancia_disparar,dist_dmg,distancia);

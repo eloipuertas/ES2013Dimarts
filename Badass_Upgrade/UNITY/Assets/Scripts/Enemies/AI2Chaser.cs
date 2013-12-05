@@ -31,6 +31,8 @@ public class AI2Chaser : MonoBehaviour {
 	private float regen_escut=20;
 	private int armadura=3;
 	
+	// public AudioClip meleeSound;
+	
     //-------------------------------------------
     
     public Vector3 spawnPoint;
@@ -202,6 +204,9 @@ public class AI2Chaser : MonoBehaviour {
 	private void disparar(int dis,int dmg){
 		Vector3 enemyChest = myTransform.position+Vector3.up*0.8f;
 		if(Physics.Raycast(transform.position, (target.position- enemyChest), out hit, dis)) {
+			
+			// AudioSource.PlayClipAtPoint(meleeSound, transform.position, 0.9f);
+			
 			Debug.DrawLine(target.position, transform.position, Color.green);
 			Debug.DrawRay(transform.position, transform.forward,Color.blue);
 			//print (hit.collider.gameObject.tag);

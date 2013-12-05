@@ -17,6 +17,8 @@ public class AI2Spawner : MonoBehaviour {
     public int moveSpeed=10;
 	public int rotationSpeed=1;
     float Distance;
+	
+	// public AudioClip summonSound;
 
 	//----------------------------------
     private int fireRate=5;
@@ -179,14 +181,17 @@ public class AI2Spawner : MonoBehaviour {
 
     private void spawn_enemy(){
         if(Time.time>timerAtac){
-				animation.CrossFade("disparar");
-				Debug.Log("Spawn!");
-				Vector3 temp = myTransform.position;
-				temp.x = temp.x+Random.Range(2, 10);
-				temp.z = temp.z+Random.Range(2, 10);
-				timerAtac=Time.time+fireRate;
-				GameObject Spawned_Enemy = (GameObject)Instantiate(Resources.Load("enemy_chaser"),temp,myTransform.rotation);
-				totalsummoned+=1;
+			
+			// AudioSource.PlayClipAtPoint(summonSound, transform.position, 0.9f);
+		
+			animation.CrossFade("disparar");
+			Debug.Log("Spawn!");
+			Vector3 temp = myTransform.position;
+			temp.x = temp.x+Random.Range(2, 10);
+			temp.z = temp.z+Random.Range(2, 10);
+			timerAtac=Time.time+fireRate;
+			GameObject Spawned_Enemy = (GameObject)Instantiate(Resources.Load("enemy_chaser"),temp,myTransform.rotation);
+			totalsummoned+=1;
         }
      }
 	
