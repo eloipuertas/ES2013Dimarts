@@ -150,7 +150,7 @@ public class MainCharacter : MonoBehaviour {
 				balesCarregador = weapons[posWeapon].disparar();
 				
 				player.SendMessage("Shoot");
-				AudioSource.PlayClipAtPoint(weaponSound[1],transform.position,0.9F);
+				AudioSource.PlayClipAtPoint(weaponSound[2],transform.position,0.9F);
 			}			
 		}
 		else if(Input.GetButtonDown("Arma 1")) {

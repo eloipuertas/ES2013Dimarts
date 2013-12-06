@@ -14,6 +14,7 @@ public class codiBarril : MonoBehaviour {
 	public GameObject Destroy;
 	public GameObject Fire;
 	GameObject Player;
+	public AudioClip barrilExplosion;
 	
 	// Use this for initialization
 	void Start () {
@@ -44,6 +45,7 @@ public class codiBarril : MonoBehaviour {
 				dany = (int)(DISTANCIA_MAXIMA/distance)*MULTIPLICADOR;
 				Player.SendMessage("rebreAtac",dany);
 			}
+			AudioSource.PlayClipAtPoint(barrilExplosion, transform.position, 1.9f);
 			Destroy.SetActive(true);
 			
 		}

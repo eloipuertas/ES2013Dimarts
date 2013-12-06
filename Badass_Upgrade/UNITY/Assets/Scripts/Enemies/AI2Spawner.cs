@@ -18,7 +18,7 @@ public class AI2Spawner : MonoBehaviour {
 	public int rotationSpeed=1;
     float Distance;
 	
-	// public AudioClip summonSound;
+	public AudioClip summonSound;
 
 	//----------------------------------
     private int fireRate=5;
@@ -182,7 +182,7 @@ public class AI2Spawner : MonoBehaviour {
     private void spawn_enemy(){
         if(Time.time>timerAtac){
 			
-			// AudioSource.PlayClipAtPoint(summonSound, transform.position, 0.9f);
+			AudioSource.PlayClipAtPoint(summonSound, transform.position, 1.5f);
 		
 			animation.CrossFade("disparar");
 			Debug.Log("Spawn!");
