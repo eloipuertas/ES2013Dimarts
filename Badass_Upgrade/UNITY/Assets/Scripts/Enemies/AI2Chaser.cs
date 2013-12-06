@@ -13,15 +13,14 @@ public class AI2Chaser : MonoBehaviour {
 
 
     //variables modificables segons la ia--------
-	public float vida=40;
-    public int moveSpeed=10;
-	public int rotationSpeed=2;
+	public float vida=30;
+    private int moveSpeed=9;
+	private int rotationSpeed=2;
     float Distance;
-    int dist_dmg=15;
-	int melee_dmg=2;
+	private int melee_dmg=15;
 
 	//----------------------------------
-    private float fireRate=0.15f;
+    private float fireRate=1.5f;
     private int distancia_alerta=20;
     private int distancia_perseguir=6;
     private int distancia_melee=3;
@@ -30,6 +29,8 @@ public class AI2Chaser : MonoBehaviour {
 	private int temps_recarga_escut=2;
 	private float regen_escut=20;
 	private int armadura=3;
+	
+	public AudioClip meleeSound;
 	
     //-------------------------------------------
     
@@ -43,7 +44,8 @@ public class AI2Chaser : MonoBehaviour {
 	//vida
 	public GUITexture enemy_Healthbar;
 	float maxvida = 0.0f;
-	bool inSight,prev_inSight;
+	float timerShot;
+	bool inSight,prev_inSight,recently_shot;
 
     void Awake(){
         myTransform = transform;
@@ -56,7 +58,7 @@ public class AI2Chaser : MonoBehaviour {
     // Use this for initialization
     void Start () {
     	GameObject player = GameObject.FindGameObjectWithTag("Player");
-		hud = GameObject.FindGameObjectWithTag("MainCamera");
+		hud = GameObject.FindGameObjectWithTag("HUD Camera");
 		
         target = player.transform;
         timerAtac=Time.time;
@@ -79,6 +81,13 @@ public class AI2Chaser : MonoBehaviour {
 		
 		inSight=false;
 		prev_inSight=false;
+		
+		timerShot = Time.time;
+		recently_shot = false;
+		
+		Destroy(this.gameObject,20.0f);
+		
+		//hud.SendMessage("addEnemy");
                 
      }
         
@@ -90,7 +99,11 @@ public class AI2Chaser : MonoBehaviour {
 		}else{
 			inSight = false;	
 		}
-		if (inSight && !prev_inSight){
+		if(timerShot+3.0f < Time.time){
+			recently_shot = false;
+		}
+		
+		if (inSight && !prev_inSight && recently_shot){
 			float percent = 0.0f;
 			percent = vida/maxvida;
 			percent = percent*100;
@@ -100,7 +113,7 @@ public class AI2Chaser : MonoBehaviour {
 			Size_width = percent*Size_width;
 			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,1);
 			prev_inSight = true;
-		}else if(!inSight){
+		}else if(!inSight|| !recently_shot){
 			//Debug.Log ("NOT PAINTING");
 			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(0.0f,0.0f,0.0f);
 			prev_inSight = false;
@@ -117,15 +130,14 @@ public class AI2Chaser : MonoBehaviour {
         if((Distance>distancia_melee)){
 			moveTo();
             state = "walking";
-			animation.CrossFade("caminar");
+			animation.Play("caminar");
         }else{
 			Vector3 temp = target.position;
 			temp.y = 0.0f;
 			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(temp - enemyChest), rotationSpeed * Time.deltaTime);
 	        state="attack";
 	        //renderer.material.color=Color.red;
-			Debug.Log("Atacant a melee");
-	        attack(melee_dmg,false);
+	        attack(melee_dmg);
         }
 	}
         
@@ -139,23 +151,20 @@ public class AI2Chaser : MonoBehaviour {
 	    //myTransform.position=new Vector3(myTransform.position.x,mov,myTransform.position.z);
     }
 
-    private void attack(int dmg,bool ranged){
+    private void attack(int dmg){
         if(Time.time>timerAtac){
-			if(ranged){
-				Debug.Log("Shooting");
-				animation.CrossFade("disparar");
-				disparar(distancia_disparar,dist_dmg);
-			}else{
-				Debug.Log("Melee");
-				animation.CrossFade("melee");
-				disparar(distancia_disparar,melee_dmg);
-			}
+			Debug.Log("Melee");
+			animation["melee"].speed = 0.3f;
+			animation.Play("melee");
+			disparar(distancia_disparar,melee_dmg);
             timerAtac=Time.time+fireRate;
         }
      }
 	
 	public void rebreDany(int dmg){
 		vida-=dmg;
+		recently_shot = true;
+		timerShot = Time.time;
 		
 		/*if (vida < maxvida*0.5f){
 			ParticleSystem particlesystem = (ParticleSystem)gameObject.GetComponent("ParticleSystem");
@@ -179,7 +188,8 @@ public class AI2Chaser : MonoBehaviour {
 		Debug.Log("Enemigo atacado quedan "+vida+" puntos de vida");
 		if(vida<=0){
 			Debug.Log("Enemigo muerto");
-			hud.SendMessage("enemyDeath");
+			//hud.SendMessage("enemyDeath");
+			drop();
 			Destroy(gameObject);
 		}
 	}
@@ -187,9 +197,11 @@ public class AI2Chaser : MonoBehaviour {
 	private void disparar(int dis,int dmg){
 		Vector3 enemyChest = myTransform.position+Vector3.up*0.8f;
 		if(Physics.Raycast(transform.position, (target.position- enemyChest), out hit, dis)) {
+			
+			AudioSource.PlayClipAtPoint(meleeSound, transform.position, 0.9f);
+			
 			Debug.DrawLine(target.position, transform.position, Color.green);
 			Debug.DrawRay(transform.position, transform.forward,Color.blue);
-			//print (hit.collider.gameObject.tag);
 			if(hit.collider.gameObject.tag == "Player") {
 				Debug.Log("ataco al player i li faig "+dmg+" punts de dany");
 				hit.transform.gameObject.SendMessage("rebreAtac",dmg);
@@ -197,16 +209,19 @@ public class AI2Chaser : MonoBehaviour {
 		}
 	}
 	
+	
+	
+	
+	
+	
 	private void regenerar_escut(){
 		if(Time.time>timerEscut && escut<max_escut){
 			escut+=max_escut *(regen_escut/100);
 			if(escut>max_escut){
 					escut=max_escut;
 			}
-			
 			timerEscut=Time.time+temps_recarga_escut;
 		}
-
 	}
 	
 	
@@ -225,6 +240,21 @@ public class AI2Chaser : MonoBehaviour {
 
 		return v2;
 
+	}
+	
+	private void drop(){
+		Vector3 temp = myTransform.position;
+		int ra = Random.Range(0, 2);
+		if(ra==0){
+			ra = Random.Range(0, 3);
+			if(ra==0){
+				GameObject missile = (GameObject)Instantiate(Resources.Load("cura"),temp,myTransform.rotation);
+			}else if(ra==1){
+				GameObject missile = (GameObject)Instantiate(Resources.Load("municio_pistola"),temp,myTransform.rotation);
+			}else{
+				GameObject missile = (GameObject)Instantiate(Resources.Load("municio_rifle"),temp,myTransform.rotation);
+			}
+		}	
 	}
 
 }

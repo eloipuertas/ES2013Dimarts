@@ -19,6 +19,7 @@ public class AI2Shooter : MonoBehaviour {
     float Distance;
     int dist_dmg=15;
 	int melee_dmg=25;
+	public AudioClip escopetazo;
 
 	//----------------------------------
     private int fireRate=2;
@@ -26,11 +27,11 @@ public class AI2Shooter : MonoBehaviour {
     private int distancia_perseguir=6;
     private int distancia_melee=2;
 	private int distancia_disparar = 15;
-	private float escut =100, max_escut=100;
+	private float escut =40, max_escut=100;
 	private int temps_recarga_escut=2;
 	private float regen_escut=20;
 	private int armadura=3;
-	
+	private bool unhit=true;
     //-------------------------------------------
     
     public Vector3 spawnPoint;
@@ -39,12 +40,14 @@ public class AI2Shooter : MonoBehaviour {
 	RaycastHit hit;
     GameObject hud;
     private Transform myTransform;
+	GameObject player;
 	
 	GameObject shield;
-	//vida
 	public GUITexture enemy_Healthbar;
 	float maxvida = 0.0f;
-	bool inSight,prev_inSight;
+	float timerShot;
+	bool inSight,prev_inSight,recently_shot,isShowingLaser;
+	LineRenderer linerenderer;
 	
 	
 
@@ -58,8 +61,8 @@ public class AI2Shooter : MonoBehaviour {
 	
     // Use this for initialization
     void Start () {
-    	GameObject player = GameObject.FindGameObjectWithTag("Player");
-		hud = GameObject.FindGameObjectWithTag("MainCamera");
+    	player = GameObject.FindGameObjectWithTag("Player");
+		hud = GameObject.FindGameObjectWithTag("HUD Camera");
 		
         target = player.transform;
         timerAtac=Time.time;
@@ -84,20 +87,32 @@ public class AI2Shooter : MonoBehaviour {
 		inSight=false;
 		prev_inSight=false;
 		
+		timerShot = Time.time;
+		recently_shot = false;
+		
+		hud.SendMessage("addEnemy");
+		
+		isShowingLaser=false;
+		linerenderer = (LineRenderer)gameObject.GetComponent("LineRenderer");
+		linerenderer.enabled = false;
 		
      }
         
      // Update is called once per frame
      void Update () {
-		//Debug.Log (state);
 		
 		if(Vector3.Dot(target.forward, myTransform.position - target.position)>=0) {
 			inSight = true;
-			//Debug.Log (target.forward.ToString()+" "+myTransform.position.ToString()+" "+target.position.ToString());
+
 		}else{
 			inSight = false;	
 		}
-		if (inSight && !prev_inSight){
+		
+		if(timerShot+3.0f < Time.time){
+			recently_shot = false;
+		}
+		
+		if (inSight && !prev_inSight && recently_shot){
 			float percent = 0.0f;
 			percent = vida/maxvida;
 			percent = percent*100;
@@ -107,58 +122,41 @@ public class AI2Shooter : MonoBehaviour {
 			Size_width = percent*Size_width;
 			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,1);
 			prev_inSight = true;
-		}else if(!inSight){
-			//Debug.Log ("NOT PAINTING");
+		}else if(!inSight || !recently_shot){
 			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(0.0f,0.0f,0.0f);
 			prev_inSight = false;
 		}
 		
-		
-		//regenerar_escut();
-       	//myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
 		Distance=Vector3.Distance(target.position,transform.position);
 		
 		Vector3 enemyChest = myTransform.position+Vector3.up*1.6f;
         Debug.DrawRay(enemyChest, transform.forward);
-		//Debug.DrawLine(target.position, myTransform.position, Color.yellow);
-                
-       /* if(Distance>distancia_alerta && Vector3.Distance(spawnPoint, transform.position)>3){
-        	state="away";
-			Debug.Log("Enemic inactiu");
-			animation.Play("ajupit");
-            //renderer.material.color=Color.blue;
-            //retorn al spawnpoint?
-		}else */if(Distance<distancia_alerta && Distance>distancia_disparar){
+		if(Distance<distancia_alerta && Distance>distancia_disparar && unhit){
 			if(state != "alerta" && state != "shooting"){
 				animation.Play("activar");
 				Destroy (shield);
 			}
 			state="alerta";
-			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - enemyChest), rotationSpeed * Time.deltaTime);
-			/*animation.CrossFade("activar");*/
+			Vector3 temp = target.position;
+			if(player.transform.position.y<5){
+				myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(temp - enemyChest), rotationSpeed * Time.deltaTime);
+			}
 				
-        }else if(Distance<distancia_disparar /*&& Distance>distancia_perseguir*/){
-			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - enemyChest), rotationSpeed * Time.deltaTime);
+        }else if((Distance<distancia_disparar && player.transform.position.y<5)|| (!unhit && Distance<distancia_disparar)){
+			if(state=="away") Destroy(shield);		
+			Vector3 temp = target.position;
+			//temp.y = 0.0f;
+			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(temp - enemyChest), rotationSpeed * Time.deltaTime);
 			state="shooting";
-            attack(dist_dmg,true);
-        }/*else if((Distance <=distancia_perseguir) && (Distance>distancia_melee)){
-			moveTo();
-            state = "walking";
-			animation.CrossFade("caminar");
-        }else if(Distance<distancia_melee ){
-			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
-	        state="attack";
-	        //renderer.material.color=Color.red;
-			Debug.Log("Atacant a melee");
-	        attack(melee_dmg,false);
-        }*/else{
-			if(state != "away"){
+            attack(dist_dmg,Distance);
+        }else{
+			if(state != "away" && unhit){
 				animation.Play("desactivar");
 				shield = (GameObject)Instantiate(Resources.Load("Enemy_Shield"),myTransform.position,myTransform.rotation);
 			}
-			animation.Play("ajupit");
+
 			state="away";
-			//Debug.Log("Enemic inactiu");
+
 		}
 	}
         
@@ -167,29 +165,27 @@ public class AI2Shooter : MonoBehaviour {
 		Vector3 enemyChest = myTransform.position+Vector3.up*1.6f;
 	    myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - enemyChest), rotationSpeed * Time.deltaTime);
 	    myTransform.position += myTransform.forward * moveSpeed * Time.deltaTime;
-	    //float mov= myTransform.position.y -(gravetat * Time.deltaTime);
-	    //myTransform.position.y =mov;
-	    //myTransform.position=new Vector3(myTransform.position.x,mov,myTransform.position.z);
     }
 
-    private void attack(int dmg,bool ranged){
+    private void attack(int dmg,float distancia){
         if(Time.time>timerAtac){
-			if(ranged){
-				Debug.Log("Shooting");
-				animation.CrossFade("disparar");
-				disparar(distancia_disparar,dist_dmg);
-			}else{
-				Debug.Log("Melee");
-				animation.CrossFade("melee");
-				disparar(distancia_disparar,melee_dmg);
-			}
+			Debug.Log("Shooting");
+			animation.CrossFade("disparar");
+			disparar(distancia_disparar,distancia);
             timerAtac=Time.time+fireRate;
         }
      }
 	
 	public void rebreDany(int dmg){
-		if (state != "away"){
+
+		
+		if (state != "away" || !unhit){
 			vida-=dmg;
+			unhit=false;
+			distancia_disparar=100;
+			recently_shot = true;
+			timerShot = Time.time;
+			
 			
 			if (vida < maxvida*0.5f){
 				ParticleSystem particlesystem = (ParticleSystem)gameObject.GetComponent("ParticleSystem");
@@ -199,51 +195,54 @@ public class AI2Shooter : MonoBehaviour {
 			float percent = 0.0f;
 			percent = vida/maxvida;
 			percent = percent*100;
-			//enemy_Healthbar.guiTexture.pixelInset.Set(enemy_Healthbar.guiTexture.pixelInset.x,enemy_Healthbar.guiTexture.pixelInset.y,percent,enemy_Healthbar.guiTexture.pixelInset.height);
-			//Rect temp1 = new Rect(0, 0, percent, 10);
-			//enemy_Healthbar.guiTexture.pixelInset=temp1;
 			float Size_width = 0.0005f;
 			float Size_height = 0.0050f;
 			
 			Size_width = percent*Size_width;
 			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,1);
 			
-			
 			Debug.Log ("QUEDA UN "+percent+" % DE VIDA");
 			Debug.Log("Enemigo atacado quedan "+vida+" puntos de vida");
 			if(vida<=0){
 				Debug.Log("Enemigo muerto");
 				hud.SendMessage("enemyDeath");
+				drop();
 				Destroy(gameObject);
 			}
 		}
 	}
+
 	
-	private void disparar(int distancia,int dmg){
-		RaycastHit[] hits;
-		hits = Physics.RaycastAll (transform.position, (target.position- transform.position), distancia);
-	    int i = 0;
-        while (i < hits.Length) {
-            RaycastHit hit = hits[i];
-			Debug.Log (hits[i]);
-	        if (hits[i].collider.tag == "Player"){
-				Debug.Log("ataco al player i li faig "+dmg+" punts de dany");
-				hit.transform.gameObject.SendMessage("rebreAtac",dmg);
-				break;
-			}else if(hits[i].collider.tag == null){
-				break;
-			}
-			i++;
-	    }
-		/*if(Physics.Raycast(transform.position, (target.position- transform.position), out hit, dis)) {
+	private void disparar(int dis,float distancia){
+		Invoke ("showLaser", 0.5f);
+		if(Physics.Raycast(transform.position, (target.position- transform.position), out hit, dis)) {
 			Debug.DrawLine(target.position, transform.position, Color.green);
 			Debug.DrawRay(transform.position, transform.forward,Color.blue);
-			//print (hit.collider.gameObject.tag);
 			if(hit.collider.gameObject.tag == "Player") {
-				
+				bool success=false;
+				int rr=Random.Range(0,11);
+				if(distancia<10){
+					success=true;
+				}else if (distancia>10 && distancia <20){
+					if(rr>2) success=true;
+					
+				}else if(distancia>20 && distancia<40){
+					if(rr>5) success=true;
+				}else{
+					if(rr>8) success=true;
+				}
+				if (success){
+					Invoke ("damage_Player", 0.5f);
+				}
 			}
-		}*/
+			
+		}
 	}
+	
+	private void damage_Player(){
+		GameObject.FindGameObjectWithTag("Player").SendMessage("rebreAtac",dist_dmg);
+	}
+	
 	
 	private void regenerar_escut(){
 		if(Time.time>timerEscut && escut<max_escut){
@@ -255,6 +254,22 @@ public class AI2Shooter : MonoBehaviour {
 			timerEscut=Time.time+temps_recarga_escut;
 		}
 
+	}
+	
+	private void drop(){
+		myTransform.rotation.Set(0,0,0,0);
+		Vector3 temp = myTransform.position;
+		int ra = Random.Range(0, 2);
+		if(ra==0){
+			ra = Random.Range(0, 3);
+			if(ra==0){
+				GameObject missile = (GameObject)Instantiate(Resources.Load("cura"),temp,myTransform.rotation);
+			}else if(ra==1){
+				GameObject missile = (GameObject)Instantiate(Resources.Load("municio_pistola"),temp,myTransform.rotation);
+			}else{
+				GameObject missile = (GameObject)Instantiate(Resources.Load("municio_rifle"),temp,myTransform.rotation);
+			}
+		}	
 	}
 	
 	
@@ -270,9 +285,28 @@ public class AI2Shooter : MonoBehaviour {
 			escut=0;
 			
 		}
-
 		return v2;
-
+	}
+	
+	
+	public void showLaser()
+	{	
+		Debug.Log("LASERLASERLASER ON");
+		if(isShowingLaser){
+				return;
+		}
+		AudioSource.PlayClipAtPoint(escopetazo, transform.position, 1.9f);
+		isShowingLaser = true;
+		linerenderer.enabled = true;
+		Invoke ("resetLaser", 0.1f);
+	}
+		
+	
+	public void resetLaser()
+	{    
+		linerenderer.enabled = false;
+		isShowingLaser = false;
+		Debug.Log("LASERLASERLASER OFF");
 	}
 
 }

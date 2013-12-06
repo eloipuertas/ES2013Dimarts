@@ -85,26 +85,24 @@ public class Weapon : MonoBehaviour {
 	}
 	
 	public void meeleWeapon(){
-		if(Random.value<0.5f)
-			    modelWeapon.animation.Play ("AtaqueMelee2");//Aqui utilizare un random para cambiar entre las dos posibles
-			else
-				modelWeapon.animation.Play ("AtaqueMelee1");
+		if(Random.value<0.5f){
+			modelWeapon.animation.Play ("AtaqueMelee2");//Aqui utilizare un random para cambiar entre las dos posibles
+		}
+		else{
+			modelWeapon.animation.Play ("AtaqueMelee1");
+		}
 	}
 	
 	public int recarregar() {
-		//Debug.Log("bales totals "+balesTotals);
-		//Debug.Log("bales actuals carregador "+balesActualCarregador);
 		if((balesTotals > 0) && (balesActualCarregador < tamanyCarregador)) {
-			Debug.Log("entra if");
-				modelWeapon.animation.Play("Recargar");		
-				//Comprovar quantes bales hi ha el carregador, i afegir les que falten x omplir
-				int num_bales = tamanyCarregador - balesActualCarregador;
-				if(num_bales <= balesTotals){
-					balesActualCarregador += num_bales;
-					balesTotals -= num_bales;
-					return balesActualCarregador;
-				}
-
+			modelWeapon.animation.Play("Recargar");		
+			//Comprovar quantes bales hi ha el carregador, i afegir les que falten x omplir
+			int num_bales = tamanyCarregador - balesActualCarregador;
+			if(num_bales <= balesTotals){
+				balesActualCarregador += num_bales;
+				balesTotals -= num_bales;
+				return balesActualCarregador;
+			}
 			else {
 				balesActualCarregador += balesTotals;
 				//Es 0 ja que si entro aqui vol dir que tinc menys bales que posicions al carregador
@@ -125,26 +123,11 @@ public class Weapon : MonoBehaviour {
 		
 	
 	// Use this for initialization
-	void Start () {	
-		
+	void Start () {		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		/*if(tiempoAnimacionCaminar <= 0){	
-			Debug.Log("Animacio caminar posweapon "+modelWeapon.tag);
-			if((Input.GetButton("Horizontal") && !Input.GetButton("Caminar")) || (Input.GetButton("Vertical")  && !Input.GetButton("Caminar") )) {		
-				//Debug.Log("Entra a correr" );
-				moveWeapon();
-				tiempoAnimacionCaminar = tiempoAnimacionCaminarMAX;
-			}			
-			else if((Input.GetButton("Horizontal") && Input.GetButton("Caminar")) || (Input.GetButton("Vertical") && Input.GetButton("Caminar")))	{
-				//Debug.Log("Entra a caminar" );
-				walkWeapon();
-				tiempoAnimacionCaminar = tiempoAnimacionCaminarMAX;
-			}
-		}
-		tiempoAnimacionCaminar = tiempoAnimacionCaminar - Time.deltaTime;*/	
 	}
 	
 }

@@ -6,19 +6,18 @@ public class HUD : MonoBehaviour {
 	const int game_over = 4;
 	
 	//Contendra todos de enemigos en la escena
-	GameObject[] enem;
+	//GameObject[] enem;
 	
 	//El bloque que impide el paso en la salida
-	GameObject portal;
+	//GameObject portal;
 	
 	//Numero de enemigos en la escena
-	int numOfEnem;
+	int numOfEnem=0;
 	
 	//Slot de arma equipada
 	int weaponPos;
 	
 	//Puntuacion
-	private int score;
 	
 	
 	
@@ -40,6 +39,8 @@ public class HUD : MonoBehaviour {
 	public GUIText balasCargadorText;
 	public GUIText balasTotalesText;
 	public GUIText contadorEnemigos;
+	public GUIText scoreText;	//Puntuacion
+	private int score;		// variable donde guardamos el resultado del score
 	//public GUIText slotArma1;
 	//public GUIText slotArma2;
 	public GUITexture healthLine;
@@ -63,6 +64,11 @@ public class HUD : MonoBehaviour {
 	Rect arma1;
 	Rect arma2;
 	
+	public int previousStat;
+	public GUITexture wounded;
+	private Color c;
+	public float fadeTime, fadeMax;
+	
 	//The first method to be called
 	void Awake(){
 				
@@ -77,11 +83,12 @@ public class HUD : MonoBehaviour {
 			linternaTexture.texture = linternaApagada;
 		}
 		
-		enem = GameObject.FindGameObjectsWithTag("Enemy");
-		numOfEnem = enem.Length;
-		contadorEnemigos.text=numOfEnem.ToString();
+		//enem = GameObject.FindGameObjectsWithTag("Enemy");
+		//numOfEnem = enem.Length;
+		//numOfEnem=0;
+		//contadorEnemigos.text=numOfEnem.ToString();
 		
-		portal = GameObject.FindGameObjectWithTag("porta1");
+		//portal = GameObject.FindGameObjectWithTag("porta1");
 
 		vidaText.text = robotProtagonista.vida.ToString();
 		escudoText.text = robotProtagonista.escudo.ToString();
@@ -100,13 +107,32 @@ public class HUD : MonoBehaviour {
 		healthWidth = healthLine.pixelInset;
 		shieldWidth = shieldLine.pixelInset;
 		
-		score = 0;
+		scoreText.text = "0";
 	
+		c = wounded.color;
+		c.a = 0;
+		wounded.color = c;
+		previousStat = 200;
+		fadeMax = 1;
+		fadeTime = 0;
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		
+		/* Shows damage in the HUD when the player's heald or shield decreases*/
+		if(previousStat > robotProtagonista.vida + robotProtagonista.escudo){
+			fadeTime = 1;
+		}
+		previousStat = robotProtagonista.vida + robotProtagonista.escudo;
+		if(fadeTime > 0.0f){
+			float Alpha = Mathf.InverseLerp(0.0f,1.0f,fadeTime/fadeMax);
+			Color MyColor = wounded.color;
+	        MyColor.a = Alpha;
+		    wounded.color = MyColor;
+			fadeTime -= Time.deltaTime;
+		}
 		
 		if(linterna.activeLinterna){
 			linternaTexture.texture = linternaEncendida;
@@ -130,7 +156,7 @@ public class HUD : MonoBehaviour {
 		vidaText.text = robotProtagonista.vida.ToString();
 		escudoText.text = robotProtagonista.escudo.ToString();		
 		
-		balasCargadorText.text = robotProtagonista.balesCarregador.ToString();;
+		balasCargadorText.text = robotProtagonista.balesCarregador.ToString();
 		balasTotalesText.text = robotProtagonista.balesTotalsArmaActual.ToString();
 		
 		weaponPos = robotProtagonista.posWeapon;
@@ -168,16 +194,46 @@ public class HUD : MonoBehaviour {
 		numOfEnem--;
 		contadorEnemigos.text=numOfEnem.ToString();
 		
-		score = score +10;
+		score = int.Parse(scoreText.text) + 10;
+		scoreText.text = score.ToString();
 		
 	}
+	
+	//Cuando muere el boss, se actualiza el contador de enemigos
+	public void bossDeath(){
+		
+		numOfEnem--;
+		contadorEnemigos.text=numOfEnem.ToString();
+		
+		score = int.Parse(scoreText.text) + 30;
+		scoreText.text = score.ToString();
+		
+	}
+	
+	public void addEnemy(){
+		
+		numOfEnem++;
+		contadorEnemigos.text=numOfEnem.ToString();
+		
+	}
+	
 	public int getCurrentTotalScore(){
 		
-		score = score + robotProtagonista.vida;
+		score = int.Parse(scoreText.text) + robotProtagonista.vida;
 		score = score + robotProtagonista.escudo;
 		score = score + robotProtagonista.balesCarregador;
 		score = score + robotProtagonista.balesTotalsArmaActual;
 		
 		return score;
+	}
+	
+	public void actualitzarBales(int[] municioWeapon) {
+		int municio = municioWeapon[0];
+		int posWeapon = municioWeapon[1];
+		
+		if(posWeapon == weaponPos) {
+			balasTotalesText.text = municio.ToString();	
+		}
+		
 	}
 }

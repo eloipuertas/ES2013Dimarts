@@ -20,10 +20,13 @@ public class controlGUI : MonoBehaviour
 	public MouseLook cameraML;
 	public MouseLook playerML;
 	
+	private GameObject Player;
+	
 	private void Start()
 	{
 		paused = false;
 		showTip = 0;
+		Player = GameObject.FindGameObjectWithTag("Player");
 	}
 	
 	private void Update()
@@ -31,6 +34,7 @@ public class controlGUI : MonoBehaviour
 		if(Input.GetButtonDown("Escape"))
 		{
 			paused = true;
+			Player.SendMessage("isPausedOn");
 		}
 		
 		if(paused)
@@ -116,6 +120,7 @@ public class controlGUI : MonoBehaviour
 		if(GUILayout.Button("Continuar"))
 		{
 			paused = false;
+			Player.SendMessage("isPausedOff");
 		}
 		
 		if(GUILayout.Button("Reiniciar nivel"))
@@ -153,7 +158,6 @@ public class controlGUI : MonoBehaviour
 				case weapons:
 					GUILayout.Label("- Pulsa la tecla '1' para elegir la Pistola.");
 					GUILayout.Label("- Pulsa la tecla '2' para elegir el Rifle.");
-					GUILayout.Label("- Pulsa la tecla '3' para elegir la Escopeta.");
 					break;
 				case actions:
 					GUILayout.Label("- Pulsa la tecla 'F' para encender y apagar la linterna.");

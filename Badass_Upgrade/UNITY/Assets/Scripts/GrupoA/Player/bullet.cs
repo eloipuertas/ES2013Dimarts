@@ -7,26 +7,29 @@ public class bullet : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-	
+		Destroy(this.gameObject,5f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		
 	}
 	
 	void OnTriggerEnter(Collider other) {
-		Debug.Log("Toco "+other.collider.gameObject.tag);
+		//Debug.Log("Toco con el bullet -> "+other.collider.gameObject.name);
 		if(other.collider.gameObject.tag == "Enemy") {
-			Debug.Log("Toco l'eneimc");
 			other.transform.gameObject.SendMessage("rebreDany",damage);
-			Debug.Log("Li faic dany a l'eneimic = "+damage);
+			//Debug.Log("Damage enemic = "+damage);
 			Destroy(this.gameObject);
 		}
-		else if(other.collider.gameObject.tag != "Enemy" && (other.collider.gameObject.tag != "Player")) {
+		else if(other.collider.gameObject.tag == "Barril") {			
+			//Debug.Log("TOCO AL BARRIL ->"+other.name);
+		    other.transform.gameObject.SendMessage("rebreTir");
+		}		
+		else if(other.collider.gameObject.tag != "Enemy" && (other.collider.gameObject.tag != "Player") && (other.collider.gameObject.tag != "muzzleFlash")) {
 			Destroy(this.gameObject);
 		}
-		//Si no toca re, al cap de 5 segons desapareix
-		Destroy(this.gameObject,5f);
+		
     }
 	
 	void addDamage(int damage) {

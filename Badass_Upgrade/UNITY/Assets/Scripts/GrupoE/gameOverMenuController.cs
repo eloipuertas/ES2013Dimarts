@@ -33,8 +33,8 @@ public class gameOverMenuController : MonoBehaviour {
 	
 	private void Update()
 	{
-		if(Input.anyKey)
-			Application.LoadLevel(new_game);
+		//if(Input.anyKey)
+		//	Application.LoadLevel(new_game);
 		if(Time.timeSinceLevelLoad > espera)
 			Application.LoadLevel(new_game);
 		else

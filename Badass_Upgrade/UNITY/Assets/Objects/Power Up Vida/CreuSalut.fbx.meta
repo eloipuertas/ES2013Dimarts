@@ -21,7 +21,7 @@ ModelImporter:
     3300000: Plane
     4300000: Plane
     4300002: Cube
-    7400000: Default Take
+    7400000: Rotacion
     7400002: Action
     9500000: //RootNode
     11100000: //RootNode
@@ -39,7 +39,7 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     clipAnimations:
-    - name: Default Take
+    - name: Rotacion
       takeName: Default Take
       firstFrame: 0
       lastFrame: 99

@@ -1,0 +1,186 @@
+fileFormatVersion: 2
+guid: 634b1c0318da4ea43a694db01d5093f8
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: arm_elbow_IK_L
+    100002: arm_elbow_IK_R
+    100004: arm_IK_L
+    100006: arm_IK_R
+    100008: arm_lower_L
+    100010: arm_lower_R
+    100012: arm_upper_L
+    100014: arm_upper_R
+    100016: Armature
+    100018: Camera
+    100020: //RootNode
+    100022: foot_L
+    100024: foot_R
+    100026: hand_L
+    100028: hand_L_005
+    100030: hand_R
+    100032: hand_R_004
+    100034: head
+    100036: hips
+    100038: hips_root
+    100040: leg_IK_L
+    100042: leg_IK_R
+    100044: leg_knee_IK_L
+    100046: leg_knee_IK_R
+    100048: leg_lower_L
+    100050: leg_lower_R
+    100052: leg_upper_L
+    100054: leg_upper_R
+    100056: neck
+    100058: Plane_003
+    100060: Plane_003_MeshPart0
+    100062: Plane_003_MeshPart1
+    100064: root
+    100066: shoulder_L
+    100068: shoulder_R
+    100070: spine_01
+    100072: spine_02
+    100074: toe_L
+    100076: toe_R
+    400000: arm_elbow_IK_L
+    400002: arm_elbow_IK_R
+    400004: arm_IK_L
+    400006: arm_IK_R
+    400008: arm_lower_L
+    400010: arm_lower_R
+    400012: arm_upper_L
+    400014: arm_upper_R
+    400016: Armature
+    400018: Camera
+    400020: //RootNode
+    400022: foot_L
+    400024: foot_R
+    400026: hand_L
+    400028: hand_L_005
+    400030: hand_R
+    400032: hand_R_004
+    400034: head
+    400036: hips
+    400038: hips_root
+    400040: leg_IK_L
+    400042: leg_IK_R
+    400044: leg_knee_IK_L
+    400046: leg_knee_IK_R
+    400048: leg_lower_L
+    400050: leg_lower_R
+    400052: leg_upper_L
+    400054: leg_upper_R
+    400056: neck
+    400058: Plane_003
+    400060: Plane_003_MeshPart0
+    400062: Plane_003_MeshPart1
+    400064: root
+    400066: shoulder_L
+    400068: shoulder_R
+    400070: spine_01
+    400072: spine_02
+    400074: toe_L
+    400076: toe_R
+    4300000: Plane_003_MeshPart0
+    4300002: Plane_003_MeshPart1
+    7400000: caminar
+    7400002: ArmatureAction
+    7400004: melee
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Plane_003_MeshPart0
+    13700002: Plane_003_MeshPart1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations:
+    - name: caminar
+      takeName: Default Take
+      firstFrame: 2
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: melee
+      takeName: Default Take
+      firstFrame: 33
+      lastFrame: 41
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .200000003
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 1
+  userData: 

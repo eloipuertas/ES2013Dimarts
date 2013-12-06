@@ -5,84 +5,78 @@ using System.Collections;
 
 public class Homing_missile : MonoBehaviour {
 	public Transform target;
+	private Vector3 attack_location;
 	float Distance;
-    public int moveSpeed=8;
-	public int rotationSpeed=2;
-	private int damage = 25;
+    private int moveSpeed=13;
+	private int rotationSpeed=20;
+	private int damage = 20;
 	RaycastHit hit;
 	private Transform myTransform;
+	private bool destroyed = false;
+	public GameObject bomba;
+	public GameObject smoke_trail;
+	
+	public AudioClip expSound;
+	
 	// Use this for initialization
 	void Start () {
+		Destroy(this.gameObject,15.0f);
 		myTransform = transform;
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
         target = player.transform;
+		attack_location = target.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Distance=Vector3.Distance(target.position,transform.position);
+		Distance=Vector3.Distance(attack_location,transform.position);
 		Debug.DrawRay(transform.position, transform.forward);
-		GameObject player = GameObject.FindGameObjectWithTag("Player");
-        target = player.transform;
-		moveTo();
-		if(Distance<1){
-			disparar(2,damage);
-		}
-	}
-	
-	void moveTo(){
-	    myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
-	    myTransform.position += myTransform.forward * moveSpeed * Time.deltaTime;
-    }
-	
-	/*private void disparar(int distancia,int dmg){
-		RaycastHit[] hits;
-		hits = Physics.RaycastAll (transform.position, (target.position- transform.position), distancia);; 
-	    int i = 0;
-        while (i < hits.Length) {
-            RaycastHit hit = hits[i];
-			Debug.Log (hits[i]);
-	        if (hits[i].collider.tag == "Player"){
-				Debug.Log("ataco al player i li faig "+dmg+" punts de dany");
-				hit.transform.gameObject.SendMessage("rebreAtac",dmg);
-				break;
-			}else if(hits[i].collider.tag == null){
-				break;
-			}
-			i++;
-	    }
-	}*/
-	
-	
-	private void disparar(float distancia,int dmg){
-		RaycastHit[] hits;
-
-		hits = Physics.RaycastAll (transform.position, (target.position - transform.position), distancia);; 
-	    int i = 0;
-        while (i < hits.Length) {
-			Debug.Log("Tocat a: "+hits[i].collider.gameObject.tag);
-			if(hits[i].collider.gameObject.tag == "Player") {
-				Debug.Log("Missil ha fet "+dmg+" punts de dany");
-				hits[i].transform.gameObject.SendMessage("rebreAtac",dmg);
-				Destroy(gameObject);
-				break;
-			}
-			i++;
-		}
-		Destroy(gameObject);
-	}
-	/*private void disparar(float distancia,int dmg){
-		if(Physics.Raycast(transform.position, (target.position- transform.position), out hit, distancia)) {
-			if(hit.collider.gameObject.tag == "Player") {
-				Debug.Log("Missil ha fet "+dmg+" punts de dany");
-				hit.transform.gameObject.SendMessage("rebreAtac",dmg);
-			}
-			if(hit.collider.gameObject.tag != "Enemy") {
-				Destroy(gameObject);
+		//GameObject player = GameObject.FindGameObjectWithTag("Player");
+        //target = player.transform;
+		
+		if(!destroyed){
+			moveTo();
+			if(Distance<1){
+			Debug.Log("DISPARAR");
+				disparar(4.0f,damage);
 			}
 		}
 		
-	}*/
+	}
+	
+	void moveTo(){
+	    myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(attack_location - myTransform.position), rotationSpeed * Time.deltaTime);
+	    myTransform.position += myTransform.forward * moveSpeed * Time.deltaTime;
+    }
+	
+	private void disparar(float distancia,int dmg){
+		//Component halo = GetComponent("Halo");
+		RaycastHit[] hits;
+		//GameObject obj = gameObject.transform.Find("bombaNpc").gameObject;
+		//obj.activeSelf = false;
+		//halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
+		//Destroy (bomba);
+		//Destroy (smoke_trail);
+		
+		AudioSource.PlayClipAtPoint(expSound, transform.position, 0.9f);
+		
+		GameObject Explosion = (GameObject)Instantiate(Resources.Load("Homing_explosion"),myTransform.position,myTransform.rotation);
+		hits = Physics.RaycastAll (transform.position, (target.position - transform.position), distancia);; 
+	    int i = 0;
+        while (i < hits.Length){
+			Debug.Log("Missil ha tocat a: "+hits[i].collider.gameObject.tag);
+			if(hits[i].collider.gameObject.tag == "Player") {
+				Debug.Log("Missil ha fet "+dmg+" punts de dany");
+				hits[i].transform.gameObject.SendMessage("rebreAtac",dmg);
+				break;
+			}
+			i++;
+		}
+		
+		destroyed = true;
+		//Destroy(this.gameObject,1.0f);
+		Destroy(gameObject);
+	}
 	
 	private void OnCollisionEnter(Collision collision)
 	{
