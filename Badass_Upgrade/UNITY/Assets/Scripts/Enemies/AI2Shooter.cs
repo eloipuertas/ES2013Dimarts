@@ -148,7 +148,7 @@ public class AI2Shooter : MonoBehaviour {
 			//temp.y = 0.0f;
 			myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(temp - enemyChest), rotationSpeed * Time.deltaTime);
 			state="shooting";
-            attack(dist_dmg,true,Distance);
+            attack(dist_dmg,Distance);
         }else{
 			if(state != "away" && unhit){
 				animation.Play("desactivar");
@@ -167,23 +167,11 @@ public class AI2Shooter : MonoBehaviour {
 	    myTransform.position += myTransform.forward * moveSpeed * Time.deltaTime;
     }
 
-    private void attack(int dmg,bool ranged,float distancia){
-
-		
-		
+    private void attack(int dmg,float distancia){
         if(Time.time>timerAtac){
-			if(ranged){
-				
-				AudioSource.PlayClipAtPoint(escopetazo, transform.position, 1.9f);
-				
-				Debug.Log("Shooting");
-				animation.CrossFade("disparar");
-				disparar(distancia_disparar,dist_dmg,distancia);
-			}else{
-				Debug.Log("Melee");
-				animation.CrossFade("melee");
-				disparar(distancia_disparar,melee_dmg,distancia);
-			}
+			Debug.Log("Shooting");
+			animation.CrossFade("disparar");
+			disparar(distancia_disparar,distancia);
             timerAtac=Time.time+fireRate;
         }
      }
@@ -213,7 +201,6 @@ public class AI2Shooter : MonoBehaviour {
 			Size_width = percent*Size_width;
 			enemy_Healthbar.guiTexture.transform.localScale = new Vector3(1*Size_width,(float)Screen.width/Screen.height*Size_height,1);
 			
-			
 			Debug.Log ("QUEDA UN "+percent+" % DE VIDA");
 			Debug.Log("Enemigo atacado quedan "+vida+" puntos de vida");
 			if(vida<=0){
@@ -226,16 +213,14 @@ public class AI2Shooter : MonoBehaviour {
 	}
 
 	
-	private void disparar(int dis,int dmg,float distancia){
-		showLaser();
+	private void disparar(int dis,float distancia){
+		Invoke ("showLaser", 0.5f);
 		if(Physics.Raycast(transform.position, (target.position- transform.position), out hit, dis)) {
 			Debug.DrawLine(target.position, transform.position, Color.green);
 			Debug.DrawRay(transform.position, transform.forward,Color.blue);
-			print ("wtf is this"+hit.collider.gameObject.tag);
 			if(hit.collider.gameObject.tag == "Player") {
 				bool success=false;
 				int rr=Random.Range(0,11);
-
 				if(distancia<10){
 					success=true;
 				}else if (distancia>10 && distancia <20){
@@ -246,13 +231,16 @@ public class AI2Shooter : MonoBehaviour {
 				}else{
 					if(rr>8) success=true;
 				}
-				print ("lol"+success);
 				if (success){
-					GameObject.FindGameObjectWithTag("Player").SendMessage("rebreAtac",dmg);
+					Invoke ("damage_Player", 0.5f);
 				}
 			}
 			
 		}
+	}
+	
+	private void damage_Player(){
+		GameObject.FindGameObjectWithTag("Player").SendMessage("rebreAtac",dist_dmg);
 	}
 	
 	
@@ -297,9 +285,7 @@ public class AI2Shooter : MonoBehaviour {
 			escut=0;
 			
 		}
-
 		return v2;
-
 	}
 	
 	
@@ -309,6 +295,7 @@ public class AI2Shooter : MonoBehaviour {
 		if(isShowingLaser){
 				return;
 		}
+		AudioSource.PlayClipAtPoint(escopetazo, transform.position, 1.9f);
 		isShowingLaser = true;
 		linerenderer.enabled = true;
 		Invoke ("resetLaser", 0.1f);
