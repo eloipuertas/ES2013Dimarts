@@ -13,15 +13,14 @@ public class AI2Chaser : MonoBehaviour {
 
 
     //variables modificables segons la ia--------
-	public float vida=40;
-    private int moveSpeed=7;
+	public float vida=30;
+    private int moveSpeed=9;
 	private int rotationSpeed=2;
     float Distance;
-    int dist_dmg=15;
-	private int melee_dmg=1;
+	private int melee_dmg=15;
 
 	//----------------------------------
-    private float fireRate=0.5f;
+    private float fireRate=1.5f;
     private int distancia_alerta=20;
     private int distancia_perseguir=6;
     private int distancia_melee=3;
@@ -203,7 +202,6 @@ public class AI2Chaser : MonoBehaviour {
 			
 			Debug.DrawLine(target.position, transform.position, Color.green);
 			Debug.DrawRay(transform.position, transform.forward,Color.blue);
-			//print (hit.collider.gameObject.tag);
 			if(hit.collider.gameObject.tag == "Player") {
 				Debug.Log("ataco al player i li faig "+dmg+" punts de dany");
 				hit.transform.gameObject.SendMessage("rebreAtac",dmg);
@@ -211,16 +209,19 @@ public class AI2Chaser : MonoBehaviour {
 		}
 	}
 	
+	
+	
+	
+	
+	
 	private void regenerar_escut(){
 		if(Time.time>timerEscut && escut<max_escut){
 			escut+=max_escut *(regen_escut/100);
 			if(escut>max_escut){
 					escut=max_escut;
 			}
-			
 			timerEscut=Time.time+temps_recarga_escut;
 		}
-
 	}
 	
 	
