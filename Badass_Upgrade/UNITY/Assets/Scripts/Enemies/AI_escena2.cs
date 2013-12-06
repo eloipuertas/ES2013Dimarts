@@ -7,8 +7,8 @@ public class AI_escena2 : MonoBehaviour {
     private Transform target;
 
     //variables modificables segons la ia--------
-	private float vida=100;
-    private int moveSpeed=3;
+	private float vida=500;
+    private int moveSpeed=5;
 	private int rotationSpeed=10;
     float Distance;
 	
@@ -22,7 +22,7 @@ public class AI_escena2 : MonoBehaviour {
 
 	//----------------------------------
 	private int numMissils=2;
-    private int fireRateMissils=12;
+    private int fireRateMissils=7;
 	private int fireRateFoc=15;
 	private float fireRateTrail=0.5f;
 	private float fireRateMelee=3.0f;
