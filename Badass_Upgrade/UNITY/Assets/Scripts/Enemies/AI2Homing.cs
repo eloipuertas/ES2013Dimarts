@@ -13,7 +13,7 @@ public class AI2Homing : MonoBehaviour {
 
 
     //variables modificables segons la ia--------
-	private float vida=100;
+	private float vida=150;
     public int moveSpeed=3;
 	public int rotationSpeed=2;
     float Distance;
