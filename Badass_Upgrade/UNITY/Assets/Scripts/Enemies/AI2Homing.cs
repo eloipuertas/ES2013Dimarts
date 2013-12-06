@@ -13,7 +13,7 @@ public class AI2Homing : MonoBehaviour {
 
 
     //variables modificables segons la ia--------
-	public float vida=40;
+	private float vida=100;
     public int moveSpeed=3;
 	public int rotationSpeed=2;
     float Distance;
@@ -97,7 +97,6 @@ public class AI2Homing : MonoBehaviour {
         
      // Update is called once per frame
      void Update () {
-		
 		if(Vector3.Dot(target.forward, myTransform.position - target.position)>=0) {
 			inSight = true;
 		}else{
@@ -162,10 +161,9 @@ public class AI2Homing : MonoBehaviour {
 			if(ranged){
 				animation.CrossFade("disparar");
 				Debug.Log("Missile!");
-				Vector3 temp = myTransform.position;
-				temp.y = temp.y+4.0f;
+				Invoke ("summon_missile", 1.8f);
 				timerAtac=Time.time+fireRate;
-				GameObject missile = (GameObject)Instantiate(Resources.Load("Homing_missile_1"),temp,myTransform.rotation);
+				
 			}else{
 				Debug.Log("Melee");
 				animation.CrossFade("melee");
@@ -174,6 +172,11 @@ public class AI2Homing : MonoBehaviour {
             timerAtac=Time.time+fireRate;
         }
      }
+	public void summon_missile(){
+		Vector3 temp = myTransform.position;
+		temp.y = temp.y+4.0f;
+		GameObject missile = (GameObject)Instantiate(Resources.Load("Homing_missile_1"),temp,myTransform.rotation);
+	}
 	
 	public void rebreDany(int dmg){
 		if (state != "away" || !unhit){

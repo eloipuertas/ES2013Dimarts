@@ -13,7 +13,7 @@ public class AI2Spawner : MonoBehaviour {
 
 
     //variables modificables segons la ia--------
-	public float vida=100;
+	private float vida=150;
     public int moveSpeed=10;
 	public int rotationSpeed=1;
     float Distance;
@@ -150,6 +150,7 @@ public class AI2Spawner : MonoBehaviour {
 			}else{
 				distancia_disparar=50;
 				if(Time.time>timerAtac){
+					animation.CrossFade("disparar");
 					Vector3 temp = myTransform.position;
 					temp.y = temp.y+4.0f;
 					timerAtac=Time.time+fireRate;
