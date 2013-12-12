@@ -1,0 +1,1432 @@
+/* ui & layout */
+
+div.page_body.game_guide { padding-top:0px; }
+div#guide_mech_detail, div#guide_weapon_detail, div#guide_item_detail { padding-right:0px; overflow: hidden; }
+
+div.breadcrumb { color: #595959; height:30px; line-height:30px; }
+div.breadcrumb a { color: #595959; text-decoration: none; }
+div.breadcrumb a:hover { color: #fff; }
+
+div.divider-950 { background-image:url('../../../images/game-guide/shared/divider-950.jpg'); background-repeat:no-repeat; }
+div.divider-615 { background-image:url('../../../images/game-guide/shared/divider-615.jpg'); background-repeat:no-repeat; }
+
+/* title formats */
+
+div.guide-title { /* guide page header */
+	color:#fff;
+	font: 50px 'AgencyFBBold';
+	text-transform:uppercase;
+	line-height:50px;
+}
+
+div.guide-subtitle { /* guide page header */
+	color:#fff;
+	font: 40px 'AgencyFBBold';
+	text-transform:uppercase;
+}
+
+div.guide-info-block div.p15 { margin-bottom:25px; padding:0px; } /* still need? */
+
+div.guide-info-block div.h1 { margin: 15px 0px 20px 0px; } /* h1 text with 30px top/bottom margin (header) */
+div.guide-info-block.header-block div.h1 { margin: 13px 0px 20px 0px; } /* h1 text with 30px top/bottom margin (non-header) */
+img.h1, .imgframe.h1 { margin-top:15px; } /* adjusted image margin to align with top of h1 text block */
+
+div.guide-info-block .p1 p { line-height:22px; }
+div.info-block-left p:first-child, div.info-block-right p:first-child { margin-top:0px; } /* first <p> in a block has no margin-top */
+div.guide-info-block p.end { margin-bottom:0px; } /* last <p> in a block has no margin-bottom */
+p.p2.end { color:#7e7e7e; }
+
+/* content blocks */
+
+div.guide-info-block {
+	margin-top:50px;
+	padding-top:50px;
+	background-image: url('../../../images/game-guide/shared/divider-950.jpg');
+	background-repeat: no-repeat;
+}
+
+div.guide-info-block.header-block, div.guide-info-block.nodiv { margin-top:30px; padding-top:0px; background:none; }
+div.guide-info-block.lesspadding { padding-top:30px; }
+
+div.guide-info-block.mid { margin-top:48px; padding-top:0px; background:none; } /* guide-info-block without top divider */
+div.guide-info-block.top { margin-top: 0px; } /* guide-info-block with top divider but no margin */
+
+div.info-block-left.mid, div.info-block-right.mid, div.info-block-single.mid { margin-top:64px; } /* margin-top on extra left/right blocks inside guide-info-block */
+div.info-block-left.mid div.h1, div.info-block-right.mid div.h1, div.info-block-right.single div.h1 { margin-top:0px; } /* h1 in those blocks needs no margin-top */
+
+div.info-block-left, div.info-block-right { display: inline-block; vertical-align:top; width: 450px; }
+div.info-block-left { margin-right:25px; }
+div.info-block-right { margin-left:25px; }
+
+div.info-block-left.w13, div.info-block-right.w13 { width:350px; }
+div.info-block-left.w23, div.info-block-right.w23 { width:550px; }
+
+div.info-block-single { width: 665px; }
+
+div.img-right { text-align:right; }
+
+/* all sortables */
+
+div.sort-by { color:#7e7e7e; margin: 30px 0px 10px 0px; }
+div.sort-by span.sort { cursor:pointer;  }
+div.sort-by span.head, div.sort-by span.sort.active, div.sort-by span.sort.hover { color:#d9d9d9; }
+
+/* tile menus */
+
+div.tile-menu {
+	margin-top:50px;
+	padding-top:50px;
+	background-image: url('../../../images/game-guide/shared/divider-950.jpg');
+	background-repeat: no-repeat;
+}
+
+div.tile-menu ul { list-style-type: none; padding:0px; }
+
+div.tile-menu ul li { 
+	width:300px;
+	height:200px;
+	margin-right:25px;
+	display:inline-block;
+	background-repeat:no-repeat;
+	vertical-align:top;
+	position:relative;
+	background-image:url('../../../images/download/download-tile-sprite.jpg');
+	text-shadow: 1px 1px 2px #000;
+	margin-bottom: 25px;
+}
+
+div.tile-menu ul li .label {
+	position:absolute;
+	bottom:0px;
+	text-align:left;
+	color:#FFF;
+	width:290px;
+	padding: 15px 0px 15px 10px;
+}
+
+div.tile-menu ul li .label.l30 { background-image:url('../../../images/download/tile_label_30.png'); }
+div.tile-menu ul li .label.l50 { background-image:url('../../../images/download/tile_label_50.png'); }
+div.tile-menu ul li .label p { margin:0px; padding:0px; line-height:15px; }
+div.tile-menu ul li.rcol { margin-right:0px !important; }
+
+/* game-info */
+
+div#info-video {
+	margin: 50px 0px 50px 0px;
+	padding: 35px 25px 35px 25px;
+	width:950px;
+	position:relative;
+	left:-25px;
+	-moz-box-shadow: inset 0 0 46px 0 #000; 
+	-webkit-box-shadow: inset 0 0 46px 0 #000; 
+	box-shadow: inset 0 0 46px 0 #000; 
+	background: #39404e; 
+	background: -moz-radial-gradient(center, ellipse cover, #39404e 30%, #050607 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(30%,#39404e), color-stop(100%,#050607));
+	background: -webkit-radial-gradient(center, ellipse cover, #39404e 30%,#050607 100%);
+	background: -o-radial-gradient(center, ellipse cover, #39404e 30%,#050607 100%);
+	background: -ms-radial-gradient(center, ellipse cover, #39404e 30%,#050607 100%);
+	background: radial-gradient(ellipse at center, #39404e 30%,#050607 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#39404e', endColorstr='#050607',GradientType=1 );
+}
+div#info-video div#wrapper_openBetaTrailer { height:406px; width:950px; overflow:hidden; }
+div#info-video iframe#video_openBetaTrailer { position:relative; top: -142px; width:950px; height:720px; }
+
+div#game-info-cta {
+	color: #fff;
+	font: 65px 'AgencyFBBold';
+	text-align:center;
+	text-transform: uppercase;
+}
+div#game-info-cta a, div#game-info-cta span#free-to-fight {
+	height:75px;
+	width:290px;
+	background-image:url('../../../images/game-guide/game-info/game-guide-play-free.png');
+	display:inline-block;
+	cursor:pointer;
+	font: 30px 'Play';
+	font-weight:bold;
+	line-height:75px;
+	color: #000;
+	text-shadow: 0 0 0.2em #FFF;
+}
+div#game-info-cta div#free-to-fight:hover { background-position: 0px -75px; }
+div#game-info-cta div#free-to-fight:active { background-position: 0px -150px; }
+
+/* mechs landing */
+
+ul#mech-types {
+	list-style: none;
+	margin: 50px 0px 0px 0px;
+	padding: 0px;
+	width:1000px;
+	position:relative;
+	left:-25px;
+	-moz-box-shadow: inset 0 0 46px 0 #000; 
+	-webkit-box-shadow: inset 0 0 46px 0 #000; 
+	background-color: #000;
+	background-image: url('../../../images/game-guide/shared/mech-background.jpg');
+	background-repeat: no-repeat;
+}
+
+ul#mech-types li { width:334px; display:inline-block; min-height:560px; }
+ul#mech-types li:first-child, ul#mech-types li:last-child { width: 333px; }
+ul#mech-types li span.view-mechs-button { margin-top:10px; }
+
+ul#mech-types li div.mech-image { width:286px; height:280px; margin:0px auto; background-repeat:no-repeat; background-position: 0px 0px; }
+ul#mech-types li a.hover div.mech-image { background-position: 0px -280px; }
+ul#mech-types li a { text-decoration:none; }
+
+ul#mech-types li div.mech-image.light { background-image:url('../../../images/game-guide/mechs/light-mech-sprite.png'); }
+ul#mech-types li div.mech-image.medium { background-image:url('../../../images/game-guide/mechs/medium-mech-sprite.png'); }
+ul#mech-types li div.mech-image.heavy { background-image:url('../../../images/game-guide/mechs/heavy-mech-sprite.png'); }
+
+ul#mech-types li div.mech-description { width:265px; text-align:center; margin:0px auto; }
+ul#mech-types li div.mech-description p.title { color:#fff; font: 36px 'AgencyFBBold'; text-transform:uppercase; margin: 10px 0px 0px 0px; }
+ul#mech-types li div.mech-description p.body { color:#7e7e7e; font: 14px 'Play'; margin: 5px 0px 0px 0px; }
+
+ul#mech-types li div.stat-bars { margin: 25px 0px 25px 0px; }
+ul#mech-types li div.stat-bars div.stat-bar { margin-left: 22px; position:relative; }
+
+ul#mech-types li div.stat-bars div.stat-bar span.stat-bar-tooltip {
+	position:absolute;
+	left:20px;
+	top:-20px;
+	z-index:10;
+	background-color: #000;
+	border:1px solid #363636;
+	padding: 10px;
+	line-height:1;
+	display:none;
+}
+
+table#mech-type-chart { width:100%; }
+table#mech-type-chart tr { height:23px; }
+table#mech-type-chart tr.padding { height:25px; }
+table#mech-type-chart tr.section_end { height:20px; }
+table#mech-type-chart sup { font-size:9px; }
+table#mech-type-chart tr.shade { background-color:#202020; }
+table#mech-type-chart tr.heading { background-color:#2F2F31; font-weight:bold; text-transform:uppercase; }
+table#mech-type-chart td.statname, table#mech-type-chart tr.heading td { text-align:left; padding-left:10px; }
+table#mech-type-chart td.statval { text-align:right; padding-right:10px; color:#ffb200; }
+table#mech-type-chart td.statname:not(:first-child), table#mech-type-chart tr.heading td:not(:first-child), table#mech-type-chart tr.section_end td:not(:first-child) { padding-left:35px; border-left:1px solid #303032; }
+table#mech-type-chart td.statval:not(:last-child), table#mech-type-chart tr.heading td:not(:last-child), table#mech-type-chart tr.section_end td:not(:last-child) { padding-right:35px; border-right:1px solid #000; }
+
+/* mechs by class */
+
+div#guide_mech_type div.stat-bars { margin:30px 0px 0px 10px; }
+
+/* mech detail */
+
+div#mech_detail_spotlight { height:420px; width:1000px; position:relative; left:-25px; }
+div#mech_detail_spotlight img#mech_detail_image { position:absolute; height:420px; width:1000px; }
+div#mech_detail_spotlight div.breadcrumb { position:absolute; z-index:10; left:25px; }
+div#mech_detail_spotlight div.breadcrumb, div#mech_detail_spotlight div.breadcrumb a { color:#7e7e7e; text-shadow: 1px 1px 0px #19191a; }
+div#mech_detail_spotlight div.breadcrumb a:hover { color:#fff; }
+
+div.splash-header { width:975px; height:420px; padding: 0px 0px 0px 25px; position:relative; }
+div.splash-header div { color:#fff; position:relative; }
+div.splash-header div.mech-title { font: 100px 'AgencyFBBold'; text-transform:uppercase; top:34px; }
+div.splash-header div.mech-subtitle { font: 24px 'Play'; text-transform:uppercase; top:16px; }
+div.splash-header div.mech-description { width:350px; line-height:22px; top:35px;}
+
+div.splash-header div.corp { position:absolute; bottom:0px; }
+div.splash-header div.corp div.logo { display:inline-block; vertical-align:top; width:50px; height:50px; background-image:url('../../../images/game-guide/shared/mechs/corporate-sprite.jpg'); }
+div.splash-header div.corp div.logo.sentium { background-position: 0px -50px; }
+div.splash-header div.corp div.l1 { display:inline-block; vertical-align:top; height:50px; color:#fff; margin-left:10px; }
+div.splash-header div.corp div.l1 span { display:block; }
+div.splash-header div.corp div.l1 span.release { text-transform:uppercase; }
+
+div#guide_mech_detail div.guide-leftcol, div#guide_mech_detail div.guide-rightcol { margin-top:50px; display:inline-block; vertical-align:top; }
+div#guide_mech_detail div.guide-leftcol { width:615px; margin-right:25px; }
+div#guide_mech_detail div.guide-rightcol { width:310px; margin-left:25px; }
+div#guide_mech_detail .h5 { text-transform:uppercase; }
+
+div.mech-video { display:inline-block; position:relative; }
+div.mech-video div.imgframe#vid-1 { margin-right:15px; }
+div.mech-video div.imgframe img { width:290px; height:165px; }
+div.mech-video div.vid_overlay { position:absolute; bottom:5px; width:290px; height:30px; background-image:url('../../../images/download/tile_label_50.png'); line-height:30px; text-align:center; text-transform:uppercase;  }
+
+div#guide_mech_detail div.abilities {color: #fff; font-family:'Play';  }
+div#guide_mech_detail div.abilities div.ability-info { width:300px; display:inline-block; margin-top:22px; }
+div#guide_mech_detail div.abilities div.ability-info img.ability-icon, div.abilities div.ability-info div.ability-detail { display:inline-block; }
+div#guide_mech_detail div.abilities div.ability-info div.ability-detail { vertical-align:top; width:220px; margin-left:10px; }
+div#guide_mech_detail div.abilities div.ability-info div.gameplay_tip { min-height:50px; background:#242424; border:1px solid #333333; margin:25px 0px 0px 0px; padding:15px; }
+div#guide_mech_detail div.abilities div.ability-info div.gameplay_tip .p1 { text-transform:uppercase; font-weight:bold; margin-bottom:10px; }
+div#guide_mech_detail div.abilities ul.ability-ranks { display:inline-block; vertical-align:top; list-style-type:none; padding:0px; margin:8px 0px 0px 48px; width:267px; }
+div#guide_mech_detail div.abilities ul.ability-ranks li { margin-top:15px; }
+div#guide_mech_detail div.abilities ul.ability-ranks li span.rank-icon { position:relative; display:inline-block; top:2px; left:2px; }
+
+span.rank-icon { height:28px; width:28px; background:url('../../../images/game-guide/shared/mechs/mech-rank-sprite.png'); background-repeat: no-repeat; }
+span.rank-icon.r2 { background-position: 0px -28px; }
+span.rank-icon.r3 { background-position: 0px -56px; }
+span.rank-icon.r4 { background-position: 0px -84px; }
+span.rank-icon.r5 { background-position: 0px -112px; }
+
+div#guide_mech_detail div.abilities ul.ability-ranks li span.ability-rank-text { display:inline-block; line-height:16px; display:inline-block; vertical-align:top; margin-left:10px; max-width:227px; }
+
+div#guide_mech_detail div.abilities.wvideo, div#guide_mech_detail div.optimizations { margin-top: 50px; padding-top: 46px; }
+div#guide_mech_detail div.weapons-and-items { margin-top: 49px; padding-top: 46px; }
+div#guide_mech_detail div.optimizations div.optimizations-detail, div#guide_mech_detail div.weapons-and-items div.weapons-and-items-detail { margin-top:21px; }
+div.optimizations-common, div.optimizations-secondary { display:inline-block; vertical-align:top; margin-top:26px; }
+
+div.optimizations table { margin-top:8px; }
+div.optimizations table td { background-color:#080b08; border:1px solid #909891; text-align:center; min-width:30px; height:30px; }
+div.optimizations table td.opt-lbl { width: 200px; padding-right:10px; text-align:right; text-transform:uppercase; }
+div.optimizations table td.opt-val { color: #FFCC00; font-weight: bold; }
+div.optimizations-secondary { margin-left:23px; }
+
+div#guide_mech_detail ul.equipment-grid { margin-top: 10px; }
+div#guide_mech_detail ul.equipment-grid li { margin-top: 20px; }
+
+/* mech detail (right column) */
+
+div.sidebar-head { width:310px; height:50px; background-image:url('../../../images/game-guide/shared/sidebar-header-pattern.jpg'); }
+div.sidebar-head span { display: inline-block; vertical-align: top; height: 50px;  }
+div.sidebar-head span.sidebar-title { padding-left: 10px; line-height: 50px; color: #FFB300; font-weight:bold; }
+div.sidebar-head span.sidebar-icon { width:50px; background-image:url('../../../images/game-guide/shared/sidebar-icons-sprite.png'); }
+div.sidebar-head span.sidebar-icon.headphones {  background-position: 0px 0px; }
+div.sidebar-head span.sidebar-icon.target {  background-position: 0px -50px; }
+div.sidebar-head span.sidebar-icon.lock {  background-position: 0px -100px; }
+div.sidebar-head span.sidebar-icon.camera {  background-position: 0px -150px; }
+
+div.sidebar-body { color:#7e7e7e; width:260px; padding:15px 25px 0px 15px; margin-bottom:50px; }
+
+div.sidebar-body div.pilot-rank { display:inline-block; height:45px; width:100px; background-image:url('../../../images/game-guide/shared/mechs/mech-pilot-rank.png'); }
+div.sidebar-body div.pilot-rank.rank3 { background-position: 0px -45px; }
+div.sidebar-body div.pilot-rank.rank4 { background-position: 0px -90px; }
+div.sidebar-body div.pilot-rank.rank5 { background-position: 0px -135px; }
+div.sidebar-body div.pilot-rank.rank6 { background-position: 0px -180px; }
+div.sidebar-body div.pilot-rank.rank7 { background-position: 0px -225px; }
+div.sidebar-body p.unlock-body.pilot { display:inline-block; vertical-align:top; height:45px; width:146px; margin-left:10px; margin-top:0px; }
+
+div.sidebar-body p:first-child { margin-top:0px; }
+div.sidebar-body div.imgframe { width:240px; margin: 0px 0px 10px 0px; }
+
+/* weapons landing */
+
+div#weapon-categories { margin-top:50px; padding-top: 35px;  }
+
+div#weapon-categories div.weapon-category { width:450px; display:inline-block; vertical-align:top; }
+div#weapon-categories div.weapon-category#primary-weapons { margin-right:25px; }
+div#weapon-categories div.weapon-category#secondary-weapons { margin-left:25px; }
+
+div.weapon-category div.weapon-img { width:285px; height:205px; background-repeat:no-repeat; margin:0px auto; background-position:0px 0px; }
+div.weapon-category.hover div.weapon-img { background-position:0px -205px; }
+div.weapon-category span.view-more { color: #faf27d; }
+div.weapon-category.hover span.view-more { text-decoration:underline; }
+
+div.weapon-category div.weapon-img.primary { background-image:url('../../../images/game-guide/weapons/primary-weapon-sprite.png'); }
+div.weapon-category div.weapon-img.secondary { background-image:url('../../../images/game-guide/weapons/secondary-weapon-sprite.png'); }
+
+div.weapon-category-text img { width: 43px; height:61px; }
+div.weapon-category-text .h5 { text-transform:uppercase; margin-left:8px; }
+div.weapon-category-text div.weapon-category-body { margin-top:10px; }
+
+/* weapon type */
+
+div#guide_weapon_type div.weapons-and-items { margin-top:0px; }
+
+/* weapon/item detail */
+
+div#guide_weapon_detail div.guide-title, div#guide_item_detail div.guide-title { margin-top:30px; margin-bottom:21px; }
+div#guide_weapon_detail div.guide-leftcol, div#guide_item_detail div.guide-leftcol { margin:0px 25px 0px 0px; display:inline-block; vertical-align:top; width:615px; }
+div#guide_weapon_detail div.guide-rightcol, div#guide_item_detail div.guide-rightcol { margin:0px 0px 0px 25px; display:inline-block; vertical-align:top; width:310px; }
+div.weapon-desc, div.item-desc { height:76px; }
+div#guide_weapon_detail div.weapon-stats, div#guide_item_detail div.item-info { margin: 30px 0px 0px 25px; }
+div#guide_weapon_detail div#mechs-with-weapon, div#guide_item_detail div#mechs-with-item { margin-top: 49px; padding-top: 46px; }
+div#guide_weapon_detail div#mechs-with-weapon.none, div#guide_item_detail div#mechs-with-item.none { display:none; }
+div#guide_weapon_detail div#mechs-with-weapon .h5, div#guide_item_detail div#mechs-with-item .h5 { text-transform:uppercase; }
+
+/* weapon detail */
+
+div#guide_weapon_detail div.weapon-stats img { width:256px; display:inline-block; vertical-align:top; margin-right:20px; }
+div#guide_weapon_detail div.weapon-stats div.stat-bars { display:inline-block; vertical-align:top; }
+div#guide_weapon_detail div.weapon-stats div.stat-bars div.stat-bar { margin-bottom: 0px; height:37px; text-transform:uppercase; }
+div#guide_weapon_detail div.weapon-stats div.stat-bars div.stat-bar span.bar { width:250px; height:15px; margin:-1px 0px 0px 1px; }
+div#guide_weapon_detail div.weapon-stats div.stat-bars div.stat-bar span.bar span.fill { height:14px; }
+
+/* item detail */
+
+div#guide_item_detail div.item-info img { width:256px; display:inline-block; margin-right:20px; }
+div#guide_item_detail div.item-info div.item-upgrades { display:inline-block; vertical-align:top; width:310px; }
+div#guide_item_detail div.item-info div.item-upgrades p { margin:0px; }
+div#guide_item_detail div.item-info div.item-upgrades ul { list-style-type: none; padding:0px; }
+div#guide_item_detail div.item-info div.item-upgrades ul div.item-upgrade-body { margin-top:5px; }
+div#guide_item_detail div.item-info div.item-upgrades ul div.item-upgrade-head { margin-top:1em; color:#FFB300; }
+
+/* progression landing */
+
+ul#progression-tiles { margin: 0px 0px -25px 0px; }
+ul#progression-tiles li { background-image: url('../../../images/game-guide/progression/landing/landing-tile-sprite.jpg'); }
+
+ul#progression-tiles li#tile-beginners { background-position: 0px 0px; }
+ul#progression-tiles li#tile-beginners:hover { background-position: -300px 0px; }
+ul#progression-tiles li#tile-veterans { background-position: 0px -200px; }
+ul#progression-tiles li#tile-veterans:hover { background-position: -300px -200px; }
+ul#progression-tiles li#tile-unlocking-mechs { background-position: 0px -400px; }
+ul#progression-tiles li#tile-unlocking-mechs:hover { background-position: -300px -400px; }
+ul#progression-tiles li#tile-upgrades { background-position: 0px -600px; }
+ul#progression-tiles li#tile-upgrades:hover { background-position: -300px -600px; }
+ul#progression-tiles li#tile-tuning { background-position: 0px -800px; }
+ul#progression-tiles li#tile-tuning:hover { background-position: -300px -800px; }
+ul#progression-tiles li#tile-faq { background-position: 0px -1000px; }
+ul#progression-tiles li#tile-faq:hover { background-position: -300px -1000px; }
+
+
+ul#progression-tiles li .label { height:35px; padding: 0px 0px 0px 10px; overflow:hidden; }
+ul#progression-tiles li .label p.p1 { text-transform:uppercase; line-height:35px; font-size:20px; color:#fff; }
+ul#progression-tiles li .label p.p2 { height:50px; }
+
+
+.inline { display:inline-block;vertical-align:top; }
+div.guide-info-block img.h1 { margin-top:15px; }
+
+div.header-img {
+	height:360px;
+	width:525px;
+	background-repeat:no-repeat;
+	background-position: center right;
+	position: absolute;
+	z-index: 1;
+	top:-60px;
+	right: 0px;
+}
+
+/* progression beginners guide */
+
+div#guide_progression_beginners div.header-block { height: 300px; position:relative; }
+div#guide_progression_beginners div.header-img {
+	background-image:url('../../../images/game-guide/progression/beginners/beginners-intro.png');
+}
+div#basic-controls-left { width: 350px; margin: 24px 25px 0px 0px; }
+div#basic-controls-right { width: 550px; margin: 18px 0px 0px 25px; }
+
+div.p2.img { color:#7e7e7e; margin-top:7px; }
+div.p2.img#complete-vr-img, div#basic-controls-left div.p2.img { margin-top:10px; }
+div.p2.img.center { text-align:center; }
+div.p2.img.right { text-align:right; margin-top:5px; }
+
+div#basic-controls-right ul { list-style-type:none; padding:0px; }
+div#basic-controls-right ul li { text-align:center; margin-right:23px;  }
+div#basic-controls-right ul li div.key { background-image:url("../../../images/game-guide/progression/WASD-sprite.png"); }
+
+ul#basic-controls-keyboard { margin:25px 0px 0px 0px; }
+ul#basic-controls-keyboard li#lshift { width:136px; }
+ul#basic-controls-keyboard li#lshift div.key { height:42px; margin:41px 0px 5px 0px; }
+ul#basic-controls-keyboard li#wasd { width:145px; }
+ul#basic-controls-keyboard li#wasd div.key { height:83px; margin:0px 0px 5px 0px; background-position:0px -42px; }
+ul#basic-controls-keyboard li#spc { width: 151px; }
+ul#basic-controls-keyboard li#spc div.key { height:42px; margin:41px 0px 5px 0px; background-position:0px -125px; }
+ul#basic-controls-keyboard li#c { width: 49px; margin-right:0px; }
+ul#basic-controls-keyboard li#c div.key { height:42px; margin:41px 0px 5px 0px; background-position:0px -167px; }
+
+ul#basic-controls-mouse { margin:50px 0px 0px 0px; }
+ul#basic-controls-mouse li { min-width:100px; }
+ul#basic-controls-mouse li div.key { display:inline-block; }
+ul#basic-controls-mouse li#mousemove { width:87px; }
+ul#basic-controls-mouse li#mousemove div.key { height:78px; width:87px; background-position:0px -209px; }
+ul#basic-controls-mouse li#mouseleft { width:55px; }
+ul#basic-controls-mouse li#mouseleft div.key { height:78px; width:55px; background-position:0px -287px; }
+ul#basic-controls-mouse li#mouseright { width: 55px; }
+ul#basic-controls-mouse li#mouseright div.key { height:78px; width:55px; background-position:0px -365px; }
+
+div#show-complete-controls { margin: 41px 0px 14px 0px; }
+div#complete-controls-left { margin-right:25px; }
+div#complete-controls-right { margin-left:25px; }
+
+div#guide_progression_beginners table.controls { width: 450px; }
+div#guide_progression_beginners table.controls tr.top td { padding-top: 10px; }
+div#guide_progression_beginners table.controls td { border-top:1px solid #2b2b2b; padding: 5px 0px 5px 0px; }
+div#guide_progression_beginners table.controls td.h1 { border:0px; color:#d9d9d9;  }
+div#guide_progression_beginners table.controls td.blank { width:70px;  }
+
+table#complete-controls-advancedcombat { margin-top:13px; }
+
+table#hud-legend {
+	border: 1px solid #333333;
+	background-color: #000;
+	padding:12px 20px 15px 20px;
+	width:550px;
+}
+
+table#hud-legend td { vertical-align:top; padding:0px 20px 0px 0px; }
+table#hud-legend tr.h1 td { color:#d9d9d9; padding-bottom:9px; }
+table#hud-legend td.marker { color:#FFB300; padding-right:20px; }
+table#hud-legend td.hud-desc { color:#7e7e7e; }
+img#hud { margin-top:24px; }
+
+div#all-game-modes { margin-top:57px; }
+div#all-game-modes ul { list-style-type:none; padding:0px; margin-top:25px; width:950px; }
+div#all-game-modes ul li { display:inline-block; vertical-align:top; text-align:center; width:170px; }
+div#all-game-modes ul li p { margin: 1px 0px 2px 0px; text-transform:uppercase; }
+div#all-game-modes ul li p.method { margin: 0px 0px 7px 0px; text-transform:none;  }
+div#all-game-modes ul li div.game-mode-icon { display:inline-block; width:110px; height:110px; background-image: url('../../../images/game-guide/progression/beginners/beginners-gametypes.png'); margin-bottom:10px; }
+div#all-game-modes ul li#team-deathmatch div.game-mode-icon { background-position:0px 0px; }
+div#all-game-modes ul li#missile-assault div.game-mode-icon { background-position:0px -330px; }
+div#all-game-modes ul li#siege div.game-mode-icon { background-position:0px -220px; }
+div#all-game-modes ul li#deathmatch div.game-mode-icon { background-position:110px -440px; }
+div#all-game-modes ul li#coop-bot-destruction div.game-mode-icon { background-position:110px -110px; }
+div#all-game-modes ul li#coop-bot-destruction, div#all-game-modes ul li#siege { padding: 0 25px 0 25px; }
+
+img#img-beginners-items, img#img-beginners-internals { vertical-align:top; }
+img#img-beginners-internals { margin-top:30px; }
+
+div#mc-icon-lg { display:table-cell; vertical-align:middle; width:50px; height:50px; background-image:url('../../../images/game-guide/progression/beginners/credits-icons.png'); background-position: -50px 0px; background-repeat:no-repeat; }
+div#mc-style { display:table-cell; vertical-align:middle; padding-left:10px; }
+
+div#xp-icon-lg { display:table-cell; vertical-align:middle; width:50px; height:50px; background-image:url('../../../images/game-guide/progression/beginners/credits-icons.png'); background-position: 0px 0px; background-repeat:no-repeat; }
+div#xp-style { display:table-cell; vertical-align:middle; padding-left:10px; }
+
+div#pilot-progression-header { margin-top:15px; }
+div#pilot-progression-header div.icon, div#pilot-progression-header div.icon-text { display:table-cell; vertical-align:top; margin-top:30px; }
+div#pilot-progression-header div.icon-text { padding-left:10px; }
+
+div#mech-progression-header { margin-top:15px; }
+div#mech-progression-header div.icon, div#mech-progression-header div.icon-text { display:table-cell; vertical-align:top; margin-top:30px; }
+div#mech-progression-header div.icon-text { padding-left:10px; }
+
+/* progression veterans guide */
+
+a.guide-button span.auto { margin-top:30px; }
+
+div#guide_progression_veterans div.header-block {
+	background:url('../../../images/game-guide/progression/veterans/veterans-intro.png');
+	min-height:320px;
+	background-repeat:no-repeat;
+	background-position: bottom right;
+	padding-bottom:50px;
+}
+
+ul#pilot-progression-perks { list-style-type: none; padding: 0px; margin: 50px 0px 0px 0px; }
+ul#pilot-progression-perks li { height:80px; }
+ul#pilot-progression-perks li div.perk-icon, ul#pilot-progression-perks li div.perk-text { display:table-cell; }
+ul#pilot-progression-perks li div.perk-text { padding-left:10px; vertical-align:top; }
+ul#pilot-progression-perks li div.perk-icon { height:80px; width:80px; background:url('../../../images/game-guide/progression/veterans/veterans-pilot-rewards.png'); }
+ul#pilot-progression-perks li div.perk-icon#prog-perk-mechs { background-position: 0px 0px; }
+ul#pilot-progression-perks li div.perk-icon#prog-perk-mods { background-position: 0px -80px; }
+ul#pilot-progression-perks li div.perk-icon#prog-perk-cust { background-position: 0px -160px; }
+ul#pilot-progression-perks li div.perk-text div.prog-perk-head { color:#FFB300; text-transform:uppercase; }
+
+div.veterans-heading { height:52px; margin: 50px 0px 30px 0px; }
+div.veterans-heading-img, div.veterans-heading-text { display:table-cell; vertical-align:middle; }
+div.veterans-heading-text { padding-left:10px; }
+
+img#img-mech-internals { margin-top:25px; }
+
+/* progression unlocking mechs guide */
+
+div#guide_progression_unlocking-mechs div.header-block { height: 300px; position:relative; }
+div#guide_progression_unlocking-mechs div.header-img {
+	background-image:url('../../../images/game-guide/progression/unlocking-mechs/unlocking-mechs-intro.png');
+}
+
+a.mech-unlock-detail div { height:171px;width:161px;position:absolute; }
+
+div#guide_progression_unlocking-mechs div.header-block ul { margin-top:30px; }
+
+ul#mech-family-container { list-style-type:none; padding:0; width:950px; height:120px; margin-top:25px; }
+ul#mech-family-container li {
+	width:300px;
+	height:158px;
+	background:url('../../../images/game-guide/progression/unlocking-mechs/unlocking-mechs-mechtype-box.jpg');
+	margin-right: 25px;
+}
+
+ul#mech-family-container li#utility { margin:0px; }
+
+div.mech-family-header { width: 300px; height:29px; line-height:29px; padding-left:10px; color:#FFB300; text-transform:uppercase; }
+div.mech-family-body { width: 280px; height:109px; padding: 10px 10px 0px 10px; }
+div.mech-family-body p { margin-bottom: 0px; }
+div.mech-family-body p.mech-family-name { text-transform: uppercase; }
+div.mech-family-body p.mech-family-name:first-child { margin: 0px 0px 0px 0px;}
+div.mech-family-body p.mech-family-members { margin: 0px 0px 0px 0px; color:#7e7e7e; }
+
+div#unlock-for-free { text-align: center; }
+div#unlock-for-free div.info-block-left, div#unlock-for-free div.info-block-right { margin-top: 20px; }
+div#unlock-for-free .h1 { margin: 5px 0px 0px 0px; }
+div#unlock-for-free div.unlock-header {
+	width:207px;
+	height: 55px;
+	background:url('../../../images/game-guide/progression/unlocking-mechs/unlocking-method-sprite.png');
+	background-repeat:no-repeat;
+	margin: 38px auto 7px auto;
+}
+div#unlock-for-free p { width:350px; margin: 5px auto 0px auto; }
+div#unlock-for-free div.info-block-left div.unlock-header { background-position:0px 0px; }
+div#unlock-for-free div.info-block-right div.unlock-header { background-position:-207px 0px; }
+
+table#mech-progression {
+	width:966px;
+	margin-top:50px;
+	color:#fff;
+	text-shadow: 1px 1px 2px #000;
+	background-color:#333739;
+	position:relative;
+	left:-8px;
+	text-transform:uppercase;
+	background:url('../../../images/game-guide/progression/unlocking-mechs/unlocking-mechs-chart.png');
+}
+table#mech-progression td { width:161px; text-align:center; vertical-align:top; padding-top:6px; }
+table#mech-progression td div { margin:4px 0px 52px 0px; }
+table#mech-progression tr { height:240px; }
+table#mech-progression tr:first-child { height:155px; }
+
+div#purchasing-mechs { margin-top: 10px; }
+div#purchasing-mechs p { margin-bottom:15px; }
+
+div.credits-heading { height:50px; padding: 10px 0px 10px 0px; }
+div.credits-heading-img { width:50px; height:50px; background:url('../../../images/game-guide/progression/beginners/credits-icons.png'); }
+div.credits-heading-img.mc { background-position: -50px 0px; }
+div.credits-heading-img.hc { background-position: -100px 0px; }
+div.credits-heading-img, div.credits-heading-text { display:table-cell; vertical-align:middle; }
+div.credits-heading-text { padding-left:10px; }
+
+
+/* upgrades */
+
+div#guide_progression_upgrades div.header-block { height: 300px; position:relative; }
+div#guide_progression_upgrades div.header-img {
+	background-image:url('../../../images/game-guide/progression/upgrades/upgrading-intro.png');
+}
+
+div.mech-rank-reward-row { height: 100px; }
+div.mech-rank-reward-row.top { margin-top:32px; }
+
+div.mech-rank-reward-row div.icon, div.mech-rank-reward-row div.auto { height:90px; }
+div.mech-rank-reward-row div.icon { width:80px; margin-left:50px;margin-right:10px; background:url('../../../images/game-guide/progression/upgrades/upgrading-rank-rewards.png'); }
+div.mech-rank-reward-row div.icon:first-child { margin-left:0px; }
+div.mech-rank-reward-row div.body { width:360px; }
+div.mech-rank-reward-row div.p1 { text-transform:uppercase; color:#FFB300; margin-bottom:5px; }
+
+div.mech-rank-reward-row div.icon#ability-icon { background-position: 0px 0px; }
+div.mech-rank-reward-row div.icon#tuning-icon { background-position: 0px -100px; }
+div.mech-rank-reward-row div.icon#altweapon-icon { background-position: 0px -200px; }
+div.mech-rank-reward-row div.icon#eliteskin-icon { background-position: 0px -300px; }
+
+div#upgrade-rewards-grid { width:881px; height:381px; margin: 30px auto 35px auto; }
+
+ul#upgrading-max-rewards { list-style-type: none; padding: 0px; margin: 40px 0px 0px 0px; }
+ul#upgrading-max-rewards li { height:100px; }
+ul#upgrading-max-rewards li div.reward-icon, ul#upgrading-max-rewards li div.reward-text { display:table-cell; }
+ul#upgrading-max-rewards li div.reward-text { padding-left:10px; vertical-align:top; }
+ul#upgrading-max-rewards li div.reward-icon { height:80px; width:80px; background:url('../../../images/game-guide/progression/upgrades/upgrading-max-rewards.png'); }
+ul#upgrading-max-rewards li div.reward-icon#upgrading-max-mechs { background-position: 0px 0px; }
+ul#upgrading-max-rewards li div.reward-icon#upgrading-max-items { background-position: 0px -100px; }
+ul#upgrading-max-rewards li div.reward-icon#upgrading-max-xp { background-position: 0px -200px; }
+ul#upgrading-max-rewards li div.reward-text div.upgrading-max-head { color:#FFB300; text-transform:uppercase; }
+
+ul#spec-ability-upgrade-notes { list-style-type:none; margin: 15px 0px 0px 10px; padding:0px; }
+ul#spec-ability-upgrade-notes li { height:27px; line-height:27px; }
+ul#spec-ability-upgrade-notes li span.rank-label { color:#ffb300; text-transform:uppercase; }
+div.p2.notes { margin-top: 10px; padding-top:10px; border-top:1px solid #3C3C3C; }
+
+div#tech-groups-header { margin-top:49px; }
+div#tech-groups-desc p:first-child { margin-top:0px; }
+div#tech-groups-desc, div#tech-groups-list { display:table-cell; }
+div#tech-groups-desc { width:450px; padding-right:25px; border-right:1px solid #3C3C3C;  }
+div#tech-groups-list { width:450px; padding-left:25px; }
+div#tech-groups-list ul { list-style-type:none; margin: 0px; padding:0px; }
+div#tech-groups-list ul li { margin-bottom:20px; }
+div#tech-groups-list ul li span.group-label { color:#ffb300; text-transform:uppercase; }
+
+div#upgrading-item-grid { width:759px; height:369px; margin: 30px auto 30px auto; }
+
+/* tuning */
+
+div#guide_progression_tuning div.header-block { height: 300px; position:relative; }
+div#guide_progression_tuning div.header-img {
+	background-image:url('../../../images/game-guide/progression/tuning/tuning-intro.png');
+}
+
+div#common-systems-list p { margin-bottom:0px; }
+div#secondary-systems-list div.w23 { margin-bottom:5px; }
+div#secondary-systems-list ul li { margin-top:25px; }
+div#common-systems-list ul, div#secondary-systems-list ul { list-style-type:none; padding:0px; margin:0px; }
+div#common-systems-list ul li { margin-top:30px; }
+div#common-systems-list ul li div:first-child, div#secondary-systems-list ul li div:first-child { color:#ffb300; text-transform:uppercase; }
+
+div#common-systems-list span.restricted { color: #D9D9D9; text-transform:none; }
+
+/* faq */
+
+div#guide_progression_faq { position: relative; }
+div#guide_progression_faq div.header-block { margin-bottom: 42px; }
+
+div#faq_answer_stem { display:none; position:absolute; height:1px; width:600px; background:#404040; margin-top:13px; }
+
+div.faq-section { margin: 0px 0px 49px 0px; }
+
+div.faq-section-title { text-transform:uppercase; margin-bottom:20px; }
+
+div#guide_progression_faq ul.faq-section-list li.faq-section-title { text-transform:uppercase; margin-bottom:20px; }
+
+ul.faq-section-list, div.faq-section-answer { display:inline-block; vertical-align:top; }
+
+div#guide_progression_faq ul.faq-section-list { vertical-align:top; list-style-type: none; padding:0px; margin: 0px; width:600px; }
+div#guide_progression_faq ul.faq-section-list li span.question { 
+	font-size:18px;
+	padding-right:10px;
+	line-height:27px;
+	display:inline-block;
+	background:#19191A;
+	position:relative;
+	z-index:1;
+	cursor:pointer;
+}
+div#guide_progression_faq ul.faq-section-list li span.answer { display:none; }
+div#guide_progression_faq ul.faq-section-list li.selected span.question, div#guide_progression_faq ul.faq-section-list li:hover span.question { color:#ffb300;  }
+div.faq-section-answer { display:none; width:308px; padding:20px; border:1px solid #404040; background:#111; float:right; }
+
+div#faq-currency { margin-bottom:0px; }
+
+/* mech / weapon / item grid */
+
+ul.equipment-grid { list-style-type:none; margin: 0; padding:0; }
+ul.equipment-grid a { margin:0px; padding:0px; outline:0px; line-height: 0; }
+ul.equipment-grid li { display:inline-block; width:180px; vertical-align:top; margin-right:12px; }
+ul.equipment-grid li div.panel-top { position:relative; color: #a9a9a9; text-align:right; margin: 8px 10px 0px 0px; height:67px; z-index:75; }
+
+/* weapon / item grid */
+
+div#guide_weapon_type ul.equipment-grid, div#guide_items ul.equipment-grid { margin-left:1px; }
+div#guide_weapon_type ul.equipment-grid li, div#guide_items ul.equipment-grid li { margin-top:20px; }
+div#guide_weapon_type ul.equipment-grid a:nth-child(5n+5) li, div#guide_items ul.equipment-grid a:nth-child(5n+5) li { margin-right:0px; }
+
+/* weapon grid */
+
+ul.equipment-grid li.weapon { height:325px; background-image:url('../../../images/game-guide/shared/weapon-tile.jpg'); }
+ul.equipment-grid li.weapon img { width:165px; height:165px; position:relative; top:-56px; z-index:50; left:7px; }
+
+ul.equipment-grid li.weapon div.stat-bars { width:150px; position:relative; top:-61px; left:15px; }
+ul.equipment-grid li.weapon.hover div.stat-bars { display:none; }
+ul.equipment-grid li.weapon div.stat-bars div.stat-bar { height:27px;margin: 0px 0px 0px 0px; text-transform:uppercase; }
+ul.equipment-grid li.weapon div.stat-bars div.stat-bar span { float:left; display:block; }
+ul.equipment-grid li.weapon div.stat-bars div.stat-bar span.bar { height:8px; width:150px; background:#000; margin: 0px; }
+
+ul.equipment-grid li.weapon div.stat-bars div.stat-bar span.bar span.fill {
+	border-top: 1px solid #A38231;
+	border-left: 1px solid #A38231;
+	display:none;
+	height:7px;
+	background: #7f5a01;
+	background: -moz-linear-gradient(left,  #7f5a01 0%, #feb206 100%); 
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#7f5a01), color-stop(100%,#feb206)); 
+	background: -webkit-linear-gradient(left,  #7f5a01 0%,#feb206 100%); 
+	background: -o-linear-gradient(left,  #7f5a01 0%,#feb206 100%); 
+	background: -ms-linear-gradient(left,  #7f5a01 0%,#feb206 100%); 
+	background: linear-gradient(to right,  #7f5a01 0%,#feb206 100%); 
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7f5a01', endColorstr='#feb206',GradientType=1 );
+}
+
+ul.equipment-grid li.weapon div.weapon-info { display:none; width:150px; height:125px; color:#a9a9a9; position:relative; top:-61px; left:15px; }
+ul.equipment-grid li.weapon.hover div.weapon-info { display:block; }
+ul.equipment-grid li.weapon.hover div.weapon-info p:first-child { margin-top:0px; }
+ul.equipment-grid li.weapon span.rank-icon { position:absolute; margin: -29px 0px 0px -24px; }
+
+/* item grid */
+
+ul.equipment-grid li.item { height:190px; background-image:url('../../../images/game-guide/shared/item-tile.jpg'); }
+ul.equipment-grid li.item img { width:160px; height:160px; position:relative; top:-56px; z-index:50; left:10px; }
+
+ul.equipment-grid li.item.blockade div.item-icon { background-position: 0px 0px; }
+ul.equipment-grid li.item.detonator div.item-icon { background-position: 0px -28px; }
+ul.equipment-grid li.item.emp div.item-icon { background-position: 0px -56px; }
+ul.equipment-grid li.item.he-charge div.item-icon { background-position: 0px -84px; }
+ul.equipment-grid li.item.mg-turret div.item-icon { background-position: 0px -140px; }
+ul.equipment-grid li.item.r-turret div.item-icon { background-position: 0px -196px; }
+ul.equipment-grid li.item.hologram div.item-icon { background-position: 0px -112px; }
+ul.equipment-grid li.item.item-regenerator div.item-icon { background-position: 0px -336px; }
+ul.equipment-grid li.item.portable-scanner div.item-icon { background-position: 0px -168px; }
+ul.equipment-grid li.item.radar-scrambler div.item-icon { background-position: 0px -224px; }
+ul.equipment-grid li.item.repair-charge div.item-icon { background-position: 0px -252px; }
+ul.equipment-grid li.item.shield div.item-icon { background-position: 0px -280px; }
+ul.equipment-grid li.item.ism-disruptor div.item-icon { background-position: 0px -308px; }
+ul.equipment-grid li div.panel-top div.item-icon { float:left; height:28px; width:28px; margin-left:10px; background-image:url('../../../images/game-guide/shared/items/items-icon-sprite.png'); background-repeat:no-repeat; background-position: 0px 0px; }
+
+/* mech grid */
+
+ul.mech-grid { list-style-type:none; margin:0; padding:0; width:975px; }
+ul.mech-grid li { overflow-y:hidden; display:inline-block;vertical-align:top; width:240px; height:330px; margin: 20px 3px 0px 0px; background-image:url('../../../images/game-guide/shared/mech-tile.jpg'); background-repeat:no-repeat;  }
+ul.mech-grid li img { position:relative; }
+
+ul.mech-grid a:nth-child(4n+4) li { margin-right:0px; }
+ul.mech-grid a:nth-child(4n+2) li { margin-right:4px; }
+
+ul.mech-grid li div.show-mech { height:330px; }
+ul.mech-grid li div.show-mech div.mech-grid-name { text-align:center; font: 32px 'AgencyFBBold'; color: #d9d9d9; text-transform:uppercase; margin-top:8px; }
+ul.mech-grid li div.show-mech div.mech-grid-name, ul.mech-grid li div.show-mech div.p2 { width:220px; text-align:center;}
+ul.mech-grid li div.show-mech div.p2 { color:#a9a9a9; position:relative; top: -3px;}
+
+ul.mech-grid li div.show-loadout { height:330px; background-image:url('../../../images/game-guide/shared/mech-tile-back.jpg'); background-repeat:no-repeat; display:none; }
+
+ul.mech-grid li div.show-loadout div.mech-grid-item { height:140px; }
+ul.mech-grid li div.show-loadout div.mech-grid-item div.panel-top { position:relative; color: #a9a9a9; text-align:right; height:67px; z-index:75; padding: 6px 30px 0px 0px; }
+ul.mech-grid li div.show-loadout div.mech-grid-item img { width:125px; height:125px; position:relative; top:-65px; left:10px; z-index:50; }
+
+ul.mech-grid li div.show-loadout div.mech-grid-ability { height:50px; }
+ul.mech-grid li div.show-loadout div.mech-grid-ability div.panel-top { position:relative; color: #a9a9a9; text-align:right; height:41px; z-index:75; padding: 9px 30px 0px 0px; }
+ul.mech-grid li div.show-loadout div.mech-grid-ability div.ability-icon { float:left; width:28px; height:28px; position:relative; top:3px; left:10px; background-image:url('../../../images/game-guide/shared/abilities/abilities-icon-sprite.png'); background-repeat:no-repeat; }
+
+ul.mech-grid li div.show-loadout div.mech-grid-ability div.ability-icon.amplification { background-position: 0px 0px; }
+ul.mech-grid li div.show-loadout div.mech-grid-ability div.ability-icon.artillery-turret { background-position: 0px -28px; }
+ul.mech-grid li div.show-loadout div.mech-grid-ability div.ability-icon.ballistic-barrage { background-position: 0px -56px; }
+ul.mech-grid li div.show-loadout div.mech-grid-ability div.ability-icon.blitz { background-position: 0px -84px; }
+ul.mech-grid li div.show-loadout div.mech-grid-ability div.ability-icon.camouflage { background-position: 0px -112px; }
+ul.mech-grid li div.show-loadout div.mech-grid-ability div.ability-icon.damage-absorb { background-position: 0px -140px; }
+ul.mech-grid li div.show-loadout div.mech-grid-ability div.ability-icon.fortified-turret { background-position: 0px -168px; }
+ul.mech-grid li div.show-loadout div.mech-grid-ability div.ability-icon.fuel-reserves { background-position: 0px -196px; }
+ul.mech-grid li div.show-loadout div.mech-grid-ability div.ability-icon.precision-overdrive { background-position: 0px -280px; }
+ul.mech-grid li div.show-loadout div.mech-grid-ability div.ability-icon.weapons-coolant { background-position: 0px -336px; }
+ul.mech-grid li div.show-loadout div.mech-grid-ability div.ability-icon.mobile-turret { background-position: 0px -224px; }
+ul.mech-grid li div.show-loadout div.mech-grid-ability div.ability-icon.vanguard-turret { background-position: 0px -308px; }
+ul.mech-grid li div.show-loadout div.mech-grid-ability div.ability-icon.power-shot { background-position: 0px -252px; }
+ul.mech-grid li div.show-loadout div.mech-grid-ability div.ability-icon.stalker { background-position: 0px -364px; }
+
+ul.mech-grid li.hover div.show-mech { display:none; }
+ul.mech-grid li.hover div.show-loadout { display:block; }
+
+/* stat bars */
+
+div.stat-bars div.stat-bar { height:38px; margin: 0px 0px 5px 0px; }
+div.stat-bars div.stat-bar .l1 { height:14px; line-height:14px; font-size:11px; position:relative; top:1px; }
+div.stat-bars div.stat-bar span { display:inline-block; vertical-align:top; }
+
+div.stat-bars div.stat-bar span.icon { height:38px; width:38px; background-image:url('../../../images/game-guide/shared/mech-stat-icons-sprite.png'); background-repeat:no-repeat; }
+div.stat-bars div.stat-bar span.icon.armor { background-position:0px 0px; }
+div.stat-bars div.stat-bar span.icon.speed { background-position:0px -38px; }
+div.stat-bars div.stat-bar span.icon.energy { background-position:0px -76px; }
+
+div.stat-bars div.stat-bar span.bar { height:20px; width:220px; background:#2F2F31; margin: 3px 0px 15px 2px; }
+div.stat-bars div.stat-bar span.bar span.fill {
+	border-top: 1px solid #A38231;
+	border-left: 1px solid #A38231;
+	display:none;
+	height:19px;
+	background: #7f5a01;
+	background: -moz-linear-gradient(left,  #7f5a01 0%, #feb206 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#7f5a01), color-stop(100%,#feb206));
+	background: -webkit-linear-gradient(left,  #7f5a01 0%,#feb206 100%);
+	background: -o-linear-gradient(left,  #7f5a01 0%,#feb206 100%);
+	background: -ms-linear-gradient(left,  #7f5a01 0%,#feb206 100%);
+	background: linear-gradient(to right,  #7f5a01 0%,#feb206 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7f5a01', endColorstr='#feb206',GradientType=1 );
+}
+
+div.stat-bars div.stat-bar span.bar.armor span.fill {
+	border-top: 1px solid #b5654c;
+	border-left: 1px solid #b5654c;
+	background: #5f2514;
+	background: -moz-linear-gradient(left,  #5f2514 0%, #bd4b28 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#5f2514), color-stop(100%,#bd4b28));
+	background: -webkit-linear-gradient(left,  #5f2514 0%,#bd4b28 100%);
+	background: -o-linear-gradient(left,  #5f2514 0%,#bd4b28 100%);
+	background: -ms-linear-gradient(left,  #5f2514 0%,#bd4b28 100%);
+	background: linear-gradient(to right,  #5f2514 0%,#bd4b28 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5f2514', endColorstr='#bd4b28',GradientType=1 );
+}
+
+div.stat-bars div.stat-bar span.bar.speed span.fill {
+	border-top: 1px solid #4c87b4;
+	border-left: 1px solid #4c87b4;
+	background: #133d5e;
+	background: -moz-linear-gradient(left,  #133d5e 0%, #277bbc 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#133d5e), color-stop(100%,#277bbc));
+	background: -webkit-linear-gradient(left,  #133d5e 0%,#277bbc 100%);
+	background: -o-linear-gradient(left,  #133d5e 0%,#277bbc 100%);
+	background: -ms-linear-gradient(left,  #133d5e 0%,#277bbc 100%);
+	background: linear-gradient(to right,  #133d5e 0%,#277bbc 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#133d5e', endColorstr='#277bbc',GradientType=1 );
+}
+
+div.stat-bars div.stat-bar span.bar.energy span.fill {
+	border-top: 1px solid #3daf93;
+	border-left: 1px solid #3daf93;
+	background: #095b47;
+	background: -moz-linear-gradient(left,  #095b47 0%, #13b48c 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#095b47), color-stop(100%,#13b48c));
+	background: -webkit-linear-gradient(left,  #095b47 0%,#13b48c 100%);
+	background: -o-linear-gradient(left,  #095b47 0%,#13b48c 100%);
+	background: -ms-linear-gradient(left,  #095b47 0%,#13b48c 100%);
+	background: linear-gradient(to right,  #095b47 0%,#13b48c 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#095b47', endColorstr='#13b48c',GradientType=1 );
+}
+
+/* guide nav bar */
+
+div#guide-nav-container {
+	display: block;
+	visibility: visible;
+	width: 1000px;
+	position: relative;
+	left: -25px;
+	-moz-box-shadow: inset 0 0 46px 0 #000;
+	-webkit-box-shadow: inset 0 0 46px 0 #000;
+	box-shadow: inset 0 0 46px 0 #000;
+	background: #000;
+	border-bottom: 1px solid #303032;
+}
+
+ul#guide-nav { list-style: none; margin: 0px; padding: 0px; }
+
+ul#guide-nav li.nav_top {
+	position:relative;
+	display:inline-block;
+	visibility: visible;
+	vertical-align:top;
+	cursor:pointer;
+	background-position:0px 0px;
+	background-repeat:no-repeat;
+	font: 16px 'Play';
+	color: #d9d9d9;
+	height:39px;
+}
+
+ul#guide-nav li.nav_top a.nav_label { padding: 0px 25px 0px 25px; line-height:39px; text-transform: uppercase; }
+
+ul#guide-nav li.nav_top a.nav_label, ul#guide-nav li.nav_top div.nav_menu a { color:#d9d9d9; text-decoration:none; }
+ul#guide-nav li.nav_top:hover a.nav_label, ul#guide-nav li.nav_top.active a.nav_label, ul#guide-nav li.nav_top div.nav_menu a:hover, ul#guide-nav li.nav_top.selected a.nav_label { color:#ffb200; }
+
+ul#guide-nav li.nav_top div.nav_menu {
+	display:none;
+	position:absolute;
+	top:39px;
+	background: #000;
+	border:1px solid #303032;
+	-moz-box-shadow: 0 0 10px #000;
+	-webkit-box-shadow: 0 0 10px #000;
+	box-shadow: 0 0 10px #000;
+	padding:25px;
+	z-index:100;
+}
+
+ul#guide-nav li.nav_top div.nav_menu div.nav_menu_header { text-transform:uppercase; }
+
+ul#guide-nav li.nav_top:hover div.nav_menu, ul#guide-nav li.nav_top.active div.nav_menu { display:block;}
+
+ul#guide-nav li.nav_top div.nav_menu div.nav_submenu { display:inline-block; whitespace:none; vertical-align:top; margin: 0px; }
+ul#guide-nav li.nav_top div.nav_menu div.nav_submenu.left { border-right: 1px solid #303032; margin-right: 25px; padding-right:25px; }
+
+ul.nav_submenu_column, ul.nav_menu_items { list-style: none; margin: 0px; padding: 0px; display:inline-block; whitespace:none; vertical-align:top; }
+ul.nav_submenu_column.left { list-style: none; margin: 0px 25px 0px 0px; padding: 0px; display:inline-block; whitespace:none; vertical-align:top; }
+
+ul.nav_submenu_column li, ul.nav_menu_items li { margin: 15px 0px 0px 0px; padding: 0px; }
+
+ul.nav_menu_items { margin-top:-15px; }
+
+div.screenshot img { width:240px; height:135px; }
+
+#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span { display:none; }
+
+
+/* MAPS */
+
+
+/* try removing this after it all works to see what happens */
+
+div#guide_map_detail { padding-right:0px; overflow: hidden; }
+
+div.splash-header div.map-description { width:454px; top: 22px; }
+
+div#map_detail_spotlight { height:420px; width:1000px; position:relative; left:-25px; }
+div#map_detail_spotlight img#mech_detail_image { position:absolute; height:420px; width:1000px; }
+div#map_detail_spotlight div.breadcrumb { position:absolute; z-index:10; left:25px; }
+div#map_detail_spotlight div.breadcrumb, div#map_detail_spotlight div.breadcrumb a { color:#7e7e7e; text-shadow: 1px 1px 0px #19191a; }
+div#map_detail_spotlight div.breadcrumb a:hover { color:#fff; }
+
+div#map_detail_spotlight div.splash-header {
+	background: -moz-linear-gradient(left,  rgba(0,0,0,0.95) 0%, rgba(0,0,0,0) 70%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0.95)), color-stop(70%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  rgba(0,0,0,0.95) 0%,rgba(0,0,0,0) 70%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  rgba(0,0,0,0.95) 0%,rgba(0,0,0,0) 70%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  rgba(0,0,0,0.95) 0%,rgba(0,0,0,0) 70%,rgba(0,0,0,0) 100%); /* IE10+ */
+	background: linear-gradient(to right,  rgba(0,0,0,0.95) 0%,rgba(0,0,0,0) 70%,rgba(0,0,0,0) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
+}
+
+div#map_detail_spotlight div.splash-header#wreckage_splash {
+	background: -moz-linear-gradient(left,  rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.55) 25%, rgba(0,0,0,0) 65%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0.95)), color-stop(25%,rgba(0,0,0,0.55)), color-stop(65%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  rgba(0,0,0,0.95) 0%,rgba(0,0,0,0.55) 25%,rgba(0,0,0,0) 65%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  rgba(0,0,0,0.95) 0%,rgba(0,0,0,0.55) 25%,rgba(0,0,0,0) 65%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  rgba(0,0,0,0.95) 0%,rgba(0,0,0,0.55) 25%,rgba(0,0,0,0) 65%,rgba(0,0,0,0) 100%); /* IE10+ */
+	background: linear-gradient(to right,  rgba(0,0,0,0.95) 0%,rgba(0,0,0,0.55) 25%,rgba(0,0,0,0) 65%,rgba(0,0,0,0) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2000000', endColorstr='#00000000',GradientType=1 ); /* IE6-8 */
+}
+
+object#mech_detail_video, object#map_detail_video { position:absolute; height:420px; width:1080px; left:-40px; }
+
+div#map_detail_spotlight div.splash-header { width: 975px;
+	height: 420px;
+	padding: 0px 0px 0px 25px;
+	position: relative;
+}
+
+div#map_detail_spotlight div.splash-header div.map-title { font: 100px 'AgencyFBBold'; text-transform: uppercase; top: 34px; }
+
+
+div#map-media-screenshots div.imgframe { width:240px; margin: 0px 0px 10px 0px; }
+div#map-media.wvideo div#map-media-screenshots li.imgframe { width:240px; margin: 0px 0px 25px 0px; }
+
+/**************************/
+
+
+a.custom-select.ui-state-default.map-change-menu, select.map-change-menu {
+	width: 283px !important;
+}
+
+a#map-gamemodes-menu-button, span#map-gamemodes-solo { margin-top:10px; }
+
+a.custom-select.ui-state-default.map-change-menu {  }
+
+a.custom-select.ui-state-default.map-change-menu span.ui-selectmenu-status {
+	display: block;
+	padding-left: 10px;
+	outline: none;
+	text-decoration: none;
+	line-height: 35px;
+}
+
+a.custom-select.ui-state-default.map-change-menu .ui-selectmenu-icon {
+	width: 17px;
+	height: 14px;
+	position: absolute;
+	right: 10px;
+	top: 12px;
+	background: url('../../../images/ui/png/input-dropdown.png');
+}
+
+div#map_detail_about {
+	padding-top: 46px;
+	background-image: url('../../../images/game-guide/shared/divider-950.jpg');
+	background-repeat: no-repeat;
+}
+
+div#map_detail_about .h1 { text-transform:uppercase; margin: 0px 0px 25px 0px; }
+div#map-display .h1 { text-transform:uppercase; margin: 0px 0px 21px 0px; }
+div#map-display .w23 { width:550px; margin: 0px 0px 30px 0px; }
+
+#map-display {
+	background-image: url('../../../images/game-guide/shared/divider-950.jpg');
+	background-repeat: no-repeat;
+	margin-top:15px;
+	padding-top:52px;
+}
+
+#map-media .h1 { text-transform:uppercase; margin-bottom:20px; }
+
+#map-container {
+	position:relative;
+	display:inline-block;
+	vertical-align:top;
+	width:615px;
+	margin-right:25px;
+}
+
+#active-map {
+	width:613px;
+	height:613px;
+	overflow:hidden; 
+	border:solid 1px #363636;
+	background:#000;
+}
+
+/* map layer buttons */
+
+div#map-layers {
+	position:absolute;
+	right:6px;
+	top:6px;
+	z-index:999;
+	width:43px;
+	border:1px solid #363636;
+	text-align:center;
+	background:url('../../../images/ui/png/1px-black-85.png');
+	display:none;
+}
+
+div#map-layers.visible {
+	display:block;
+}
+
+div#map-enlarge {
+	position:absolute;
+	right:6px;
+	bottom:316px;
+	z-index:999;
+	width:43px;
+	height:43px;
+	border:1px solid #363636;
+	text-align:center;
+	background:url('../../../images/ui/png/1px-black-85.png');
+}
+
+div#map-enlarge a {
+	display:inline-block;
+	margin:9px;
+	width:25px;
+	height:25px;
+	background-image:url('../../../images/game-guide/maps/ui/map-UI-sprite.png');
+	background-repeat:no-repeat;
+}
+
+div#map-layers ul#map-buttons { width:100%; list-style-type:none; padding:0px; }
+div#map-layers ul#map-buttons li { text-align:center; cursor:pointer; font: 14px 'Play'; color:#fff; }
+div#map-layers ul#map-buttons li:hover { /*color:yellow;*/ }
+div#map-layers ul#map-buttons li.active { font-weight:bold; color:#ffb300; }
+
+/* map zoom */
+
+#map-zoom {
+	position:absolute;
+	right:6px;
+	bottom:6px;
+	z-index:999;
+	text-align: center;
+	width: 43px;
+	border:1px solid #363636;
+	background:url('../../../images/ui/png/1px-black-85.png');
+	
+}
+
+div#icon_magnify, div#icon_minify {
+	height:23px;
+	width:23px;
+	position:relative;
+	left:11px;
+	background-image:url('../../../images/game-guide/maps/ui/map-UI-sprite.png');
+	background-repeat:no-repeat;
+}
+
+div#icon_magnify { margin-top:10px; background-position: 0px -25px; }
+div#icon_minify { margin-bottom:10px; background-position: 0px -48px; }
+
+#map-scale-container { height:215px; margin:11px 0px 11px 0px; padding-top: 0px; } /* adjust margins to center on slider if height changes */
+#map-scale { display:inline-block; }
+
+/* slider */
+
+.ui-slider-vertical { position: relative; width: 1px; height: 215px; background-color:#a9a9a9; }
+
+.ui-slider-vertical .ui-slider-handle {
+	position: absolute;
+	z-index: 2;
+	width: 19px;
+	height: 2px;
+	cursor: url("../../../images/ui/cursors/cursorHand.png"), default;
+	background: #ffb300;
+	border-top:3px solid #19191B;
+	border-bottom:3px solid #19191B;
+	left: -9px;
+	margin-left: 0;
+	margin-bottom: -4px; /* adjust to center on slider if height changes */
+}
+
+.ui-slider-vertical .ui-slider-handle:active {
+	cursor: url("../../../images/ui/cursors/cursorDrag.png"), move;
+}
+
+.ui-slider-vertical .ui-slider-range { left: 0; width: 100%; }
+.ui-slider-vertical .ui-slider-range-min { bottom: 0; }
+.ui-slider-vertical .ui-slider-range-max { top: 0; }
+.ui-slider .ui-slider-range { position: absolute; z-index: 1; display: block; border: 0; background-position: 0 0; }
+
+/* jqueryui slider fix for ie8 - see #6727(?) */
+.ui-slider.ui-state-disabled .ui-slider-handle, .ui-slider.ui-state-disabled .ui-slider-range { filter: inherit; }
+
+/* cursors */
+.map_cursor_drag { cursor: url("../../../images/ui/cursors/cursorDrag.png"), move; }
+.map_cursor_hand { cursor: url("../../../images/ui/cursors/cursorHand.png"), default; }
+
+
+/* RIGHT COLUMNS, MAP INFO */
+
+div#map-menu {
+	margin-top:50px;
+	padding-top:50px;
+	background-image: url('../../../images/game-guide/shared/divider-950.jpg');
+	background-repeat: no-repeat;
+}
+
+ul#map-tiles li .label { height:35px; padding: 0px 0px 0px 10px; overflow:hidden; }
+ul#map-tiles li .label p.p1 { text-transform:uppercase; line-height:35px; font-size:20px; color:#fff; }
+ul#map-tiles li .label p.p2 { height:50px; }
+
+ul#map-tiles { list-style-type: none; padding:0px; margin: 0px 0px -25px 0px; }
+
+ul#map-tiles li { 
+	width:300px;
+	height:200px;
+	margin-right:25px;
+	display:inline-block;
+	background-repeat:no-repeat;
+	vertical-align:top;
+	position:relative;
+	background-image:url('../../../images/game-guide/maps/landing/map-tile-sprite.jpg');
+	text-shadow: 1px 1px 2px #000;
+	margin-bottom: 25px;
+}
+
+ul#map-tiles li#tile-origin { background-position: 0px -800px; }
+ul#map-tiles li#tile-origin:hover { background-position: -300px -800px; }
+ul#map-tiles li#tile-bazaar { background-position: 0px 0px; }
+ul#map-tiles li#tile-bazaar:hover { background-position: -300px 0px; }
+ul#map-tiles li#tile-prosk { background-position: 0px -1000px; }
+ul#map-tiles li#tile-prosk:hover { background-position: -300px -1000px; }
+ul#map-tiles li#tile-uptown { background-position: 0px -1200px; }
+ul#map-tiles li#tile-uptown:hover { background-position: -300px -1200px; }
+ul#map-tiles li#tile-facility { background-position: 0px -200px; }
+ul#map-tiles li#tile-facility:hover { background-position: -300px -200px; }
+ul#map-tiles li#tile-front-line { background-position: 0px -400px; }
+ul#map-tiles li#tile-front-line:hover { background-position: -300px -400px; }
+ul#map-tiles li#tile-last-eco { background-position: 0px -600px; }
+ul#map-tiles li#tile-last-eco:hover { background-position: -300px -600px; }
+ul#map-tiles li#tile-wreckage { background-position: 0px -1400px; }
+ul#map-tiles li#tile-wreckage:hover { background-position: -300px -1400px; }
+
+#map-info {
+	display:inline-block;
+	vertical-align:top;
+	margin-left:25px;
+	width:285px;
+}
+
+#map-info div.select-head {
+	font: 16px 'Play', sans-serif;
+	color: #ffb300;
+	margin-bottom:5px;
+}
+
+#map-info div#map-select { }
+
+#map-info div#map-poi-info { width:285px; margin-top:10px; }
+#map-info div#map-poi-info .imgframe { width:275px; height:275px; }
+
+#map-info div#map-poi-info span.poi_default_img {
+	height:36px;
+	width:36px;
+	background-image: url('../../../images/game-guide/maps/ui/map-waypoints-small-sprite.png');
+	display:inline-block;
+	vertical-align:top;
+	margin-right:8px;
+}
+
+#map-info div#map-poi-info span.poi_default_txt {
+	height:36px;
+	width:241px;
+	display:inline-block;
+	vertical-align:top;
+	line-height:18px;
+}
+
+#map-info span.solo-type {
+	padding-left:10px;
+	display:inline-block;
+	/*text-transform:capitalize;*/
+	width: 271px;
+	line-height:35px;
+	color: #D9D9D9;
+	border: 1px solid #363636;
+	background: #000000;
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…BoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
+	background: -moz-linear-gradient(top, #000000 20%, #212121 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,#000000), color-stop(100%,#212121));
+	background: -webkit-linear-gradient(top, #000000 20%,#212121 100%);
+	background: -o-linear-gradient(top, #000000 20%,#212121 100%);
+	background: -ms-linear-gradient(top, #000000 20%,#212121 100%);
+	background: linear-gradient(to bottom, #000000 20%,#212121 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#212121',GradientType=0 );
+}
+
+.poi-container { display:none; }
+
+/* survival guide */
+
+div#map-survival-guide {
+	margin-top: 50px;
+	padding-top: 50px;
+	background-image: url('../../../images/game-guide/shared/divider-950.jpg');
+	background-repeat: no-repeat;
+}
+
+div#map-survival-guide .h1 { margin-bottom:20px; text-transform:uppercase; }
+div#map-survival-guide .p1 { display:inline-block; width:450px; vertical-align:top; margin-right:25px; }
+div#map-survival-guide .p1 p:first-child { margin-top:0px; }
+
+div#map-survival-guide div.imgframe { display:inline-block; vertical-align:top; margin-left:25px; }
+
+/* game type survival guides */
+
+ul#game-type-guides {
+	margin-top:25px;
+	list-style-type:none;
+	padding:0px;
+}
+
+li.game-type-guide {
+	margin-top:25px;
+	display:inline-block;
+	vertical-align:top;
+	width:450px;
+}
+
+li.game-type-guide.lcol { margin-right:50px; }
+
+div.game-type-icon {
+	width:110px;
+	height:110px;
+	background-image:url('../../../images/game-guide/maps/ui/maps-gametypes.png');
+	background-repeat:none;
+	display:inline-block;
+	vertical-align:top;
+}
+
+div.game-type-icon.deathmatch { background-position: -110px -110px; }
+div.game-type-icon.siege { background-position: 0px -110px; }
+div.game-type-icon.teamdeathmatch { background-position: 0px 0px; }
+div.game-type-icon.missileassault { background-position: -110px 0px; }
+
+div.game-type-desc {
+	display:inline-block;
+	vertical-align:top;
+	width:315px;
+	padding-left: 25px;
+}
+
+div.game-type-desc p.p2 { margin-top:20px; }
+
+/* map multimedia */
+
+div#map-media {
+	margin-top: 50px;
+	padding-top: 50px;
+	background-image: url('../../../images/game-guide/shared/divider-950.jpg');
+	background-repeat: no-repeat;
+}
+
+div#map-media-screenshots, div#map-media-video { display:inline-block; vertical-align:top; }
+div#map-media-screenshots .imgframe, div#map-media-video .imgframe { margin-bottom:0px; }
+
+div#map-media-video { margin-right:50px; }
+
+div#map-media-screenshots ul { list-style-type:none; padding:0; margin:20px 0px 0px 0px; }
+div#map-media-screenshots.novideo li { display:inline-block; vertical-align:top; margin-right:25px; }
+
+/* nav bar, disabled */
+.zoomable_nav { display:none; }
+
+/* minimap */
+.zoomable_map { top:471px; left:5px; position:absolute; z-index:4; }
+.zoomable_map_wrapp_hol { position:relative; overflow: hidden; border:1px solid #363636; }
+
+/*
+.zoomable_map_pos_T { left:50%; }
+.zoomable_map_pos_TL { }
+.zoomable_map_pos_TR { position:absolute; right:0; }
+.zoomable_map_pos_B { left:50%; bottom:0; position:absolute; }
+.zoomable_map_pos_BL { bottom:7px; left:5px; position:absolute; }
+.zoomable_map_pos_BR { bottom:0; right:0; position:absolute; }
+.zoomable_map_pos_L { top:50%; }
+.zoomable_map_pos_R { right:0; position:absolute; top:50%; }
+
+.zoomable_map_wrapp_hol_T { border-top:none; }
+.zoomable_map_wrapp_hol_TL { border-top:none; border-left:none; }
+.zoomable_map_wrapp_hol_TR { border-right:none; border-top:none; }
+.zoomable_map_wrapp_hol_B { position:absolute; border-bottom:none; }
+.zoomable_map_wrapp_hol_BL { border-left:none; border-bottom:none; }
+.zoomable_map_wrapp_hol_BR { border-right:none; border-bottom:none; }
+.zoomable_map_wrapp_hol_L { border-left:none; }
+.zoomable_map_wrapp_hol_R { border-right:none; }
+*/
+
+.zoomable_map_vr { background: #000; opacity: 0.5; }
+.zoomable_map_vr_over { /*background: #4cf1fe;*/ background: #a9a9a9; }
+
+/* preloader */
+div#map-preload { display:none; }
+
+.zoomable_preload_holder {
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-top:-17px;
+	margin-left:-17px;
+	z-index:10000;
+	width:33px;
+	height:33px;
+	background: #fff url('../../../images/ui/cursors/ajax-loader.gif') no-repeat center;
+	opacity: .5;
+	border-radius: 17px;
+}
+
+/* poi */
+
+p.poi-img-text { margin-bottom:0px; }
+
+.zoomable_poi .zoomable_marker { position:relative; }
+.zoomable_poi .pos-TL { }
+.zoomable_poi .pos-T { position:relative; left:-50%; }
+.zoomable_poi .pos-TR { position:relative; left:-100%; }
+.zoomable_poi .pos-L { position:relative; top:-50%; }
+.zoomable_poi .pos-C { position:relative; top:-50%; left:-50%; }
+.zoomable_poi .pos-R { position:relative; top:-50%; left:-100%; }
+.zoomable_poi .pos-BL { position:relative; top:-100%; }
+.zoomable_poi .pos-B { position:relative; top:-100%; left:-50%; }
+.zoomable_poi .pos-BR { position:relative; top:-100%; left:-100%; }
+
+div.poi-marker {
+	width:62px;
+	height:73px;
+	background-image:url('../../../images/game-guide/maps/ui/map-waypoints-large-sprite.png');
+}
+
+div#map-poi-info div.poi-desc { margin-top: 25px; width:285px; }
+div#map-poi-info div.default { }
+
+div#map-poi-info div.poi-marker {
+	width:36px;
+	height:36px;
+	background-image:url('../../../images/game-guide/maps/ui/map-waypoints-small-sprite.png');
+	display:inline-block;
+	vertical-align:top;
+	position:relative;
+}
+
+div#map-poi-info span.poi-img-title {
+	display:inline-block;
+	vertical-align:top;
+	height:36px;
+	line-height:36px;
+	font-weight:bold;
+	padding-left:5px;
+}
+
+div.poi-marker span.marker-text { position:absolute; top:21px; width:100%; text-align:center; font:24px 'Play'; }
+div#map-poi-info div.poi-marker span.marker-text { top:6px; font-size:19px; }
+
+div.poi-marker.missilesilo { background-position: 0px 0px; }
+div.poi-marker.missilesilo span.marker-text { color:#ffec00; }
+
+div.poi-marker.base { background-position: 0px -73px; }
+div#map-poi-info div.poi-marker.base { background-position: 0px -36px; }
+div.poi-marker.base span.marker-text { color:#62e8dd; }
+
+div.poi-marker.eu, div.poi-marker.aa { background-position: 0px 0px; }
+div.poi-marker.eu span.marker-text, div.poi-marker.aa span.marker-text { color:#ffec00; }
+
+div.poi-marker.zone1 { background-position: 0px -146px; }
+div#map-poi-info div.poi-marker.zone1 { background-position: 0px -72px; }
+div.poi-marker.zone1 span.marker-text { color:#ffcf8b; }
+
+div.poi-marker.zone2 { background-position: 0px -219px; }
+div#map-poi-info div.poi-marker.zone2 { background-position: 0px -108px; }
+div.poi-marker.zone2 span.marker-text { color:#97fead; }
+
+div.poi-marker.zone3 { background-position: 0px -292px; }
+div#map-poi-info div.poi-marker.zone3 { background-position: 0px -144px; }
+div.poi-marker.zone3 span.marker-text { color:#acd7ff; }
+
+
+div.map_about_section { width:300px; display:inline-block; vertical-align:top; }
+div.map_about_section.mid { margin: 0px 25px 0px 25px; }
+div.map_about_section p.about { font-size:18px; }

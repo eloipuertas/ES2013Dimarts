@@ -1,0 +1,332 @@
+#supernav_wrapper {
+	height:72px;
+	width:100%;
+	position:fixed;
+	top:0px;
+	z-index:9999;
+}
+
+#supernav {
+	height: 50px;
+	width: 100%;
+	border-top: 1px solid #363636;
+	border-bottom: 1px solid #363636;
+	background: #1f1f1f;
+	background: -moz-linear-gradient(top,#1f1f1f 0,#000 100%);
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#1f1f1f),color-stop(100%,#000));
+	background: -webkit-linear-gradient(top,#1f1f1f 0,#000 100%);
+	background: -o-linear-gradient(top,#1f1f1f 0,#000 100%);
+	background: -ms-linear-gradient(top,#1f1f1f 0,#000 100%);
+	background: linear-gradient(to bottom,#1f1f1f 0,#000 100%);
+	color:#FFF;
+}
+
+#server_status {
+	width: 100%;
+	min-width:1080px;
+	height:20px;
+	background: #000;
+}
+
+#server_status.warning {
+	background: #000000;
+	background: -moz-linear-gradient(left,  #000000 0%, #ad8800 50%, #000000 100%, #7db9e8 100%); 
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#000000), color-stop(50%,#ad8800), color-stop(100%,#000000), color-stop(100%,#7db9e8)); 
+	background: -webkit-linear-gradient(left,  #000000 0%,#ad8800 50%,#000000 100%,#7db9e8 100%); 
+	background: -o-linear-gradient(left,  #000000 0%,#ad8800 50%,#000000 100%,#7db9e8 100%);
+	background: -ms-linear-gradient(left,  #000000 0%,#ad8800 50%,#000000 100%,#7db9e8 100%); 
+	background: linear-gradient(to right,  #000000 0%,#ad8800 50%,#000000 100%,#7db9e8 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#7db9e8',GradientType=1 );
+}
+
+#server_status.offline {
+	background: #000000; /* Old browsers */
+	background: -moz-linear-gradient(left,  #000000 0%, #631200 50%, #000000 100%, #7db9e8 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#000000), color-stop(50%,#631200), color-stop(100%,#000000), color-stop(100%,#7db9e8)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  #000000 0%,#631200 50%,#000000 100%,#7db9e8 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  #000000 0%,#631200 50%,#000000 100%,#7db9e8 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  #000000 0%,#631200 50%,#000000 100%,#7db9e8 100%); /* IE10+ */
+	background: linear-gradient(to right,  #000000 0%,#631200 50%,#000000 100%,#7db9e8 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 */
+}
+
+#server_status_message {
+	display:block;
+	width:100%;
+	max-width:1600px;
+	margin:0px auto;
+	text-align:center;
+	color:#FFF;
+	font-weight:bold;
+	font: 12px 'Play';
+	line-height:20px;
+	opacity:0.75;
+	filter:alpha(opacity=75);
+	text-shadow: 0px 1px #000;
+}
+
+#server_status_message a {
+	color: #faf27d;
+	text-decoration: none;
+	outline: 0;
+	border: 0px;
+	outline: 0px;
+}
+
+#server_status_message a:hover { text-decoration:underline; }
+#server_status_message a:visited { color: #e1db87; }
+
+/* SUPERNAV UI */
+
+ul#supernav_ui, li { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+ul#supernav_ui { list-style: none; }
+
+ul#supernav_ui { margin:0px auto; width:1000px; height:50px; }
+ul#supernav_ui li { float:left; line-height:50px; }
+ul#supernav_ui li.sn_right { float:right; }
+
+ul#supernav_ui li a { font: 12px 'Play'; color: #7e7e7e; text-decoration: none; }
+ul#supernav_ui li a:hover { color: #fff; }
+
+li.sn_divider { height: 50px; }
+
+/* SUPERNAV UI - LOGGED IN */
+
+li#sn_player_emblem { width:40px; height:40px; background:url('../../../images/supernav/jpg/SuperNav-Emblem-Sprite.jpg'); position:relative; top:5px; }
+li#sn_player_callsign { font: 24px 'AgencyFBBold'; color: #d9d9d9; padding: 0px 10px 0px 15px; text-transform:uppercase; }
+
+li#sn_player_emblem.ensign { background-position:0 -40px; }
+li#sn_player_emblem.lieutenant { background-position:0 -80px; }
+li#sn_player_emblem.commander { background-position:0 -120px; }
+
+li#sn_player_arrow { 
+	background: url('../../../images/ui/png/ui-sprite.png');
+	width: 16px;
+	height: 13px;
+	background-repeat: no-repeat;
+	background-position: 0 -1376px;
+	position:relative;
+	top:17px;
+	margin-right: 10px;
+}
+
+.sn_player_account {
+	cursor: pointer;
+}
+
+/* credit icons */
+
+li#sn_hc_icon, li#sn_mc_icon { background: url('../../../images/ui/png/ui-sprite.png'); background-repeat: no-repeat; position:relative; }
+li#sn_hc_icon { width: 27px; height: 30px; background-position: 0 -1456px; top:10px; margin:0px 10px 0px 15px; }
+li#sn_mc_icon { width: 30px; height: 28px; background-position: 0 -1486px; top:11px; margin:0px 10px 0px 25px; }
+ 
+ /* credit labels */
+ 
+li#sn_hc_label, li#sn_mc_label { font-weight: bold !important; font: 16px 'Play'; color: #D9D9D9; }
+li#sn_hc_label { text-shadow: 0 0 10px #3fb0d7; }
+li#sn_mc_label { text-shadow: 0 0 10px #ff6101; }
+
+ /* buttons */
+
+li#sn_add-credits { margin: 0px 15px 0px 15px; }
+
+ /* support link */
+
+li#sn_support { float:right !important; }
+
+/* SUPERNAV UI - LOGGED OUT */
+
+/* login form */
+
+#supernav_login input {
+	margin: 0px 0 0 10px;
+	position:relative;
+	top:-2px;
+	color: white;
+	font-size: 12px;
+	min-height: 25px;
+	padding: 0 0 0 5px;
+	border: 1px solid #363636;
+	background: #000;
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIyMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMjEyMTIxIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
+	background: -moz-linear-gradient(top,#000 20%,#212121 100%);
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(20%,#000),color-stop(100%,#212121));
+	background: -webkit-linear-gradient(top,#000 20%,#212121 100%);
+	background: -o-linear-gradient(top,#000 20%,#212121 100%);
+	background: -ms-linear-gradient(top,#000 20%,#212121 100%);
+	background: linear-gradient(to bottom,#000 20%,#212121 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000',endColorstr='#212121',GradientType=0);
+}
+
+#supernav_login input:focus { outline:0 none; border:1px solid #d9d9d9 }
+#supernav_login input.error { color:#ff663f }
+#supernav_login input.working { color:#363636; border:1px solid #363636 }
+#supernav_login li.l1 { text-transform:uppercase; }
+
+#supernav_login input#supernav_login_email { margin-right: 15px; width: 200px; }
+#supernav_login input#supernav_login_password { margin-right: 10px; width: 150px; }
+#supernav_login_submit { height: 27px; min-width: 0; margin-right: 10px; text-transform:uppercase; position:relative; top:-1px; }
+
+ul#supernav_ui li.submit_wrapper { width:84px; }
+ul#supernav_ui li.progress_indicator {
+	width: 24px;
+	height: 24px;
+	margin-right: 10px;
+	position:relative;
+	top:13px;
+	margin: 0px 30px 0px 30px;
+}
+
+/* forgot password link */
+
+
+/* support & redeem code links */
+
+ul#supernav_ui li#sn_forgotpw, ul#supernav_ui li#sn_redeemcode { text-transform:uppercase; line-height:12px; padding-top:11px;}
+
+ul#supernav_ui li#sn_support { margin-left:15px; text-transform:uppercase; }
+ul#supernav_ui li#sn_redeemcode { margin: 0px 15px 0px 15px; }
+
+ul#supernav_dropdown {
+	display:none;
+	width: 200px;
+	position: absolute;
+	top: 72px;
+	background: #1f1f1f;
+	border: 1px solid #363636;
+	border-top: 0;
+	padding: 10px;
+	list-style: none;
+	-webkit-box-shadow: 0 2px 10px #000;
+	-moz-box-shadow: 0 2px 10px #000;
+	box-shadow: 0 2px 10px #000;
+}
+
+ul#supernav_dropdown li {
+	float:none;
+}
+
+ul#supernav_dropdown li a {
+	color: #d9d9d9;
+	font: 16px 'Play';
+	line-height: 24px;
+	display: block;
+}
+
+ul#supernav_dropdown li a:hover { color:#ffb300 }
+
+iframe#login_target { display:none; position:absolute; top:-10000px; }
+
+/* EMAIL DROPDOWN */
+
+ul#supernav_ui li#sn_email_signup { line-height:12px; padding-top:11px; margin: 0px 15px 0px 15px; font: 12px 'Play'; color: #7e7e7e; cursor:pointer; }
+ul#supernav_ui li#sn_email_signup:hover, ul#supernav_ui li#sn_email_signup.active { color:#fff; }
+
+ul#supernav_ui li#sn_email_signup div.sn_dropdown_label { display:inline-block; text-transform:uppercase; }
+ul#supernav_ui li#sn_email_signup div.sn_dropdown_label img { position:relative; top:-6px; margin-right:5px; }
+
+
+div#sn-email-reg-dropdown-wrapper { display:none; right: -120px; }
+
+div#sn-email-reg-dropdown { width: 300px; top:0px; /*right:116px;*/ /*half menu width - half menuitem width */ }
+div#sn-email-reg-dropdown div.social_dropdown-arrow { left: 136px; }
+div#sn-email-reg-dropdown span.highlight { color:#FFB300;  }
+
+div#sn-email-body { padding:15px; }
+div#sn-email-body div.divider-horiz.top { margin-top:25px; }
+div#sn-email-body div.divider-horiz.bottom { margin-bottom:15px; }
+
+form#supernav_email_reg_form { text-align:center; }
+form#supernav_email_reg_form input {
+	color: white;
+	width:230px;
+	font-size: 12px;
+	min-height: 25px;
+	padding: 0 0 0 5px;
+	border: 1px solid #363636;
+	background: #000;
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIyMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMjEyMTIxIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
+	background: -moz-linear-gradient(top,#000 20%,#212121 100%);
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(20%,#000),color-stop(100%,#212121));
+	background: -webkit-linear-gradient(top,#000 20%,#212121 100%);
+	background: -o-linear-gradient(top,#000 20%,#212121 100%);
+	background: -ms-linear-gradient(top,#000 20%,#212121 100%);
+	background: linear-gradient(to bottom,#000 20%,#212121 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000',endColorstr='#212121',GradientType=0);
+}
+form#supernav_email_reg_form input:focus { outline:0 none; border:1px solid #d9d9d9 }
+
+div.supernav_email_reg_label { width:230px; height:19px; margin:0px auto; margin-top:15px; }
+div.supernav_email_reg_label span.label { float:left; }
+div.supernav_email_reg_label span.error { float:right; color:#FF663F; display:none; }
+
+div#sn-email-reg-dropdown .social_action_buttons { margin-top:25px; text-align:center; }
+
+div.supernav_email_reg_footer { height:14px; margin:0px auto; margin-top:15px; }
+div.supernav_email_reg_footer span.required { float:left; color: #D9D9D9; }
+div.supernav_email_reg_footer a.privacy-policy { float:right; color: #D9D9D9 !important;  }
+div.supernav_email_reg_footer a.privacy-policy:hover { text-decoration:underline !important;  }
+
+/* ALL SOCIAL DROPDOWNS */
+
+div.social_dropdown-wrapper { position:absolute; top:64px; }
+
+div.social_dropdown {
+	background: -moz-linear-gradient(bottom, #111721 0%, #2b3139 100%);
+	background: -o-linear-gradient(bottom, #111721 0%, #2b3139 100%);
+	background: -webkit-linear-gradient(bottom, #111721 0%, #2b3139 100%);
+	background: linear-gradient(bottom, #111721 0%, #2b3139 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#2b3139', endColorstr='#111721');/*For IE7-8-9*/ 
+	-moz-box-shadow: 0 0 10px #000;
+	-webkit-box-shadow: 0 0 10px #000;
+	box-shadow: 0 0 10px #000;
+	position:relative;
+	top:58px;
+	padding:2px;
+}
+
+div.social_dropdown-arrow {
+	background:url('../../../images/supernav/png/supernav-pane-arrow.png');
+	width:28px;
+	height:13px;
+	position:absolute;
+	top:-13px;
+}
+
+div.social_dropdown-header {
+	height:27px;
+	background:#000;
+	line-height:27px;
+	color:#fff;
+	font-weight:bold;
+	text-align:center;
+}
+
+#supernav_ui div.social_dropdown ul.social_dropdown-list { list-style-type:none;margin:0px;padding:0px; }
+#supernav_ui div.social_dropdown ul.social_dropdown-list li { float: none; display:block; line-height:24px; }
+
+#supernav_ui div.social_dropdown ul.social_dropdown-list li.message a, #supernav_ui div.social_dropdown ul.social_dropdown-list li span.link-pilot { color:#D9D9D9; }
+#supernav_ui div.social_dropdown ul.social_dropdown-list li.message a:hover, #supernav_ui div.social_dropdown ul.social_dropdown-list li span.link-pilot:hover { color:#ffb200; }
+
+#supernav_ui div.social_dropdown ul.social_dropdown-list li span.chat-icon { 
+	display:block;
+	float:left;
+	width:21px;
+	height:13px;
+	background:url('https://www.playhawken.com/images/supernav/png/snav-chat-sprite.png');
+	background-repeat: no-repeat;
+	position: relative;
+	top:7px;
+}
+
+#supernav_ui div.social_dropdown ul.social_dropdown-list li span.chat-icon:hover { background-position: 0px -14px; }
+
+div.social_dropdown-button {
+	width:100%;
+	height:27px;
+	background:url('../../../images/supernav/jpg/snav-dropdown-button.jpg');
+	line-height:27px;
+	color:#000;
+	font-weight:bold;
+	text-align:center;
+}

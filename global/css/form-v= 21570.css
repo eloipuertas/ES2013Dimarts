@@ -1,0 +1,233 @@
+/* FORM VALIDATION & LABELING */
+
+div.account_form_row { min-height:37px; }
+
+div.account_form_row .account_form_col1 {
+	float:left;
+	text-align:right;
+	padding-right:12px;
+}
+
+div.account_form_row .account_form_col2 {
+	float:left;
+}
+
+div.account_form_row .account_form_col3 {
+	float:left;
+	width:15px;
+	height: 11px;
+	margin-top:13px;
+	margin-left:10px;
+	background-repeat:no-repeat;
+}
+
+div.account_form_row .account_form_col3.fail { background-image:url('https://www.playhawken.com/images/ui/png/button-sprites.png'); background-position: 0px -995px; }
+div.account_form_row .account_form_col3.pass { background-image:url('https://www.playhawken.com/images/ui/png/button-sprites.png'); background-position: 0px -1006px; }
+
+div.account_form_row .row_msg { padding: 0px; clear:both; }
+div.account_form_row .row_msg.error { visibility:hidden; }
+div.account_form_row.hasError .row_msg.error { visibility:visible; }
+
+#signin_form #row_password { min-height:101px; } /* prevent resize when going to enlistment form */
+
+/* ===== TEXT INPUTS ===== */
+
+input.custom_form_input, textarea.custom_form_input {
+	min-height:35px;
+	border:1px solid #363636;
+	padding: 0px 0px 0px 10px;
+	background: #000000; /* Old browsers */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIyMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMjEyMTIxIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
+	background: -moz-linear-gradient(top,  #000000 20%, #212121 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,#000000), color-stop(100%,#212121)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #000000 20%,#212121 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #000000 20%,#212121 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #000000 20%,#212121 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #000000 20%,#212121 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#212121',GradientType=0 );
+	resize: none; 
+}
+
+textarea.custom_form_input { padding: 5px 10px 5px 10px; }
+
+input.custom_form_input:focus { outline: 0 none; border:1px solid #D9D9D9; }
+input.custom_form_input:disabled { color:#7e7e7e; }
+
+div.account_form_row.hasError input.custom_form_input, div.account_form_row.hasError textarea.custom_form_input, div.account_form_row.hasError a.ui-selectmenu-dropdown { border:1px solid #FF663F; }
+
+/* ===== CHECKBOXES ===== */
+
+input.custom_checkbox.ui-helper-hidden { display: none; }
+input.custom_checkbox.ui-helper-hidden-accessible { position: absolute !important; clip: rect(1px 1px 1px 1px); clip: rect(1px,1px,1px,1px); }
+input.custom_checkbox.ui-helper-hidden-accessible:-moz-focus-inner {border:0;}
+input.custom_checkbox.ui-helper-hidden-accessible:focus {outline:none;}  
+
+label.custom_checkbox.ui-state-default { 
+	display:inline-block;
+	float:left;
+	height: 17px;
+	width: 17px;
+	background:url('https://www.playhawken.com/images/ui/png/form_checkbox.png');
+	background-repeat:no-repeat;
+	background-position:0px -17px;
+	margin-right:7px;
+	cursor:pointer;
+}
+
+label.custom_checkbox.ui-state-active {
+	display:inline-block;
+	float:left;
+	height: 17px;
+	width: 17px;
+	background:url('https://www.playhawken.com/images/ui/png/form_checkbox.png');
+	background-repeat:no-repeat;
+	background-position:0px 0px;
+	margin-right:7px;
+}
+
+/* ===== DROPDOWNS ===== */
+
+a.custom-select.ui-state-default { /* dropdown top button, default state */
+	height:35px;
+	border: 2px solid #151716;
+	font: 16px 'Play', sans-serif;
+	color: #D9D9D9;
+	border:1px solid #363636;
+	text-decoration: none; 
+	overflow: hidden; 
+	zoom: 1;
+	display: inline-block;
+	position: relative;
+	background: #000000; /* Old browsers */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIyMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMjEyMTIxIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
+	background: -moz-linear-gradient(top,  #000000 20%, #212121 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,#000000), color-stop(100%,#212121)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #000000 20%,#212121 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #000000 20%,#212121 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #000000 20%,#212121 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #000000 20%,#212121 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#212121',GradientType=0 );
+}
+
+a.custom-select.ui-state-default.ui-state-active, a.custom-select.ui-state-default.ui-state-focus { border: 1px solid #DEDEDE; } /* dropdown top button highlight border */
+a.custom-select.ui-state-default span.ui-selectmenu-status { padding-left: 5px; outline:none; text-decoration:none; line-height: 35px; width:1000px; } /* dropdown top button text */
+a.custom-select.ui-state-default span.ui-selectmenu-status span.ui-selectmenu-item-icon { display:none; } /* don't display icons in status */
+
+a.custom-select.ui-state-default.dropdown_2D { padding-left:5px; width:58px !important; } /* 2 digits */
+a.custom-select.ui-state-default.dropdown_4D { padding-left:5px; width:78px !important; } /* 4 digits */
+/* a.custom-select.ui-state-default.dropdown_country { width:281px !important; } /* country */
+/* a.custom-select.ui-state-default.dropdown_language { width:376px !important; } /* language */
+
+a.custom-select.ui-state-default .ui-selectmenu-icon { width:17px; height:14px; position:absolute; right:10px; top: 12px; background:url('../../images/ui/png/input-dropdown.png'); } /* dropdown arrow icon */
+/* a.custom-select.ui-state-default.dropdown_country .ui-selectmenu-icon { width:67px; height:37px; position:absolute; right:0px; top:0px; background:url('https://www.playhawken.com/images/ui/png/input-dropdown-text-fade.png'); } */
+
+div.ui-selectmenu-menu { padding:0; margin:0; position:absolute; top: 0; display: none; z-index: 1005; } /* dropdown menu container div, closed */
+div.ui-selectmenu-menu.ui-selectmenu-open { display: block; } /* dropdown menu container div, open */
+
+ul.custom-select.ui-selectmenu-menu-dropdown {
+	background: #1f1f1f;
+	border: 1px solid #363636;
+	padding:0; 
+	list-style:none; 
+	overflow-y: auto; 
+	overflow-x: hidden; 
+	font: normal 16px 'Play', sans-serif;
+	top:20px;
+	margin-bottom:2px;
+	-webkit-box-shadow: 0px 2px 10px #000;
+	-moz-box-shadow: 0px 2px 10px #000;
+	box-shadow: 0px 2px 10px #000;
+}
+
+ul.custom-select.ui-selectmenu-menu-dropdown li { padding:0; margin:0; display: block; border-right-width: 0 !important; border-left-width: 0 !important; line-height: 24px; }
+ul.custom-select.ui-selectmenu-menu-dropdown li a { color: #d9d9d9; display: block; padding: 0; padding-left:14px; outline:none; text-decoration:none; }
+ul.custom-select.ui-selectmenu-menu-dropdown li.ui-selectmenu-item-focus a { color: #ffb300; text-decoration: none; }
+
+ul.custom-select.ui-selectmenu-menu-dropdown li span.ui-selectmenu-item-icon { height: 22px; width: 22px; display:inline-block; float:right; margin-right:60px; } /* select option icons */
+
+ul.custom-select.ui-selectmenu-menu-dropdown.dropdown_2D { width: 63px !important; }
+ul.custom-select.ui-selectmenu-menu-dropdown.dropdown_4D { width: 83px !important; }
+/* ul.custom-select.ui-selectmenu-menu-dropdown.dropdown_country { height:335px !important; width: 282px !important; } */
+/* ul.custom-select.ui-selectmenu-menu-dropdown.dropdown_language { max-height:335px !important; width: 380px !important; } */
+
+ul.custom-select.ui-selectmenu-menu-dropdown { margin-top:2px; position:static; }
+ul.custom-select.popup-select.ui-selectmenu-menu-dropdown { margin-top:4px; position:fixed; }
+
+/* SUBMISSION UI */
+
+.form_single_button {
+	width:376px;
+	height:38px;
+	position:relative;
+	left:128px;
+}
+
+.form_single_button .progress_indicator {
+	height:38px;
+	width:38px;
+	background-position: 5px 8px;
+}
+
+div.checkbox_row {
+	display:block;
+	min-height:17px;
+}
+
+div.checkbox_error {
+	display:none;
+	height:15px;
+	width:450px;
+	margin-bottom:10px;
+	line-height:15px;
+	padding-left:128px;
+}
+
+.checkbox_row a { font-weight:bold; }
+
+.vdivider { height:1px; width:380px; }
+
+.vdivider.top {
+	margin: 10px 0px 0px 128px;
+	background-color: #000;
+	opacity: 0.30;
+	filter: alpha(opacity=30);
+}
+
+.vdivider.bottom {
+	margin: 0px 0px 10px 128px;
+	background-color: #FFF;
+	opacity: 0.08;
+	filter: alpha(opacity=08);
+}
+
+/* CONFIRMATION MESSAGES */
+
+.page_contentRight .confirmation_message { display:none; }
+
+.page_contentRight .confirmation_message h1 {
+	font: 18px 'Play';
+	color:#C1FF70;
+	margin: 0px 15px 11px 15px;
+}
+
+.page_contentRight .confirmation_message p {
+	font: 18px 'Play';
+	color:#A9A9A9;
+	margin: 0px 15px 0px 15px;
+}
+
+/* SEARCH FORM */
+
+input.search_input {
+	font: 14px 'Play';
+	font-weight:bold;
+	color:#000;
+	width:196px;
+	height:22px;
+	border:0px;
+	background-color: #7D7D7D;
+	-webkit-box-shadow: inset 1px 2px 4px #000;
+	-moz-box-shadow: inset 1px 2px 4px #000;
+	box-shadow: inset 1px 2px 4px #000;
+	padding-left:10px;
+}

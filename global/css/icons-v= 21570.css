@@ -1,0 +1,36 @@
+/* DOCK ICONS */
+
+.icon-media { background-position: 0px 0px; }
+.icon-fansite-kit { background-position: 0px -54px; }
+.icon-download { background-position: 0px -108px; }
+.icon-player { background-position: 0px -162px; }
+.icon-press { background-position: 0px -216px; }
+.icon-news { background-position: 0px -270px; }
+.icon-game-guide { background-position: 0px -324px; }
+.icon-currency { background-position: 0px -432px; }
+.icon-universe { background-position: 0px -540px; }
+
+.icon_dockable.icon-info .icon_label { color:#DCFFA1 !important; }
+#dock_empty_slot { background-image:url('https://www.playhawken.com/images/dock-icons/svg/icon-empty.svg'); }
+#comm { background-image: url('https://www.playhawken.com/images/dock-icons/svg/icon-chat.svg'); }
+
+/* FEED ICONS */
+
+.feed_achievement { background:url('https://www.playhawken.com/images/feed-icons/png/achievements-feed.png'); }
+.feed_application { background:url('https://www.playhawken.com/images/feed-icons/png/applications-feed.png'); }
+.feed_challenge { background:url('https://www.playhawken.com/images/feed-icons/png/challenges-feed.png'); }
+.feed_clan { background:url('https://www.playhawken.com/images/feed-icons/png/clans-feed.png'); }
+.feed_defeated { background:url('https://www.playhawken.com/images/feed-icons/png/defeated-feed.png'); }
+.feed_invitation { background:url('https://www.playhawken.com/images/feed-icons/png/invitations-feed.png'); }
+.feed_item { background:url('https://www.playhawken.com/images/feed-icons/png/items-feed.png'); }
+.feed_level-up { background:url('https://www.playhawken.com/images/feed-icons/png/level-up-feed.png'); }
+.feed_mech { background:url('https://www.playhawken.com/images/feed-icons/png/mechs-feed.png'); }
+.feed_new-clan { background:url('https://www.playhawken.com/images/feed-icons/png/new-clans-feed.png'); }
+.feed_new-enemy { background:url('https://www.playhawken.com/images/feed-icons/png/new-enemy-feed.png'); }
+.feed_player { background:url('https://www.playhawken.com/images/feed-icons/png/player-feed.png'); }
+.feed_recruiting { background:url('https://www.playhawken.com/images/feed-icons/png/recruiting-feed.png'); }
+.feed_stash { background:url('https://www.playhawken.com/images/feed-icons/png/stash-feed.png'); }
+.feed_tournament { background:url('https://www.playhawken.com/images/feed-icons/png/tournaments-feed.png'); }
+.feed_watching-you { background:url('https://www.playhawken.com/images/feed-icons/png/watching-you-feed.png'); }
+.feed_weapon { background:url('https://www.playhawken.com/images/feed-icons/png/weapons-feed.png'); }
+.feed_win { background:url('https://www.playhawken.com/images/feed-icons/png/wins-feed.png'); }

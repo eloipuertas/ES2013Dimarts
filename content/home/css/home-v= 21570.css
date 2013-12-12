@@ -1,0 +1,136 @@
+/* EXTERNAL STYLESHEETS */
+
+@import url('nivo-slider-v=%2021570.css');
+@import url('nivo-hawkenSpotlight-v=%2021570.css');
+
+/* ===== SLIDERS ===== */
+
+#hawkenSlider_container {
+	clear:both;
+	position:relative;
+	width:1000px;
+	height:365px;
+	margin:0px auto;
+	margin-bottom:36px;
+	visibility:hidden;
+}
+
+#hawkenSlider_leftPane {
+	float:left;
+	width:256px;
+	height:300px;
+	position:relative;
+	top:16px;
+}
+
+.panel_left, .panel_right { width:256px; height:300px; background-repeat: no-repeat !important; }
+
+#hawkenSlider_leftPane .bx-wrapper {
+	-moz-box-shadow: 0 0 32px 8px rgba(0,0,0,.6);
+	-webkit-box-shadow: 0 0 32px 8px rgba(0,0,0,.6);
+	box-shadow: 0 0 32px 8px rgba(0,0,0,.6);
+}
+
+#left_default_01 { background-image:url('../../../images/home/stage/left/left-coming-1-clans.jpg'); }
+#left_default_02 { background-image:url('../../../images/home/stage/left/left-coming-2-stats.jpg'); }
+#left_default_03 { background-image:url('../../../images/home/stage/left/left-coming-3-garage.jpg'); }
+
+#hawkenSlider_middlePane {
+	float:left;
+	width:488px;
+	height:365px;
+}
+
+#hawkenSlider_rightPane {
+	float:left;
+	width:256px;
+	height:300px;
+	position:relative;
+	top:16px;
+}
+
+#hawkenSlider_rightPane .bx-wrapper {
+	-moz-box-shadow: 0 0 32px 8px rgba(0,0,0,.6);
+	-webkit-box-shadow: 0 0 32px 8px rgba(0,0,0,.6);
+	box-shadow: 0 0 32px 8px rgba(0,0,0,.6);
+}
+
+#right_default_01 { background-image:url('../../../images/home/stage/right/right-award-1.jpg'); }
+#right_default_02 { background-image:url('../../../images/home/stage/right/right-award-2.jpg'); }
+#right_default_03 { background-image:url('../../../images/home/stage/right/right-award-3.jpg'); }
+#right_default_04 { background-image:url('../../../images/home/stage/right/right-award-4.jpg'); }
+#right_default_05 { background-image:url('../../../images/home/stage/right/right-award-5.jpg'); }
+#right_default_06 { background-image:url('../../../images/home/stage/right/right-award-6.jpg'); }
+
+
+/* ===== CONTENT PANES ===== */
+
+#home_page_body {
+
+}
+
+#home_page_body .page_contentLeft {
+	width:463px;
+	float:left;
+	margin-left:40px;
+}
+
+#home_page_body .page_contentRight {
+	width:463px;
+	float:right;
+	margin-right:60px;
+}
+
+#home_page_body .content_pane_body {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	min-height: 250px;
+	width: 483px;
+	background: #19191A;
+	margin-bottom: 30px;
+}
+
+#pane_news, #pane_press { font-family:'Play'; height:555px; }
+
+/* NEWS & ANNOUNCEMENTS */
+
+ul.content_blog {
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+	width:443px;
+}
+
+ul.content_blog li { height:92px; padding-top:20px;  }
+ul.content_blog li.first, ul.content_blog li:first-child { padding-top:5px; }
+
+ul.content_blog li div.blog_icon { height:92px;width:70px;float:left;background-image:url('../../../images/blog/png/blog-post-icon.png');background-repeat:no-repeat;background-position:15px 0px; }
+ul.content_blog li div.blog_summary { height:92px;width:370px;float:left; }
+
+ul.content_blog li div.blog_summary div.blog_headline { margin:0px;padding:0px;font-size:14px;line-height:20px;color:#FFCA80;font-weight:bold;  }
+
+ul.content_blog li div.blog_summary p {  margin:0px;padding:0px;font-size:14px;line-height:20px;color: #A9A9A9; }
+ul.content_blog li div.blog_summary p.date {  margin:0px;padding:0px;font-size:14px;line-height:27px;color: #4B4e4f; }
+
+/* HAWKEN IN THE PRESS */
+
+#headline_scrollable { width: 453px; margin: 5px 0px 0px 15px; }
+
+#headline_scrollable ul { list-style-type:none;margin:0px;padding:0px; }
+
+#headline_scrollable ul li.headline { padding:20px 0px 20px 20px;height:100px;width:415px; }
+#headline_scrollable ul li.headline.first, #headline_scrollable ul li.headline:first-child { padding-top:5px; }
+
+#headline_scrollable ul li.headline img.headline-image { width:160px;height:100px;display:inline-block;float:left;margin-right:20px;border:none; }
+#headline_scrollable ul li.headline div { display:inline-block; float:left; width:235px; }
+#headline_scrollable ul li.headline div div.press_headline { margin:0px; padding:0px;  font-size:20px; line-height:27px;color:#A9A9A9; font-weight:normal; }
+#headline_scrollable ul li.headline div p { margin:0px; padding:0px;  font-size: 14px; line-height:20px;color:#4B4E4F; }
+
+#headline_scrollable ul li.divider { height:1px;width:410px;background-color:#000;opacity:0.2;filter:alpha(opacity=20); }
+
+#headline_scrollable h2 { font-size:14px; color:#DCFFA1; }
+#headline_scrollable .viewport { width: 433px; height: 548px; overflow: hidden; position: relative; }
+
+div.ips_offline { width:66px; height:52px; margin:0px auto; margin-top:50px; background-image:url('../../../images/home/mech-loader.png');}
+div.offline_message { text-align:center; margin:0px auto; margin-top:10px; font:16px 'Play'; color:#404040; }
+
