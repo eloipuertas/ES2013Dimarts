@@ -220,9 +220,89 @@
 	
 		<div class="page_body">
         
-        	<p> TODO: Fake buy system </p>
+        	<div class="wide-payment-buttons" id="order-form-holder">
+                <form method="post" id="order-form" action="#">
+                    <input type="hidden" value="jumbobundle" name="product">
+                    <input type="hidden" value="4.217198526313596" name="avg">
+                    <input type="hidden" value="u4fFZfXm2+8gcVNzRuuoJJ3CwuqPve1YtezEYD1Hpxk=" name="avghash">
+                    
+                    <div class="hr"></div>
+    
+                    <div class="stepholder">
+                        <div class="step num1"></div>
+                        <div class="steptext big-screen-only">Choose any amount of money in USD:</div>
+                      <div class="steptext small-screen-only">Name your price:</div>
+                        <div class="stepoption">
+    
+                          <input type="radio" value="100" class="radio-amount" name="radio-amount" id="rb1"><label for="rb1">
+                          $15</label><br>
+                          <input type="radio" value="50" class="radio-amount" name="radio-amount" id="rb2"><label for="rb2">
+                          $10</label><br>
+                          <input type="radio" checked="" value="25" class="radio-amount" name="radio-amount" id="rb3"><label for="rb3">
+                          $5</label><br>
+                          <input type="radio" value="10" class="radio-amount" name="radio-amount" id="rb4"><label for="rb4">
+                          $1</label><br>
+                                                   
+                        </div>
+                    </div>
+                                   
+                    <div class="hr"></div>
+                    
+                    <div class="stepholder">
+                        <div class="step num2"></div>
+                        <label>
+                            <div class="steptext big-screen-only">Enter your email address (please double check):</div>
+                      <div class="steptext small-screen-only">Your email, please:</div>
+                            <div class="stepoption">
+                                <label for="temail" class="placeholder" style="left: 36px; top: 10px;"></label>
+                                <input type="text" data-placeholder-vertical-offset="3" placeholder="Your email" name="email" class="ttext" id="temail">
+                                &nbsp;
+                                <input type="checkbox" checked="" name="subscribe" id="subscribe_checkbox">
+                                    <label for="subscribe_checkbox">Notify me about future promotions.</label>
+							</div>
+						</label>
+					</div>
+          
+                    <div class="hr"></div>
+                    
+                    <div class="stepholder">
+                        <div class="step num3"></div>
+                      <div class="steptext">Is this order a gift?</div>
+                        <div class="stepoption">
+                            <input type="checkbox" class="giftcheckbox" name="gift" id="giftcheckbox">
+                            <label for="giftcheckbox">Yes, send me a gift code.</label>
+                        </div>
+                    </div>
+      
+                    <div class="hr"></div>
+                    
+                    <div class="stepholder">
+                        <div class="buttonwindow">
+                            <div class="purchase-in-progress">
+                                <div class="processing-text"><img src="https://humblebundle-a.akamaihd.net/static/hashed/3288d1035d70bb86517e2c233f1a904e41f06b29.gif"> Processing...</div>
+                            </div>
+                            <div class="orderbuttons five-buttons">
+                                <button data-processor="stripe" style="visibility: visible;" class="stripe-button-el" type="submit">
+                                    <span data-processor="stripe" style="display: block; min-height: 30px;">Pay with Credit Card</span>
+                                </button>
+                        
+                                <input type="image" value="PayPal" name="paypal" src="https://humblebundle-a.akamaihd.net/static/hashed/3eb68d2fa33a1786301c97c25fbafc4afc0781b1.gif">
+                                <input type="image" value="Amazon" name="amazon" src="https://humblebundle-a.akamaihd.net/static/hashed/f3e27a03e0aeed22131bb637a66cf58f4f765cd7.png">
+                                <input type="image" value="wallet" name="wallet" src="https://humblebundle-a.akamaihd.net/static/hashed/6aa1c8a3e21fe8563adc6c330ca6a0b574f00872.gif">
+                                <a data-processor="coinbase" class="coinbase-link" href="#">or buy with Bitcoin!</a>
+                            </div>
+                    	</div>
+                    
+                        <div id="orderhelptext">
+                            All major credit cards accepted. Payments via bank account are also supported by PayPal and Amazon Payments.
+                            The payment processor will deduct a fee from your payment before we receive it.  <a href="#" class="initial">Details...</a><span class="moredetails">Fees typically range between 1.9% and 5% + $0.05 to $0.30 depending on a number of factors including your location, purchase price, and payment method. We've found that PayPal's fees are generally the lowest, but please choose whichever is convenient for you.  We deduct VAT where applicable.</span>
+                        </div>
+                    	<div class="clear"></div>
+					</div>
+				</form>
+			</div> <!-- end order-form-holder --> 
         
-        </div>
+        </div><!-- end page_body -->
 	</div>        
 </div>  
 	
@@ -258,6 +338,7 @@
 <script src="global/js/jquery.bxSlider.min-v=%2021570.js" type="text/javascript"></script>
 
 <script src="content/home/js/home-v=%2021570.js" type="text/javascript"></script>
+<script src="content/home/js/buy-form.js" type="text/javascript"></script>
 </div>
 			</div>
 		</div>
