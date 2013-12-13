@@ -1,0 +1,17 @@
+.content_pane_title h1{ font-size:16px; font-weight:normal; }
+
+div#error_body { padding-top:60px; }
+
+div#landing_400 {
+	width:465px;
+	height:390px;
+	float:right;
+}
+
+p#error_links { text-transform:uppercase; }
+
+p#error_links a { margin-right:5px; }
+p#error_links a:not(:first-child) { margin-left:5px; }
+
+div#error_body div.page_contentRight {width:500px; margin-left:25px; }
+div#error_body div.page_contentLeft { width:400px; margin-right:25px; }
