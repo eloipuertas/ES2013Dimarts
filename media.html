@@ -7,9 +7,10 @@
 	<![endif]-->
 	<link rel="stylesheet" href="global/css/fonts-v=%2021570.css">
 	<link rel="stylesheet" href="content/main/css/main-v=%2021570.css" type="text/css">
+	<link rel='stylesheet' href='content/home/css/home-v=%2021570.css' type='text/css' class='css-dyn' content='home'>
 	<link rel='stylesheet' href='content/game-guide/css/game-guide-v=%2021570.css' type='text/css' class='css-dyn' content='game-guide'>
 	<meta charset="UTF-8">
-	<title itemprop="name">BADASS UPGRADE - Game Guide - Enemies - Summoner</title>
+	<title itemprop="name">BADASS UPGRADE - Media</title>
 	
 	<meta name="viewport" content="width=device-width">
 	<meta name="description" content="BADASS UPGRADE">
@@ -43,17 +44,17 @@
                         </div>
 	<div id="header_nav">
 		<ul id="header_nav_top">
-			<li id="top_media"><a sub="nav_sub_media" href="media.html" class="content toplink">Media</a></li>
-			<li id="top_game-guide"><a sub="nav_sub_game-guide" href="game-guide.html" class="content toplink active hovered">Game Guide</a></li>
+			<li id="top_media"><a sub="nav_sub_media" href="media.html" class="content toplink active hovered">Media</a></li>
+			<li id="top_game-guide"><a sub="nav_sub_game-guide" href="game-guide.html" class="content toplink">Game Guide</a></li>
 		</ul>
 		<div id="header_nav_gradient"></div>
 		<div id="header_nav_sub">
-			<ul id="nav_sub_game-guide" class="active hovered">
+			<ul id="nav_sub_game-guide">
 				<li><a id="sub_items" href="items.html" class="content sublink">Items</a></li>
 				<li><a id="sub_weapons" href="weapons.html" class="content sublink">Weapons</a></li>
-				<li><a id="sub_enemies" href="enemies.html" class="content sublink active hovered">Enemies</a></li>
+				<li><a id="sub_enemies" href="enemies.html" class="content sublink">Enemies</a></li>
 			</ul>
-			<ul id="nav_sub_media">
+			<ul id="nav_sub_media" class="active hovered">
 				<li><a id="sub_video" href="video.html" class="content sublink">Video</a></li>
 				<li><a id="sub_concept-art" href="art.html" class="content sublink">Concept Art</a></li>
 				<li><a id="sub_screenshots" href="screenshots.html" class="content sublink">Screenshots</a></li>
@@ -65,68 +66,31 @@
 
 	<div id="page">
     	<div style="width:1000px;margin:0px auto;clear:both;">
-
-            <div metaTitle="" id="page_header" guide="mechs">
-                <span class="content_pane_title">BADASS UPGRADE Game Guide</span>
-                <span icon_id="icon-game-guide" class="icon_dockable icon-game-guide ui-draggable" url="game-guide/" icon_label="GAME GUIDE"></span>
+        
+            <div metaTitle="" id="page_header">
+                <span class="content_pane_title">BADASS UPGRADE Media</span>
+                <span icon_id="icon-media" class="icon_dockable icon-media ui-draggable" url="media/" icon_label="MEDIA"></span>
                 <span class="icon-holder"></span>
             </div>
-        
-            <div class="page_body game_guide" id="guide_mechs" style="padding-bottom:0px; height:400px;">
+	
+			<div class="page_body game_guide" id="guide_game_info" style="padding-bottom:0px; min-height:0px">
+		
+			<div id="guide-nav-container">
+				<ul id="guide-nav">
+                    <li class="nav_top" id="nav_main">
+                        <a class="nav_label content" href="screenshots.html">Screenshots</a>
+                    </li>
+                    <li class="nav_top" id="nav_main">
+                        <a class="nav_label content" href="art.html">Concept Art</a>
+                    </li>
+                    <li class="nav_top" id="nav_main">
+                        <a class="nav_label content" href="video.html">Video</a>
+                    </li>
+				</ul>
+			</div>	
             
-                <div id="guide-nav-container">
-                    <ul id="guide-nav">
-                        <li class="nav_top" id="nav_main">
-                            <a class="nav_label content" href="game-guide.html">Main</a>
-                        </li>
-                        <li class="nav_top selected" id="nav_mechs">
-                            <a class="nav_label content" href="enemies.html">Enemies</a>
-                            <div class="nav_menu" style="width:130px">
-                                <ul class="nav_menu_enemies nav_menu_items">
-                                    <li><a class='content' href='shooter.html'>Shooter</a></li>
-                                    <li><a class='content' href='homing.html'>Homing</a></li>
-                                    <li><a class='content' href='summoner.html'>Summoner</a></li>
-                                    <li><a class='content' href='chaser.html'>Chaser</a></li>
-                                     <li><a class='content' href='boss.html'>Boss</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav_top" id="nav_weapons">
-                            <a class="nav_label content" href="weapons.html">Weapons</a>
-                            <div class="nav_menu" style="width:130px">
-                                <ul class='nav_menu_weapons nav_menu_items'>
-                                    <li><a class='content' href='remodelled_ax_15.html'>Remodelled AX-15</a></li>
-                                    <li><a class='content' href='exus_pacificator.html'>Exus Pacificator</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav_top" id="nav_items">
-                            <a class="nav_label content" href="items.html">Items</a>
-                            <div class="nav_menu" style="width:130px">
-                                <ul class="nav_menu_items">
-                                    <li><a class='content' href='items.html'>Health</a></li>
-                                    <li><a class='content' href='items.html'>Ammo for Remodelled AX-15</a></li>
-                                    <li><a class='content' href='items.html'>Ammo for Exus Pacificator</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            
-                <div id="mech_detail_spotlight">
-	                <div class="l1 breadcrumb"><a class="content" href="game-guide.html">Game Guide</a> / <a class="content" href="enemies.html">Enemies</a> / Summoner </div>
-    	            <img id='mech_detail_image' src='images/game-guide/enemies/summoner_detail.jpg' style="height:350px">
-                    <div class="splash-header">
-	                    <div class="mech-title">Summoner</div>
-    	                <div class="mech-subtitle">Nightmare!</div>
-        	            <div class="mech-description p1">
-							These versatile mechs fill a variety of combat roles, and their reliability makes them a nightmare for inexperienced enemies. Once they have summoned various robots, they can transform into mobile turrets.
-                	    </div>
-                    </div>
-                </div>
-            </div>		
-        </div>
-    </div>
+		</div>	
+	</div>
 
 <div id="home_footer" class="footer">
 
